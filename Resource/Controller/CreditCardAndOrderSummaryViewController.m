@@ -27,7 +27,7 @@
 #import "OrderTaking.h"
 #import "OrderNote.h"
 #import "OmiseSDK.h"
-#import "Jummum2-Swift.h"
+#import "DemoJummum-Swift.h"
 #import "UserAccount.h"
 #import "PromotionMenu.h"
 #import "Promotion.h"

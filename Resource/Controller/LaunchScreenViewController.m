@@ -83,7 +83,7 @@
         {
             NSString *title = [Setting getValue:@"001t" example:@"Warning"];
             NSString *message = [Setting getValue:@"001m" example:@"Memory fail"];
-            [self showAlert:title message:message];
+            [self showAlert:title message:message method:@selector(tryDownloadAgain)];
             return;
         }
         

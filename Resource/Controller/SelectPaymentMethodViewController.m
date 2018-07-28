@@ -9,7 +9,7 @@
 #import "SelectPaymentMethodViewController.h"
 #import "CustomTableViewCellImageLabelRemove.h"
 #import "OmiseSDK.h"
-#import "Jummum2-Swift.h"
+#import "DemoJummum-Swift.h"
 #import "CreditCard.h"
 #import "Setting.h"
 

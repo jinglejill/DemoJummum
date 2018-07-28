@@ -28,7 +28,7 @@
 #import "Utility.h"
 #import "Setting.h"
 #import "OmiseSDK.h"
-#import "Jummum2-Swift.h"
+#import "DemoJummum-Swift.h"
 
 
 @interface BasketViewController ()

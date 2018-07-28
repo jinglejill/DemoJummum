@@ -105,7 +105,7 @@ void myExceptionHandler(NSException *exception)
     }
     
     
-    [[NSUserDefaults standardUserDefaults] setValue:@"JUMMUM4" forKey:BRANCH];
+    [[NSUserDefaults standardUserDefaults] setValue:@"DEMO_JUMMUM" forKey:BRANCH];
     
     
     
