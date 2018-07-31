@@ -23,6 +23,7 @@
 @interface CustomViewController ()
 {
     UILabel *_lblStatus;
+    
 }
 @end
 
@@ -41,7 +42,26 @@ CGFloat animatedDistance;
 @synthesize lblAlertMsg;
 @synthesize lblWaiting;
 @synthesize toolBar;
+@synthesize selectedReceipt;
+@synthesize showOrderDetail;
 
+
+-(void)viewDidLayoutSubviews
+{
+    [super viewDidLayoutSubviews];
+    
+    
+    UIImageView *demoView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"triangle_demo.png"]];
+    CGRect frame = demoView.frame;
+    frame.size.width = 64;
+    frame.size.height = 64;
+    frame.origin.x = self.view.frame.size.width - frame.size.width;
+    frame.origin.y = 0;
+    demoView.frame = frame;
+    [self.view addSubview:demoView];
+    demoView.layer.zPosition = 1;
+    
+}
 
 -(void)setCurrentVc
 {
@@ -1490,5 +1510,11 @@ CGFloat animatedDistance;
 {
     [self.view endEditing:YES];
 }
+
+//-(void)segueToOrderDetail:(Receipt *)receipt
+//{
+//    [self performSegueWithIdentifier:@"segOrderDetail" sender:self];
+//}
+
 @end
 

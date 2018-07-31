@@ -1759,7 +1759,7 @@ static NSString * const reuseIdentifierLabelTextView = @"CustomTableViewCellLabe
         NSMutableArray *receiptList = items[0];
         Receipt *receipt = receiptList[0];
         _receipt = receipt;
-        [self.homeModel insertItems:dbPushReminder withData:@[branch,receipt] actionScreen:@"push reminder"];
+//        [self.homeModel insertItems:dbPushReminder withData:@[branch,receipt] actionScreen:@"push reminder"];
         [self performSegueWithIdentifier:@"segPaymentComplete" sender:self];
     }
     

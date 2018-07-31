@@ -35,6 +35,10 @@
 -(instancetype)initWithCoder:(NSCoder *)aDecoder
 {
     self.webView = [self createWebView];
+    self.webView.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight;
+    self.webView.frame = CGRectMake(0, 0, webViewContainer.frame.size.width, webViewContainer.frame.size.height);
+    
+    
     self = [super initWithCoder:aDecoder];
     return self;
 }

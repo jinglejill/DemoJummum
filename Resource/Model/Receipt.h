@@ -66,6 +66,7 @@
 +(float)getAllCreditAmountWithReceiptDate:(NSDate *)date;
 +(float)getAllTransferAmountWithReceiptDate:(NSDate *)date;
 +(NSDate *)getMaxModifiedDateWithMemberID:(NSInteger)memberID;
++(Receipt *)getReceiptWithMaxModifiedDateWithMemberID:(NSInteger)memberID;
 +(void)updateStatusList:(NSMutableArray *)receiptList;
 +(NSMutableArray *)getReceiptList;
 +(void)removeAllObjects;
@@ -74,4 +75,6 @@
 +(UIColor *)getStatusColor:(Receipt *)receipt;
 +(NSInteger)getStateBeforeLast:(Receipt *)receipt;
 +(NSInteger)getBranchIDWithMaxModifiedDateWithMemberID:(NSInteger)memberID;
++(NSInteger)getIndex:(NSMutableArray *)receiptList receipt:(Receipt *)receipt;
++(NSInteger)getPriorStatus:(Receipt *)receipt;
 @end

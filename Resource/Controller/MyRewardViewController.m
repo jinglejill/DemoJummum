@@ -613,15 +613,19 @@ static NSString * const reuseIdentifierReward = @"CustomTableViewCellReward";
                 }
                 [_timeToCountDownList addObject:[NSNumber numberWithInteger:timeToCountDown]];
                 NSNumber *objIndex = [NSNumber numberWithInt:i];
+                [[UIApplication sharedApplication] beginBackgroundTaskWithExpirationHandler:nil];
                 NSTimer *timer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(updateTimer:) userInfo:objIndex repeats:YES];
+                [[NSRunLoop currentRunLoop] addTimer:timer forMode:NSRunLoopCommonModes];
                 [_timerList addObject:timer];
                 
                 
 
                 NSTimeInterval seconds2 = [[Utility setEndOfTheDay:rewardRedemption.usingEndDate] timeIntervalSinceDate:[Utility currentDateTime]];
                 seconds2 = seconds2>0?seconds2:0;
+                [[UIApplication sharedApplication] beginBackgroundTaskWithExpirationHandler:nil];
                 NSTimer *timer2 = [NSTimer scheduledTimerWithTimeInterval:seconds2 target:self selector:@selector(updateTimer2:) userInfo:objIndex repeats:NO];
-                [_timerUsedList addObject:timer2];
+                [[NSRunLoop currentRunLoop] addTimer:timer forMode:NSRunLoopCommonModes];
+                [_timerUsedList addObject:timer2];                
             }
             
             
@@ -840,14 +844,18 @@ static NSString * const reuseIdentifierReward = @"CustomTableViewCellReward";
             }
             [_timeToCountDownList addObject:[NSNumber numberWithInteger:timeToCountDown]];
             NSNumber *objIndex = [NSNumber numberWithInt:i];
+            [[UIApplication sharedApplication] beginBackgroundTaskWithExpirationHandler:nil];
             NSTimer *timer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(updateTimer:) userInfo:objIndex repeats:YES];
+            [[NSRunLoop currentRunLoop] addTimer:timer forMode:NSRunLoopCommonModes];
             [_timerList addObject:timer];
             
             
             
             NSTimeInterval seconds2 = [[Utility setEndOfTheDay:rewardRedemption.usingEndDate] timeIntervalSinceDate:[Utility currentDateTime]];
             seconds2 = seconds2>0?seconds2:0;
+            [[UIApplication sharedApplication] beginBackgroundTaskWithExpirationHandler:nil];
             NSTimer *timer2 = [NSTimer scheduledTimerWithTimeInterval:seconds2 target:self selector:@selector(updateTimer2:) userInfo:objIndex repeats:NO];
+            [[NSRunLoop currentRunLoop] addTimer:timer forMode:NSRunLoopCommonModes];
             [_timerUsedList addObject:timer2];
         }
         
@@ -906,14 +914,18 @@ static NSString * const reuseIdentifierReward = @"CustomTableViewCellReward";
         }
         [_timeToCountDownList addObject:[NSNumber numberWithInteger:timeToCountDown]];
         NSNumber *objIndex = [NSNumber numberWithInt:i];
+        [[UIApplication sharedApplication] beginBackgroundTaskWithExpirationHandler:nil];
         NSTimer *timer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(updateTimer:) userInfo:objIndex repeats:YES];
+        [[NSRunLoop currentRunLoop] addTimer:timer forMode:NSRunLoopCommonModes];
         [_timerList addObject:timer];
         
         
         
         NSTimeInterval seconds2 = [[Utility setEndOfTheDay:rewardRedemption.usingEndDate] timeIntervalSinceDate:[Utility currentDateTime]];
         seconds2 = seconds2>0?seconds2:0;
+        [[UIApplication sharedApplication] beginBackgroundTaskWithExpirationHandler:nil];
         NSTimer *timer2 = [NSTimer scheduledTimerWithTimeInterval:seconds2 target:self selector:@selector(updateTimer2:) userInfo:objIndex repeats:NO];
+        [[NSRunLoop currentRunLoop] addTimer:timer forMode:NSRunLoopCommonModes];
         [_timerUsedList addObject:timer2];
     }
     

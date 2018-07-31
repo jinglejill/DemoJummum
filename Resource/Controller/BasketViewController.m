@@ -146,7 +146,7 @@ static NSString * const reuseIdentifierVoucherCode = @"CustomTableViewCellVouche
     if([[segue identifier] isEqualToString:@"segNote"])
     {
         NoteViewController *vc = segue.destinationViewController;
-        vc.noteList = [MenuNote getNoteListWithMenuID:_orderTaking.menuID];//[MenuTypeNote getNoteListWithMenuTypeID:menu.menuTypeID];//[Note getNoteList];
+        vc.noteList = [MenuNote getNoteListWithMenuID:_orderTaking.menuID];
         vc.orderTaking = _orderTaking;
         vc.branch = branch;
     }

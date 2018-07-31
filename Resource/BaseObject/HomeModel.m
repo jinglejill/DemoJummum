@@ -105,12 +105,18 @@
             arrClassName = @[@"Message",@"Menu",@"MenuType",@"MenuNote",@"Note",@"NoteType",@"SubMenuType",@"SpecialPriceProgram"];
         }
             break;
+        case dbMenuNoteList:
+        {
+            arrClassName = @[@"MenuNote"];
+        }
+            break;
         case dbCustomerTable:
         {
             arrClassName = @[@"CustomerTable"];
         }
             break;
         case dbReceiptSummary:
+        case dbReceiptMaxModifiedDate:
         {
             arrClassName = @[@"Receipt",@"OrderTaking",@"OrderNote",@"Menu"];
         }
@@ -138,36 +144,34 @@
         }
             break;
         case dbRewardPointSpent:
-        {
-            arrClassName = @[@"RewardPoint",@"PromoCode",@"RewardRedemption"];
-        }
-            break;
         case dbRewardPointSpentMore:
+        case dbRewardPointSpentUsed:
+        case dbRewardPointSpentUsedMore:
+        case dbRewardPointSpentExpired:
+        case dbRewardPointSpentExpiredMore:
         {
             arrClassName = @[@"RewardPoint",@"PromoCode",@"RewardRedemption"];
         }
             break;
-        case dbRewardPointSpentUsed:
-        {
-            arrClassName = @[@"RewardPoint",@"PromoCode",@"RewardRedemption"];
-        }
-        break;
-        case dbRewardPointSpentUsedMore:
-        {
-            arrClassName = @[@"RewardPoint",@"PromoCode",@"RewardRedemption"];
-        }
-        break;
-        case dbReceiptMaxModifiedDate:
         case dbReceipt:
         {
             arrClassName = @[@"Receipt"];
         }
             break;
-        case dbReceiptWithModifiedDate:
+//        case dbReceiptWithModifiedDate:
+        
+        case dbReceiptDisputeRating:
+        case dbReceiptDisputeRatingUpdateAndReload:
         {
             arrClassName = @[@"Receipt",@"Dispute",@"Rating"];
         }
         break;
+        case dbReceiptDisputeRatingAllAfterReceipt:
+        case dbReceiptDisputeRatingAllAfterReceiptUpdateAndReload:
+        {
+            arrClassName = @[@"Receipt",@"Dispute",@"Rating",@"OrderTaking",@"OrderNote",@"Menu"];
+        }
+            break;
         case dbDisputeReasonList:
         {
             arrClassName = @[@"DisputeReason"];
@@ -187,7 +191,7 @@
         {
             arrClassName = @[@"Message"];
         }
-            break;
+            break;        
         default:
             break;
     }
@@ -253,7 +257,7 @@
             // Ready to notify delegate that data is ready and pass back items
             if (self.delegate)
             {
-                if(propCurrentDB == dbHotDeal || propCurrentDB == dbHotDealWithBranchID || propCurrentDB == dbReceiptSummary || propCurrentDB == dbReceiptMaxModifiedDate ||propCurrentDB == dbRewardPoint || propCurrentDB == dbRewardRedemptionWithBranchID || propCurrentDB == dbReceipt || propCurrentDB == dbReceiptWithModifiedDate || propCurrentDB == dbOpeningTime || propCurrentDB == dbMenuList)
+                if(propCurrentDB == dbHotDeal || propCurrentDB == dbHotDealWithBranchID || propCurrentDB == dbReceiptSummary || propCurrentDB == dbReceiptMaxModifiedDate ||propCurrentDB == dbRewardPoint || propCurrentDB == dbRewardRedemptionWithBranchID || propCurrentDB == dbReceipt || propCurrentDB == dbOpeningTime || propCurrentDB == dbReceiptDisputeRating || propCurrentDB == dbReceiptDisputeRatingAllAfterReceipt || propCurrentDB == dbReceiptDisputeRatingUpdateAndReload || propCurrentDB == dbReceiptDisputeRatingAllAfterReceiptUpdateAndReload || propCurrentDB == dbMenuList || propCurrentDB == dbMenuNoteList)
                 {
                     [self.delegate itemsDownloaded:arrItem manager:self];
                 }
@@ -429,6 +433,12 @@
             url = [NSURL URLWithString:[Utility appendRandomParam:[Utility url:urlMenuGetList]]];
         }
             break;
+        case dbMenuNoteList:
+        {
+            noteDataString = [NSString stringWithFormat:@"dbNameBranch=%@",(NSString *)data];
+            url = [NSURL URLWithString:[Utility appendRandomParam:[Utility url:urlMenuNoteGetList]]];
+        }
+            break;
         case dbCustomerTable:
         {
             noteDataString = [NSString stringWithFormat:@"dbNameBranch=%@",(NSString *)data];
@@ -554,8 +564,10 @@
         {
             NSArray *dataList = (NSArray *)data;
             UserAccount *userAccount = dataList[0];
-            NSDate *maxReceiptModifiedDate = dataList[1];
-            noteDataString = [NSString stringWithFormat:@"memberID=%ld&modifiedDate=%@",userAccount.userAccountID,maxReceiptModifiedDate];
+            NSDate *maxModifiedDate = dataList[1];
+            
+
+            noteDataString = [NSString stringWithFormat:@"memberID=%ld&modifiedDate=%@",userAccount.userAccountID,maxModifiedDate];
             url = [NSURL URLWithString:[Utility appendRandomParam:[Utility url:urlReceiptMaxModifiedDateGetList]]];
         }
             break;
@@ -597,10 +609,19 @@
         }
             break;
         case dbReceiptDisputeRating:
+        case dbReceiptDisputeRatingUpdateAndReload:
         {
             Receipt *receipt = (Receipt *)data;
             noteDataString = [Utility getNoteDataString:receipt];
             url = [NSURL URLWithString:[Utility appendRandomParam:[Utility url:urlReceiptDisputeRatingGet]]];
+        }
+            break;
+        case dbReceiptDisputeRatingAllAfterReceipt:
+        case dbReceiptDisputeRatingAllAfterReceiptUpdateAndReload:
+        {
+            Receipt *receipt = (Receipt *)data;
+            noteDataString = [Utility getNoteDataString:receipt];
+            url = [NSURL URLWithString:[Utility appendRandomParam:[Utility url:urlReceiptDisputeRatingAllAfterReceiptGet]]];
         }
             break;
         case dbOpeningTime:
@@ -2163,6 +2184,130 @@
     
     [dataTask resume];
 }
+
+- (void)downloadItems:(enum enumDB)currentDB withData:(NSObject *)data completionBlock:(void (^)(BOOL succeeded, NSMutableArray *items))completionBlock
+{
+    propCurrentDB = currentDB;
+    NSURL *url;
+    NSString *noteDataString = @"";
+    switch (currentDB)
+    {
+        case dbMenuNoteList:
+        {
+            NSArray *dataList = (NSArray *)data;
+            NSString *dbNameBranch = dataList[0];
+            NSNumber *objMenuID = dataList[1];
+            
+            noteDataString = [NSString stringWithFormat:@"dbNameBranch=%@&menuID=%ld",dbNameBranch,[objMenuID integerValue]];
+            url = [NSURL URLWithString:[Utility appendRandomParam:[Utility url:urlMenuNoteGetList]]];
+        }
+            break;
+    }
+    
+    noteDataString = [NSString stringWithFormat:@"%@&modifiedDeviceToken=%@&modifiedUser=%@&dbName=%@",noteDataString,[Utility deviceToken],[Utility modifiedUser],[Utility dbName]];
+    NSLog(@"url: %@",url);
+    NSLog(@"notedatastring: %@",noteDataString);
+    
+    
+    
+    NSURLSessionConfiguration *defaultConfigObject = [NSURLSessionConfiguration defaultSessionConfiguration];
+    NSURLSession *defaultSession = [NSURLSession sessionWithConfiguration: defaultConfigObject delegate: nil delegateQueue: [NSOperationQueue mainQueue]];
+    
+    NSMutableURLRequest * urlRequest = [NSMutableURLRequest requestWithURL:url];
+    [urlRequest setHTTPMethod:@"POST"];
+    [urlRequest setHTTPBody:[noteDataString dataUsingEncoding:NSUTF8StringEncoding]];
+    
+    NSURLSessionDataTask * dataTask =[defaultSession dataTaskWithRequest:urlRequest completionHandler:^(NSData *dataRaw, NSURLResponse *header, NSError *error) {
+        if(error)
+        {
+            completionBlock(NO,nil);
+        }
+        else
+        {
+            /////////
+            {
+                NSArray *arrClassName;
+                switch (currentDB)
+                {
+                    case dbMenuNoteList:
+                        arrClassName = @[@"MenuNote"];
+                        break;
+                }
+                
+                
+                NSMutableArray *arrItem = [[NSMutableArray alloc] init];
+                
+                NSArray *jsonArray = [NSJSONSerialization JSONObjectWithData:dataRaw options:NSJSONReadingAllowFragments error:nil];
+                
+                if(!jsonArray)
+                {
+                    return;
+                }
+                for(int i=0; i<[jsonArray count]; i++)
+                {
+                    //arrdatatemp <= arrdata
+                    NSMutableArray *arrDataTemp = [[NSMutableArray alloc]init];
+                    NSArray *arrData = jsonArray[i];
+                    for(int j=0; j< arrData.count; j++)
+                    {
+                        NSDictionary *jsonElement = arrData[j];
+                        NSObject *object = [[NSClassFromString([Utility getMasterClassName:i from:arrClassName]) alloc] init];
+                        
+                        unsigned int propertyCount = 0;
+                        objc_property_t * properties = class_copyPropertyList([object class], &propertyCount);
+                        
+                        for (unsigned int i = 0; i < propertyCount; ++i)
+                        {
+                            objc_property_t property = properties[i];
+                            const char * name = property_getName(property);
+                            NSString *key = [NSString stringWithUTF8String:name];
+                            
+                            
+                            NSString *dbColumnName = [Utility makeFirstLetterUpperCase:key];
+                            if(!jsonElement[dbColumnName])
+                            {
+                                continue;
+                            }
+                            
+                            
+                            if([Utility isDateColumn:dbColumnName])
+                            {
+                                NSDate *date = [Utility stringToDate:jsonElement[dbColumnName] fromFormat:@"yyyy-MM-dd HH:mm:ss"];
+                                if(!date)
+                                {
+                                    date = [Utility stringToDate:jsonElement[dbColumnName] fromFormat:@"yyyy-MM-dd"];
+                                }
+                                [object setValue:date forKey:key];
+                            }
+                            else
+                            {
+                                [object setValue:jsonElement[dbColumnName] forKey:key];
+                            }
+                        }
+                        [arrDataTemp addObject:object];
+                    }
+                    [arrItem addObject:arrDataTemp];
+                }
+                
+                // Ready to notify delegate that data is ready and pass back items
+                if (self.delegate)
+                {
+                    if(propCurrentDB == dbMenuNoteList)
+                    {
+                        completionBlock(YES,arrItem);
+                    }
+//                    else
+//                    {
+//                        [self.delegate itemsDownloaded:arrItem];
+//                    }
+                }
+            }
+        }
+    }];
+    
+    [dataTask resume];
+}
+
 - (void)downloadFileWithFileName:(NSString *)fileName completionBlock:(void (^)(BOOL succeeded, NSData *data))completionBlock
 {
     NSString* escapeString = [Utility percentEscapeString:fileName];

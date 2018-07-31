@@ -218,6 +218,9 @@ extern NSString *globalModifiedUser;
         case urlMenuGetList:
             url = @"/JMM/DemoJummum/JMMMenuGetList.php";
             break;
+        case urlMenuNoteGetList:
+            url = @"/JMM/DemoJummum/JMMMenuNoteGetList.php";
+            break;
         case urlPicInsert:
             url = @"/JMM/DemoJummum/JMMPicInsert.php";
             break;
@@ -532,6 +535,9 @@ extern NSString *globalModifiedUser;
             break;
         case urlReceiptDisputeRatingGet:
             url = @"/JMM/DemoJummum/JMMReceiptDisputeRatingGet.php";
+            break;
+        case urlReceiptDisputeRatingAllAfterReceiptGet:
+            url = @"/JMM/DemoJummum/JMMReceiptDisputeRatingAllAfterReceiptGet.php";
             break;
         case urlOpeningTimeGet:
             url = @"/JMM/DemoJummum/JMMOpeningTimeGet.php";
@@ -1893,19 +1899,11 @@ extern NSString *globalModifiedUser;
 
 
     NSArray *filterArray;
-    if(![className isEqualToString:@"Branch"])
+    if ([object respondsToSelector:NSSelectorFromString(@"branchID")])
     {
         NSNumber *objBranchID = [object valueForKey:@"branchID"];
-        if(!objBranchID)
-        {
-            NSPredicate *predicate = [NSPredicate predicateWithFormat:@"%K = %ld",propertyNamePredicate,value];
-            filterArray = [dataList filteredArrayUsingPredicate:predicate];
-        }
-        else
-        {
-            NSPredicate *predicate = [NSPredicate predicateWithFormat:@"%K = %ld and branchID = %ld",propertyNamePredicate,value,[objBranchID integerValue]];
-            filterArray = [dataList filteredArrayUsingPredicate:predicate];
-        }
+        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"%K = %ld and branchID = %ld",propertyNamePredicate,value,[objBranchID integerValue]];
+        filterArray = [dataList filteredArrayUsingPredicate:predicate];
     }
     else
     {

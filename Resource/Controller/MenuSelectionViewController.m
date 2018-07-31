@@ -169,6 +169,7 @@ static NSString * const reuseIdentifierSearchBar = @"CustomTableViewCellSearchBa
     }
     else
     {
+
         _menuTypeList = [MenuType getMenuTypeList];
         _menuNoteList = [MenuNote getMenuNoteList];
         _noteList = [Note getNoteList];
@@ -180,6 +181,10 @@ static NSString * const reuseIdentifierSearchBar = @"CustomTableViewCellSearchBa
         
         _filterMenuList = _menuList;
         [self setData];
+        
+        
+        
+        
         
         
         
@@ -448,6 +453,7 @@ static NSString * const reuseIdentifierSearchBar = @"CustomTableViewCellSearchBa
         
         [self setData];
         [self removeOverlayViews];
+              
     }
     else if(homeModel.propCurrentDB == dbOpeningTime)
     {
@@ -460,6 +466,11 @@ static NSString * const reuseIdentifierSearchBar = @"CustomTableViewCellSearchBa
             NSString *message = [Setting getValue:@"124m" example:@"ทางร้านไม่ได้เปิดระบบการสั่งอาหารด้วยตนเองตอนนี้ ขออภัยในความไม่สะดวกค่ะ"];
             [self showAlert:@"" message:message];
         }
+    }
+    else if(homeModel.propCurrentDB == dbMenuNoteList)
+    {
+        _menuNoteList = [items[0] mutableCopy];
+        [MenuNote setSharedData:_menuNoteList];
     }
 }
 
