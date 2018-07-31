@@ -698,6 +698,7 @@ static NSString * const reuseIdentifierLabelTextView = @"CustomTableViewCellLabe
                     
                     cell.textLabel.text = @"เลือกบัตรเครดิต";
                     cell.textLabel.font = [UIFont fontWithName:@"Prompt-Regular" size:15];
+                    cell.textLabel.textColor = cSystem4;
                     cell.detailTextLabel.text = @">";
                     cell.detailTextLabel.textColor = cSystem4;
                     
