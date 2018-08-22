@@ -119,6 +119,7 @@ enum enumDB
     dbMaster,
     dbMasterWithProgressBar,
     dbLogIn,
+    dbLogOut,
     dbLogInUserAccount,
     dbPushSync,
     dbPushSyncUpdateByDeviceToken,
@@ -169,6 +170,10 @@ enum enumDB
     dbDisputeCancel,
     dbReceiptWithModifiedDate,
     dbBranch,
+    dbBranchAndCustomerTable,
+    dbBranchAndCustomerTableQR,
+    dbBranchSearch,
+    dbBranchSearchMore,
     dbComment,
     dbCommentList,
     dbRecommendShop,
@@ -197,6 +202,7 @@ enum enumUrl
     urlUserAccountDeviceTokenUpdate,
     urlLogInUserAccountInsert,
     urlLogInInsert,
+    urlLogOutInsert,
     urlPushSyncSync,
     urlPushSyncUpdateByDeviceToken,
     urlDeviceInsert,
@@ -296,6 +302,10 @@ enum enumUrl
     urlDisputeGetList,
     urlDisputeCancelInsert,
     urlBranchGetList,
+    urlBranchAndCustomerTableGet,
+    urlBranchAndCustomerTableQRGet,
+    urlBranchSearchGetList,
+    urlBranchSearchMoreGetList,
     urlCommentInsert,
     urlCommentUpdate,
     urlCommentDelete,
@@ -322,7 +332,8 @@ enum enumUrl
     urlMenuNoteInsertList,
     urlMenuNoteUpdateList,
     urlMenuNoteDeleteList,
-    urlOpeningTimeGet
+    urlOpeningTimeGet,
+    urlContactUs
     
 
     
@@ -399,7 +410,6 @@ enum enumUrl
 + (BOOL)duplicateID:(NSObject *)object;
 + (float)floatValue:(NSString *)text;
 + (NSInteger)getLastDayOfMonth:(NSDate *)datetime;
-+ (void)itemsSynced:(NSString *)type action:(NSString *)action data:(NSArray *)data;
 + (void)itemsDownloaded:(NSArray *)items;
 + (NSDate *)addDay:(NSDate *)dateFrom numberOfDay:(NSInteger)days;
 + (NSDate *)addSecond:(NSDate *)dateFrom numberOfSecond:(NSInteger)second;
@@ -446,5 +456,6 @@ enum enumUrl
 +(BOOL)updateDataList:(NSArray *)itemList dataList:(NSMutableArray *)dataList;
 +(UIImage *)getImageFromCache:(NSString *)imageName;
 +(void)saveImageInCache:(UIImage *)image imageName:(NSString *)imageName;
++(NSString *)formatPhoneNo:(NSString *)phoneNo;
 @end
 

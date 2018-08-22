@@ -41,7 +41,6 @@ static NSString * const reuseIdentifierSearchBar = @"CustomTableViewCellSearchBa
 @synthesize customerTable;
 @synthesize btnBack;
 @synthesize topViewHeight;
-@synthesize bottomViewHeight;
 
 
 -(IBAction)unwindToCustomerTableSearch:(UIStoryboardSegue *)segue
@@ -53,7 +52,7 @@ static NSString * const reuseIdentifierSearchBar = @"CustomTableViewCellSearchBa
 {
     [super viewDidLayoutSubviews];
     UIWindow *window = UIApplication.sharedApplication.keyWindow;
-    bottomViewHeight.constant = window.safeAreaInsets.bottom;
+    
     
     float topPadding = window.safeAreaInsets.top;
     topViewHeight.constant = topPadding == 0?20:topPadding;
@@ -70,19 +69,10 @@ static NSString * const reuseIdentifierSearchBar = @"CustomTableViewCellSearchBa
     }
     else
     {
-        btnBack.imageView.image = [UIImage imageNamed:@"home_icon.png"];
+        btnBack.imageView.image = [UIImage imageNamed:@"home_icon_red.png"];
     }
     
     [self setShadow:vwBottomShadow];
-    
-//    if([_customerTableList count] == 0)
-//    {
-//        [self loadingOverlayView];
-//        [self.homeModel downloadItems:dbCustomerTable withData:branch.dbName];
-//    }
-    
-    
-    
 }
 
 - (void)viewDidLoad
@@ -107,7 +97,8 @@ static NSString * const reuseIdentifierSearchBar = @"CustomTableViewCellSearchBa
     }
     
     
-    [self setData];
+    [self.homeModel downloadItems:dbCustomerTable withData:branch];
+    
 }
 
 ///tableview section
@@ -153,6 +144,7 @@ static NSString * const reuseIdentifierSearchBar = @"CustomTableViewCellSearchBa
             cell.sbText.delegate = self;
             cell.sbText.tag = 300;
             cell.sbText.placeholder = message;
+            [cell.sbText setInputAccessoryView:self.toolBar];
             UITextField *textField = [cell.sbText valueForKey:@"searchField"];
             textField.layer.borderColor = [cTextFieldBorder CGColor];
             textField.layer.borderWidth = 1;
@@ -478,6 +470,12 @@ static NSString * const reuseIdentifierSearchBar = @"CustomTableViewCellSearchBa
     {
         [tbvCustomerTable scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] atScrollPosition:UITableViewScrollPositionTop animated:NO];
     }
+}
+
+-(void)itemsDownloaded:(NSArray *)items manager:(NSObject *)objHomeModel
+{
+    [Utility updateSharedObject:items];
+    [self setData];
 }
 
 @end

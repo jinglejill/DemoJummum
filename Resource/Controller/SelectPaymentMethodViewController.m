@@ -28,14 +28,13 @@ static NSString * const reuseIdentifierImageLabelRemove = @"CustomTableViewCellI
 @synthesize tbvData;
 @synthesize creditCard;
 @synthesize topViewHeight;
-@synthesize bottomViewHeight;
 
 
 -(void)viewDidLayoutSubviews
 {
     [super viewDidLayoutSubviews];
     UIWindow *window = UIApplication.sharedApplication.keyWindow;
-    bottomViewHeight.constant = window.safeAreaInsets.bottom;
+
     
     float topPadding = window.safeAreaInsets.top;
     topViewHeight.constant = topPadding == 0?20:topPadding;
@@ -98,6 +97,7 @@ static NSString * const reuseIdentifierImageLabelRemove = @"CustomTableViewCellI
         
         cell.textLabel.text = @"เพิ่มบัตรเครดิต";
         cell.textLabel.font = [UIFont fontWithName:@"Prompt-Regular" size:15];
+        cell.textLabel.textColor = cSystem4;
         
         return cell;
     }

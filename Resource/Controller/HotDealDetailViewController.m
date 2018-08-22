@@ -28,14 +28,13 @@ static NSString * const reuseIdentifierLabel = @"CustomTableViewCellLabel";
 @synthesize tbvData;
 @synthesize promotion;
 @synthesize topViewHeight;
-@synthesize bottomViewHeight;
 
 
 -(void)viewDidLayoutSubviews
 {
     [super viewDidLayoutSubviews];
     UIWindow *window = UIApplication.sharedApplication.keyWindow;
-    bottomViewHeight.constant = window.safeAreaInsets.bottom;
+    
     
     float topPadding = window.safeAreaInsets.top;
     topViewHeight.constant = topPadding == 0?20:topPadding;
@@ -93,8 +92,7 @@ static NSString * const reuseIdentifierLabel = @"CustomTableViewCellLabel";
         
         
         
-        NSString *imageFileName = [Utility isStringEmpty:promotion.imageUrl]?@"./Image/NoImage.jpg":[NSString stringWithFormat:@"./Image/Promotion/%@",promotion.imageUrl];
-        [self.homeModel downloadImageWithFileName:imageFileName completionBlock:^(BOOL succeeded, UIImage *image)
+        [self.homeModel downloadImageWithFileName:promotion.imageUrl type:3 branchID:0 completionBlock:^(BOOL succeeded, UIImage *image)
          {
              if (succeeded)
              {
@@ -159,8 +157,7 @@ static NSString * const reuseIdentifierLabel = @"CustomTableViewCellLabel";
         
         
         
-        NSString *imageFileName = [Utility isStringEmpty:promotion.imageUrl]?@"./Image/NoImage.jpg":[NSString stringWithFormat:@"./Image/Promotion/%@",promotion.imageUrl];
-        [self.homeModel downloadImageWithFileName:imageFileName completionBlock:^(BOOL succeeded, UIImage *image)
+        [self.homeModel downloadImageWithFileName:promotion.imageUrl type:3 branchID:0 completionBlock:^(BOOL succeeded, UIImage *image)
          {
              if (succeeded)
              {

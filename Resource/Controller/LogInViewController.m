@@ -113,12 +113,6 @@
 
 - (IBAction)registerNow:(id)sender
 {
-    //test
-//    BOOL turnOnRemote = [[UIApplication sharedApplication] isRegisteredForRemoteNotifications];
-//    NSLog(@"turn on remote push: %ld",turnOnRemote);
-//    NSString *iTunesLink = @"https://itunes.apple.com/th/app/the-1-card/id442873215?mt=8";
-//    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:iTunesLink]];
-    
     [self performSegueWithIdentifier:@"segRegisterNow" sender:self];
 }
 
@@ -301,7 +295,7 @@
             //insert useraccount,receipt,ordertaking,ordernote,menu to sharedObject
             NSMutableArray *userAccountList = items[0];
             [UserAccount setCurrentUserAccount:userAccountList[0]];
-            [Utility addToSharedDataList:items];
+            [Utility updateSharedObject:items];
             
     
             [[NSUserDefaults standardUserDefaults] setInteger:1 forKey:@"logInSession"];
@@ -357,7 +351,7 @@
         UserAccount *userAccount = userAccountList[0];
         _userAccount = userAccount;
         [UserAccount setCurrentUserAccount:userAccount];
-        [Utility addToSharedDataList:items];
+        [Utility updateSharedObject:items];
         if([Utility isStringEmpty:userAccount.phoneNo] || !userAccount.birthDate)
         {
             //go to register page
