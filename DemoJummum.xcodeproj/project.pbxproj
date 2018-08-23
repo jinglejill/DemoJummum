@@ -10,6 +10,7 @@
 		5044F6E769500AA20BB2BAED /* libPods-DemoJummumTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D6ADECD1BC390E6E62C54877 /* libPods-DemoJummumTests.a */; };
 		8F15C32866C1A0BCF048107A /* libPods-DemoJummum.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6F29849BF4EDC1EE94050FCC /* libPods-DemoJummum.a */; };
 		A89D9918372C5C603A9B1C63 /* libPods-DemoJummumUITests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5616ECF68D001A547EC82448 /* libPods-DemoJummumUITests.a */; };
+		EF5D28C6212D4A270073F1A1 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = EF5D28C5212D4A270073F1A1 /* GoogleService-Info.plist */; };
 		EF5DC0A4211718CC00FFEA60 /* SharedCurrentCreditCard.m in Sources */ = {isa = PBXBuildFile; fileRef = EF5DC0A2211718CB00FFEA60 /* SharedCurrentCreditCard.m */; };
 		EF5DC0AB2118E60B00FFEA60 /* triangle_pink.png in Resources */ = {isa = PBXBuildFile; fileRef = EF5DC0AA2118E60B00FFEA60 /* triangle_pink.png */; };
 		EF639E00211F22E300C70A98 /* CustomTableViewCellLabelRemark.m in Sources */ = {isa = PBXBuildFile; fileRef = EF639DFA211F22E200C70A98 /* CustomTableViewCellLabelRemark.m */; };
@@ -370,6 +371,7 @@
 		BA585CEC4DBE08B6C6F41036 /* Pods-DemoJummumUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DemoJummumUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-DemoJummumUITests/Pods-DemoJummumUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		C7BCB3E9C21DD70D25C7E1E1 /* Pods-DemoJummumUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DemoJummumUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-DemoJummumUITests/Pods-DemoJummumUITests.release.xcconfig"; sourceTree = "<group>"; };
 		D6ADECD1BC390E6E62C54877 /* libPods-DemoJummumTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-DemoJummumTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		EF5D28C5212D4A270073F1A1 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		EF5DC0A2211718CB00FFEA60 /* SharedCurrentCreditCard.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SharedCurrentCreditCard.m; sourceTree = "<group>"; };
 		EF5DC0A3211718CB00FFEA60 /* SharedCurrentCreditCard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SharedCurrentCreditCard.h; sourceTree = "<group>"; };
 		EF5DC0AA2118E60B00FFEA60 /* triangle_pink.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = triangle_pink.png; sourceTree = "<group>"; };
@@ -932,6 +934,7 @@
 		EF9C49B4210B4B3B00C7563A /* DemoJummum */ = {
 			isa = PBXGroup;
 			children = (
+				EF5D28C5212D4A270073F1A1 /* GoogleService-Info.plist */,
 				EF9C5245210BFB0F00C7563A /* DemoJummum.entitlements */,
 				EF9C49B8210B4B3B00C7563A /* ViewController.h */,
 				EF9C49B9210B4B3B00C7563A /* ViewController.m */,
@@ -1669,6 +1672,7 @@
 				EF9C4C46210B4BAD00C7563A /* search_white.png in Resources */,
 				EF9C4C8B210B4BAE00C7563A /* Icon-Small@2x.png in Resources */,
 				EF9C4D18210B4BAE00C7563A /* CustomTableViewCellLabelTextView.xib in Resources */,
+				EF5D28C6212D4A270073F1A1 /* GoogleService-Info.plist in Resources */,
 				EF9C4D35210B4BAE00C7563A /* CustomTableViewCellOrder.xib in Resources */,
 				EF9C4C8D210B4BAE00C7563A /* checkbox_gray.png in Resources */,
 				EF9C4D60210B4BAE00C7563A /* Prompt-ExtraLightItalic.ttf in Resources */,

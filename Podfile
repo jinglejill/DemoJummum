@@ -6,8 +6,11 @@ target 'DemoJummum' do
   # use_frameworks!
 
   # Pods for DemoJummum
-pod 'FBSDKLoginKit'
-
+  pod 'FBSDKLoginKit'
+  pod 'Firebase/Core'
+  pod 'Firebase/Messaging'
+  
+  
   target 'DemoJummumTests' do
     inherit! :search_paths
     # Pods for testing

@@ -159,406 +159,415 @@ extern NSString *globalModifiedUser;
     switch (eUrl)
     {
         case urlSendEmail:
-            url = @"/DEMO/DEMO_JUMMUM/sendEmail.php";
+            url = @"sendEmail.php";
             break;
         case urlUploadPhoto:
-            url = @"/DEMO/DEMO_JUMMUM/uploadPhoto.php";
+            url = @"uploadPhoto.php";
             break;
         case urlDownloadPhoto:
-            url = @"/DEMO/DEMO_JUMMUM/downloadImage.php";
+            url = @"JMMDownloadImage.php";
             break;
         case urlDownloadFile:
-            url = @"/DEMO/DEMO_JUMMUM/downloadFile.php";
+            url = @"downloadFile.php";
             break;
         case urlUserAccountDeviceTokenUpdate:
-            url = @"/DEMO/DEMO_JUMMUM/FFDUserAccountDeviceTokenUpdate.php";
+            url = @"FFDUserAccountDeviceTokenUpdate.php";
             break;
         case urlPushSyncSync:
-            url = @"/DEMO/DEMO_JUMMUM/JMMPushSyncSync.php";
+            url = @"JMMPushSyncSync.php";
             break;
         case urlPushSyncUpdateByDeviceToken:
-            url = @"/DEMO/DEMO_JUMMUM/JMMPushSyncUpdateByDeviceToken.php";
+            url = @"JMMPushSyncUpdateByDeviceToken.php";
             break;
         case urlDeviceInsert:
-            url = @"/DEMO/DEMO_JUMMUM/FFDDeviceInsert.php";
+            url = @"FFDDeviceInsert.php";
             break;
         case urlPushSyncUpdateTimeSynced:
-            url = @"/DEMO/DEMO_JUMMUM/JMMPushSyncUpdateTimeSynced.php";
+            url = @"JMMPushSyncUpdateTimeSynced.php";
             break;
         case urlMasterGet:
-            url = @"/DEMO/DEMO_JUMMUM/JMMMasterGet.php";
+            url = @"JMMMasterGet.php";
             break;
         case urlLogInInsert:
-            url = @"/DEMO/DEMO_JUMMUM/JMMLogInInsert.php";
+            url = @"JMMLogInInsert.php";
             break;
         case urlLogInUserAccountInsert:
-            url = @"/DEMO/DEMO_JUMMUM/JMMLogInUserAccountInsert.php";
+            url = @"JMMLogInUserAccountInsert.php";
             break;
         case urlLogOutInsert:
-            url = @"/DEMO/DEMO_JUMMUM/JMMLogOutInsert.php";
+            url = @"JMMLogOutInsert.php";
             break;
         case urlWriteLog:
-            url = @"/DEMO/DEMO_JUMMUM/JMMWriteLog.php";
+            url = @"JMMWriteLog.php";
             break;
         case urlMenuInsert:
-            url = @"/DEMO/DEMO_JUMMUM/JMMMenuInsert.php";
+            url = @"JMMMenuInsert.php";
             break;
         case urlMenuUpdate:
-            url = @"/DEMO/DEMO_JUMMUM/JMMMenuUpdate.php";
+            url = @"JMMMenuUpdate.php";
             break;
         case urlMenuDelete:
-            url = @"/DEMO/DEMO_JUMMUM/JMMMenuDelete.php";
+            url = @"JMMMenuDelete.php";
             break;
         case urlMenuInsertList:
-            url = @"/DEMO/DEMO_JUMMUM/JMMMenuInsertList.php";
+            url = @"JMMMenuInsertList.php";
             break;
         case urlMenuUpdateList:
-            url = @"/DEMO/DEMO_JUMMUM/JMMMenuUpdateList.php";
+            url = @"JMMMenuUpdateList.php";
             break;
         case urlMenuDeleteList:
-            url = @"/DEMO/DEMO_JUMMUM/JMMMenuDeleteList.php";
+            url = @"JMMMenuDeleteList.php";
             break;
         case urlMenuGetList:
-            url = @"/DEMO/DEMO_JUMMUM/JMMMenuGetList.php";
+            url = @"JMMMenuGetList.php";
             break;
         case urlMenuNoteGetList:
-            url = @"/DEMO/DEMO_JUMMUM/JMMMenuNoteGetList.php";
+            url = @"JMMMenuNoteGetList.php";
             break;
         case urlPicInsert:
-            url = @"/DEMO/DEMO_JUMMUM/JMMPicInsert.php";
+            url = @"JMMPicInsert.php";
             break;
         case urlPicUpdate:
-            url = @"/DEMO/DEMO_JUMMUM/JMMPicUpdate.php";
+            url = @"JMMPicUpdate.php";
             break;
         case urlPicDelete:
-            url = @"/DEMO/DEMO_JUMMUM/JMMPicDelete.php";
+            url = @"JMMPicDelete.php";
             break;
         case urlPicInsertList:
-            url = @"/DEMO/DEMO_JUMMUM/JMMPicInsertList.php";
+            url = @"JMMPicInsertList.php";
             break;
         case urlPicUpdateList:
-            url = @"/DEMO/DEMO_JUMMUM/JMMPicUpdateList.php";
+            url = @"JMMPicUpdateList.php";
             break;
         case urlPicDeleteList:
-            url = @"/DEMO/DEMO_JUMMUM/JMMPicDeleteList.php";
+            url = @"JMMPicDeleteList.php";
             break;
         case urlMenuPicInsert:
-            url = @"/DEMO/DEMO_JUMMUM/JMMMenuPicInsert.php";
+            url = @"JMMMenuPicInsert.php";
             break;
         case urlMenuPicUpdate:
-            url = @"/DEMO/DEMO_JUMMUM/JMMMenuPicUpdate.php";
+            url = @"JMMMenuPicUpdate.php";
             break;
         case urlMenuPicDelete:
-            url = @"/DEMO/DEMO_JUMMUM/JMMMenuPicDelete.php";
+            url = @"JMMMenuPicDelete.php";
             break;
         case urlMenuPicInsertList:
-            url = @"/DEMO/DEMO_JUMMUM/JMMMenuPicInsertList.php";
+            url = @"JMMMenuPicInsertList.php";
             break;
         case urlMenuPicUpdateList:
-            url = @"/DEMO/DEMO_JUMMUM/JMMMenuPicUpdateList.php";
+            url = @"JMMMenuPicUpdateList.php";
             break;
         case urlMenuPicDeleteList:
-            url = @"/DEMO/DEMO_JUMMUM/JMMMenuPicDeleteList.php";
+            url = @"JMMMenuPicDeleteList.php";
             break;
         case urlOmiseCheckOut:
-            url = @"/DEMO/DEMO_JUMMUM/OmiseCheckOut.php";
+            url = @"JMMOmiseCheckOut.php";
             break;
         case urlReceiptOrderTakingOrderNoteInsert:
-            url = @"/DEMO/DEMO_JUMMUM/JMMReceiptOrderTakingOrderNoteInsert.php";
+            url = @"JMMReceiptOrderTakingOrderNoteInsert.php";
             break;
         case urlCustomerTableGetList:
-            url = @"/DEMO/DEMO_JUMMUM/JMMCustomerTableGetList.php";
+            url = @"JMMCustomerTableGetList.php";
             break;
         case urlReceiptSummaryGetList:
-            url = @"/DEMO/DEMO_JUMMUM/JMMReceiptSummaryGetList.php";
+            url = @"JMMReceiptSummaryGetList.php";
             break;
         case urlPromotionGetList:
-            url = @"/DEMO/DEMO_JUMMUM/JMMPromotionGetList.php";
+            url = @"JMMPromotionGetList.php";
             break;
         case urlFacebookComment:
-            url = @"/DEMO/DEMO_JUMMUM/FacebookCommentInsertList.php";
+            url = @"FacebookCommentInsertList.php";
             break;
         case urlUserAccountValidate:
-            url = @"/DEMO/DEMO_JUMMUM/JMMUserAccountValidate.php";
+            url = @"JMMUserAccountValidate.php";
             break;
         case urlUserAccountGet:
-            url = @"/DEMO/DEMO_JUMMUM/JMMUserAccountGet.php";
+            url = @"JMMUserAccountGet.php";
             break;
         case urlUserAccountInsert:
-            url = @"/DEMO/DEMO_JUMMUM/JMMUserAccountInsert.php";
+            url = @"JMMUserAccountInsert.php";
             break;
         case urlUserAccountUpdate:
-            url = @"/DEMO/DEMO_JUMMUM/JMMUserAccountUpdate.php";
+            url = @"JMMUserAccountUpdate.php";
             break;
         case urlTermsOfService:
-            url = @"/DEMO/DEMO_JUMMUM/HtmlTermsOfService.php";
+            url = @"HtmlTermsOfService.php";
             break;
         case urlContactUs:
-            url = @"/DEMO/DEMO_JUMMUM/HtmlContactUs.php";
+            url = @"HtmlContactUs.php";
             break;
         case urlUserAccountForgotPasswordInsert:
-            url = @"/DEMO/DEMO_JUMMUM/JMMUserAccountForgotPasswordInsert.php";
+            url = @"JMMUserAccountForgotPasswordInsert.php";
             break;
         case urlRewardPointInsert:
-            url = @"/DEMO/DEMO_JUMMUM/JMMRewardPointInsert.php";
+            url = @"JMMRewardPointInsert.php";
             break;
         case urlRewardPointUpdate:
-            url = @"/DEMO/DEMO_JUMMUM/JMMRewardPointUpdate.php";
+            url = @"JMMRewardPointUpdate.php";
             break;
         case urlRewardPointDelete:
-            url = @"/DEMO/DEMO_JUMMUM/JMMRewardPointDelete.php";
+            url = @"JMMRewardPointDelete.php";
             break;
         case urlRewardPointInsertList:
-            url = @"/DEMO/DEMO_JUMMUM/JMMRewardPointInsertList.php";
+            url = @"JMMRewardPointInsertList.php";
             break;
         case urlRewardPointUpdateList:
-            url = @"/DEMO/DEMO_JUMMUM/JMMRewardPointUpdateList.php";
+            url = @"JMMRewardPointUpdateList.php";
             break;
         case urlRewardPointDeleteList:
-            url = @"/DEMO/DEMO_JUMMUM/JMMRewardPointDeleteList.php";
+            url = @"JMMRewardPointDeleteList.php";
             break;
         case urlRewardPointGet:
-            url = @"/DEMO/DEMO_JUMMUM/JMMRewardPointGet.php";
+            url = @"JMMRewardPointGet.php";
             break;
         case urlPrivacyPolicy:
-            url = @"/DEMO/DEMO_JUMMUM/HtmlPrivacyPolicy.php";
+            url = @"HtmlPrivacyPolicy.php";
             break;
         case urlPushReminder:
-            url = @"/DEMO/DEMO_JUMMUM/JMMPushReminder.php";
+            url = @"JMMPushReminder.php";
             break;
         case urlHotDealInsert:
-            url = @"/DEMO/DEMO_JUMMUM/JMMHotDealInsert.php";
+            url = @"JMMHotDealInsert.php";
             break;
         case urlHotDealUpdate:
-            url = @"/DEMO/DEMO_JUMMUM/JMMHotDealUpdate.php";
+            url = @"JMMHotDealUpdate.php";
             break;
         case urlHotDealDelete:
-            url = @"/DEMO/DEMO_JUMMUM/JMMHotDealDelete.php";
+            url = @"JMMHotDealDelete.php";
             break;
         case urlHotDealInsertList:
-            url = @"/DEMO/DEMO_JUMMUM/JMMHotDealInsertList.php";
+            url = @"JMMHotDealInsertList.php";
             break;
         case urlHotDealUpdateList:
-            url = @"/DEMO/DEMO_JUMMUM/JMMHotDealUpdateList.php";
+            url = @"JMMHotDealUpdateList.php";
             break;
         case urlHotDealDeleteList:
-            url = @"/DEMO/DEMO_JUMMUM/JMMHotDealDeleteList.php";
+            url = @"JMMHotDealDeleteList.php";
             break;
         case urlHotDealGetList:
-            url = @"/DEMO/DEMO_JUMMUM/JMMHotDealGetList.php";
+            url = @"JMMHotDealGetList.php";
             break;
         case urlRewardRedemptionInsert:
-            url = @"/DEMO/DEMO_JUMMUM/JMMRewardRedemptionInsert.php";
+            url = @"JMMRewardRedemptionInsert.php";
             break;
         case urlRewardRedemptionUpdate:
-            url = @"/DEMO/DEMO_JUMMUM/JMMRewardRedemptionUpdate.php";
+            url = @"JMMRewardRedemptionUpdate.php";
             break;
         case urlRewardRedemptionDelete:
-            url = @"/DEMO/DEMO_JUMMUM/JMMRewardRedemptionDelete.php";
+            url = @"JMMRewardRedemptionDelete.php";
             break;
         case urlRewardRedemptionInsertList:
-            url = @"/DEMO/DEMO_JUMMUM/JMMRewardRedemptionInsertList.php";
+            url = @"JMMRewardRedemptionInsertList.php";
             break;
         case urlRewardRedemptionUpdateList:
-            url = @"/DEMO/DEMO_JUMMUM/JMMRewardRedemptionUpdateList.php";
+            url = @"JMMRewardRedemptionUpdateList.php";
             break;
         case urlRewardRedemptionDeleteList:
-            url = @"/DEMO/DEMO_JUMMUM/JMMRewardRedemptionDeleteList.php";
+            url = @"JMMRewardRedemptionDeleteList.php";
             break;
         case urlPromoCodeInsert:
-            url = @"/DEMO/DEMO_JUMMUM/JMMPromoCodeInsert.php";
+            url = @"JMMPromoCodeInsert.php";
             break;
         case urlPromoCodeUpdate:
-            url = @"/DEMO/DEMO_JUMMUM/JMMPromoCodeUpdate.php";
+            url = @"JMMPromoCodeUpdate.php";
             break;
         case urlPromoCodeDelete:
-            url = @"/DEMO/DEMO_JUMMUM/JMMPromoCodeDelete.php";
+            url = @"JMMPromoCodeDelete.php";
             break;
         case urlPromoCodeInsertList:
-            url = @"/DEMO/DEMO_JUMMUM/JMMPromoCodeInsertList.php";
+            url = @"JMMPromoCodeInsertList.php";
             break;
         case urlPromoCodeUpdateList:
-            url = @"/DEMO/DEMO_JUMMUM/JMMPromoCodeUpdateList.php";
+            url = @"JMMPromoCodeUpdateList.php";
             break;
         case urlPromoCodeDeleteList:
-            url = @"/DEMO/DEMO_JUMMUM/JMMPromoCodeDeleteList.php";
+            url = @"JMMPromoCodeDeleteList.php";
             break;
         case urlRewardPointSpentGetList:
-            url = @"/DEMO/DEMO_JUMMUM/JMMRewardPointSpentGetList.php";
+            url = @"JMMRewardPointSpentGetList.php";
             break;
         case urlRewardPointSpentMoreGetList:
-            url = @"/DEMO/DEMO_JUMMUM/JMMRewardPointSpentMoreGetList.php";
+            url = @"JMMRewardPointSpentMoreGetList.php";
             break;
         case urlRewardPointSpentUsedGetList:
-            url = @"/DEMO/DEMO_JUMMUM/JMMRewardPointSpentUsedGetList.php";
+            url = @"JMMRewardPointSpentUsedGetList.php";
             break;
         case urlRewardPointSpentUsedMoreGetList:
-            url = @"/DEMO/DEMO_JUMMUM/JMMRewardPointSpentUsedMoreGetList.php";
+            url = @"JMMRewardPointSpentUsedMoreGetList.php";
             break;
         case urlRewardPointSpentExpiredGetList:
-            url = @"/DEMO/DEMO_JUMMUM/JMMRewardPointSpentExpiredGetList.php";
+            url = @"JMMRewardPointSpentExpiredGetList.php";
             break;
         case urlRewardPointSpentExpiredMoreGetList:
-            url = @"/DEMO/DEMO_JUMMUM/JMMRewardPointSpentExpiredMoreGetList.php";
+            url = @"JMMRewardPointSpentExpiredMoreGetList.php";
             break;
         case urlUserRewardRedemptionUsedInsert:
-            url = @"/DEMO/DEMO_JUMMUM/JMMUserRewardRedemptionUsedInsert.php";
+            url = @"JMMUserRewardRedemptionUsedInsert.php";
             break;
         case urlUserRewardRedemptionUsedUpdate:
-            url = @"/DEMO/DEMO_JUMMUM/JMMUserRewardRedemptionUsedUpdate.php";
+            url = @"JMMUserRewardRedemptionUsedUpdate.php";
             break;
         case urlUserRewardRedemptionUsedDelete:
-            url = @"/DEMO/DEMO_JUMMUM/JMMUserRewardRedemptionUsedDelete.php";
+            url = @"JMMUserRewardRedemptionUsedDelete.php";
             break;
         case urlUserRewardRedemptionUsedInsertList:
-            url = @"/DEMO/DEMO_JUMMUM/JMMUserRewardRedemptionUsedInsertList.php";
+            url = @"JMMUserRewardRedemptionUsedInsertList.php";
             break;
         case urlUserRewardRedemptionUsedUpdateList:
-            url = @"/DEMO/DEMO_JUMMUM/JMMUserRewardRedemptionUsedUpdateList.php";
+            url = @"JMMUserRewardRedemptionUsedUpdateList.php";
             break;
         case urlUserRewardRedemptionUsedDeleteList:
-            url = @"/DEMO/DEMO_JUMMUM/JMMUserRewardRedemptionUsedDeleteList.php";
+            url = @"JMMUserRewardRedemptionUsedDeleteList.php";
             break;
         case urlReceiptMaxModifiedDateGetList:
-            url = @"/DEMO/DEMO_JUMMUM/JMMReceiptMaxModifiedDateGetList.php";
+            url = @"JMMReceiptMaxModifiedDateGetList.php";
             break;
         case urlReceiptWithModifiedDateGet:
-            url = @"/DEMO/DEMO_JUMMUM/JMMReceiptWithModifiedDateGet.php";
+            url = @"JMMReceiptWithModifiedDateGet.php";
             break;
         case urlReceiptGet:
-            url = @"/DEMO/DEMO_JUMMUM/JMMReceiptGet.php";
+            url = @"JMMReceiptGet.php";
             break;
         case urlDisputeReasonInsert:
-            url = @"/DEMO/DEMO_JUMMUM/JMMDisputeReasonInsert.php";
+            url = @"JMMDisputeReasonInsert.php";
             break;
         case urlDisputeReasonUpdate:
-            url = @"/DEMO/DEMO_JUMMUM/JMMDisputeReasonUpdate.php";
+            url = @"JMMDisputeReasonUpdate.php";
             break;
         case urlDisputeReasonDelete:
-            url = @"/DEMO/DEMO_JUMMUM/JMMDisputeReasonDelete.php";
+            url = @"JMMDisputeReasonDelete.php";
             break;
         case urlDisputeReasonInsertList:
-            url = @"/DEMO/DEMO_JUMMUM/JMMDisputeReasonInsertList.php";
+            url = @"JMMDisputeReasonInsertList.php";
             break;
         case urlDisputeReasonUpdateList:
-            url = @"/DEMO/DEMO_JUMMUM/JMMDisputeReasonUpdateList.php";
+            url = @"JMMDisputeReasonUpdateList.php";
             break;
         case urlDisputeReasonDeleteList:
-            url = @"/DEMO/DEMO_JUMMUM/JMMDisputeReasonDeleteList.php";
+            url = @"JMMDisputeReasonDeleteList.php";
             break;
         case urlDisputeReasonGetList:
-            url = @"/DEMO/DEMO_JUMMUM/JMMDisputeReasonGetList.php";
+            url = @"JMMDisputeReasonGetList.php";
             break;
         case urlDisputeInsert:
-            url = @"/DEMO/DEMO_JUMMUM/JMMDisputeInsert.php";
+            url = @"JMMDisputeInsert.php";
             break;
         case urlDisputeUpdate:
-            url = @"/DEMO/DEMO_JUMMUM/JMMDisputeUpdate.php";
+            url = @"JMMDisputeUpdate.php";
             break;
         case urlDisputeDelete:
-            url = @"/DEMO/DEMO_JUMMUM/JMMDisputeDelete.php";
+            url = @"JMMDisputeDelete.php";
             break;
         case urlDisputeInsertList:
-            url = @"/DEMO/DEMO_JUMMUM/JMMDisputeInsertList.php";
+            url = @"JMMDisputeInsertList.php";
             break;
         case urlDisputeUpdateList:
-            url = @"/DEMO/DEMO_JUMMUM/JMMDisputeUpdateList.php";
+            url = @"JMMDisputeUpdateList.php";
             break;
         case urlDisputeDeleteList:
-            url = @"/DEMO/DEMO_JUMMUM/JMMDisputeDeleteList.php";
+            url = @"JMMDisputeDeleteList.php";
             break;
         case urlDisputeGetList:
-            url = @"/DEMO/DEMO_JUMMUM/JMMDisputeGetList.php";
+            url = @"JMMDisputeGetList.php";
             break;
         case urlDisputeCancelInsert:
-            url = @"/DEMO/DEMO_JUMMUM/JMMDisputeCancelInsert.php";
+            url = @"JMMDisputeCancelInsert.php";
             break;
         case urlReceiptUpdate:
-            url = @"/DEMO/DEMO_JUMMUM/JMMReceiptUpdate.php";
+            url = @"JMMReceiptUpdate.php";
             break;
         case urlBranchGetList:
-            url = @"/DEMO/DEMO_JUMMUM/JMMBranchGetList.php";
+            url = @"JMMBranchGetList.php";
             break;
         case urlBranchAndCustomerTableGet:
-            url = @"/DEMO/DEMO_JUMMUM/JMMBranchAndCustomerTableGet.php";
+            url = @"JMMBranchAndCustomerTableGet.php";
             break;
         case urlBranchAndCustomerTableQRGet:
-            url = @"/DEMO/DEMO_JUMMUM/JMMBranchAndCustomerTableQRGet.php";
+            url = @"JMMBranchAndCustomerTableQRGet.php";
             break;
         case urlBranchSearchGetList:
-            url = @"/DEMO/DEMO_JUMMUM/JMMBranchSearchGetList.php";
+            url = @"JMMBranchSearchGetList.php";
             break;
         case urlBranchSearchMoreGetList:
-            url = @"/DEMO/DEMO_JUMMUM/JMMBranchSearchMoreGetList.php";
+            url = @"JMMBranchSearchMoreGetList.php";
             break;
         case urlHotDealWithBranchGetList:
-            url = @"/DEMO/DEMO_JUMMUM/JMMHotDealWithBranchIDGetList.php";
+            url = @"JMMHotDealWithBranchIDGetList.php";
             break;
         case urlRewardRedemptionWithBranchGetList:
-            url = @"/DEMO/DEMO_JUMMUM/JMMRewardRedemptionWithBranchIDGetList.php";
+            url = @"JMMRewardRedemptionWithBranchIDGetList.php";
             break;
         case urlCommentInsert:
-            url = @"/DEMO/DEMO_JUMMUM/JMMCommentInsert.php";
+            url = @"JMMCommentInsert.php";
             break;
         case urlCommentUpdate:
-            url = @"/DEMO/DEMO_JUMMUM/JMMCommentUpdate.php";
+            url = @"JMMCommentUpdate.php";
             break;
         case urlCommentDelete:
-            url = @"/DEMO/DEMO_JUMMUM/JMMCommentDelete.php";
+            url = @"JMMCommentDelete.php";
             break;
         case urlCommentInsertList:
-            url = @"/DEMO/DEMO_JUMMUM/JMMCommentInsertList.php";
+            url = @"JMMCommentInsertList.php";
             break;
         case urlCommentUpdateList:
-            url = @"/DEMO/DEMO_JUMMUM/JMMCommentUpdateList.php";
+            url = @"JMMCommentUpdateList.php";
             break;
         case urlCommentDeleteList:
-            url = @"/DEMO/DEMO_JUMMUM/JMMCommentDeleteList.php";
+            url = @"JMMCommentDeleteList.php";
             break;
         case urlRecommendShopInsert:
-            url = @"/DEMO/DEMO_JUMMUM/JMMRecommendShopInsert.php";
+            url = @"JMMRecommendShopInsert.php";
             break;
         case urlRecommendShopUpdate:
-            url = @"/DEMO/DEMO_JUMMUM/JMMRecommendShopUpdate.php";
+            url = @"JMMRecommendShopUpdate.php";
             break;
         case urlRecommendShopDelete:
-            url = @"/DEMO/DEMO_JUMMUM/JMMRecommendShopDelete.php";
+            url = @"JMMRecommendShopDelete.php";
             break;
         case urlRecommendShopInsertList:
-            url = @"/DEMO/DEMO_JUMMUM/JMMRecommendShopInsertList.php";
+            url = @"JMMRecommendShopInsertList.php";
             break;
         case urlRecommendShopUpdateList:
-            url = @"/DEMO/DEMO_JUMMUM/JMMRecommendShopUpdateList.php";
+            url = @"JMMRecommendShopUpdateList.php";
             break;
         case urlRecommendShopDeleteList:
-            url = @"/DEMO/DEMO_JUMMUM/JMMRecommendShopDeleteList.php";
+            url = @"JMMRecommendShopDeleteList.php";
             break;
         case urlRatingInsert:
-            url = @"/DEMO/DEMO_JUMMUM/JMMRatingInsert.php";
+            url = @"JMMRatingInsert.php";
             break;
         case urlRatingUpdate:
-            url = @"/DEMO/DEMO_JUMMUM/JMMRatingUpdate.php";
+            url = @"JMMRatingUpdate.php";
             break;
         case urlRatingDelete:
-            url = @"/DEMO/DEMO_JUMMUM/JMMRatingDelete.php";
+            url = @"JMMRatingDelete.php";
             break;
         case urlRatingInsertList:
-            url = @"/DEMO/DEMO_JUMMUM/JMMRatingInsertList.php";
+            url = @"JMMRatingInsertList.php";
             break;
         case urlRatingUpdateList:
-            url = @"/DEMO/DEMO_JUMMUM/JMMRatingUpdateList.php";
+            url = @"JMMRatingUpdateList.php";
             break;
         case urlRatingDeleteList:
-            url = @"/DEMO/DEMO_JUMMUM/JMMRatingDeleteList.php";
+            url = @"JMMRatingDeleteList.php";
             break;
         case urlReceiptDisputeRatingGet:
-            url = @"/DEMO/DEMO_JUMMUM/JMMReceiptDisputeRatingGet.php";
+            url = @"JMMReceiptDisputeRatingGet.php";
             break;
         case urlReceiptDisputeRatingAllAfterReceiptGet:
-            url = @"/DEMO/DEMO_JUMMUM/JMMReceiptDisputeRatingAllAfterReceiptGet.php";
+            url = @"JMMReceiptDisputeRatingAllAfterReceiptGet.php";
             break;
         case urlOpeningTimeGet:
-            url = @"/DEMO/DEMO_JUMMUM/JMMOpeningTimeGet.php";
+            url = @"JMMOpeningTimeGet.php";
+            break;
+        case urlMenuBelongToBuffetGetList:
+            url = @"JMMMenuBelongToBuffetGetList.php";
+            break;
+        case urlBuffetOrderInsertList:
+            url = @"JMMBuffetOrderInsertList.php";
+            break;
+        case urlSettingWithKeyGet:
+            url = @"JMMSettingWithKeyGet.php";
             break;
         default:
             break;
