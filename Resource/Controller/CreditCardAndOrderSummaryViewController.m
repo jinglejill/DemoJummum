@@ -549,6 +549,7 @@ static NSString * const reuseIdentifierLabelTextView = @"CustomTableViewCellLabe
                     cell.lblValue.textColor = cSystem2;
                 }
             }
+            cell.lblValue.hidden = NO;
             
             
             

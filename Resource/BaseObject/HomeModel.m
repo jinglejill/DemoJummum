@@ -103,6 +103,7 @@
         }
             break;
         case dbMenuList:
+        case dbOpeningTime:
         {
             arrClassName = @[@"Message",@"Menu",@"MenuType",@"Note",@"NoteType",@"SpecialPriceProgram"];
         }
@@ -189,11 +190,6 @@
         case dbBranchAndCustomerTableQR:
         {
             arrClassName = @[@"Branch",@"CustomerTable"];
-        }
-            break;
-        case dbOpeningTime:
-        {
-            arrClassName = @[@"Message",@"SpecialPriceProgram"];
         }
             break;
         case dbBranchSearch:
