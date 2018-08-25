@@ -326,7 +326,7 @@ static NSString * const reuseIdentifierProfile = @"CustomTableViewCellProfile";
                     
                     
                     
-                    [self removeMemberData];
+                    [self removeMemberData];                    
                     [self removeOverlayViews];
                     UserAccount *userAccount = [UserAccount getCurrentUserAccount];
                     LogIn *logIn = [[LogIn alloc]initWithUsername:userAccount.username status:-1 deviceToken:[Utility deviceToken] model:[self deviceName]];

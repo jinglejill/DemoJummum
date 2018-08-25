@@ -223,15 +223,6 @@ static NSString * const reuseIdentifierMenu = @"CustomTableViewCellMenu";
     }
 }
 
-//-(void)itemsDownloaded:(NSArray *)items manager:(NSObject *)objHomeModel
-//{
-//    HomeModel *homeModel = (HomeModel *)objHomeModel;
-//    if(homeModel.propCurrentDB == dbBranch)
-//    {
-//        [Utility updateSharedObject:items];
-//    }
-//}
-
 #pragma mark - search
 
 - (void)filterContentForSearchText:(NSString*)searchText scope:(NSString*)scope
@@ -305,7 +296,6 @@ static NSString * const reuseIdentifierMenu = @"CustomTableViewCellMenu";
     sbText.text  = @"";
     _filterBranchList = nil;
     [tbvBranch reloadData];
-//    [self filterContentForSearchText:sbText.text scope:@""];
     
 }
 

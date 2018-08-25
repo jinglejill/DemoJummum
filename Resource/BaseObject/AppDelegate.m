@@ -97,6 +97,11 @@ void myExceptionHandler(NSException *exception)
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     
+    
+    
+    
+    
+    
 //    NSString *key = [NSString stringWithFormat:@"dismiss verion:(null)"];
 //    [[NSUserDefaults standardUserDefaults] setValue:@0 forKey:key];
     

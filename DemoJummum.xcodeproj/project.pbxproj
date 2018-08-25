@@ -17,6 +17,8 @@
 		EF639E01211F22E300C70A98 /* CustomTableViewCellSeparatorLine.m in Sources */ = {isa = PBXBuildFile; fileRef = EF639DFB211F22E200C70A98 /* CustomTableViewCellSeparatorLine.m */; };
 		EF639E02211F22E300C70A98 /* CustomTableViewCellSeparatorLine.xib in Resources */ = {isa = PBXBuildFile; fileRef = EF639DFD211F22E300C70A98 /* CustomTableViewCellSeparatorLine.xib */; };
 		EF639E03211F22E300C70A98 /* CustomTableViewCellLabelRemark.xib in Resources */ = {isa = PBXBuildFile; fileRef = EF639DFE211F22E300C70A98 /* CustomTableViewCellLabelRemark.xib */; };
+		EF6C7CF521310CE200C335AC /* MenuForBuffet.m in Sources */ = {isa = PBXBuildFile; fileRef = EF6C7CF421310CE200C335AC /* MenuForBuffet.m */; };
+		EF6C7CF821310D2E00C335AC /* SharedMenuForBuffet.m in Sources */ = {isa = PBXBuildFile; fileRef = EF6C7CF721310D2E00C335AC /* SharedMenuForBuffet.m */; };
 		EF9C49BA210B4B3B00C7563A /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EF9C49B9210B4B3B00C7563A /* ViewController.m */; };
 		EF9C49BF210B4B3C00C7563A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EF9C49BE210B4B3C00C7563A /* Assets.xcassets */; };
 		EF9C49C2210B4B3C00C7563A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EF9C49C0210B4B3C00C7563A /* LaunchScreen.storyboard */; };
@@ -381,6 +383,10 @@
 		EF639DFD211F22E300C70A98 /* CustomTableViewCellSeparatorLine.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CustomTableViewCellSeparatorLine.xib; sourceTree = "<group>"; };
 		EF639DFE211F22E300C70A98 /* CustomTableViewCellLabelRemark.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CustomTableViewCellLabelRemark.xib; sourceTree = "<group>"; };
 		EF639DFF211F22E300C70A98 /* CustomTableViewCellSeparatorLine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomTableViewCellSeparatorLine.h; sourceTree = "<group>"; };
+		EF6C7CF321310CE200C335AC /* MenuForBuffet.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MenuForBuffet.h; sourceTree = "<group>"; };
+		EF6C7CF421310CE200C335AC /* MenuForBuffet.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MenuForBuffet.m; sourceTree = "<group>"; };
+		EF6C7CF621310D2E00C335AC /* SharedMenuForBuffet.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SharedMenuForBuffet.h; sourceTree = "<group>"; };
+		EF6C7CF721310D2E00C335AC /* SharedMenuForBuffet.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SharedMenuForBuffet.m; sourceTree = "<group>"; };
 		EF9C49B2210B4B3B00C7563A /* DemoJummum.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DemoJummum.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EF9C49B8210B4B3B00C7563A /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		EF9C49B9210B4B3B00C7563A /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
@@ -1359,6 +1365,10 @@
 				EF9C4AF6210B4BAD00C7563A /* UserPromotionUsed.m */,
 				EF9C4B0D210B4BAD00C7563A /* UserRewardRedemptionUsed.h */,
 				EF9C4ABD210B4BAD00C7563A /* UserRewardRedemptionUsed.m */,
+				EF6C7CF321310CE200C335AC /* MenuForBuffet.h */,
+				EF6C7CF421310CE200C335AC /* MenuForBuffet.m */,
+				EF6C7CF621310D2E00C335AC /* SharedMenuForBuffet.h */,
+				EF6C7CF721310D2E00C335AC /* SharedMenuForBuffet.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1929,6 +1939,7 @@
 				EF9C4CE8210B4BAE00C7563A /* PromoCode.m in Sources */,
 				EF9C4CA6210B4BAE00C7563A /* PaymentCompleteViewController.m in Sources */,
 				EF9C4D37210B4BAE00C7563A /* CustomTableViewCellButton.m in Sources */,
+				EF6C7CF521310CE200C335AC /* MenuForBuffet.m in Sources */,
 				EF9C4D0C210B4BAE00C7563A /* CustomCollectionViewCellNote.m in Sources */,
 				EF639E01211F22E300C70A98 /* CustomTableViewCellSeparatorLine.m in Sources */,
 				EF9C4D32210B4BAE00C7563A /* CustomCollectionReusableView.m in Sources */,
@@ -2020,6 +2031,7 @@
 				EF9C4C90210B4BAE00C7563A /* HotDealViewController.m in Sources */,
 				EF9C4CE5210B4BAE00C7563A /* SharedCurrentUserAccount.m in Sources */,
 				EF9C4CE7210B4BAE00C7563A /* CustomerTable.m in Sources */,
+				EF6C7CF821310D2E00C335AC /* SharedMenuForBuffet.m in Sources */,
 				EF9C4CDE210B4BAE00C7563A /* SharedShop.m in Sources */,
 				EF9C4CD2210B4BAE00C7563A /* LogIn.m in Sources */,
 				EF9C4C1C210B4BAD00C7563A /* NSData+AES.m in Sources */,

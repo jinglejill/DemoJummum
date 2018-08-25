@@ -292,12 +292,6 @@ static NSString * const reuseIdentifierLabelTextView = @"CustomTableViewCellLabe
         default:
         break;
     }
-    
-    
-//    if(textField.tag == 31)
-//    {
-//        [[NSNotificationCenter defaultCenter] removeObserver:self];
-//    }
 }
 
 -(void)viewDidLayoutSubviews
@@ -456,7 +450,8 @@ static NSString * const reuseIdentifierLabelTextView = @"CustomTableViewCellLabe
         }
         else if(section == 1)
         {
-            if(buffetReceipt)
+            float totalAmount = [OrderTaking getSumSpecialPrice:_orderTakingList];
+            if(totalAmount == 0)
             {
                 return 0;
             }
@@ -493,7 +488,8 @@ static NSString * const reuseIdentifierLabelTextView = @"CustomTableViewCellLabe
     }
     else if([tableView isEqual:tbvTotal])
     {
-        if(buffetReceipt)
+        float totalAmount = [OrderTaking getSumSpecialPrice:_orderTakingList];
+        if(totalAmount == 0)
         {
             tbvTotalHeightConstant.constant = 26+44;
             return 1;
@@ -1370,14 +1366,16 @@ static NSString * const reuseIdentifierLabelTextView = @"CustomTableViewCellLabe
         }
         else if(section == 1)
         {
-            if(buffetReceipt)
+            float totalAmount = [OrderTaking getSumSpecialPrice:_orderTakingList];
+            if(totalAmount == 0)
             {
                 return CGFLOAT_MIN;
             }
         }
         else if(section == 2)
         {
-            if(buffetReceipt)
+            float totalAmount = [OrderTaking getSumSpecialPrice:_orderTakingList];
+            if(totalAmount == 0)
             {
                 return CGFLOAT_MIN;
             }
@@ -1520,7 +1518,8 @@ static NSString * const reuseIdentifierLabelTextView = @"CustomTableViewCellLabe
     {
         CustomTableViewHeaderFooterButton *footerView = [tableView dequeueReusableHeaderFooterViewWithIdentifier:reuseIdentifierHeaderFooterButton];
         
-        if(buffetReceipt)
+        float totalAmount = [OrderTaking getSumSpecialPrice:_orderTakingList];
+        if(totalAmount == 0)
         {
             [footerView.btnValue setTitle:@"สั่งบุฟเฟ่ต์" forState:UIControlStateNormal];
         }
@@ -1561,7 +1560,8 @@ static NSString * const reuseIdentifierLabelTextView = @"CustomTableViewCellLabe
     //validate
     [self.view endEditing:YES];
     
-    if(buffetReceipt)
+    float totalAmount = [OrderTaking getSumSpecialPrice:_orderTakingList];
+    if(totalAmount == 0)
     {
         UIButton *btnPay = (UIButton *)sender;
         btnPay.enabled = NO;
