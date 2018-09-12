@@ -2214,7 +2214,7 @@
     NSString* escapeString = [Utility percentEscapeString:fileName];
     NSString *noteDataString = [NSString stringWithFormat:@"imageFileName=%@",escapeString];
     noteDataString = [NSString stringWithFormat:@"%@&modifiedDeviceToken=%@&modifiedUser=%@&type=%ld&branchID=%ld",noteDataString,[Utility deviceToken],[Utility modifiedUser],type,branchID];
-    NSURL * url = [NSURL URLWithString:[Utility url:urlDownloadPhoto]];
+    NSURL * url = [NSURL URLWithString:[Utility appendRandomParam:[Utility url:urlDownloadPhoto]]];
     
     
     NSURLSessionConfiguration *defaultConfigObject = [NSURLSessionConfiguration defaultSessionConfiguration];

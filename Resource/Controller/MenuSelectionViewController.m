@@ -226,7 +226,6 @@ static NSString * const reuseIdentifierSearchBar = @"CustomTableViewCellSearchBa
             [self.homeModel downloadItems:dbMenuList withData:branch];
         }
     }
-    
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -324,7 +323,8 @@ static NSString * const reuseIdentifierSearchBar = @"CustomTableViewCellSearchBa
             NSMutableArray *menuList = [Menu getMenuListWithMenuType:menuType.menuTypeID menuList:_filterMenuList];
             Menu *menu = menuList[item];
             cell.lblMenuName.text = menu.titleThai;
-            
+            [cell.lblMenuName sizeToFit];
+            cell.lblMenuNameHeight.constant = cell.lblMenuName.frame.size.height > 46?46:cell.lblMenuName.frame.size.height;
             
             
             
