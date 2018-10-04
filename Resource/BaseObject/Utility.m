@@ -22,9 +22,9 @@ extern NSString *globalPingAddress;
 extern NSString *globalDomainName;
 extern NSString *globalSubjectNoConnection;
 extern NSString *globalDetailNoConnection;
-extern BOOL globalFinishLoadSharedData;
 extern NSString *globalKey;
 extern NSString *globalModifiedUser;
+extern NSString *globalBundleID;
 
 
 
@@ -143,14 +143,13 @@ extern NSString *globalModifiedUser;
     return [[NSUserDefaults standardUserDefaults] stringForKey:BRANCH];
 }
 
-+ (BOOL) finishLoadSharedData
++(void)setBundleID:(NSString *)bundleID
 {
-    return globalFinishLoadSharedData;
+    globalBundleID = bundleID;
 }
-
-+ (void) setFinishLoadSharedData:(BOOL)finish
++(NSString *)bundleID
 {
-    globalFinishLoadSharedData = finish;
+    return globalBundleID;
 }
 
 + (NSString *) url:(enum enumUrl)eUrl
@@ -572,6 +571,51 @@ extern NSString *globalModifiedUser;
         case urlSettingWithKeyGet:
             url = @"JMMSettingWithKeyGet.php";
             break;
+        case urlPromotionAndRewardRedemption:
+            url = @"JMMPromotionAndRewardRedemptionGetList.php";
+            break;
+        case urlMenuGet:
+            url = @"JMMMenuGet.php";
+            break;
+        case urlLuckyDrawTicketInsert:
+            url = @"JMMLuckyDrawTicketInsert.php";
+            break;
+        case urlLuckyDrawTicketUpdate:
+            url = @"JMMLuckyDrawTicketUpdate.php";
+            break;
+        case urlLuckyDrawTicketDelete:
+            url = @"JMMLuckyDrawTicketDelete.php";
+            break;
+        case urlLuckyDrawTicketInsertList:
+            url = @"JMMLuckyDrawTicketInsertList.php";
+            break;
+        case urlLuckyDrawTicketUpdateList:
+            url = @"JMMLuckyDrawTicketUpdateList.php";
+            break;
+        case urlLuckyDrawTicketDeleteList:
+            url = @"JMMLuckyDrawTicketDeleteList.php";
+            break;
+        case urlRewardRedemptionLuckyDrawGet:
+            url = @"JMMRewardRedemptionLuckyDrawGet.php";
+        break;
+        case urlBuffetMenuMapInsert:
+            url = @"JMMBuffetMenuMapInsert.php";
+        break;
+        case urlBuffetMenuMapUpdate:
+            url = @"JMMBuffetMenuMapUpdate.php";
+        break;
+        case urlBuffetMenuMapDelete:
+            url = @"JMMBuffetMenuMapDelete.php";
+        break;
+        case urlBuffetMenuMapInsertList:
+            url = @"JMMBuffetMenuMapInsertList.php";
+        break;
+        case urlBuffetMenuMapUpdateList:
+            url = @"JMMBuffetMenuMapUpdateList.php";
+        break;
+        case urlBuffetMenuMapDeleteList:
+            url = @"JMMBuffetMenuMapDeleteList.php";
+        break;
         default:
             break;
     }

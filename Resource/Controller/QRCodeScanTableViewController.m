@@ -1,4 +1,4 @@
-//
+
 //  QRCodeScanTableViewController.m
 //  Jummum
 //
@@ -21,8 +21,8 @@
     Branch *_selectedBranch;
     CustomerTable *_selectedCustomerTable;
     BOOL _fromOrderItAgain;
+    Receipt *_buffetReceipt;
 }
-//@property (nonatomic) BOOL isReading;
 @property (nonatomic, strong) AVCaptureSession *captureSession;
 @property (nonatomic, strong) AVCaptureVideoPreviewLayer *videoPreviewLayer;
 @property (nonatomic, strong) AVAudioPlayer *audioPlayer;
@@ -39,16 +39,19 @@
 @synthesize btnBack;
 @synthesize btnBranchSearch;
 @synthesize topViewHeight;
-
+@synthesize alreadySeg;
+    
 
 -(IBAction)unwindToQRCodeScanTable:(UIStoryboardSegue *)segue
 {
+    alreadySeg = NO;
     if([segue.sourceViewController isMemberOfClass:[CreditCardAndOrderSummaryViewController class]])
     {
         CreditCardAndOrderSummaryViewController *vc = segue.sourceViewController;
         _selectedBranch = vc.branch;
         _selectedCustomerTable = nil;    
         _fromOrderItAgain = YES;
+        _buffetReceipt = vc.buffetReceipt;
     }
 }
 
@@ -76,7 +79,7 @@
     [super viewDidLoad];
     
     
-    NSString *title = [Setting getValue:@"057t" example:@"สแกน QR Code เลขโต๊ะ"];
+    NSString *title = [Language getText:@"สแกน QR Code เลขโต๊ะ"];
     lblNavTitle.text = title;
     btnBack.hidden = fromCreditCardAndOrderSummaryMenu?NO:YES;
     btnBranchSearch.hidden = !btnBack.hidden;
@@ -177,7 +180,7 @@
 
 -(void)captureOutput:(AVCaptureOutput *)captureOutput didOutputMetadataObjects:(NSArray *)metadataObjects fromConnection:(AVCaptureConnection *)connection{
     
-    if (metadataObjects && [metadataObjects count] > 0)
+    if (metadataObjects && [metadataObjects count] > 0 && !alreadySeg)
     {
         AVMetadataMachineReadableCodeObject *metadataObj = [metadataObjects objectAtIndex:0];
         if ([[metadataObj type] isEqualToString:AVMetadataObjectTypeQRCode])
@@ -186,7 +189,10 @@
             _selectedCustomerTable = nil;
             NSString *decryptedMessage = [metadataObj stringValue];
 
-            [self stopReading];
+            
+            alreadySeg = YES;
+//            NSLog(@"stop reading");
+//            [self stopReading];
             [self.homeModel downloadItems:dbBranchAndCustomerTableQR withData:decryptedMessage];
         }
     }
@@ -199,6 +205,7 @@
         MenuSelectionViewController *vc = segue.destinationViewController;
         vc.branch = _selectedBranch;
         vc.customerTable = _selectedCustomerTable;
+        vc.buffetReceipt = _buffetReceipt;
     }
 }
 
@@ -211,8 +218,8 @@
         NSMutableArray *customerTableList = items[1];
         if([branchList count] == 0 || [customerTableList count] == 0)
         {
-            [self showAlert:@"" message:@"QR Code ไม่ถูกต้อง"];
-            [self startReading];
+            NSString *message = [Language getText:@"QR Code ไม่ถูกต้อง"];
+            [self showAlert:@"" message:message method:@selector(setAlreadySegToNo)];
         }
         else
         {
@@ -231,11 +238,16 @@
             {
                 dispatch_async(dispatch_get_main_queue(), ^
                {
-                   [self performSegueWithIdentifier:@"segMenuSelection" sender:self];
+                  [self performSegueWithIdentifier:@"segMenuSelection" sender:self];
                });
             }
         }
     }
+}
+
+-(void)setAlreadySegToNo
+{
+    alreadySeg = NO;
 }
 @end
 

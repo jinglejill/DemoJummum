@@ -10,6 +10,8 @@
 #import "HomeModel.h"
 #import "Utility.h"
 #import "Receipt.h"
+#import "Setting.h"
+#import "Language.h"
 #import <MessageUI/MFMailComposeViewController.h>
 
 
@@ -48,6 +50,7 @@
 -(void)loadViewProcess;
 -(void)setShadow:(UIView *)view;
 -(void)setShadow:(UIView *)view radius:(NSInteger)radius;
+-(void)setCornerDesign:(UIView *)view;
 -(void)setButtonDesign:(UIView *)view;
 -(void)setImageDesign:(UIView *)view;
 -(void)setTextFieldDesign:(UIView *)view;

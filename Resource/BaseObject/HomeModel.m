@@ -32,7 +32,11 @@
 #import "RecommendShop.h"
 #import "Rating.h"
 #import "MenuNote.h"
+#import "LuckyDrawTicket.h"
+#import "DiscountGroupMenuMap.h"
+#import "BuffetMenuMap.h"
 #import "CustomViewController.h"
+
 
 
 @interface HomeModel()
@@ -102,14 +106,15 @@
             }
         }
             break;
+        case dbMenu:
         case dbMenuList:
         {
-            arrClassName = @[@"Message",@"Menu",@"MenuType",@"Note",@"NoteType",@"SpecialPriceProgram"];
+            arrClassName = @[@"Message",@"Menu",@"MenuType",@"Note",@"NoteType",@"SpecialPriceProgram",@"DiscountGroupMenuMap"];
         }
             break;
         case dbMenuBelongToBuffet:
         {
-            arrClassName = @[@"Message",@"Menu",@"MenuType",@"Note",@"NoteType",@"SpecialPriceProgram",@"Receipt"];
+            arrClassName = @[@"Message",@"Menu",@"MenuType",@"Note",@"NoteType",@"SpecialPriceProgram",@"Receipt",@"BuffetMenuMap"];
         }
             break;
         case dbMenuNoteList:
@@ -131,6 +136,11 @@
         case dbPromotion:
         {
             arrClassName = @[@"Promotion",@"Message",@"Message"];
+        }
+            break;
+        case dbPromotionAndRewardRedemption:
+        {
+            arrClassName = @[@"Promotion",@"RewardRedemption"];
         }
             break;
         case dbUserAccount:
@@ -205,6 +215,12 @@
             arrClassName = @[@"Setting"];
         }
         break;
+        case dbRewardRedemptionLuckyDraw:
+        {
+//            arrClassName = @[@"RewardRedemption",@"LuckyDrawTicket",@"DiscountGroupMenuMap"];
+            arrClassName = @[@"RewardRedemption",@"LuckyDrawTicket"];
+        }
+            break;
         default:
             break;
     }
@@ -224,8 +240,21 @@
             else
             {
                 NSArray *jsonArray = dicJson[@"data"];
-                //            NSArray *jsonArray = [NSJSONSerialization JSONObjectWithData:_dataToDownload options:NSJSONReadingAllowFragments error:nil];
-                
+                BOOL success = [dicJson[@"success"] boolValue];
+                if(!success)
+                {
+                    NSString *error = dicJson[@"error"];
+                    CustomViewController *vc = (CustomViewController *)self.delegate;
+                    [vc removeOverlayViews];
+                    [vc showAlert:@"" message:error];
+                    
+                    if(self.delegate)//luckyDraw
+                    {
+                        [self.delegate itemsDownloaded:arrItem manager:self];
+                    }
+                    
+                    return;
+                }
                 if(!jsonArray)
                 {
                     return;
@@ -279,10 +308,10 @@
                 // Ready to notify delegate that data is ready and pass back items
                 if (self.delegate)
                 {
-                    if(propCurrentDB == dbHotDeal || propCurrentDB == dbHotDealWithBranchID || propCurrentDB == dbReceiptSummary || propCurrentDB == dbReceiptMaxModifiedDate ||propCurrentDB == dbRewardPoint || propCurrentDB == dbRewardRedemptionWithBranchID || propCurrentDB == dbReceipt || propCurrentDB == dbReceiptDisputeRating || propCurrentDB == dbReceiptDisputeRatingAllAfterReceipt || propCurrentDB == dbReceiptDisputeRatingUpdateAndReload || propCurrentDB == dbReceiptDisputeRatingAllAfterReceiptUpdateAndReload || propCurrentDB == dbMenuList || propCurrentDB == dbMenuNoteList || propCurrentDB == dbBranchAndCustomerTable || propCurrentDB == dbBranchAndCustomerTableQR || propCurrentDB == dbBranchSearch || propCurrentDB == dbBranchSearchMore || propCurrentDB == dbCustomerTable || propCurrentDB == dbSettingWithKey || propCurrentDB == dbMenuBelongToBuffet)
+                    if(propCurrentDB == dbHotDeal || propCurrentDB == dbHotDealWithBranchID || propCurrentDB == dbReceiptSummary || propCurrentDB == dbReceiptMaxModifiedDate ||propCurrentDB == dbRewardPoint || propCurrentDB == dbRewardRedemptionWithBranchID || propCurrentDB == dbReceipt || propCurrentDB == dbReceiptDisputeRating || propCurrentDB == dbReceiptDisputeRatingAllAfterReceipt || propCurrentDB == dbReceiptDisputeRatingUpdateAndReload || propCurrentDB == dbReceiptDisputeRatingAllAfterReceiptUpdateAndReload || propCurrentDB == dbMenuList || propCurrentDB == dbMenuNoteList || propCurrentDB == dbBranchAndCustomerTable || propCurrentDB == dbBranchAndCustomerTableQR || propCurrentDB == dbBranchSearch || propCurrentDB == dbBranchSearchMore || propCurrentDB == dbCustomerTable || propCurrentDB == dbSettingWithKey || propCurrentDB == dbMenuBelongToBuffet || propCurrentDB == dbPromotionAndRewardRedemption || propCurrentDB == dbPromotion || propCurrentDB == dbMenu || propCurrentDB == dbRewardRedemptionLuckyDraw)
                     {
                         [self.delegate itemsDownloaded:arrItem manager:self];
-                    }
+                    }                    
                     else
                     {
                         [self.delegate itemsDownloaded:arrItem];
@@ -433,7 +462,7 @@
     }
     
 
-    noteDataString = [NSString stringWithFormat:@"%@&modifiedDeviceToken=%@&modifiedUser=%@",noteDataString,[Utility deviceToken],[Utility modifiedUser]];
+    noteDataString = [NSString stringWithFormat:@"%@&modifiedDeviceToken=%@&modifiedUser=%@&lang=%@",noteDataString,[Utility deviceToken],[Utility modifiedUser],[Language getLanguage]];
     
     
 
@@ -698,10 +727,34 @@
             url = [NSURL URLWithString:[Utility appendRandomParam:[Utility url:urlSettingWithKeyGet]]];
         }
         break;
+        case dbPromotionAndRewardRedemption:
+        {
+            NSArray *dataList = (NSArray *)data;
+            Branch *branch = dataList[0];
+            UserAccount *userAccount = dataList[1];
+            noteDataString = [NSString stringWithFormat:@"branchID=%ld&memberID=%ld",branch.branchID,userAccount.userAccountID];
+            url = [NSURL URLWithString:[Utility appendRandomParam:[Utility url:urlPromotionAndRewardRedemption]]];
+        }
+            break;
+        case dbMenu:
+        {
+            NSArray *dataList = (NSArray *)data;
+            NSNumber *objBranchID = dataList[0];
+            NSNumber *objDiscountGroupMenuID = dataList[1];
+            noteDataString = [NSString stringWithFormat:@"branchID=%ld&discountGroupMenuID=%ld",[objBranchID integerValue],[objDiscountGroupMenuID integerValue]];
+            url = [NSURL URLWithString:[Utility appendRandomParam:[Utility url:urlMenuGet]]];
+        }
+            break;
+        case dbRewardRedemptionLuckyDraw:
+        {
+            noteDataString = [Utility getNoteDataString:data];
+            url = [NSURL URLWithString:[Utility appendRandomParam:[Utility url:urlRewardRedemptionLuckyDrawGet]]];
+        }
+            break;
         default:
             break;
     }
-    noteDataString = [NSString stringWithFormat:@"%@&modifiedDeviceToken=%@&modifiedUser=%@",noteDataString,[Utility deviceToken],[Utility modifiedUser]];
+    noteDataString = [NSString stringWithFormat:@"%@&modifiedDeviceToken=%@&modifiedUser=%@&lang=%@",noteDataString,[Utility deviceToken],[Utility modifiedUser],[Language getLanguage]];
     NSLog(@"url: %@",url);
     NSLog(@"notedatastring: %@",noteDataString);
     
@@ -713,6 +766,70 @@
     [urlRequest setHTTPMethod:@"POST"];
     [urlRequest setHTTPBody:[noteDataString dataUsingEncoding:NSUTF8StringEncoding]];
     [urlRequest setValue:@"gzip" forHTTPHeaderField:@"Accept-Encoding"];
+    
+    NSURLSessionDataTask * dataTask = [defaultSession dataTaskWithRequest:urlRequest];
+    [dataTask resume];
+}
+
+- (void)downloadItemsJson:(enum enumDB)currentDB withData:(NSObject *)data
+{
+    propCurrentDB = currentDB;
+    NSURL *url;
+    NSMutableDictionary *dicData;
+    switch (currentDB)
+    {
+        case dbPromotion:
+        {
+            NSArray *dataList = (NSArray *)data;
+            NSString *strVoucherCode = dataList[0];
+            UserAccount *userAccount = dataList[1];
+            Branch *branch = dataList[2];
+            float totalAmount = [dataList[3] floatValue];
+            NSMutableArray *orderTakingList = dataList[4];
+            
+            
+            dicData = [[NSMutableDictionary alloc]init];
+            NSMutableArray *arrOrderTaking = [[NSMutableArray alloc]init];
+            for(int i=0; i<[orderTakingList count]; i++)
+            {
+                OrderTaking *orderTaking = orderTakingList[i];
+                NSDictionary *dicOrderTaking = [orderTaking dictionary];
+                [arrOrderTaking addObject:dicOrderTaking];
+            }
+            
+            [dicData setValue:arrOrderTaking forKey:@"orderTaking"];
+            [dicData setValue:strVoucherCode forKey:@"voucherCode"];
+            [dicData setValue:@(userAccount.userAccountID) forKey:@"userAccountID"];
+            [dicData setValue:@(branch.branchID) forKey:@"branchID"];
+            [dicData setValue:@(totalAmount) forKey:@"totalAmount"];
+            
+            
+            url = [NSURL URLWithString:[Utility appendRandomParam:[Utility url:urlPromotionGetList]]];
+        }
+            break;        
+        default:
+            break;
+    }
+    
+
+    [dicData setValue:[Utility deviceToken] forKey:@"modifiedDeviceToken"];
+    [dicData setValue:[Utility modifiedUser] forKey:@"modifiedUser"];
+    [dicData setValue:[Language getLanguage] forKey:@"lang"];
+    
+    NSError *error;
+    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:dicData options:0 error:&error];
+    NSLog(@"url: %@",url);
+    NSLog(@"dicData: %@",dicData);
+    
+    
+    NSURLSessionConfiguration *defaultConfigObject = [NSURLSessionConfiguration defaultSessionConfiguration];
+    NSURLSession *defaultSession = [NSURLSession sessionWithConfiguration: defaultConfigObject delegate:self delegateQueue: [NSOperationQueue mainQueue]];
+    
+    NSMutableURLRequest * urlRequest = [NSMutableURLRequest requestWithURL:url];
+    [urlRequest setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+    [urlRequest setHTTPMethod:@"POST"];
+    [urlRequest setHTTPBody:jsonData];
+//    [urlRequest setValue:@"gzip" forHTTPHeaderField:@"Accept-Encoding"];
     
     NSURLSessionDataTask * dataTask = [defaultSession dataTaskWithRequest:urlRequest];
     [dataTask resume];
@@ -1138,10 +1255,52 @@
             url = [NSURL URLWithString:[Utility url:urlLogOutInsert]];
         }
             break;
+        case dbLuckyDrawTicket:
+        {
+            noteDataString = [Utility getNoteDataString:data];
+            url = [NSURL URLWithString:[Utility url:urlLuckyDrawTicketInsert]];
+        }
+            break;
+        case dbLuckyDrawTicketList:
+        {
+            NSMutableArray *luckyDrawTicketList = (NSMutableArray *)data;
+            NSInteger countLuckyDrawTicket = 0;
+            
+            noteDataString = [NSString stringWithFormat:@"countLuckyDrawTicket=%ld",[luckyDrawTicketList count]];
+            for(LuckyDrawTicket *item in luckyDrawTicketList)
+            {
+                noteDataString = [NSString stringWithFormat:@"%@&%@",noteDataString,[Utility getNoteDataString:item withRunningNo:countLuckyDrawTicket]];
+                countLuckyDrawTicket++;
+            }
+            
+            url = [NSURL URLWithString:[Utility url:urlLuckyDrawTicketInsertList]];
+        }
+        break;
+        case dbBuffetMenuMap:
+        {
+            noteDataString = [Utility getNoteDataString:data];
+            url = [NSURL URLWithString:[Utility url:urlBuffetMenuMapInsert]];
+        }
+        break;
+        case dbBuffetMenuMapList:
+        {
+            NSMutableArray *buffetMenuMapList = (NSMutableArray *)data;
+            NSInteger countBuffetMenuMap = 0;
+            
+            noteDataString = [NSString stringWithFormat:@"countBuffetMenuMap=%ld",[buffetMenuMapList count]];
+            for(BuffetMenuMap *item in buffetMenuMapList)
+            {
+                noteDataString = [NSString stringWithFormat:@"%@&%@",noteDataString,[Utility getNoteDataString:item withRunningNo:countBuffetMenuMap]];
+                countBuffetMenuMap++;
+            }
+            
+            url = [NSURL URLWithString:[Utility url:urlBuffetMenuMapInsertList]];
+        }
+        break;
         default:
             break;
     }
-    noteDataString = [NSString stringWithFormat:@"%@&modifiedDeviceToken=%@&modifiedUser=%@&actionScreen=%@",noteDataString,[Utility deviceToken],[Utility modifiedUser],actionScreen];
+    noteDataString = [NSString stringWithFormat:@"%@&modifiedDeviceToken=%@&modifiedUser=%@&lang=%@&actionScreen=%@",noteDataString,[Utility deviceToken],[Utility modifiedUser],[Language getLanguage],actionScreen];
     NSLog(@"url: %@",url);
     NSLog(@"notedatastring: %@",noteDataString);
     
@@ -1202,10 +1361,6 @@
                         else if([strTableName isEqualToString:@"UserAccountForgotPassword"])
                         {
                             arrClassName = @[@"UserAccount"];
-                        }
-                        else if([strTableName isEqualToString:@"OmiseCheckOut"] || [strTableName isEqualToString:@"BuffetOrder"])
-                        {
-                            arrClassName = @[@"Receipt",@"OrderTaking",@"OrderNote"];
                         }
                         else if([strTableName isEqualToString:@"RewardPoint"])
                         {
@@ -1275,6 +1430,239 @@
                 {
                     [self.delegate itemsFail];
                 }
+            }
+        }
+        else
+        {
+            if (self.delegate)
+            {
+                [self.delegate itemsFail];
+                //                [self.delegate connectionFail];
+            }
+            
+            NSLog(@"Error: %@", [error debugDescription]);
+            NSLog(@"Error: %@", [error localizedDescription]);
+        }
+    }];
+    
+    [dataTask resume];
+}
+
+- (void)insertItemsJson:(enum enumDB)currentDB withData:(NSObject *)data actionScreen:(NSString *)actionScreen
+{
+    propCurrentDBInsert = currentDB;
+    NSURL * url;
+    NSData *jsonData;
+    switch (currentDB)
+    {
+        case dbOmiseCheckOut:
+        {
+            NSArray *dataList = (NSArray *)data;
+            NSString *omiseToken = dataList[0];
+            NSInteger amount = [dataList[1] integerValue];
+            Receipt *receipt = dataList[2];
+            NSMutableArray *orderTakingList = dataList[3];
+            NSMutableArray *orderNoteList = dataList[4];
+            NSString *voucherCode = dataList[5];
+//            NSObject *userPromotionOrRewardRedemptionUsed = dataList[5];
+//            NSNumber *objPromoCodeID = dataList[6];
+//            NSInteger type = [userPromotionOrRewardRedemptionUsed isMemberOfClass:[UserPromotionUsed class]]?1:2;
+//            UserPromotionUsed *userPromotionUsed = [userPromotionOrRewardRedemptionUsed isMemberOfClass:[UserPromotionUsed class]]?(UserPromotionUsed *)userPromotionOrRewardRedemptionUsed:nil;
+//            UserRewardRedemptionUsed *userRewardRedemptionUsed = [userPromotionOrRewardRedemptionUsed isMemberOfClass:[UserRewardRedemptionUsed class]]?(UserRewardRedemptionUsed *)userPromotionOrRewardRedemptionUsed:nil;
+            
+            
+            
+            NSDictionary *dicData = [receipt dictionary];
+            NSMutableArray *arrOrderTaking = [[NSMutableArray alloc]init];
+            for(int i=0; i<[orderTakingList count]; i++)
+            {
+                OrderTaking *orderTaking = orderTakingList[i];
+                NSDictionary *dicOrderTaking = [orderTaking dictionary];
+                [arrOrderTaking addObject:dicOrderTaking];
+            }
+            NSMutableArray *arrOrderNote = [[NSMutableArray alloc]init];
+            for(int i=0; i<[orderNoteList count]; i++)
+            {
+                OrderNote *orderNote = orderNoteList[i];
+                NSDictionary *dicOrderNote = [orderNote dictionary];
+                [arrOrderNote addObject:dicOrderNote];
+            }
+//            NSDictionary *dicUserPromotionUsed = [userPromotionUsed dictionary];
+//            NSDictionary *dicUserRewardRedemptionUsed = [userRewardRedemptionUsed dictionary];
+            NSMutableArray *mutDicData = [dicData mutableCopy];
+            [mutDicData setValue:omiseToken forKey:@"omiseToken"];
+            [mutDicData setValue:@(amount) forKey:@"amount"];
+//            [mutDicData setValue:@(type) forKey:@"type"];
+//            [mutDicData setValue:objPromoCodeID forKey:@"promoCodeID"];
+            [mutDicData setValue:arrOrderTaking forKey:@"orderTaking"];
+            [mutDicData setValue:arrOrderNote forKey:@"orderNote"];
+            [mutDicData setValue:voucherCode forKey:@"voucherCode"];
+//            [mutDicData setValue:dicUserPromotionUsed forKey:@"userPromotionUsed"];
+//            [mutDicData setValue:dicUserRewardRedemptionUsed forKey:@"userRewardRedemptionUsed"];
+            NSError *error;
+            jsonData = [NSJSONSerialization dataWithJSONObject:mutDicData options:0 error:&error];
+            
+            
+            
+            url = [NSURL URLWithString:[Utility url:urlOmiseCheckOut]];
+        }
+            break;
+            case dbBuffetOrder:
+        {
+            NSArray *dataList = (NSArray *)data;
+            Receipt *receipt = dataList[0];
+            NSMutableArray *orderTakingList = dataList[1];
+            NSMutableArray *orderNoteList = dataList[2];            
+            
+            
+            NSDictionary *dicData = [receipt dictionary];
+            NSMutableArray *arrOrderTaking = [[NSMutableArray alloc]init];
+            for(int i=0; i<[orderTakingList count]; i++)
+            {
+                OrderTaking *orderTaking = orderTakingList[i];
+                NSDictionary *dicOrderTaking = [orderTaking dictionary];
+                [arrOrderTaking addObject:dicOrderTaking];
+            }
+            NSMutableArray *arrOrderNote = [[NSMutableArray alloc]init];
+            for(int i=0; i<[orderNoteList count]; i++)
+            {
+                OrderNote *orderNote = orderNoteList[i];
+                NSDictionary *dicOrderNote = [orderNote dictionary];
+                [arrOrderNote addObject:dicOrderNote];
+            }
+            
+            NSMutableArray *mutDicData = [dicData mutableCopy];
+            [mutDicData setValue:arrOrderTaking forKey:@"orderTaking"];
+            [mutDicData setValue:arrOrderNote forKey:@"orderNote"];
+            NSError *error;
+            jsonData = [NSJSONSerialization dataWithJSONObject:mutDicData options:0 error:&error];
+            
+            
+            url = [NSURL URLWithString:[Utility url:urlBuffetOrderInsertList]];
+        }
+            break;
+        
+        default:
+            break;
+    }
+//    noteDataString = [NSString stringWithFormat:@"%@&modifiedDeviceToken=%@&modifiedUser=%@&lang=%@&actionScreen=%@",noteDataString,[Utility deviceToken],[Utility modifiedUser],[Language getLanguage],actionScreen];
+    NSLog(@"url: %@",url);
+//    NSLog(@"notedatastring: %@",noteDataString);
+    
+    
+    
+    NSURLSessionConfiguration *defaultConfigObject = [NSURLSessionConfiguration defaultSessionConfiguration];
+    NSURLSession *defaultSession = [NSURLSession sessionWithConfiguration: defaultConfigObject delegate: nil delegateQueue: [NSOperationQueue mainQueue]];
+    
+    NSMutableURLRequest * urlRequest = [NSMutableURLRequest requestWithURL:url];
+    [urlRequest setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+    [urlRequest setHTTPMethod:@"POST"];
+    [urlRequest setHTTPBody:jsonData];
+    //    [urlRequest setHTTPBody:[noteDataString dataUsingEncoding:NSUTF8StringEncoding]];
+    
+    
+    NSURLSessionDataTask * dataTask = [defaultSession dataTaskWithRequest:urlRequest completionHandler:^(NSData *dataRaw, NSURLResponse *header, NSError *error) {
+        
+        if(!error || (error && error.code == -1005))//-1005 คือ1. ตอน push notification ไม่ได้ และ2. ตอน enterbackground ตอน transaction ยังไม่เสร็จ พอ enter foreground มันจะไม่ return data มาให้
+        {
+            switch (propCurrentDB)
+            {
+                default:
+                {
+                    if(!dataRaw)
+                    {
+                        //data parameter is nil
+                        NSLog(@"Error: %@", [error debugDescription]);
+                        return ;
+                    }
+                    
+                    NSDictionary *json = [NSJSONSerialization
+                                          JSONObjectWithData:dataRaw
+                                          options:kNilOptions error:&error];
+                    NSString *status = json[@"status"];
+                    NSString *strReturnID = json[@"returnID"];
+                    NSArray *dataJson = json[@"dataJson"];
+                    NSString *strTableName = json[@"tableName"];
+                    //                    NSString *action = json[@"action"];
+                    if([status isEqual:@"1"])
+                    {
+                        NSLog(@"insert success");
+                        if(strReturnID)
+                        {
+                            if (self.delegate)
+                            {
+                                [self.delegate itemsInsertedWithReturnID:strReturnID];
+                            }
+                        }
+                        else if(strTableName)
+                        {
+                            NSArray *arrClassName;
+                            if([strTableName isEqualToString:@"OmiseCheckOut"])
+                            {
+                                arrClassName = @[@"Receipt",@"OrderTaking",@"OrderNote",@"LuckyDrawTicket"];
+                            }
+                            else if([strTableName isEqualToString:@"BuffetOrder"])
+                            {
+                                arrClassName = @[@"Receipt",@"OrderTaking",@"OrderNote"];
+                            }
+                            
+                            NSArray *items = [Utility jsonToArray:dataJson arrClassName:arrClassName];
+                            if(self.delegate)
+                            {
+                                [self.delegate itemsInsertedWithReturnData:items];
+                            }
+                        }
+                        else
+                        {
+                            if(self.delegate)
+                            {
+                                [self.delegate itemsInserted];
+                            }
+                        }
+                    }
+                    else if([status isEqual:@"2"])
+                    {
+                        //alertMsg
+                        if(self.delegate)
+                        {
+                            if(propCurrentDBInsert == dbOmiseCheckOut)
+                            {
+                                NSString *msg = json[@"msg"];
+                                NSMutableArray *dataList = [[NSMutableArray alloc]init];
+                                NSMutableArray *messgeList = [[NSMutableArray alloc]init];
+                                Message *message = [[Message alloc]init];
+                                message.text = msg;
+                                [messgeList addObject:message];
+                                [dataList addObject:messgeList];
+                                [self.delegate itemsInsertedWithReturnData:dataList];
+                                NSLog(@"msg: %@", msg);
+                            }
+                            else
+                            {
+                                NSString *msg = json[@"msg"];
+                                [self.delegate alertMsg:msg];
+                                NSLog(@"status: %@", status);
+                                NSLog(@"msg: %@", msg);
+                            }
+                        }
+                    }
+                    else if([status isEqual:@"3"])
+                    {
+                        CustomViewController *vc = (CustomViewController *)self.delegate;
+                        [vc performSegueWithIdentifier:@"segUnwindToLaunchScreen" sender:self];
+                    }
+                    else
+                    {
+                        //Error
+                        NSLog(@"insert fail: %ld",currentDB);
+                        NSLog(@"%@", status);
+                        if (self.delegate)
+                        {
+                            [self.delegate itemsFail];
+                        }
+                    }
+                }
+                    break;
             }
         }
         else
@@ -1606,12 +1994,54 @@
             url = [NSURL URLWithString:[Utility url:urlRatingUpdateList]];
         }
         break;
+        case dbLuckyDrawTicket:
+        {
+            noteDataString = [Utility getNoteDataString:data];
+            url = [NSURL URLWithString:[Utility url:urlLuckyDrawTicketUpdate]];
+        }
+            break;
+        case dbLuckyDrawTicketList:
+        {
+            NSMutableArray *luckyDrawTicketList = (NSMutableArray *)data;
+            NSInteger countLuckyDrawTicket = 0;
+            
+            noteDataString = [NSString stringWithFormat:@"countLuckyDrawTicket=%ld",[luckyDrawTicketList count]];
+            for(LuckyDrawTicket *item in luckyDrawTicketList)
+            {
+                noteDataString = [NSString stringWithFormat:@"%@&%@",noteDataString,[Utility getNoteDataString:item withRunningNo:countLuckyDrawTicket]];
+                countLuckyDrawTicket++;
+            }
+            
+            url = [NSURL URLWithString:[Utility url:urlLuckyDrawTicketUpdateList]];
+        }
+        break;
+        case dbBuffetMenuMap:
+        {
+            noteDataString = [Utility getNoteDataString:data];
+            url = [NSURL URLWithString:[Utility url:urlBuffetMenuMapUpdate]];
+        }
+        break;
+        case dbBuffetMenuMapList:
+        {
+            NSMutableArray *buffetMenuMapList = (NSMutableArray *)data;
+            NSInteger countBuffetMenuMap = 0;
+            
+            noteDataString = [NSString stringWithFormat:@"countBuffetMenuMap=%ld",[buffetMenuMapList count]];
+            for(BuffetMenuMap *item in buffetMenuMapList)
+            {
+                noteDataString = [NSString stringWithFormat:@"%@&%@",noteDataString,[Utility getNoteDataString:item withRunningNo:countBuffetMenuMap]];
+                countBuffetMenuMap++;
+            }
+            
+            url = [NSURL URLWithString:[Utility url:urlBuffetMenuMapUpdateList]];
+        }
+        break;
         default:
             break;
     }
     
     
-    noteDataString = [NSString stringWithFormat:@"%@&modifiedDeviceToken=%@&modifiedUser=%@&actionScreen=%@",noteDataString,[Utility deviceToken],[Utility modifiedUser],actionScreen];
+    noteDataString = [NSString stringWithFormat:@"%@&modifiedDeviceToken=%@&modifiedUser=%@&lang=%@&actionScreen=%@",noteDataString,[Utility deviceToken],[Utility modifiedUser],[Language getLanguage],actionScreen];
     NSLog(@"url: %@",url);
     NSLog(@"notedatastring: %@",noteDataString);
     
@@ -1965,6 +2395,48 @@
             url = [NSURL URLWithString:[Utility url:urlRatingDeleteList]];
         }
         break;
+        case dbLuckyDrawTicket:
+        {
+            noteDataString = [Utility getNoteDataString:data];
+            url = [NSURL URLWithString:[Utility url:urlLuckyDrawTicketDelete]];
+        }
+            break;
+        case dbLuckyDrawTicketList:
+        {
+            NSMutableArray *luckyDrawTicketList = (NSMutableArray *)data;
+            NSInteger countLuckyDrawTicket = 0;
+            
+            noteDataString = [NSString stringWithFormat:@"countLuckyDrawTicket=%ld",[luckyDrawTicketList count]];
+            for(LuckyDrawTicket *item in luckyDrawTicketList)
+            {
+                noteDataString = [NSString stringWithFormat:@"%@&%@",noteDataString,[Utility getNoteDataString:item withRunningNo:countLuckyDrawTicket]];
+                countLuckyDrawTicket++;
+            }
+            
+            url = [NSURL URLWithString:[Utility url:urlLuckyDrawTicketDeleteList]];
+        }
+        break;
+        case dbBuffetMenuMap:
+        {
+            noteDataString = [Utility getNoteDataString:data];
+            url = [NSURL URLWithString:[Utility url:urlBuffetMenuMapDelete]];
+        }
+        break;
+        case dbBuffetMenuMapList:
+        {
+            NSMutableArray *buffetMenuMapList = (NSMutableArray *)data;
+            NSInteger countBuffetMenuMap = 0;
+            
+            noteDataString = [NSString stringWithFormat:@"countBuffetMenuMap=%ld",[buffetMenuMapList count]];
+            for(BuffetMenuMap *item in buffetMenuMapList)
+            {
+                noteDataString = [NSString stringWithFormat:@"%@&%@",noteDataString,[Utility getNoteDataString:item withRunningNo:countBuffetMenuMap]];
+                countBuffetMenuMap++;
+            }
+            
+            url = [NSURL URLWithString:[Utility url:urlBuffetMenuMapDeleteList]];
+        }
+        break;
         default:
             break;
     }
@@ -2213,8 +2685,8 @@
 {
     NSString* escapeString = [Utility percentEscapeString:fileName];
     NSString *noteDataString = [NSString stringWithFormat:@"imageFileName=%@",escapeString];
-    noteDataString = [NSString stringWithFormat:@"%@&modifiedDeviceToken=%@&modifiedUser=%@&type=%ld&branchID=%ld",noteDataString,[Utility deviceToken],[Utility modifiedUser],type,branchID];
-    NSURL * url = [NSURL URLWithString:[Utility url:urlDownloadPhoto]];
+    noteDataString = [NSString stringWithFormat:@"%@&modifiedDeviceToken=%@&modifiedUser=%@&type=%ld&branchID=%ld&lang=%@",noteDataString,[Utility deviceToken],[Utility modifiedUser],type,branchID,[Language getLanguage]];
+    NSURL * url = [NSURL URLWithString:[Utility appendRandomParam:[Utility url:urlDownloadPhoto]]];
     
     
     NSURLSessionConfiguration *defaultConfigObject = [NSURLSessionConfiguration defaultSessionConfiguration];
@@ -2282,7 +2754,7 @@
             break;
     }
     
-    noteDataString = [NSString stringWithFormat:@"%@&modifiedDeviceToken=%@&modifiedUser=%@",noteDataString,[Utility deviceToken],[Utility modifiedUser]];
+    noteDataString = [NSString stringWithFormat:@"%@&modifiedDeviceToken=%@&modifiedUser=%@&lang=%@",noteDataString,[Utility deviceToken],[Utility modifiedUser],[Language getLanguage]];
     NSLog(@"url: %@",url);
     NSLog(@"notedatastring: %@",noteDataString);
     

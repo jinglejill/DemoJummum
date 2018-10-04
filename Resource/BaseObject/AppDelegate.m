@@ -32,6 +32,7 @@
 #import "RewardRedemptionViewController.h"
 #import "SelectPaymentMethodViewController.h"
 #import "TosAndPrivacyPolicyViewController.h"
+#import "VoucherCodeListViewController.h"
 #import "HotDealViewController.h"
 #import "RewardViewController.h"
 #import "QRCodeScanTableViewController.h"
@@ -89,18 +90,13 @@ void myExceptionHandler(NSException *exception)
     
 }
 
--(void)applicationReceivedRemoteMessage:(FIRMessagingRemoteMessage *)remoteMessage
-{
-    NSLog(@"remoteMessageAppData: %@",remoteMessage.appData);
-}
+//-(void)applicationReceivedRemoteMessage:(FIRMessagingRemoteMessage *)remoteMessage
+//{
+//    NSLog(@"remoteMessageAppData: %@",remoteMessage.appData);
+//}
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    
-    
-    
-    
-    
     
 //    NSString *key = [NSString stringWithFormat:@"dismiss verion:(null)"];
 //    [[NSUserDefaults standardUserDefaults] setValue:@0 forKey:key];
@@ -109,7 +105,6 @@ void myExceptionHandler(NSException *exception)
     [barButtonAppearance setBackgroundImage:[self imageWithColor:[UIColor clearColor]] forState:UIControlStateNormal barMetrics:UIBarMetricsDefault]; // Change to your colour
     
     
-    [Utility setFinishLoadSharedData:NO];
     _homeModel = [[HomeModel alloc]init];
     _homeModel.delegate = self;
     
@@ -139,9 +134,7 @@ void myExceptionHandler(NSException *exception)
         [Utility setDetailNoConnection:[temp objectForKey:@"DetailNoConnection"]];
         [Utility setDetailNoConnection:[temp objectForKey:@"DetailNoConnection"]];
         [Utility setKey:[temp objectForKey:@"Key"]];
-        
-        
-        
+        [Utility setBundleID:[temp objectForKey:@"BundleID"]];        
     }
     
     
@@ -162,7 +155,7 @@ void myExceptionHandler(NSException *exception)
 
     //push notification
     {
-        [FIRApp configure];
+//        [FIRApp configure];
         if ([UNUserNotificationCenter class] != nil)//version >= 10
         {
             
@@ -189,7 +182,7 @@ void myExceptionHandler(NSException *exception)
             [application registerUserNotificationSettings:settings];
         }
         [application registerForRemoteNotifications];  // required to get the app to do anything at all about push notifications
-        [FIRMessaging messaging].delegate = self;
+//        [FIRMessaging messaging].delegate = self;
     }
     
     
@@ -339,15 +332,15 @@ void myExceptionHandler(NSException *exception)
     [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
-- (void)messaging:(FIRMessaging *)messaging didReceiveRegistrationToken:(NSString *)fcmToken {
-    NSLog(@"FCM registration token: %@", fcmToken);
-    // Notify about received token.
-    NSDictionary *dataDict = [NSDictionary dictionaryWithObject:fcmToken forKey:@"token"];
-    [[NSNotificationCenter defaultCenter] postNotificationName:
-     @"FCMToken" object:nil userInfo:dataDict];
-    // TODO: If necessary send token to application server.
-    // Note: This callback is fired at each app startup and whenever a new token is generated.
-}
+//- (void)messaging:(FIRMessaging *)messaging didReceiveRegistrationToken:(NSString *)fcmToken {
+//    NSLog(@"FCM registration token: %@", fcmToken);
+//    // Notify about received token.
+//    NSDictionary *dataDict = [NSDictionary dictionaryWithObject:fcmToken forKey:@"token"];
+//    [[NSNotificationCenter defaultCenter] postNotificationName:
+//     @"FCMToken" object:nil userInfo:dataDict];
+//    // TODO: If necessary send token to application server.
+//    // Note: This callback is fired at each app startup and whenever a new token is generated.
+//}
 
 -(void)application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:(NSError *)error
 {
@@ -569,7 +562,8 @@ void myExceptionHandler(NSException *exception)
                 [currentVc isKindOfClass:[RewardDetailViewController class]] ||
                 [currentVc isKindOfClass:[RewardRedemptionViewController class]] ||
                 [currentVc isKindOfClass:[SelectPaymentMethodViewController class]] ||
-                [currentVc isKindOfClass:[TosAndPrivacyPolicyViewController class]])
+                [currentVc isKindOfClass:[TosAndPrivacyPolicyViewController class]] ||
+                [currentVc isKindOfClass:[VoucherCodeListViewController class]])
         {
             currentVc.selectedReceipt = selectedReceipt;
             currentVc.showOrderDetail = 1;

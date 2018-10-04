@@ -1,8 +1,8 @@
 //
 //  main.m
-//  DemoJummum
+//  DevJummum
 //
-//  Created by Thidaporn Kijkamjai on 27/7/2561 BE.
+//  Created by Thidaporn Kijkamjai on 9/8/2561 BE.
 //  Copyright © 2561 Jummum Tech. All rights reserved.
 //
 
@@ -15,12 +15,12 @@ NSString *globalDomainName;
 NSString *globalSubjectNoConnection;
 NSString *globalDetailNoConnection;
 BOOL globalRotateFromSeg;
-BOOL globalFinishLoadSharedData;
 NSString *globalKey;
 NSString *globalModifiedUser;
+NSString *globalBundleID;
 
 
-int main(int argc, char * argv[]){
+int main(int argc, char * argv[]) {
     @autoreleasepool {
         return UIApplicationMain(argc, argv, nil, NSStringFromClass([AppDelegate class]));
     }

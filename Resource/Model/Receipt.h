@@ -18,6 +18,7 @@
 @property (nonatomic) NSInteger servingPerson;
 @property (nonatomic) NSInteger customerType;
 @property (retain, nonatomic) NSDate * openTableDate;
+@property (nonatomic) float totalAmount;
 @property (nonatomic) float cashAmount;
 @property (nonatomic) float cashReceive;
 @property (nonatomic) NSInteger creditCardType;
@@ -44,20 +45,21 @@
 @property (retain, nonatomic) NSDate * deliveredDate;
 @property (nonatomic) NSInteger mergeReceiptID;
 @property (nonatomic) NSInteger buffetReceiptID;
+@property (retain, nonatomic) NSString * voucherCode;
+@property (nonatomic) float shopDiscount;
+@property (nonatomic) float jummumDiscount;
 @property (retain, nonatomic) NSString * modifiedUser;
 @property (retain, nonatomic) NSDate * modifiedDate;
 
+- (NSDictionary *)dictionary;
+-(Receipt *)initWithBranchID:(NSInteger)branchID customerTableID:(NSInteger)customerTableID memberID:(NSInteger)memberID servingPerson:(NSInteger)servingPerson customerType:(NSInteger)customerType openTableDate:(NSDate *)openTableDate totalAmount:(float)totalAmount cashAmount:(float)cashAmount cashReceive:(float)cashReceive creditCardType:(NSInteger)creditCardType creditCardNo:(NSString *)creditCardNo creditCardAmount:(float)creditCardAmount transferDate:(NSDate *)transferDate transferAmount:(float)transferAmount remark:(NSString *)remark discountType:(NSInteger)discountType discountAmount:(float)discountAmount discountValue:(float)discountValue discountReason:(NSString *)discountReason serviceChargePercent:(float)serviceChargePercent serviceChargeValue:(float)serviceChargeValue priceIncludeVat:(NSInteger)priceIncludeVat vatPercent:(float)vatPercent vatValue:(float)vatValue status:(NSInteger)status statusRoute:(NSString *)statusRoute receiptNoID:(NSString *)receiptNoID receiptNoTaxID:(NSString *)receiptNoTaxID receiptDate:(NSDate *)receiptDate sendToKitchenDate:(NSDate *)sendToKitchenDate deliveredDate:(NSDate *)deliveredDate mergeReceiptID:(NSInteger)mergeReceiptID buffetReceiptID:(NSInteger)buffetReceiptID voucherCode:(NSString *)voucherCode shopDiscount:(float)shopDiscount jummumDiscount:(float)jummumDiscount;
 
-
--(Receipt *)initWithBranchID:(NSInteger)branchID customerTableID:(NSInteger)customerTableID memberID:(NSInteger)memberID servingPerson:(NSInteger)servingPerson customerType:(NSInteger)customerType openTableDate:(NSDate *)openTableDate cashAmount:(float)cashAmount cashReceive:(float)cashReceive creditCardType:(NSInteger)creditCardType creditCardNo:(NSString *)creditCardNo creditCardAmount:(float)creditCardAmount transferDate:(NSDate *)transferDate transferAmount:(float)transferAmount remark:(NSString *)remark discountType:(NSInteger)discountType discountAmount:(float)discountAmount discountValue:(float)discountValue discountReason:(NSString *)discountReason serviceChargePercent:(float)serviceChargePercent serviceChargeValue:(float)serviceChargeValue priceIncludeVat:(NSInteger)priceIncludeVat vatPercent:(float)vatPercent vatValue:(float)vatValue status:(NSInteger)status statusRoute:(NSString *)statusRoute receiptNoID:(NSString *)receiptNoID receiptNoTaxID:(NSString *)receiptNoTaxID receiptDate:(NSDate *)receiptDate sendToKitchenDate:(NSDate *)sendToKitchenDate deliveredDate:(NSDate *)deliveredDate mergeReceiptID:(NSInteger)mergeReceiptID buffetReceiptID:(NSInteger)buffetReceiptID;
 +(NSInteger)getNextID;
 +(void)addObject:(Receipt *)receipt;
 +(void)removeObject:(Receipt *)receipt;
 +(void)addList:(NSMutableArray *)receiptList;
 +(void)removeList:(NSMutableArray *)receiptList;
 +(Receipt *)getReceipt:(NSInteger)receiptID;
-+(Receipt *)getReceiptWithCustomerTableID:(NSInteger)customerTableID status:(NSInteger)status;
-+(NSString *)getStringCreditCardType:(Receipt *)receipt;
 -(id)copyWithZone:(NSZone *)zone;
 +(Receipt *)copyFrom:(Receipt *)fromReceipt to:(Receipt *)toReceipt;
 +(NSMutableArray *)getReceiptListWithStartDate:(NSDate *)startDate endDate:(NSDate *)endDate statusList:(NSArray *)statusList;
