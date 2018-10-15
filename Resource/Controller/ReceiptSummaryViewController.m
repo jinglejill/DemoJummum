@@ -56,7 +56,8 @@ static NSString * const reuseIdentifierButton = @"CustomTableViewCellButton";
 -(IBAction)unwindToReceiptSummary:(UIStoryboardSegue *)segue
 {
     self.showOrderDetail = 0;
-    if([segue.sourceViewController isKindOfClass:[OrderDetailViewController class]])
+    CustomViewController *vc = segue.sourceViewController;
+    if([vc isKindOfClass:[OrderDetailViewController class]])
     {
         OrderDetailViewController *vc = segue.sourceViewController;
         [tbvData reloadData];
@@ -67,7 +68,7 @@ static NSString * const reuseIdentifierButton = @"CustomTableViewCellButton";
         NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:index];
         [tbvData scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionTop animated:YES];
     }
-    else if([segue.sourceViewController isKindOfClass:[CreditCardAndOrderSummaryViewController class]])
+    else if([vc isKindOfClass:[CreditCardAndOrderSummaryViewController class]] && !vc.showOrderDetail)
     {
         CreditCardAndOrderSummaryViewController *vc = segue.sourceViewController;
         
@@ -94,6 +95,7 @@ static NSString * const reuseIdentifierButton = @"CustomTableViewCellButton";
     [super viewDidAppear:animated];
     
     
+    [self reloadTableView];
     UserAccount *userAccount = [UserAccount getCurrentUserAccount];
     NSDate *maxReceiptModifiedDate = [Receipt getMaxModifiedDateWithMemberID:userAccount.userAccountID];
     [self.homeModel downloadItems:dbReceiptMaxModifiedDate withData:@[userAccount, maxReceiptModifiedDate]];
@@ -939,6 +941,7 @@ static NSString * const reuseIdentifierButton = @"CustomTableViewCellButton";
     {
         MenuSelectionViewController *vc = segue.destinationViewController;
         vc.buffetReceipt = _selectedReceipt;
+        vc.fromReceiptSummaryMenu = 1;
     }
 }
 

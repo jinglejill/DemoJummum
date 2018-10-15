@@ -217,6 +217,7 @@ static NSString * const reuseIdentifierLabelTextView = @"CustomTableViewCellLabe
     }
     else if(fromLuckyDraw)
     {
+        [OrderTaking removeCurrentOrderTakingList];
         [self performSegueWithIdentifier:@"segUnwindToLuckyDraw" sender:self];
     }
     else
@@ -1592,7 +1593,8 @@ static NSString * const reuseIdentifierLabelTextView = @"CustomTableViewCellLabe
 
 - (IBAction)addRemoveMenu:(id)sender
 {
-    [self performSegueWithIdentifier:@"segUnwindToQRScanTable" sender:self];
+//    [self performSegueWithIdentifier:@"segUnwindToQRScanTable" sender:self];
+    [self performSegueWithIdentifier:@"segUnwindToMainTabBar" sender:self];
 }
 
 - (void)pay:(id)sender

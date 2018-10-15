@@ -114,6 +114,7 @@
 		EF14CDDD21646C8D0035A292 /* Language.m in Sources */ = {isa = PBXBuildFile; fileRef = EF14CDD521646C8C0035A292 /* Language.m */; };
 		EF14CDDE21646C8D0035A292 /* SharedLanguage.m in Sources */ = {isa = PBXBuildFile; fileRef = EF14CDD621646C8C0035A292 /* SharedLanguage.m */; };
 		EF14CDDF21646C8D0035A292 /* DiscountGroupMenuMap.m in Sources */ = {isa = PBXBuildFile; fileRef = EF14CDD821646C8C0035A292 /* DiscountGroupMenuMap.m */; };
+		EF14CE4A21669C260035A292 /* historyTab.png in Resources */ = {isa = PBXBuildFile; fileRef = EF14CE4921669C250035A292 /* historyTab.png */; };
 		EF5D28C6212D4A270073F1A1 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = EF5D28C5212D4A270073F1A1 /* GoogleService-Info.plist */; };
 		EF5DC0A4211718CC00FFEA60 /* SharedCurrentCreditCard.m in Sources */ = {isa = PBXBuildFile; fileRef = EF5DC0A2211718CB00FFEA60 /* SharedCurrentCreditCard.m */; };
 		EF5DC0AB2118E60B00FFEA60 /* triangle_pink.png in Resources */ = {isa = PBXBuildFile; fileRef = EF5DC0AA2118E60B00FFEA60 /* triangle_pink.png */; };
@@ -602,6 +603,7 @@
 		EF14CDD721646C8C0035A292 /* SharedBuffetMenuMap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SharedBuffetMenuMap.h; sourceTree = "<group>"; };
 		EF14CDD821646C8C0035A292 /* DiscountGroupMenuMap.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DiscountGroupMenuMap.m; sourceTree = "<group>"; };
 		EF14CDD921646C8D0035A292 /* SharedLanguage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SharedLanguage.h; sourceTree = "<group>"; };
+		EF14CE4921669C250035A292 /* historyTab.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = historyTab.png; sourceTree = "<group>"; };
 		EF5D28C5212D4A270073F1A1 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		EF5DC0A2211718CB00FFEA60 /* SharedCurrentCreditCard.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SharedCurrentCreditCard.m; sourceTree = "<group>"; };
 		EF5DC0A3211718CB00FFEA60 /* SharedCurrentCreditCard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SharedCurrentCreditCard.h; sourceTree = "<group>"; };
@@ -1441,6 +1443,7 @@
 		EF9C4A1E210B4BAC00C7563A /* Image */ = {
 			isa = PBXGroup;
 			children = (
+				EF14CE4921669C250035A292 /* historyTab.png */,
 				EF14CDC621646C650035A292 /* triangle_and_om.png */,
 				EF14CDC721646C660035A292 /* triangle_and.png */,
 				EF14CDC921646C660035A292 /* triangle_dev_om.png */,
@@ -2270,6 +2273,7 @@
 				EF9C4D47210B4BAE00C7563A /* Kanit-Thin.otf in Resources */,
 				EF9C4D1C210B4BAE00C7563A /* CustomTableViewCellVoucherCode.xib in Resources */,
 				EF14CDBC21646C4B0035A292 /* giftBoxAwesome00011.jpg in Resources */,
+				EF14CE4A21669C260035A292 /* historyTab.png in Resources */,
 				EF9C4D6F210B4BAE00C7563A /* Kanit-Medium.ttf in Resources */,
 				EF14CDC421646C4B0035A292 /* giftBoxAwesome00002.jpg in Resources */,
 				EF14CDA421646C4B0035A292 /* giftBoxBoo00017.jpg in Resources */,

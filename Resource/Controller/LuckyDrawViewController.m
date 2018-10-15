@@ -528,7 +528,7 @@
         Branch *branch = [Branch getBranch:_rewardRedemption.mainBranchID];
         CreditCardAndOrderSummaryViewController *vc = segue.destinationViewController;
         vc.branch = branch;        
-        vc.customerTable = [CustomerTable getCustomerTable:receipt.customerTableID];;
+        vc.customerTable = [CustomerTable getCustomerTable:receipt.customerTableID];
         vc.fromLuckyDraw = 1;
         vc.receipt = nil;
         vc.buffetReceipt = nil;
