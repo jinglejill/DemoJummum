@@ -43,6 +43,7 @@
 #define cSystem2     [UIColor colorWithRed:100/255.0 green:220/255.0 blue:200/255.0 alpha:1]
 #define cSystem3     [UIColor colorWithRed:0/255.0 green:90/255.0 blue:80/255.0 alpha:1]
 #define cSystem4     [UIColor colorWithRed:70/255.0 green:70/255.0 blue:70/255.0 alpha:1]
+#define cSystem5     [UIColor colorWithRed:35/255.0 green:35/255.0 blue:35/255.0 alpha:1]
 #define cSystem4_10     [UIColor colorWithRed:236/255.0 green:236/255.0 blue:236/255.0 alpha:1]
 #define cSystem1_20     [UIColor colorWithRed:255/255.0 green:215/255.0 blue:218/255.0 alpha:1]
 #define cSystem1_30     [UIColor colorWithRed:255/255.0 green:196/255.0 blue:200/255.0 alpha:1]
@@ -149,8 +150,7 @@ enum enumDB
     dbReceiptOrderTakingOrderNote,
     dbOmiseCheckOut,
     dbCustomerTable,
-    dbReceiptSummary,
-    dbReceiptMaxModifiedDate,
+    dbReceiptSummaryPage,
     dbReceipt,
     dbPromotion,
     dbRewardPoint,
@@ -182,7 +182,6 @@ enum enumDB
     dbBranchAndCustomerTable,
     dbBranchAndCustomerTableQR,
     dbBranchSearch,
-    dbBranchSearchMore,
     dbComment,
     dbCommentList,
     dbRecommendShop,
@@ -190,9 +189,8 @@ enum enumDB
     dbRating,
     dbRatingList,
     dbReceiptDisputeRating,
-    dbReceiptDisputeRatingAllAfterReceipt,    
     dbReceiptDisputeRatingUpdateAndReload,
-    dbReceiptDisputeRatingAllAfterReceiptUpdateAndReload,
+    dbReceiptBuffetEnded,
     dbMenuNote,
     dbMenuNoteList,    
     dbMenuBelongToBuffet,
@@ -278,7 +276,6 @@ enum enumUrl
     urlHotDealUpdateList,
     urlHotDealDeleteList,
     urlHotDealGetList,
-    urlHotDealWithBranchGetList,
     urlRewardRedemptionWithBranchGetList,
     urlRewardRedemptionInsert,
     urlRewardRedemptionUpdate,
@@ -341,7 +338,6 @@ enum enumUrl
     urlRatingUpdateList,
     urlRatingDeleteList,
     urlReceiptDisputeRatingGet,
-    urlReceiptDisputeRatingAllAfterReceiptGet,
     urlMenuNoteInsert,
     urlMenuNoteUpdate,
     urlMenuNoteDelete,
@@ -368,7 +364,8 @@ enum enumUrl
     urlBuffetMenuMapDelete,
     urlBuffetMenuMapInsertList,
     urlBuffetMenuMapUpdateList,
-    urlBuffetMenuMapDeleteList
+    urlBuffetMenuMapDeleteList,
+    urlReceiptSummaryPageGetList
     
 
     
@@ -491,6 +488,7 @@ enum enumUrl
 +(BOOL)updateDataList:(NSArray *)itemList dataList:(NSMutableArray *)dataList;
 +(UIImage *)getImageFromCache:(NSString *)imageName;
 +(void)saveImageInCache:(UIImage *)image imageName:(NSString *)imageName;
++(void)deleteFileInCache:(NSString *)fileName;
 +(NSString *)formatPhoneNo:(NSString *)phoneNo;
 
 @end

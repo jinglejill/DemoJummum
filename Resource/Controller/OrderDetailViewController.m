@@ -151,17 +151,14 @@ static NSString * const reuseIdentifierLabelRemark = @"CustomTableViewCellLabelR
     }
     
     
-    [self.homeModel downloadItems:dbReceiptDisputeRating withData:receipt];
+    [self.homeModel downloadItems:dbReceiptDisputeRating withData:@(receipt.receiptID)];
 }
 
 -(void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
     
-    
-    UserAccount *userAccount = [UserAccount getCurrentUserAccount];
-    NSDate *maxReceiptModifiedDate = [Receipt getMaxModifiedDateWithMemberID:userAccount.userAccountID];
-    [self.homeModel downloadItems:dbReceiptMaxModifiedDate withData:@[userAccount, maxReceiptModifiedDate]];
+    [self.homeModel downloadItems:dbReceiptDisputeRating withData:@(receipt.receiptID)];
 }
 
 ///tableview section
@@ -259,11 +256,23 @@ static NSString * const reuseIdentifierLabelRemark = @"CustomTableViewCellLabelR
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
             
             
+            //(buffet)
+            UIColor *color = cSystem4;
+            NSDictionary *attribute = @{NSForegroundColorAttributeName:color};
+            NSMutableAttributedString *attrString = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"Order no. #%@",receipt.receiptNoID] attributes:attribute];
+            
+            
+            UIColor *color2 = cSystem2;
+            NSDictionary *attribute2 = @{NSForegroundColorAttributeName:color2};
+            NSMutableAttributedString *attrString2 = [[NSMutableAttributedString alloc] initWithString:@" (Buffet)" attributes:attribute2];
+            if(receipt.buffetReceiptID)
+            {
+                [attrString appendAttributedString:attrString2];
+            }
             
             NSString *message = [Language getText:@"ร้าน %@"];
             Branch *branch = [Branch getBranch:receipt.branchID];
-            NSString *showBuffetOrder = receipt.buffetReceiptID?@" (Buffet)":@"";
-            cell.lblReceiptNo.text = [NSString stringWithFormat:@"Order no. #%@%@", receipt.receiptNoID,showBuffetOrder];
+            cell.lblReceiptNo.attributedText = attrString;
             cell.lblReceiptDate.text = [Utility dateToString:receipt.modifiedDate toFormat:@"d MMM yy HH:mm"];
             cell.lblBranchName.text = [NSString stringWithFormat:message,branch.name];
             cell.lblBranchName.textColor = cSystem1;
@@ -2029,15 +2038,6 @@ static NSString * const reuseIdentifierLabelRemark = @"CustomTableViewCellLabelR
             [self performSegueWithIdentifier:@"segConfirmDispute" sender:self];
         }
     }
-    else if(homeModel.propCurrentDB == dbReceiptMaxModifiedDate)
-    {
-        NSMutableArray *receiptList = items[0];
-        if([receiptList count]>0)
-        {
-            [Utility updateSharedObject:items];
-            [self reloadTableView];
-        }
-    }
 }
 
 -(void)orderItAgain:(id)sender
@@ -2045,6 +2045,28 @@ static NSString * const reuseIdentifierLabelRemark = @"CustomTableViewCellLabelR
     NSMutableArray *orderTakingList = [OrderTaking getOrderTakingListWithReceiptID:receipt.receiptID];
     [OrderTaking setCurrentOrderTakingList:orderTakingList];
     
+    
+    //belong to buffet
+    if(receipt.buffetReceiptID)
+    {
+        Receipt *buffetReceipt = [Receipt getReceipt:receipt.buffetReceiptID];
+        if(buffetReceipt)
+        {
+            NSInteger timeToOrder = buffetReceipt.timeToOrder;
+            NSTimeInterval seconds = [[Utility currentDateTime] timeIntervalSinceDate:receipt.receiptDate];
+            NSInteger timeToCountDown = timeToOrder - seconds >= 0?timeToOrder - seconds:0;
+            if(timeToCountDown <= 0)
+            {
+                [self showAlert:@"" message:[Language getText:@"ขอโทษค่ะ หมดเวลาสั่งบุฟเฟ่ต์แล้วค่ะ"]];
+                return;
+            }
+        }
+        else
+        {
+            [self showAlert:@"" message:[Language getText:@"ขอโทษค่ะ หมดเวลาสั่งบุฟเฟ่ต์แล้วค่ะ"]];
+            return;
+        }
+    }
     
     _receiptBranch = [Branch getBranch:receipt.branchID];
     [self performSegueWithIdentifier:@"segCreditCardAndOrderSummary" sender:self];

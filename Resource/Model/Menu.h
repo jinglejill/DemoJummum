@@ -21,8 +21,10 @@
 @property (nonatomic) NSInteger subMenuType2ID;
 @property (nonatomic) NSInteger subMenuType3ID;
 @property (nonatomic) NSInteger buffetMenu;
-@property (nonatomic) NSInteger belongToMenuID;
+@property (nonatomic) NSInteger alacarteMenu;
 @property (nonatomic) NSInteger timeToOrder;
+@property (nonatomic) NSInteger recommended;
+@property (nonatomic) NSInteger recommendedOrderNo;
 @property (retain, nonatomic) NSString * imageUrl;
 @property (retain, nonatomic) NSString * color;
 @property (nonatomic) NSInteger orderNo;
@@ -32,16 +34,14 @@
 @property (retain, nonatomic) NSDate * modifiedDate;
 
 
-
 @property (nonatomic) NSInteger menuOrderNo;
 @property (nonatomic) NSInteger subMenuOrderNo;
 @property (nonatomic) NSInteger expand;
 @property (nonatomic) NSInteger branchID;
 
 
+-(Menu *)initWithMenuCode:(NSString *)menuCode titleThai:(NSString *)titleThai price:(float)price menuTypeID:(NSInteger)menuTypeID subMenuTypeID:(NSInteger)subMenuTypeID subMenuType2ID:(NSInteger)subMenuType2ID subMenuType3ID:(NSInteger)subMenuType3ID buffetMenu:(NSInteger)buffetMenu alacarteMenu:(NSInteger)alacarteMenu timeToOrder:(NSInteger)timeToOrder recommended:(NSInteger)recommended recommendedOrderNo:(NSInteger)recommendedOrderNo imageUrl:(NSString *)imageUrl color:(NSString *)color orderNo:(NSInteger)orderNo status:(NSInteger)status remark:(NSString *)remark;
 
-
--(Menu *)initWithMenuCode:(NSString *)menuCode titleThai:(NSString *)titleThai price:(float)price menuTypeID:(NSInteger)menuTypeID subMenuTypeID:(NSInteger)subMenuTypeID subMenuType2ID:(NSInteger)subMenuType2ID subMenuType3ID:(NSInteger)subMenuType3ID buffetMenu:(NSInteger)buffetMenu belongToMenuID:(NSInteger)belongToMenuID timeToOrder:(NSInteger)timeToOrder imageUrl:(NSString *)imageUrl color:(NSString *)color orderNo:(NSInteger)orderNo status:(NSInteger)status remark:(NSString *)remark;
 
 +(NSInteger)getNextID;
 +(void)addObject:(Menu *)menu;
@@ -66,7 +66,7 @@
 +(void)setCurrentMenuForBuffet:(MenuForBuffet *)menuForBuffet;
 +(void)removeCurrentMenuForBuffet;
 +(NSMutableArray *)getMenuListALaCarteWithBranchID:(NSInteger)branchID;
-//+(NSMutableArray *)getMenuListBuffetWithReceipt:(Receipt *)receipt;
-//+(NSMutableArray *)getMenuListBelongToBuffetWithBuffetMenuList:(NSMutableArray *)buffetMenuList;
 +(NSMutableArray *)getMenuBelongToBuffet:(Receipt *)receipt;
++(NSMutableArray *)getMenuListRecommendedWithMenuList:(NSMutableArray *)menuList;
++(BOOL)hasRecommendedMenuWithMenuList:(NSMutableArray *)menuList;
 @end

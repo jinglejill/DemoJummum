@@ -104,7 +104,7 @@ static NSString * const reuseIdentifierLabelTextView = @"CustomTableViewCellLabe
 @synthesize fromHotDealDetail;
 @synthesize promotion;
 @synthesize fromLuckyDraw;
-
+@synthesize addRemoveMenu;
 
 
 -(IBAction)unwindToCreditCardAndOrderSummary:(UIStoryboardSegue *)segue
@@ -148,7 +148,7 @@ static NSString * const reuseIdentifierLabelTextView = @"CustomTableViewCellLabe
 
 -(void)textViewDidBeginEditing:(UITextView *)textView
 {
-    textView.textColor = [UIColor blackColor];
+    textView.textColor = cSystem5;
     if([textView.text isEqualToString:_strPlaceHolder])
     {
         textView.text = @"";
@@ -189,10 +189,26 @@ static NSString * const reuseIdentifierLabelTextView = @"CustomTableViewCellLabe
         if(fromReceiptSummaryMenu || fromOrderDetailMenu || fromRewardRedemption || fromHotDealDetail || fromLuckyDraw)
         {
             _showGuideMessage = YES;
-            if(![[NSUserDefaults standardUserDefaults] boolForKey:@"dontShowMessageMenuUpdate"])
+            NSMutableDictionary *dontShowMessageMenuUpdate = [[NSUserDefaults standardUserDefaults] objectForKey:@"MessageMenuUpdate"];
+            if(dontShowMessageMenuUpdate)
+            {
+                UserAccount *userAccount = [UserAccount getCurrentUserAccount];
+            
+                NSString *checked = [dontShowMessageMenuUpdate objectForKey:userAccount.username];
+                if(!checked)
+                {
+                    [self performSegueWithIdentifier:@"segMessageBoxWithDismiss" sender:self];
+                }
+            }
+            else
             {
                 [self performSegueWithIdentifier:@"segMessageBoxWithDismiss" sender:self];
             }
+            
+//            if(![[NSUserDefaults standardUserDefaults] boolForKey:@"MessageMenuUpdate"])
+//            {
+//                [self performSegueWithIdentifier:@"segMessageBoxWithDismiss" sender:self];
+//            }
         }
     }
 }
@@ -998,7 +1014,7 @@ static NSString * const reuseIdentifierLabelTextView = @"CustomTableViewCellLabe
             }
             else
             {
-                cell.txvValue.textColor = [UIColor blackColor];
+                cell.txvValue.textColor = cSystem5;
             }
             [cell.txvValue.layer setBorderColor:[[[UIColor grayColor] colorWithAlphaComponent:0.5] CGColor]];
             [cell.txvValue.layer setBorderWidth:0.5];
@@ -1553,7 +1569,7 @@ static NSString * const reuseIdentifierLabelTextView = @"CustomTableViewCellLabe
         for(OrderTaking *item in orderTakingList)
         {
             Menu *menu = [Menu getMenu:item.menuID branchID:item.branchID];
-            if(menu.belongToMenuID == 0 || item.specialPrice > 0)
+            if(menu.alacarteMenu == 1 || item.specialPrice > 0)
             {
                 showBuffetButton = 0;
                 break;
@@ -1594,6 +1610,7 @@ static NSString * const reuseIdentifierLabelTextView = @"CustomTableViewCellLabe
 - (IBAction)addRemoveMenu:(id)sender
 {
 //    [self performSegueWithIdentifier:@"segUnwindToQRScanTable" sender:self];
+    addRemoveMenu = 1;
     [self performSegueWithIdentifier:@"segUnwindToMainTabBar" sender:self];
 }
 
@@ -1612,7 +1629,9 @@ static NSString * const reuseIdentifierLabelTextView = @"CustomTableViewCellLabe
         
         
         UserAccount *userAccount = [UserAccount getCurrentUserAccount];
-        Receipt *receipt = [[Receipt alloc]initWithBranchID:branch.branchID customerTableID:customerTable.customerTableID memberID:userAccount.userAccountID servingPerson:0 customerType:4 openTableDate:[Utility currentDateTime] totalAmount:_totalAmount cashAmount:0 cashReceive:0 creditCardType:[self getCreditCardType:_creditCard.creditCardNo] creditCardNo:_creditCard.creditCardNo creditCardAmount:_netTotal transferDate:[Utility notIdentifiedDate] transferAmount:0 remark:_remark discountType:0 discountAmount:0 discountValue:_discountValue discountReason:@"" serviceChargePercent:branch.serviceChargePercent serviceChargeValue:_serviceChargeValue priceIncludeVat:branch.priceIncludeVat vatPercent:branch.percentVat vatValue:_vatValue status:2 statusRoute:@"" receiptNoID:@"" receiptNoTaxID:@"" receiptDate:[Utility currentDateTime] sendToKitchenDate:[Utility notIdentifiedDate] deliveredDate:[Utility notIdentifiedDate] mergeReceiptID:0 buffetReceiptID:buffetReceipt.receiptID voucherCode:_selectedVoucherCode shopDiscount:0 jummumDiscount:0];
+        Receipt *receipt = [[Receipt alloc]initWithBranchID:branch.branchID customerTableID:customerTable.customerTableID memberID:userAccount.userAccountID servingPerson:0 customerType:4 openTableDate:[Utility currentDateTime] totalAmount:_totalAmount cashAmount:0 cashReceive:0 creditCardType:[self getCreditCardType:_creditCard.creditCardNo] creditCardNo:_creditCard.creditCardNo creditCardAmount:_netTotal transferDate:[Utility notIdentifiedDate] transferAmount:0 remark:_remark discountType:0 discountAmount:0 discountValue:_discountValue discountReason:@"" serviceChargePercent:branch.serviceChargePercent serviceChargeValue:_serviceChargeValue priceIncludeVat:branch.priceIncludeVat vatPercent:branch.percentVat vatValue:_vatValue status:2 statusRoute:@"" receiptNoID:@"" receiptNoTaxID:@"" receiptDate:[Utility currentDateTime] sendToKitchenDate:[Utility notIdentifiedDate] deliveredDate:[Utility notIdentifiedDate] mergeReceiptID:0 hasBuffetMenu:0 timeToOrder:0 buffetEnded:0 buffetEndedDate:[Utility notIdentifiedDate] buffetReceiptID:buffetReceipt.receiptID voucherCode:_selectedVoucherCode shopDiscount:0 jummumDiscount:0 transactionFeeValue:0 jummumPayValue:0];
+        
+                            
         
         
         
@@ -1741,7 +1760,7 @@ static NSString * const reuseIdentifierLabelTextView = @"CustomTableViewCellLabe
                 
                 
                 UserAccount *userAccount = [UserAccount getCurrentUserAccount];
-                Receipt *receipt = [[Receipt alloc]initWithBranchID:branch.branchID customerTableID:customerTable.customerTableID memberID:userAccount.userAccountID servingPerson:0 customerType:4 openTableDate:[Utility currentDateTime] totalAmount:_totalAmount cashAmount:0 cashReceive:0 creditCardType:[self getCreditCardType:_creditCard.creditCardNo] creditCardNo:_creditCard.creditCardNo creditCardAmount:_netTotal transferDate:[Utility notIdentifiedDate] transferAmount:0 remark:_remark discountType:0 discountAmount:0 discountValue:_discountValue discountReason:@"" serviceChargePercent:branch.serviceChargePercent serviceChargeValue:_serviceChargeValue priceIncludeVat:branch.priceIncludeVat vatPercent:branch.percentVat vatValue:_vatValue status:2 statusRoute:@"" receiptNoID:@"" receiptNoTaxID:@"" receiptDate:[Utility currentDateTime] sendToKitchenDate:[Utility notIdentifiedDate] deliveredDate:[Utility notIdentifiedDate] mergeReceiptID:0 buffetReceiptID:buffetReceipt.receiptID voucherCode:_selectedVoucherCode shopDiscount:0 jummumDiscount:0];
+                Receipt *receipt = [[Receipt alloc]initWithBranchID:branch.branchID customerTableID:customerTable.customerTableID memberID:userAccount.userAccountID servingPerson:0 customerType:4 openTableDate:[Utility currentDateTime] totalAmount:_totalAmount cashAmount:0 cashReceive:0 creditCardType:[self getCreditCardType:_creditCard.creditCardNo] creditCardNo:_creditCard.creditCardNo creditCardAmount:_netTotal transferDate:[Utility notIdentifiedDate] transferAmount:0 remark:_remark discountType:0 discountAmount:0 discountValue:_discountValue discountReason:@"" serviceChargePercent:branch.serviceChargePercent serviceChargeValue:_serviceChargeValue priceIncludeVat:branch.priceIncludeVat vatPercent:branch.percentVat vatValue:_vatValue status:2 statusRoute:@"" receiptNoID:@"" receiptNoTaxID:@"" receiptDate:[Utility currentDateTime] sendToKitchenDate:[Utility notIdentifiedDate] deliveredDate:[Utility notIdentifiedDate] mergeReceiptID:0 hasBuffetMenu:0 timeToOrder:0 buffetEnded:0 buffetEndedDate:[Utility notIdentifiedDate] buffetReceiptID:buffetReceipt.receiptID voucherCode:_selectedVoucherCode shopDiscount:0 jummumDiscount:0 transactionFeeValue:0 jummumPayValue:0];
                 
                 
                 
@@ -1754,14 +1773,12 @@ static NSString * const reuseIdentifierLabelTextView = @"CustomTableViewCellLabe
                 
                 if(_promotionOrRewardRedemption == 1)
                 {
-//                    UserPromotionUsed *userPromotionUsed = [[UserPromotionUsed alloc]initWithUserAccountID:userAccount.userAccountID promotionID:_promotionID receiptID:0];
                     self.homeModel = [[HomeModel alloc]init];
                     self.homeModel.delegate = self;
                     [self.homeModel insertItemsJson:dbOmiseCheckOut withData:@[[token tokenId],@(_netTotal*100),receipt,orderTakingList,orderNoteList,_selectedVoucherCode] actionScreen:@"call omise checkout at server"];
                 }
                 else
                 {
-//                    UserRewardRedemptionUsed *userRewardRedemptionUsed = [[UserRewardRedemptionUsed alloc]initWithUserAccountID:userAccount.userAccountID rewardRedemptionID:_rewardRedemptionID receiptID:0];
                     self.homeModel = [[HomeModel alloc]init];
                     self.homeModel.delegate = self;
                     [self.homeModel insertItemsJson:dbOmiseCheckOut withData:@[[token tokenId],@(_netTotal*100),receipt,orderTakingList,orderNoteList,_selectedVoucherCode] actionScreen:@"call omise checkout at server"];
@@ -1769,7 +1786,10 @@ static NSString * const reuseIdentifierLabelTextView = @"CustomTableViewCellLabe
             }
             else
             {
-                NSString *message = [Language getText:@"การจ่ายด้วยบัตรเครดิต/เดบิตขัดข้อง กรุณาติดต่อเจ้าหน้าที่ที่เกี่ยวข้อง"];
+                [self removeWaitingView];
+                btnPay.enabled = YES;
+//                NSString *message = [Language getText:@"การจ่ายด้วยบัตรเครดิต/เดบิตขัดข้อง กรุณาติดต่อเจ้าหน้าที่ที่เกี่ยวข้อง"];
+                NSString *message = [Language getText:@"กรุณาตรวจสอบข้อมูลบัตรเครดิต/เดบิต อีกครั้งค่ะ"];
                 [self showAlert:@"" message:message];
             }
         }];

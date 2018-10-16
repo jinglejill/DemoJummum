@@ -20,10 +20,9 @@
 @property (strong, nonatomic) IBOutlet NSLayoutConstraint *imgVwCheckTop;
 @property (strong, nonatomic) IBOutlet NSLayoutConstraint *btnOrderBuffetHeight;
 @property (nonatomic) NSInteger numberOfGift;
-    @property (nonatomic) NSInteger orderBuffet;
 @property (strong, nonatomic) IBOutlet UIImageView *imgVwCheck;
 @property (strong, nonatomic) IBOutlet UIButton *btnBackToHome;
-
+@property (nonatomic) NSInteger orderBuffet;
 
 
 - (IBAction)button1Clicked:(id)sender;

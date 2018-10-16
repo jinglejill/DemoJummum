@@ -28,7 +28,6 @@
 #import "TosAndPrivacyPolicyViewController.h"
 #import "VoucherCodeListViewController.h"
 #import "ReceiptSummaryViewController.h"
-#import "PaymentCompleteViewController.h"
 #import "Branch.h"
 #import "CustomerTable.h"
 #import "Receipt.h"
@@ -45,6 +44,7 @@
     Receipt *_buffetReceipt;
     Receipt *_selectedReceipt;
     BOOL _showOrderDetail;
+    BOOL _showReceiptSummary;
     BOOL _orderBuffet;
     BOOL _orderBuffetAfterOrderBuffet;
 }
@@ -56,7 +56,7 @@
 -(IBAction)unwindToMainTabBar:(UIStoryboardSegue *)segue
 {
     CustomViewController *vc = segue.sourceViewController;
-    if([vc isMemberOfClass:[CreditCardAndOrderSummaryViewController class]])
+    if([vc isMemberOfClass:[CreditCardAndOrderSummaryViewController class]] && ((CreditCardAndOrderSummaryViewController *)vc).addRemoveMenu)
     {
         CreditCardAndOrderSummaryViewController *vc = segue.sourceViewController;
         _selectedBranch = vc.branch;
@@ -84,6 +84,13 @@
             _selectedReceipt = vcPaymentComplete.receipt;
         }
         
+        
+        _switchToReceiptSummaryTab = 1;
+    }
+    else if(vc.showReceiptSummary)
+    {
+        _showReceiptSummary = 1;
+    
         
         _switchToReceiptSummaryTab = 1;
     }
@@ -122,36 +129,57 @@
     self.delegate = self;
     [[UITabBarItem appearance] setTitleTextAttributes:@{NSFontAttributeName: [UIFont fontWithName:@"Prompt-Regular" size:11.0f]} forState:UIControlStateNormal];
     
+    
+    //login already
+    BOOL firstTimeInstalled = [[NSUserDefaults standardUserDefaults] boolForKey:@"firstTimeInstalled"];
+    if(!firstTimeInstalled)
+    {
+        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"firstTimeInstalled"];
+    }
+    
+    
     self.selectedIndex = mainTabQrScan;
     [self.selectedViewController viewDidAppear:NO];
 }
  
 -(void)viewDidAppear:(BOOL)animated
 {
+    [super viewDidAppear:animated];
+    
     if(_switchToQRTab)
     {
         _switchToQRTab = 0;
         self.selectedIndex = mainTabQrScan;
-        
         QRCodeScanTableViewController *vc = (QRCodeScanTableViewController *)self.selectedViewController;
         vc.selectedBranch = _selectedBranch;
         vc.selectedCustomerTable = _selectedCustomerTable;
         vc.fromOrderItAgain = _fromOrderItAgain;
         vc.buffetReceipt = _buffetReceipt;
+        
     }
     else if(_switchToReceiptSummaryTab)
     {
         _switchToReceiptSummaryTab = 0;
         self.selectedIndex = mainTabHistory;
         
+        
         ReceiptSummaryViewController *vc = (ReceiptSummaryViewController *)self.selectedViewController;
         vc.goToBuffetOrder = _orderBuffet;
         vc.selectedReceipt = _selectedReceipt;
         vc.showOrderDetail = _showOrderDetail;
         
-        if(_orderBuffetAfterOrderBuffet)
+        if(_showReceiptSummary)
+        {
+            [vc reloadTableView];
+        }
+        else if(_orderBuffetAfterOrderBuffet)
         {
             _orderBuffetAfterOrderBuffet = 0;
+            [vc viewDidAppear:NO];
+        }
+        else if(_showOrderDetail)
+        {
+            _showOrderDetail = 0;
             [vc viewDidAppear:NO];
         }
     }

@@ -33,9 +33,10 @@
     NSInteger _selectedReceiptID;
     Receipt *_selectedReceipt;
     Receipt *_orderItAgainReceipt;
-    NSMutableArray *_timeToCountDownList;
-    NSMutableArray *_timerList;
     NSMutableDictionary *_dicTimer;
+    NSInteger _page;
+    NSInteger _perPage;
+    BOOL _loadData;
 }
 @end
 
@@ -56,19 +57,9 @@ static NSString * const reuseIdentifierButton = @"CustomTableViewCellButton";
 -(IBAction)unwindToReceiptSummary:(UIStoryboardSegue *)segue
 {
     self.showOrderDetail = 0;
+    [tbvData reloadData];
     CustomViewController *vc = segue.sourceViewController;
-    if([vc isKindOfClass:[OrderDetailViewController class]])
-    {
-        OrderDetailViewController *vc = segue.sourceViewController;
-        [tbvData reloadData];
-        
-        
-        //get index and scroll to that index
-        NSInteger index = [Receipt getIndex:_receiptList receipt:vc.receipt];
-        NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:index];
-        [tbvData scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionTop animated:YES];
-    }
-    else if([vc isKindOfClass:[CreditCardAndOrderSummaryViewController class]] && !vc.showOrderDetail)
+    if([vc isKindOfClass:[CreditCardAndOrderSummaryViewController class]] && !vc.showOrderDetail)
     {
         CreditCardAndOrderSummaryViewController *vc = segue.sourceViewController;
         
@@ -90,17 +81,33 @@ static NSString * const reuseIdentifierButton = @"CustomTableViewCellButton";
     topViewHeight.constant = topPadding == 0?20:topPadding;
 }
 
+-(void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    [tbvData reloadData];
+    
+}
+    
 -(void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
     
     
-    [self reloadTableView];
-    UserAccount *userAccount = [UserAccount getCurrentUserAccount];
-    NSDate *maxReceiptModifiedDate = [Receipt getMaxModifiedDateWithMemberID:userAccount.userAccountID];
-    [self.homeModel downloadItems:dbReceiptMaxModifiedDate withData:@[userAccount, maxReceiptModifiedDate]];
+    if(!_loadData)
+    {
+        _page = 1;
+        _lastItemReached = NO;
+        UserAccount *userAccount = [UserAccount getCurrentUserAccount];
+        self.homeModel = [[HomeModel alloc]init];
+        self.homeModel.delegate = self;
+        [self.homeModel downloadItems:dbReceiptSummaryPage withData:@[userAccount,@(_page),@(_perPage)]];
+    }
+    else
+    {
+        _loadData = NO;
+    }
     
-    
+
     if(self.showOrderDetail)
     {
         self.showOrderDetail = 0;
@@ -132,8 +139,8 @@ static NSString * const reuseIdentifierButton = @"CustomTableViewCellButton";
     tbvData.delegate = self;
     tbvData.dataSource = self;
     tbvData.separatorColor = [UIColor clearColor];
-    _timerList = [[NSMutableArray alloc]init];
-    _timeToCountDownList = [[NSMutableArray alloc]init];
+//    _timerList = [[NSMutableArray alloc]init];
+//    _timeToCountDownList = [[NSMutableArray alloc]init];
     _dicTimer = [[NSMutableDictionary alloc]init];
     
     
@@ -151,7 +158,18 @@ static NSString * const reuseIdentifierButton = @"CustomTableViewCellButton";
     }
     
     
-    [self setReceiptList];
+    
+    [self loadingOverlayView];
+    _loadData = YES;
+    _page = 1;
+    _perPage = 10;
+    _lastItemReached = NO;
+    _receiptList = [[NSMutableArray alloc]init];
+    UserAccount *userAccount = [UserAccount getCurrentUserAccount];
+    self.homeModel = [[HomeModel alloc]init];
+    self.homeModel.delegate = self;
+    [self.homeModel downloadItems:dbReceiptSummaryPage withData:@[userAccount,@(_page),@(_perPage)]];
+    
 }
 
 ///tableview section
@@ -170,6 +188,11 @@ static NSString * const reuseIdentifierButton = @"CustomTableViewCellButton";
             tableView.backgroundView = noDataLabel;
             tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
             return 0;
+        }
+        else
+        {
+            tableView.backgroundView = nil;
+            tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
         }
         return [_receiptList count];
     }
@@ -208,11 +231,28 @@ static NSString * const reuseIdentifierButton = @"CustomTableViewCellButton";
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         
         
-        NSString *message = [Language getText:@"ร้าน %@"];
+        
         Receipt *receipt = _receiptList[section];
+        
+        
+        //(buffet)
+        UIColor *color = cSystem4;
+        NSDictionary *attribute = @{NSForegroundColorAttributeName:color};
+        NSMutableAttributedString *attrString = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"Order no. #%@",receipt.receiptNoID] attributes:attribute];
+    
+    
+        UIColor *color2 = cSystem2;
+        NSDictionary *attribute2 = @{NSForegroundColorAttributeName:color2};
+        NSMutableAttributedString *attrString2 = [[NSMutableAttributedString alloc] initWithString:@" (Buffet)" attributes:attribute2];
+        if(receipt.buffetReceiptID)
+        {
+            [attrString appendAttributedString:attrString2];
+        }
+        
+        
+        NSString *message = [Language getText:@"ร้าน %@"];
         Branch *branch = [Branch getBranch:receipt.branchID];
-        NSString *showBuffetOrder = receipt.buffetReceiptID?@" (Buffet)":@"";
-        cell.lblReceiptNo.text = [NSString stringWithFormat:@"Order no. #%@%@", receipt.receiptNoID,showBuffetOrder];
+        cell.lblReceiptNo.attributedText = attrString;
         cell.lblReceiptDate.text = [Utility dateToString:receipt.modifiedDate toFormat:@"d MMM yy HH:mm"];
         cell.lblBranchName.text = [NSString stringWithFormat:message,branch.name];
         cell.lblBranchName.textColor = cSystem1;
@@ -256,7 +296,7 @@ static NSString * const reuseIdentifierButton = @"CustomTableViewCellButton";
             UserAccount *userAccount = [UserAccount getCurrentUserAccount];
             self.homeModel = [[HomeModel alloc]init];
             self.homeModel.delegate = self;
-            [self.homeModel downloadItems:dbReceiptSummary withData:@[receipt,userAccount]];
+            [self.homeModel downloadItems:dbReceiptSummaryPage withData:@[userAccount,@(_page),@(_perPage)]];
         }
         
         return cell;
@@ -454,14 +494,15 @@ static NSString * const reuseIdentifierButton = @"CustomTableViewCellButton";
             
             [attrStringStatusLabel appendAttributedString:attrStringStatus];
             cell.lblValue.attributedText = attrStringStatusLabel;
-            if([Receipt hasBuffetMenu:receiptID])
+            if(receipt.hasBuffetMenu)
             {
-                NSInteger timeToOrder = [Receipt getTimeToOrder:receiptID];
+                NSInteger timeToOrder = receipt.timeToOrder;
                 NSTimeInterval seconds = [[Utility currentDateTime] timeIntervalSinceDate:receipt.receiptDate];
                 NSInteger timeToCountDown = timeToOrder - seconds >= 0?timeToOrder - seconds:0;
-                if(timeToCountDown == 0)
+                if(timeToCountDown == 0 || receipt.buffetEnded)
                 {
                     cell.lblText.text = @"";
+                    cell.lblText.hidden = YES;
                 }
                 else
                 {
@@ -473,6 +514,7 @@ static NSString * const reuseIdentifierButton = @"CustomTableViewCellButton";
                         [self populateLabelwithTime:timeToCountDown receipt:receipt];
                         [_dicTimer setValue:timer forKey:[NSString stringWithFormat:@"%ld",receiptID]];
                     }
+                    cell.lblText.hidden = NO;
                 }
             }
             else
@@ -495,11 +537,11 @@ static NSString * const reuseIdentifierButton = @"CustomTableViewCellButton";
             
             
             Receipt *receipt = [Receipt getReceipt:receiptID];
-            NSInteger timeToOrder = [Receipt getTimeToOrder:receiptID];
+            NSInteger timeToOrder = receipt.timeToOrder;
             NSTimeInterval seconds = [[Utility currentDateTime] timeIntervalSinceDate:receipt.receiptDate];
             NSInteger timeToCountDown = timeToOrder - seconds >= 0?timeToOrder - seconds:0;
             cell.btnValue.tag = receiptID;
-            cell.btnValue.hidden = !([Receipt hasBuffetMenu:receiptID] && timeToCountDown);
+            cell.btnValue.hidden = !(receipt.hasBuffetMenu && timeToCountDown && !receipt.buffetEnded);
             cell.btnValue.backgroundColor = cSystem1;
             [cell.btnValue setTitle:title forState:UIControlStateNormal];
             [cell.btnValue addTarget:self action:@selector(orderBuffet:) forControlEvents:UIControlEventTouchUpInside];
@@ -624,7 +666,7 @@ static NSString * const reuseIdentifierButton = @"CustomTableViewCellButton";
         
         
         //remarkHeight
-        CustomTableViewCellReceiptSummary *receiptSummaryCell = [tableView dequeueReusableCellWithIdentifier:reuseIdentifierReceiptSummary];
+//        CustomTableViewCellReceiptSummary *receiptSummaryCell = [tableView dequeueReusableCellWithIdentifier:reuseIdentifierReceiptSummary];
         CustomTableViewCellLabelRemark *cell = [tableView dequeueReusableCellWithIdentifier:reuseIdentifierLabelRemark];
         if([Utility isStringEmpty:receipt.remark])
         {
@@ -644,14 +686,13 @@ static NSString * const reuseIdentifierButton = @"CustomTableViewCellButton";
         
         
         float btnBuffetHeight = 0;
-        if([Receipt hasBuffetMenu:receipt.receiptID])
+        if(receipt.hasBuffetMenu)
         {
-            NSInteger timeToOrder = [Receipt getTimeToOrder:receipt.receiptID];
+            NSInteger timeToOrder = receipt.timeToOrder;
             NSTimeInterval seconds = [[Utility currentDateTime] timeIntervalSinceDate:receipt.receiptDate];
             NSInteger timeToCountDown = timeToOrder - seconds >= 0?timeToOrder - seconds:0;
-            btnBuffetHeight = timeToCountDown?44:0;
-        }
-        
+            btnBuffetHeight = timeToCountDown && !receipt.buffetEnded ?44:0;
+        }        
     
         
         return sumHeight+83+remarkHeight+34+34+btnBuffetHeight;//+37;
@@ -804,13 +845,13 @@ static NSString * const reuseIdentifierButton = @"CustomTableViewCellButton";
         }
         else if(indexPath.item == [orderTakingList count]+3)
         {
-            if([Receipt hasBuffetMenu:receiptID])
-            {
-                Receipt *receipt = [Receipt getReceipt:receiptID];
-                NSInteger timeToOrder = [Receipt getTimeToOrder:receipt.receiptID];
+            Receipt *receipt = [Receipt getReceipt:receiptID];
+            if(receipt.hasBuffetMenu)
+            {                
+                NSInteger timeToOrder = receipt.timeToOrder;
                 NSTimeInterval seconds = [[Utility currentDateTime] timeIntervalSinceDate:receipt.receiptDate];
                 NSInteger timeToCountDown = timeToOrder - seconds >= 0?timeToOrder - seconds:0;
-                return timeToCountDown?44:0;
+                return timeToCountDown && !receipt.buffetEnded ?44:0;
             }
             return 0;
         }
@@ -871,33 +912,45 @@ static NSString * const reuseIdentifierButton = @"CustomTableViewCellButton";
 -(void)itemsDownloaded:(NSArray *)items manager:(NSObject *)objHomeModel
 {
     HomeModel *homeModel = (HomeModel *)objHomeModel;
-    if(homeModel.propCurrentDB == dbReceiptSummary)
+    if(homeModel.propCurrentDB == dbReceiptSummaryPage)
     {
-        if([[items[0] mutableCopy] count]==0)
+        [self removeOverlayViews];
+        [Utility updateSharedObject:items];
+
+
+        if(_page == 1)
         {
-            _lastItemReached = YES;
-            [tbvData reloadData];
+            _receiptList = items[0];
         }
         else
         {
-            [Utility updateSharedObject:items];
-            [self reloadTableView];
+            NSInteger remaining = [_receiptList count]%_perPage;
+            for(int i=0; i<remaining; i++)
+            {
+                [_receiptList removeLastObject];
+            }
+            
+            [_receiptList addObjectsFromArray:items[0]];
         }
-    }
-    else if(homeModel.propCurrentDB == dbReceiptMaxModifiedDate)
-    {
-        NSMutableArray *receiptList = items[0];
-        if([receiptList count]>0)
+    
+        if([items[0] count] < _perPage)
         {
-            [Utility updateSharedObject:items];
-            [self reloadTableView];
+            _lastItemReached = YES;
         }
+        else
+        {
+            _page += 1;
+        }
+    
+    
+    
+        [tbvData reloadData];
+    
     }
 }
 
 -(void)reloadTableView
 {
-    [self setReceiptList];
     [tbvData reloadData];
 }
 
@@ -914,6 +967,28 @@ static NSString * const reuseIdentifierButton = @"CustomTableViewCellButton";
     NSMutableArray *orderTakingList = [OrderTaking getOrderTakingListWithReceiptID:receipt.receiptID];
     [OrderTaking setCurrentOrderTakingList:orderTakingList];
     _orderItAgainReceipt = receipt;
+    
+    //belong to buffet
+    if(_orderItAgainReceipt.buffetReceiptID)
+    {
+        Receipt *buffetReceipt = [Receipt getReceipt:_orderItAgainReceipt.buffetReceiptID];
+        if(buffetReceipt)
+        {
+            NSInteger timeToOrder = buffetReceipt.timeToOrder;
+            NSTimeInterval seconds = [[Utility currentDateTime] timeIntervalSinceDate:receipt.receiptDate];
+            NSInteger timeToCountDown = timeToOrder - seconds >= 0?timeToOrder - seconds:0;
+            if(timeToCountDown <= 0)
+            {
+                [self showAlert:@"" message:[Language getText:@"ขอโทษค่ะ หมดเวลาสั่งบุฟเฟ่ต์แล้วค่ะ"]];
+                return;
+            }
+        }
+        else
+        {
+            [self showAlert:@"" message:[Language getText:@"ขอโทษค่ะ หมดเวลาสั่งบุฟเฟ่ต์แล้วค่ะ"]];
+            return;
+        }
+    }
     
     
     _receiptBranch = [Branch getBranch:receipt.branchID];
@@ -961,7 +1036,7 @@ static NSString * const reuseIdentifierButton = @"CustomTableViewCellButton";
 -(void)updateTimer:(NSTimer *)timer
 {
     Receipt *receipt = timer.userInfo;
-    NSInteger timeToOrder = [Receipt getTimeToOrder:receipt.receiptID];
+    NSInteger timeToOrder = receipt.timeToOrder;
     NSTimeInterval seconds = [[Utility currentDateTime] timeIntervalSinceDate:receipt.receiptDate];
     NSInteger timeToCountDown = timeToOrder - seconds >= 0?timeToOrder - seconds:0;
     if(timeToCountDown == 0)
@@ -998,3 +1073,4 @@ static NSString * const reuseIdentifierButton = @"CustomTableViewCellButton";
     cellTimeToCountDown.lblText.text = [NSString stringWithFormat:@"%02ld:%02ld:%02ld", hours, minutes, seconds];
 }
 @end
+

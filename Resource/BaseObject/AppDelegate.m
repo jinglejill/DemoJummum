@@ -244,44 +244,26 @@ void myExceptionHandler(NSException *exception)
     }
     
     
-    if([currentVc isKindOfClass:[ReceiptSummaryViewController class]])
-    {
-    }
-    else if([currentVc isKindOfClass:[OrderDetailViewController class]])
+    if([currentVc isKindOfClass:[ReceiptSummaryViewController class]] || [currentVc isKindOfClass:[OrderDetailViewController class]])
     {
     }
     else
     {
         completionHandler(UNNotificationPresentationOptionAlert);
     }
-    //////////////////
+    
     
     NSDictionary *myAps = [userInfo objectForKey:@"aps"];
     NSString *categoryIdentifier = [myAps objectForKey:@"category"];
-    if([categoryIdentifier isEqualToString:@"updateStatus"])
+    if([categoryIdentifier isEqualToString:@"updateStatus"] || [categoryIdentifier isEqualToString:@"buffetEnded"])
     {
         NSDictionary *data = [myAps objectForKey:@"data"];
         NSNumber *receiptID = [data objectForKey:@"receiptID"];
-        
-        
-        Receipt *receipt = [Receipt getReceipt:[receiptID integerValue]];
-        if(receipt)
-        {
-            _homeModel = [[HomeModel alloc]init];
-            _homeModel.delegate = self;
-            [_homeModel downloadItems:dbReceiptDisputeRatingUpdateAndReload withData:receipt];
-        }
-        else
-        {
-            Receipt *receipt = [[Receipt alloc]init];
-            receipt.receiptID = [receiptID integerValue];
-            
-            
-            _homeModel = [[HomeModel alloc]init];
-            _homeModel.delegate = self;
-            [_homeModel downloadItems:dbReceiptDisputeRatingAllAfterReceiptUpdateAndReload withData:receipt];
-        }
+        _homeModel = [[HomeModel alloc]init];
+        _homeModel.delegate = self;
+        [_homeModel downloadItems:dbReceiptDisputeRatingUpdateAndReload withData:receiptID];
     }
+    //////////////////
 }
 
 
@@ -298,25 +280,17 @@ void myExceptionHandler(NSException *exception)
     {
         NSDictionary *data = [myAps objectForKey:@"data"];
         NSNumber *receiptID = [data objectForKey:@"receiptID"];
-        
-        
-        Receipt *receipt = [Receipt getReceipt:[receiptID integerValue]];
-        if(receipt)
-        {
-            _homeModel = [[HomeModel alloc]init];
-            _homeModel.delegate = self;
-            [_homeModel downloadItems:dbReceiptDisputeRating withData:receipt];
-        }
-        else
-        {
-            Receipt *receipt = [[Receipt alloc]init];
-            receipt.receiptID = [receiptID integerValue];
-            
-            
-            _homeModel = [[HomeModel alloc]init];
-            _homeModel.delegate = self;
-            [_homeModel downloadItems:dbReceiptDisputeRatingAllAfterReceipt withData:receipt];
-        }
+        _homeModel = [[HomeModel alloc]init];
+        _homeModel.delegate = self;
+        [_homeModel downloadItems:dbReceiptDisputeRating withData:receiptID];
+    }
+    else if([categoryIdentifier isEqualToString:@"buffetEnded"])
+    {
+        NSDictionary *data = [myAps objectForKey:@"data"];
+        NSNumber *receiptID = [data objectForKey:@"receiptID"];
+        _homeModel = [[HomeModel alloc]init];
+        _homeModel.delegate = self;
+        [_homeModel downloadItems:dbReceiptBuffetEnded withData:receiptID];
     }
 }
 
@@ -352,32 +326,21 @@ void myExceptionHandler(NSException *exception)
     NSLog(@"didReceiveRemoteNotification: %@", userInfo);
     
     
+    //////////////////
+    
+   
     NSDictionary *myAps = [userInfo objectForKey:@"aps"];
     NSString *categoryIdentifier = [myAps objectForKey:@"category"];
-    if([categoryIdentifier isEqualToString:@"updateStatus"])
+    if([categoryIdentifier isEqualToString:@"updateStatus"] || [categoryIdentifier isEqualToString:@"buffetEnded"])
     {
         NSDictionary *data = [myAps objectForKey:@"data"];
         NSNumber *receiptID = [data objectForKey:@"receiptID"];
-        
-        
-        Receipt *receipt = [Receipt getReceipt:[receiptID integerValue]];
-        if(receipt)
-        {
-            _homeModel = [[HomeModel alloc]init];
-            _homeModel.delegate = self;
-            [_homeModel downloadItems:dbReceiptDisputeRatingUpdateAndReload withData:receipt];
-        }
-        else
-        {
-            Receipt *receipt = [[Receipt alloc]init];
-            receipt.receiptID = [receiptID integerValue];
-            
-            
-            _homeModel = [[HomeModel alloc]init];
-            _homeModel.delegate = self;
-            [_homeModel downloadItems:dbReceiptDisputeRatingAllAfterReceiptUpdateAndReload withData:receipt];
-        }
+        _homeModel = [[HomeModel alloc]init];
+        _homeModel.delegate = self;
+        [_homeModel downloadItems:dbReceiptDisputeRatingUpdateAndReload withData:receiptID];
     }
+
+
     completionHandler(UIBackgroundFetchResultNewData);
     
     
@@ -467,11 +430,17 @@ void myExceptionHandler(NSException *exception)
     {
         ReceiptSummaryViewController *vc = (ReceiptSummaryViewController *)currentVc;
         [vc reloadTableView];
+//        [vc viewDidAppear:NO];//กรณี account เดียวกัน ใช้ 2 device
     }
     else if([currentVc isKindOfClass:[OrderDetailViewController class]])
     {
         OrderDetailViewController *vc = (OrderDetailViewController *)currentVc;
         [vc reloadTableView];
+    }
+    else if([currentVc isKindOfClass:[QRCodeScanTableViewController class]])
+    {
+        QRCodeScanTableViewController *vc = (QRCodeScanTableViewController *)currentVc;
+        [vc viewDidAppear:NO];
     }
 }
 
@@ -487,18 +456,13 @@ void myExceptionHandler(NSException *exception)
 -(void)itemsDownloaded:(NSArray *)items manager:(NSObject *)objHomeModel
 {
     HomeModel *homeModel = (HomeModel *)objHomeModel;
-    if(homeModel.propCurrentDB == dbReceiptDisputeRating || homeModel.propCurrentDB == dbReceiptDisputeRatingAllAfterReceipt)//tap at noti
+    if(homeModel.propCurrentDB == dbReceiptDisputeRating)//tap at noti
     {
         //update
-        NSLog(@"before updateSharedObject ");
-        
         [Utility updateSharedObject:items];
-        NSLog(@"after updateSharedObject");
         
         
         //ไม่ว่าอยู่หน้าไหน ให้ไปที่หน้า orderDetail
-        //หาก unwind ให้ scroll ไปที่ receipt ใบนั้น
-        //reload when in receipt summary and orderDetail vc
         //Get current vc
         CustomViewController *currentVc;
         CustomViewController *parentViewController = (CustomViewController *)[[[UIApplication sharedApplication] delegate] window].rootViewController;
@@ -571,11 +535,73 @@ void myExceptionHandler(NSException *exception)
             [vc viewDidAppear:NO];
         }
     }
-    else if(homeModel.propCurrentDB == dbReceiptDisputeRatingUpdateAndReload || homeModel.propCurrentDB == dbReceiptDisputeRatingAllAfterReceiptUpdateAndReload)
+    else if(homeModel.propCurrentDB == dbReceiptBuffetEnded)//tap at noti
     {
         //update
         [Utility updateSharedObject:items];
         
+        
+        //ไม่ว่าอยู่หน้าไหน ให้ไปที่หน้า orderDetail
+        //Get current vc
+        CustomViewController *currentVc;
+        CustomViewController *parentViewController = (CustomViewController *)[[[UIApplication sharedApplication] delegate] window].rootViewController;
+        
+        while (parentViewController.presentedViewController != nil && ![parentViewController.presentedViewController isKindOfClass:[UIAlertController class]])
+        {
+            parentViewController = (CustomViewController *)parentViewController.presentedViewController;
+        }
+        if([parentViewController isKindOfClass:[UITabBarController class]])
+        {
+            currentVc = ((UITabBarController *)parentViewController).selectedViewController;
+        }
+        else
+        {
+            currentVc = parentViewController;
+        }
+        
+        
+        
+        
+        NSMutableArray *receiptList = items[0];
+        Receipt *receipt = receiptList[0];
+        if([currentVc isKindOfClass:[OrderDetailViewController class]] || [currentVc isKindOfClass:[ConfirmDisputeViewController class]] || [currentVc isKindOfClass:[DisputeFormViewController class]] || [currentVc isKindOfClass:[CommentRatingViewController class]] || [currentVc isKindOfClass:[CommentViewController class]] ||
+                [currentVc isKindOfClass:[BasketViewController class]] ||
+                [currentVc isKindOfClass:[BranchSearchViewController class]] ||
+                [currentVc isKindOfClass:[CreditCardAndOrderSummaryViewController class]] ||
+                [currentVc isKindOfClass:[CreditCardViewController class]] ||
+                [currentVc isKindOfClass:[CustomerTableSearchViewController class]] ||
+                [currentVc isKindOfClass:[HotDealDetailViewController class]] ||
+                [currentVc isKindOfClass:[MenuSelectionViewController class]] ||
+                [currentVc isKindOfClass:[MyRewardViewController class]] ||
+                [currentVc isKindOfClass:[NoteViewController class]] ||
+                [currentVc isKindOfClass:[PaymentCompleteViewController class]] ||
+                [currentVc isKindOfClass:[PersonalDataViewController class]] ||
+                [currentVc isKindOfClass:[RecommendShopViewController class]] ||
+                [currentVc isKindOfClass:[RewardDetailViewController class]] ||
+                [currentVc isKindOfClass:[RewardRedemptionViewController class]] ||
+                [currentVc isKindOfClass:[SelectPaymentMethodViewController class]] ||
+                [currentVc isKindOfClass:[TosAndPrivacyPolicyViewController class]] ||
+                [currentVc isKindOfClass:[VoucherCodeListViewController class]])
+        {
+            currentVc.showReceiptSummary = 1;
+            [currentVc performSegueWithIdentifier:@"segUnwindToMainTabBar" sender:self];
+        }
+        else if([currentVc isKindOfClass:[ReceiptSummaryViewController class]])
+        {
+            ReceiptSummaryViewController *vc = (ReceiptSummaryViewController *)currentVc;
+            [vc reloadTableView];
+        }
+        else if([currentVc isKindOfClass:[HotDealViewController class]] || [currentVc isKindOfClass:[RewardViewController class]] || [currentVc isKindOfClass:[QRCodeScanTableViewController class]] || [currentVc isKindOfClass:[MeViewController class]])
+        {
+            currentVc.tabBarController.selectedIndex = mainTabHistory;//receiptSummary
+            ReceiptSummaryViewController *vc = currentVc.tabBarController.selectedViewController;
+            [vc reloadTableView];
+        }
+    }
+    else if(homeModel.propCurrentDB == dbReceiptDisputeRatingUpdateAndReload)//
+    {
+        //update
+        [Utility updateSharedObject:items];
         
         
         //reload when in receipt summary and orderDetail vc
@@ -595,7 +621,6 @@ void myExceptionHandler(NSException *exception)
         {
             currentVc = parentViewController;
         }
-        
         
         
         if([currentVc isKindOfClass:[ReceiptSummaryViewController class]])

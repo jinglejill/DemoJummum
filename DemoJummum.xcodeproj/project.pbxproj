@@ -115,6 +115,9 @@
 		EF14CDDE21646C8D0035A292 /* SharedLanguage.m in Sources */ = {isa = PBXBuildFile; fileRef = EF14CDD621646C8C0035A292 /* SharedLanguage.m */; };
 		EF14CDDF21646C8D0035A292 /* DiscountGroupMenuMap.m in Sources */ = {isa = PBXBuildFile; fileRef = EF14CDD821646C8C0035A292 /* DiscountGroupMenuMap.m */; };
 		EF14CE4A21669C260035A292 /* historyTab.png in Resources */ = {isa = PBXBuildFile; fileRef = EF14CE4921669C250035A292 /* historyTab.png */; };
+		EF1F37FC21746F4700EFB214 /* CustomTableViewCellSquareThumbNail.m in Sources */ = {isa = PBXBuildFile; fileRef = EF1F37FA21746F4700EFB214 /* CustomTableViewCellSquareThumbNail.m */; };
+		EF1F37FD21746F4700EFB214 /* CustomTableViewCellSquareThumbNail.xib in Resources */ = {isa = PBXBuildFile; fileRef = EF1F37FB21746F4700EFB214 /* CustomTableViewCellSquareThumbNail.xib */; };
+		EF1F380021746F5D00EFB214 /* FirstInstallAlertViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EF1F37FE21746F5D00EFB214 /* FirstInstallAlertViewController.m */; };
 		EF5D28C6212D4A270073F1A1 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = EF5D28C5212D4A270073F1A1 /* GoogleService-Info.plist */; };
 		EF5DC0A4211718CC00FFEA60 /* SharedCurrentCreditCard.m in Sources */ = {isa = PBXBuildFile; fileRef = EF5DC0A2211718CB00FFEA60 /* SharedCurrentCreditCard.m */; };
 		EF5DC0AB2118E60B00FFEA60 /* triangle_pink.png in Resources */ = {isa = PBXBuildFile; fileRef = EF5DC0AA2118E60B00FFEA60 /* triangle_pink.png */; };
@@ -604,6 +607,11 @@
 		EF14CDD821646C8C0035A292 /* DiscountGroupMenuMap.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DiscountGroupMenuMap.m; sourceTree = "<group>"; };
 		EF14CDD921646C8D0035A292 /* SharedLanguage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SharedLanguage.h; sourceTree = "<group>"; };
 		EF14CE4921669C250035A292 /* historyTab.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = historyTab.png; sourceTree = "<group>"; };
+		EF1F37F921746F4700EFB214 /* CustomTableViewCellSquareThumbNail.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomTableViewCellSquareThumbNail.h; sourceTree = "<group>"; };
+		EF1F37FA21746F4700EFB214 /* CustomTableViewCellSquareThumbNail.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomTableViewCellSquareThumbNail.m; sourceTree = "<group>"; };
+		EF1F37FB21746F4700EFB214 /* CustomTableViewCellSquareThumbNail.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CustomTableViewCellSquareThumbNail.xib; sourceTree = "<group>"; };
+		EF1F37FE21746F5D00EFB214 /* FirstInstallAlertViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FirstInstallAlertViewController.m; sourceTree = "<group>"; };
+		EF1F37FF21746F5D00EFB214 /* FirstInstallAlertViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FirstInstallAlertViewController.h; sourceTree = "<group>"; };
 		EF5D28C5212D4A270073F1A1 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		EF5DC0A2211718CB00FFEA60 /* SharedCurrentCreditCard.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SharedCurrentCreditCard.m; sourceTree = "<group>"; };
 		EF5DC0A3211718CB00FFEA60 /* SharedCurrentCreditCard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SharedCurrentCreditCard.h; sourceTree = "<group>"; };
@@ -1359,13 +1367,13 @@
 			isa = PBXGroup;
 			children = (
 				EF9C49E8210B4BAC00C7563A /* BaseObject */,
-				EF9C49F3210B4BAC00C7563A /* Library */,
-				EF9C4A1E210B4BAC00C7563A /* Image */,
 				EF9C4A75210B4BAC00C7563A /* Controller */,
-				EF9C4AB8210B4BAD00C7563A /* Voice */,
-				EF9C4ABA210B4BAD00C7563A /* Model */,
 				EF9C4B4B210B4BAD00C7563A /* CustomView */,
 				EF9C4BB0210B4BAD00C7563A /* font */,
+				EF9C4A1E210B4BAC00C7563A /* Image */,
+				EF9C49F3210B4BAC00C7563A /* Library */,
+				EF9C4ABA210B4BAD00C7563A /* Model */,
+				EF9C4AB8210B4BAD00C7563A /* Voice */,
 			);
 			path = Resource;
 			sourceTree = "<group>";
@@ -1537,6 +1545,8 @@
 		EF9C4A75210B4BAC00C7563A /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				EF1F37FF21746F5D00EFB214 /* FirstInstallAlertViewController.h */,
+				EF1F37FE21746F5D00EFB214 /* FirstInstallAlertViewController.m */,
 				EFDAFDDD214A7EE700A2596D /* LuckyDrawViewController.h */,
 				EFDAFDDC214A7EE600A2596D /* LuckyDrawViewController.m */,
 				EFDAFDD9214A7EE600A2596D /* MessageBoxWithDismissViewController.h */,
@@ -1801,6 +1811,9 @@
 		EF9C4B4B210B4BAD00C7563A /* CustomView */ = {
 			isa = PBXGroup;
 			children = (
+				EF1F37F921746F4700EFB214 /* CustomTableViewCellSquareThumbNail.h */,
+				EF1F37FA21746F4700EFB214 /* CustomTableViewCellSquareThumbNail.m */,
+				EF1F37FB21746F4700EFB214 /* CustomTableViewCellSquareThumbNail.xib */,
 				EFDAFDEF214A7F1200A2596D /* CustomTableViewCellVoucherCodeExist.h */,
 				EFDAFDEE214A7F1200A2596D /* CustomTableViewCellVoucherCodeExist.m */,
 				EFDAFDF0214A7F1200A2596D /* CustomTableViewCellVoucherCodeExist.xib */,
@@ -2141,6 +2154,7 @@
 				EF9C4D50210B4BAE00C7563A /* Kanit-Black.otf in Resources */,
 				EF9C4C6B210B4BAE00C7563A /* history.png in Resources */,
 				EF9C4D09210B4BAE00C7563A /* CustomTableViewCellLabelText.xib in Resources */,
+				EF1F37FD21746F4700EFB214 /* CustomTableViewCellSquareThumbNail.xib in Resources */,
 				EF9C4D10210B4BAE00C7563A /* CustomTableViewCellLabelDetailLabelWithImage.xib in Resources */,
 				EF9C4C39210B4BAD00C7563A /* takeAway2.png in Resources */,
 				EF9C4C59210B4BAD00C7563A /* visa.png in Resources */,
@@ -2573,6 +2587,7 @@
 				EF9C4CE5210B4BAE00C7563A /* SharedCurrentUserAccount.m in Sources */,
 				EF9C4CE7210B4BAE00C7563A /* CustomerTable.m in Sources */,
 				EF6C7CF821310D2E00C335AC /* SharedMenuForBuffet.m in Sources */,
+				EF1F37FC21746F4700EFB214 /* CustomTableViewCellSquareThumbNail.m in Sources */,
 				EF9C4CDE210B4BAE00C7563A /* SharedShop.m in Sources */,
 				EF14CDDA21646C8D0035A292 /* BuffetMenuMap.m in Sources */,
 				EF9C4CD2210B4BAE00C7563A /* LogIn.m in Sources */,
@@ -2613,6 +2628,7 @@
 				EF9C4C28210B4BAD00C7563A /* OmiseJsonParser.swift in Sources */,
 				EF9C4CE0210B4BAE00C7563A /* OrderTaking.m in Sources */,
 				EF9C4CCD210B4BAE00C7563A /* SharedPushSync.m in Sources */,
+				EF1F380021746F5D00EFB214 /* FirstInstallAlertViewController.m in Sources */,
 				EF14CDDD21646C8D0035A292 /* Language.m in Sources */,
 				EF9C4CB3210B4BAE00C7563A /* FacebookComment.m in Sources */,
 				EF9C4CB2210B4BAE00C7563A /* UserRewardRedemptionUsed.m in Sources */,
