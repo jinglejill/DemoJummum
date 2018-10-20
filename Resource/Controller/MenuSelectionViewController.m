@@ -25,6 +25,7 @@
 #import "CreditCard.h"
 #import "Branch.h"
 #import "MenuForBuffet.h"
+#import "VoucherCode.h"
 
 
 @interface MenuSelectionViewController ()
@@ -132,7 +133,7 @@ static NSString * const reuseIdentifierSquareThumbNail = @"CustomTableViewCellSq
     
     
     if(branch.luckyDrawSpend)
-    {        
+    {
         NSString *message = [Language getText:@"ลุ้นรับรางวัลพิเศษ\nเมื่อทานครบทุกๆ %ld บาท"];
         NSInteger spentAmount = branch.luckyDrawSpend;
         NSString *luckyDrawMessage = [NSString stringWithFormat:message,spentAmount];
@@ -229,6 +230,7 @@ static NSString * const reuseIdentifierSquareThumbNail = @"CustomTableViewCellSq
                 [Menu removeCurrentMenuList];
                 [OrderTaking removeCurrentOrderTakingList];
                 [CreditCard removeCurrentCreditCard];
+                [VoucherCode removeCurrentVoucherCode];
                 lblTotalQuantity.text = @"0";
                 lblTotalQuantityTop.text = @"";
                 lblTotalAmount.text = [Utility addPrefixBahtSymbol:@"0.00"];
@@ -775,7 +777,7 @@ static NSString * const reuseIdentifierSquareThumbNail = @"CustomTableViewCellSq
         [Menu setCurrentMenuList:_menuList];
         [self setData];
         [self removeOverlayViews];
-              
+        
     }
     else if(homeModel.propCurrentDB == dbMenuBelongToBuffet)
     {
@@ -791,7 +793,7 @@ static NSString * const reuseIdentifierSquareThumbNail = @"CustomTableViewCellSq
         [Utility updateSharedObject:items];
         _menuList = [Menu getMenuBelongToBuffet:buffetReceipt];
         _menuTypeList = [MenuType getMenuTypeListWithMenuList:_menuList];
-        _menuTypeList = [MenuType sortList:_menuTypeList];        
+        _menuTypeList = [MenuType sortList:_menuTypeList];
         _filterMenuList = _menuList;
         
         NSMutableArray *receiptList = items[6];
@@ -966,7 +968,7 @@ static NSString * const reuseIdentifierSquareThumbNail = @"CustomTableViewCellSq
             [searchSet addObjectsFromArray:filterArray];
         }
         _filterMenuList = [[searchSet allObjects]mutableCopy];
-    }    
+    }
 }
 
 - (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText

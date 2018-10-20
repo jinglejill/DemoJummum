@@ -168,7 +168,7 @@ static NSString * const reuseIdentifierNote = @"CustomCollectionViewCellNote";
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
-    NSInteger countColumn = 3;
+    NSInteger countColumn = 1;
     NoteType *noteType = _noteTypeList[section];
     NSMutableArray *noteListBySection = [Note getNoteListWithNoteTypeID:noteType.noteTypeID type:noteType.type noteList:noteList];
     
@@ -320,7 +320,7 @@ static NSString * const reuseIdentifierNote = @"CustomCollectionViewCellNote";
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSInteger countColumn = 2;
+    NSInteger countColumn = 1;
     return CGSizeMake(floorf(collectionView.frame.size.width/countColumn), 34);
 }
 

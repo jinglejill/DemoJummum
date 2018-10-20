@@ -47,7 +47,6 @@
 +(void)addObject:(Menu *)menu;
 +(void)removeObject:(Menu *)menu;
 +(void)addList:(NSMutableArray *)menuList;
-+(void)addListCheckDuplicate:(NSMutableArray *)menuList;
 +(void)removeList:(NSMutableArray *)menuList;
 +(Menu *)getMenu:(NSInteger)menuID;
 +(Menu *)getMenu:(NSInteger)menuID branchID:(NSInteger)branchID;

@@ -127,6 +127,11 @@
 		EF639E03211F22E300C70A98 /* CustomTableViewCellLabelRemark.xib in Resources */ = {isa = PBXBuildFile; fileRef = EF639DFE211F22E300C70A98 /* CustomTableViewCellLabelRemark.xib */; };
 		EF6C7CF521310CE200C335AC /* MenuForBuffet.m in Sources */ = {isa = PBXBuildFile; fileRef = EF6C7CF421310CE200C335AC /* MenuForBuffet.m */; };
 		EF6C7CF821310D2E00C335AC /* SharedMenuForBuffet.m in Sources */ = {isa = PBXBuildFile; fileRef = EF6C7CF721310D2E00C335AC /* SharedMenuForBuffet.m */; };
+		EF94805B21779AF2007CA270 /* watermark.png in Resources */ = {isa = PBXBuildFile; fileRef = EF94805821779AF1007CA270 /* watermark.png */; };
+		EF94805C21779AF2007CA270 /* whiteBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = EF94805921779AF2007CA270 /* whiteBackground.png */; };
+		EF94805D21779AF2007CA270 /* pinkBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = EF94805A21779AF2007CA270 /* pinkBackground.png */; };
+		EF94806421779B12007CA270 /* VoucherCode.m in Sources */ = {isa = PBXBuildFile; fileRef = EF94805E21779B11007CA270 /* VoucherCode.m */; };
+		EF94806621779B12007CA270 /* SharedVoucherCode.m in Sources */ = {isa = PBXBuildFile; fileRef = EF94806221779B11007CA270 /* SharedVoucherCode.m */; };
 		EF9C49BA210B4B3B00C7563A /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EF9C49B9210B4B3B00C7563A /* ViewController.m */; };
 		EF9C49BF210B4B3C00C7563A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EF9C49BE210B4B3C00C7563A /* Assets.xcassets */; };
 		EF9C49C2210B4B3C00C7563A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EF9C49C0210B4B3C00C7563A /* LaunchScreen.storyboard */; };
@@ -626,6 +631,13 @@
 		EF6C7CF421310CE200C335AC /* MenuForBuffet.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MenuForBuffet.m; sourceTree = "<group>"; };
 		EF6C7CF621310D2E00C335AC /* SharedMenuForBuffet.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SharedMenuForBuffet.h; sourceTree = "<group>"; };
 		EF6C7CF721310D2E00C335AC /* SharedMenuForBuffet.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SharedMenuForBuffet.m; sourceTree = "<group>"; };
+		EF94805821779AF1007CA270 /* watermark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = watermark.png; sourceTree = "<group>"; };
+		EF94805921779AF2007CA270 /* whiteBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = whiteBackground.png; sourceTree = "<group>"; };
+		EF94805A21779AF2007CA270 /* pinkBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pinkBackground.png; sourceTree = "<group>"; };
+		EF94805E21779B11007CA270 /* VoucherCode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VoucherCode.m; sourceTree = "<group>"; };
+		EF94806121779B11007CA270 /* SharedVoucherCode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SharedVoucherCode.h; sourceTree = "<group>"; };
+		EF94806221779B11007CA270 /* SharedVoucherCode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SharedVoucherCode.m; sourceTree = "<group>"; };
+		EF94806321779B12007CA270 /* VoucherCode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VoucherCode.h; sourceTree = "<group>"; };
 		EF9C49B2210B4B3B00C7563A /* DemoJummum.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DemoJummum.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EF9C49B8210B4B3B00C7563A /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		EF9C49B9210B4B3B00C7563A /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
@@ -1451,6 +1463,9 @@
 		EF9C4A1E210B4BAC00C7563A /* Image */ = {
 			isa = PBXGroup;
 			children = (
+				EF94805A21779AF2007CA270 /* pinkBackground.png */,
+				EF94805821779AF1007CA270 /* watermark.png */,
+				EF94805921779AF2007CA270 /* whiteBackground.png */,
 				EF14CE4921669C250035A292 /* historyTab.png */,
 				EF14CDC621646C650035A292 /* triangle_and_om.png */,
 				EF14CDC721646C660035A292 /* triangle_and.png */,
@@ -1634,6 +1649,10 @@
 		EF9C4ABA210B4BAD00C7563A /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				EF94806121779B11007CA270 /* SharedVoucherCode.h */,
+				EF94806221779B11007CA270 /* SharedVoucherCode.m */,
+				EF94806321779B12007CA270 /* VoucherCode.h */,
+				EF94805E21779B11007CA270 /* VoucherCode.m */,
 				EF14CDCF21646C8A0035A292 /* BuffetMenuMap.h */,
 				EF14CDCE21646C8A0035A292 /* BuffetMenuMap.m */,
 				EF14CDD121646C8B0035A292 /* DiscountGroupMenuMap.h */,
@@ -2215,6 +2234,7 @@
 				EF14CDA921646C4B0035A292 /* giftBoxBoo00021.jpg in Resources */,
 				EF14CD8F21646C4B0035A292 /* giftBoxGood00016.jpg in Resources */,
 				EF9C4D64210B4BAE00C7563A /* Kanit-Light.otf in Resources */,
+				EF94805C21779AF2007CA270 /* whiteBackground.png in Resources */,
 				EF9C4C5C210B4BAD00C7563A /* basketWhite.png in Resources */,
 				EF14CDBB21646C4B0035A292 /* giftBoxAwesome00005.jpg in Resources */,
 				EF9C4D4E210B4BAE00C7563A /* Kanit-SemiBold.otf in Resources */,
@@ -2232,6 +2252,7 @@
 				EF9C4C47210B4BAD00C7563A /* Icon-60@3x.png in Resources */,
 				EF14CD9021646C4B0035A292 /* giftBoxGood00012.jpg in Resources */,
 				EF639E03211F22E300C70A98 /* CustomTableViewCellLabelRemark.xib in Resources */,
+				EF94805D21779AF2007CA270 /* pinkBackground.png in Resources */,
 				EF14CD6B21646C4B0035A292 /* giftBoxExcellent00009.jpg in Resources */,
 				EF9C4C74210B4BAE00C7563A /* comment.png in Resources */,
 				EF9C4D49210B4BAE00C7563A /* Kanit-Regular.ttf in Resources */,
@@ -2302,6 +2323,7 @@
 				EF14CDB321646C4B0035A292 /* giftBoxAwesome00008.jpg in Resources */,
 				EF9C4D01210B4BAE00C7563A /* CustomTableViewCellRating.xib in Resources */,
 				EF14CDBA21646C4B0035A292 /* giftBoxAwesome00013.jpg in Resources */,
+				EF94805B21779AF2007CA270 /* watermark.png in Resources */,
 				EF9C4C42210B4BAD00C7563A /* Icon-76@3x.png in Resources */,
 				EF14CD9E21646C4B0035A292 /* giftBoxBoo00004.jpg in Resources */,
 				EF9C4D0A210B4BAE00C7563A /* CustomTableViewCellButton.xib in Resources */,
@@ -2610,6 +2632,7 @@
 				EF14CDDF21646C8D0035A292 /* DiscountGroupMenuMap.m in Sources */,
 				EF9C4CEF210B4BAE00C7563A /* Comment.m in Sources */,
 				EF9C4CA0210B4BAE00C7563A /* RewardDetailViewController.m in Sources */,
+				EF94806421779B12007CA270 /* VoucherCode.m in Sources */,
 				EF9C4C27210B4BAD00C7563A /* OmiseAuthorizingPaymentViewController.swift in Sources */,
 				EF9C4C2A210B4BAD00C7563A /* Globals.swift in Sources */,
 				EF9C4D39210B4BAE00C7563A /* CustomTableViewCellReward.m in Sources */,
@@ -2643,6 +2666,7 @@
 				EF9C4CEE210B4BAE00C7563A /* SharedPromotion.m in Sources */,
 				EF9C4C35210B4BAD00C7563A /* CardNumber.swift in Sources */,
 				EF9C4CBD210B4BAE00C7563A /* SharedUserRewardRedemptionUsed.m in Sources */,
+				EF94806621779B12007CA270 /* SharedVoucherCode.m in Sources */,
 				EF5DC0A4211718CC00FFEA60 /* SharedCurrentCreditCard.m in Sources */,
 				EF9C4CDB210B4BAE00C7563A /* SharedRating.m in Sources */,
 				EF9C4CA2210B4BAE00C7563A /* BasketViewController.m in Sources */,
