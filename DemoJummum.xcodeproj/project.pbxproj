@@ -132,6 +132,12 @@
 		EF94805D21779AF2007CA270 /* pinkBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = EF94805A21779AF2007CA270 /* pinkBackground.png */; };
 		EF94806421779B12007CA270 /* VoucherCode.m in Sources */ = {isa = PBXBuildFile; fileRef = EF94805E21779B11007CA270 /* VoucherCode.m */; };
 		EF94806621779B12007CA270 /* SharedVoucherCode.m in Sources */ = {isa = PBXBuildFile; fileRef = EF94806221779B11007CA270 /* SharedVoucherCode.m */; };
+		EF94807D217AF255007CA270 /* peekABooFromRight.png in Resources */ = {isa = PBXBuildFile; fileRef = EF94807A217AF254007CA270 /* peekABooFromRight.png */; };
+		EF94807E217AF255007CA270 /* twirlArrow.png in Resources */ = {isa = PBXBuildFile; fileRef = EF94807B217AF254007CA270 /* twirlArrow.png */; };
+		EF94807F217AF255007CA270 /* peekABoo.png in Resources */ = {isa = PBXBuildFile; fileRef = EF94807C217AF255007CA270 /* peekABoo.png */; };
+		EF948081217AF29B007CA270 /* triangle_demo2.png in Resources */ = {isa = PBXBuildFile; fileRef = EF948080217AF29A007CA270 /* triangle_demo2.png */; };
+		EF948085217AF309007CA270 /* CustomCollectionViewCellNoteWithQuantity.xib in Resources */ = {isa = PBXBuildFile; fileRef = EF948082217AF308007CA270 /* CustomCollectionViewCellNoteWithQuantity.xib */; };
+		EF948086217AF309007CA270 /* CustomCollectionViewCellNoteWithQuantity.m in Sources */ = {isa = PBXBuildFile; fileRef = EF948083217AF309007CA270 /* CustomCollectionViewCellNoteWithQuantity.m */; };
 		EF9C49BA210B4B3B00C7563A /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EF9C49B9210B4B3B00C7563A /* ViewController.m */; };
 		EF9C49BF210B4B3C00C7563A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EF9C49BE210B4B3C00C7563A /* Assets.xcassets */; };
 		EF9C49C2210B4B3C00C7563A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EF9C49C0210B4B3C00C7563A /* LaunchScreen.storyboard */; };
@@ -638,6 +644,13 @@
 		EF94806121779B11007CA270 /* SharedVoucherCode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SharedVoucherCode.h; sourceTree = "<group>"; };
 		EF94806221779B11007CA270 /* SharedVoucherCode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SharedVoucherCode.m; sourceTree = "<group>"; };
 		EF94806321779B12007CA270 /* VoucherCode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VoucherCode.h; sourceTree = "<group>"; };
+		EF94807A217AF254007CA270 /* peekABooFromRight.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = peekABooFromRight.png; sourceTree = "<group>"; };
+		EF94807B217AF254007CA270 /* twirlArrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = twirlArrow.png; sourceTree = "<group>"; };
+		EF94807C217AF255007CA270 /* peekABoo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = peekABoo.png; sourceTree = "<group>"; };
+		EF948080217AF29A007CA270 /* triangle_demo2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = triangle_demo2.png; sourceTree = "<group>"; };
+		EF948082217AF308007CA270 /* CustomCollectionViewCellNoteWithQuantity.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CustomCollectionViewCellNoteWithQuantity.xib; sourceTree = "<group>"; };
+		EF948083217AF309007CA270 /* CustomCollectionViewCellNoteWithQuantity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomCollectionViewCellNoteWithQuantity.m; sourceTree = "<group>"; };
+		EF948084217AF309007CA270 /* CustomCollectionViewCellNoteWithQuantity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomCollectionViewCellNoteWithQuantity.h; sourceTree = "<group>"; };
 		EF9C49B2210B4B3B00C7563A /* DemoJummum.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DemoJummum.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EF9C49B8210B4B3B00C7563A /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		EF9C49B9210B4B3B00C7563A /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
@@ -1463,6 +1476,10 @@
 		EF9C4A1E210B4BAC00C7563A /* Image */ = {
 			isa = PBXGroup;
 			children = (
+				EF948080217AF29A007CA270 /* triangle_demo2.png */,
+				EF94807C217AF255007CA270 /* peekABoo.png */,
+				EF94807A217AF254007CA270 /* peekABooFromRight.png */,
+				EF94807B217AF254007CA270 /* twirlArrow.png */,
 				EF94805A21779AF2007CA270 /* pinkBackground.png */,
 				EF94805821779AF1007CA270 /* watermark.png */,
 				EF94805921779AF2007CA270 /* whiteBackground.png */,
@@ -1830,6 +1847,9 @@
 		EF9C4B4B210B4BAD00C7563A /* CustomView */ = {
 			isa = PBXGroup;
 			children = (
+				EF948084217AF309007CA270 /* CustomCollectionViewCellNoteWithQuantity.h */,
+				EF948083217AF309007CA270 /* CustomCollectionViewCellNoteWithQuantity.m */,
+				EF948082217AF308007CA270 /* CustomCollectionViewCellNoteWithQuantity.xib */,
 				EF1F37F921746F4700EFB214 /* CustomTableViewCellSquareThumbNail.h */,
 				EF1F37FA21746F4700EFB214 /* CustomTableViewCellSquareThumbNail.m */,
 				EF1F37FB21746F4700EFB214 /* CustomTableViewCellSquareThumbNail.xib */,
@@ -2157,6 +2177,7 @@
 				EF9C4C52210B4BAD00C7563A /* termsOfService.png in Resources */,
 				EF9C4C4B210B4BAD00C7563A /* jummumYeah.png in Resources */,
 				EF9C4CFE210B4BAE00C7563A /* CustomCollectionViewCellNote.xib in Resources */,
+				EF948081217AF29B007CA270 /* triangle_demo2.png in Resources */,
 				EF14CDBF21646C4B0035A292 /* giftBoxAwesome00014.jpg in Resources */,
 				EF9C4D62210B4BAE00C7563A /* Kanit-Medium.otf in Resources */,
 				EF9C4C5F210B4BAE00C7563A /* Icon-72.png in Resources */,
@@ -2188,6 +2209,7 @@
 				EF14CD8021646C4B0035A292 /* giftBoxExcellent00010.jpg in Resources */,
 				EF9C4C6F210B4BAE00C7563A /* deleteAll3.png in Resources */,
 				EF9C4D41210B4BAE00C7563A /* Kanit-BoldItalic.ttf in Resources */,
+				EF94807E217AF255007CA270 /* twirlArrow.png in Resources */,
 				EF14CD9D21646C4B0035A292 /* giftBoxBoo00005.jpg in Resources */,
 				EF9C524F210FB4DB00C7563A /* refresh.png in Resources */,
 				EF9C4D2E210B4BAE00C7563A /* CustomTableViewCellNote.xib in Resources */,
@@ -2337,6 +2359,7 @@
 				EF9C4C51210B4BAD00C7563A /* Icon-60.png in Resources */,
 				EF9C49BF210B4B3C00C7563A /* Assets.xcassets in Resources */,
 				EF9C4D42210B4BAE00C7563A /* Prompt-MediumItalic.ttf in Resources */,
+				EF94807D217AF255007CA270 /* peekABooFromRight.png in Resources */,
 				EF9C4D46210B4BAE00C7563A /* Kanit-SemiBold.ttf in Resources */,
 				EF9C4C86210B4BAE00C7563A /* NoImage.jpg in Resources */,
 				EF9C5247210C219400C7563A /* triangle_demo.png in Resources */,
@@ -2366,6 +2389,7 @@
 				EF14CD8E21646C4B0035A292 /* giftBoxGood00002.jpg in Resources */,
 				EF14CDCA21646C670035A292 /* triangle_and_om.png in Resources */,
 				EF9C4D5E210B4BAE00C7563A /* Kanit-Bold.ttf in Resources */,
+				EF94807F217AF255007CA270 /* peekABoo.png in Resources */,
 				EF9C4D5C210B4BAE00C7563A /* Kanit-BoldItalic.otf in Resources */,
 				EF9C4D43210B4BAE00C7563A /* Prompt-BoldItalic.ttf in Resources */,
 				EF14CDB921646C4B0035A292 /* giftBoxAwesome00007.jpg in Resources */,
@@ -2389,6 +2413,7 @@
 				EF14CD9F21646C4B0035A292 /* giftBoxBoo00010.jpg in Resources */,
 				EF9C4C76210B4BAE00C7563A /* remove.png in Resources */,
 				EF9C4D5A210B4BAE00C7563A /* Kanit-ThinItalic.otf in Resources */,
+				EF948085217AF309007CA270 /* CustomCollectionViewCellNoteWithQuantity.xib in Resources */,
 				EF9C4D66210B4BAE00C7563A /* Kanit-LightItalic.otf in Resources */,
 				EF14CD9221646C4B0035A292 /* giftBoxGood00007.jpg in Resources */,
 				EF9C4D19210B4BAE00C7563A /* CustomTableViewCellTotal.xib in Resources */,
@@ -2621,6 +2646,7 @@
 				EF9C4D31210B4BAE00C7563A /* CustomTableViewCellImageText.m in Sources */,
 				EF9C4CBE210B4BAE00C7563A /* Menu.m in Sources */,
 				EF9C4CB1210B4BAE00C7563A /* Pic.m in Sources */,
+				EF948086217AF309007CA270 /* CustomCollectionViewCellNoteWithQuantity.m in Sources */,
 				EF9C4CF0210B4BAE00C7563A /* MenuNote.m in Sources */,
 				EF9C4CBF210B4BAE00C7563A /* SharedReceipt.m in Sources */,
 				EFDAFDEB214A7EFE00A2596D /* LuckyDrawTicket.m in Sources */,
