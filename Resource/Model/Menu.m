@@ -231,6 +231,11 @@
 +(Menu *)getMenu:(NSInteger)menuID branchID:(NSInteger)branchID
 {
     NSMutableArray *dataList = [SharedMenu sharedMenu].menuList;
+//    //test
+//    for(Menu *item in dataList)
+//    {
+//        NSLog(@"%ld %@",item.menuID, item.titleThai);
+//    }
     NSPredicate *predicate = [NSPredicate predicateWithFormat:@"_menuID = %ld and _branchID = %ld",menuID,branchID];
     NSArray *filterArray = [dataList filteredArrayUsingPredicate:predicate];
     if([filterArray count] > 0)

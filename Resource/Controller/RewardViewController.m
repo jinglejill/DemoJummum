@@ -228,7 +228,12 @@ static NSString * const reuseIdentifierLabelDetailLabelWithImage = @"CustomTable
         
         cell.lblSubTitle.text = rewardRedemption.subTitle;
         [cell.lblSubTitle sizeToFit];
+        
+
         cell.lblSubTitleHeight.constant = 70-8-cell.lblHeaderHeight.constant<0?0:70-8-cell.lblHeaderHeight.constant;
+        NSLog(@"left space: %f",70-8-cell.lblHeaderHeight.constant);
+        NSLog(@"cell.lblHeaderHeight.constant: %f",cell.lblHeaderHeight.constant);
+        NSLog(@"update cell.lblSubTitleHeight.constant: %f",cell.lblSubTitleHeight.constant);
         
         
         NSString *strPoint = [Utility formatDecimal:rewardRedemption.point];
@@ -360,6 +365,7 @@ static NSString * const reuseIdentifierLabelDetailLabelWithImage = @"CustomTable
     if(homeModel.propCurrentDB == dbRewardPoint)
     {
         [self removeOverlayViews];
+        [Utility updateSharedObject:items];
         
         //rewardPoint
         NSMutableArray *rewardPointList = items[0];
@@ -403,28 +409,6 @@ static NSString * const reuseIdentifierLabelDetailLabelWithImage = @"CustomTable
             NSIndexSet *section = [NSIndexSet indexSetWithIndexesInRange:range];
             [tbvData reloadSections:section withRowAnimation:UITableViewRowAnimationNone];
         }
-        
-        
-        
-        
-        
-        
-        
-        
-//        NSMutableArray *rewardRedemptionList = items[1];
-//        if([rewardRedemptionList count] == 0 && homeModel.propCurrentDB == dbRewardPoint)
-//        {
-//            _lastItemReached = YES;
-//            return;
-//        }
-//        if(!_rewardRedemptionList)
-//        {
-//            _rewardRedemptionList = [[NSMutableArray alloc]init];
-//        }
-//        [Utility updateSharedObject:items];
-//        _rewardRedemptionList = [RewardRedemption getRewardRedemptionList];
-//        UISearchBar *sbText = [self.view viewWithTag:300];
-//        [self searchBar:sbText textDidChange:sbText.text];
     }
 }
 

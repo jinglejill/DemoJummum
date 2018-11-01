@@ -59,6 +59,7 @@ static NSString * const reuseIdentifierLabelRemark = @"CustomTableViewCellLabelR
 @synthesize topViewHeight;
 @synthesize bottomButtonHeight;
 @synthesize tbvRatingHeight;
+@synthesize orderItAgainReceipt;
 
 
 -(IBAction)unwindToOrderDetail:(UIStoryboardSegue *)segue
@@ -191,11 +192,11 @@ static NSString * const reuseIdentifierLabelRemark = @"CustomTableViewCellLabelR
         {
             if(receipt.buffetReceiptID)
             {
-                return 1+1;//total and remark
+                return 1+1;//remark, total
             }
             else
             {
-                return 7;//remark,total items,discount,after discount,service charge,vat,net total
+                return 9;//remark,total items,specialPriceDiscount,discount,after discount,service charge,vat,net total,before vat
             }
         }
         else if(section == 2)
@@ -256,7 +257,7 @@ static NSString * const reuseIdentifierLabelRemark = @"CustomTableViewCellLabelR
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
             
             
-            //(buffet)
+            //order no.
             UIColor *color = cSystem4;
             NSDictionary *attribute = @{NSForegroundColorAttributeName:color};
             NSMutableAttributedString *attrString = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"Order no. #%@",receipt.receiptNoID] attributes:attribute];
@@ -269,12 +270,18 @@ static NSString * const reuseIdentifierLabelRemark = @"CustomTableViewCellLabelR
             {
                 [attrString appendAttributedString:attrString2];
             }
-            
-            NSString *message = [Language getText:@"ร้าน %@"];
-            Branch *branch = [Branch getBranch:receipt.branchID];
             cell.lblReceiptNo.attributedText = attrString;
+            [cell.lblReceiptNo sizeToFit];
+            CGRect frame = cell.lblReceiptNo.frame;
+            frame.size.height = 17;
+            cell.lblReceiptNo.frame = frame;
+            cell.btnShareOrder.hidden = YES;
+            
+            
+            //date and branch name
+            Branch *branch = [Branch getBranch:receipt.branchID];
             cell.lblReceiptDate.text = [Utility dateToString:receipt.modifiedDate toFormat:@"d MMM yy HH:mm"];
-            cell.lblBranchName.text = [NSString stringWithFormat:message,branch.name];
+            cell.lblBranchName.text = [NSString stringWithFormat:[Language getText:@"ร้าน %@"],branch.name];
             cell.lblBranchName.textColor = cSystem1;
             
             
@@ -336,7 +343,7 @@ static NSString * const reuseIdentifierLabelRemark = @"CustomTableViewCellLabelR
                         
                         NSString *message = [Language getText:@"%ld รายการ"];
                         NSString *strTitle = [NSString stringWithFormat:message,[orderTakingList count]];
-                        NSString *strTotal = [Utility formatDecimal:[OrderTaking getSumSpecialPrice:orderTakingList] withMinFraction:2 andMaxFraction:2];
+                        NSString *strTotal = [Utility formatDecimal:receipt.totalAmount withMinFraction:2 andMaxFraction:2];
                         strTotal = [Utility addPrefixBahtSymbol:strTotal];
                         cell.lblTitle.text = strTitle;
                         cell.lblAmount.text = strTotal;
@@ -352,6 +359,32 @@ static NSString * const reuseIdentifierLabelRemark = @"CustomTableViewCellLabelR
                     }
                         break;
                     case 2:
+                    {
+                        //specialPriceDiscount
+                        CustomTableViewCellTotal *cell = [tableView dequeueReusableCellWithIdentifier:reuseIdentifierTotal];
+                        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+                                                
+                        
+                        NSString *strAmount = [Utility formatDecimal:receipt.specialPriceDiscount withMinFraction:2 andMaxFraction:2];
+                        strAmount = [Utility addPrefixBahtSymbol:strAmount];
+                        strAmount = [NSString stringWithFormat:@"-%@",strAmount];
+                        
+                        
+                        cell.lblTitle.text = [Language getText:@"ส่วนลด"];
+                        cell.lblAmount.text = strAmount;
+                        [cell.lblAmount sizeToFit];
+                        cell.lblAmountWidth.constant = cell.lblAmount.frame.size.width;
+                        cell.vwTopBorder.hidden = YES;
+                        cell.lblTitle.font = [UIFont fontWithName:@"Prompt-SemiBold" size:15];
+                        cell.lblTitle.textColor = cSystem4;
+                        cell.lblAmount.font = [UIFont fontWithName:@"Prompt-SemiBold" size:15];
+                        cell.lblAmount.textColor = cSystem2;
+                        cell.hidden = receipt.discountAmount == 0;
+                        
+                        return cell;
+                    }
+                        break;
+                    case 3:
                     {
                         //discount
                         CustomTableViewCellTotal *cell = [tableView dequeueReusableCellWithIdentifier:reuseIdentifierTotal];
@@ -383,7 +416,7 @@ static NSString * const reuseIdentifierLabelRemark = @"CustomTableViewCellLabelR
                         return cell;
                     }
                         break;
-                    case 3:
+                    case 4:
                     {
                         //after discount
                         CustomTableViewCellTotal *cell = [tableView dequeueReusableCellWithIdentifier:reuseIdentifierTotal];
@@ -392,7 +425,7 @@ static NSString * const reuseIdentifierLabelRemark = @"CustomTableViewCellLabelR
                         
                         
                         NSString *strTitle = branch.priceIncludeVat?[Language getText:@"ยอดรวม (รวม Vat)"]:[Language getText:@"ยอดรวม"];
-                        NSString *strTotal = [Utility formatDecimal:[OrderTaking getSumSpecialPrice:orderTakingList]-receipt.discountValue withMinFraction:2 andMaxFraction:2];
+                        NSString *strTotal = [Utility formatDecimal:receipt.totalAmount-receipt.specialPriceDiscount-receipt.discountValue withMinFraction:2 andMaxFraction:2];
                         strTotal = [Utility addPrefixBahtSymbol:strTotal];
                         cell.lblTitle.text = strTitle;
                         cell.lblAmount.text = strTotal;
@@ -406,7 +439,7 @@ static NSString * const reuseIdentifierLabelRemark = @"CustomTableViewCellLabelR
                         return  cell;
                     }
                         break;
-                    case 4:
+                    case 5:
                     {
                         //service charge
                         CustomTableViewCellTotal *cell = [tableView dequeueReusableCellWithIdentifier:reuseIdentifierTotal];
@@ -431,7 +464,7 @@ static NSString * const reuseIdentifierLabelRemark = @"CustomTableViewCellLabelR
                         return cell;
                     }
                         break;
-                    case 5:
+                    case 6:
                     {
                         //vat
                         CustomTableViewCellTotal *cell = [tableView dequeueReusableCellWithIdentifier:reuseIdentifierTotal];
@@ -455,7 +488,7 @@ static NSString * const reuseIdentifierLabelRemark = @"CustomTableViewCellLabelR
                         return cell;
                     }
                         break;
-                    case 6:
+                    case 7:
                     {
                         //net total
                         CustomTableViewCellTotal *cell = [tableView dequeueReusableCellWithIdentifier:reuseIdentifierTotal];
@@ -475,6 +508,27 @@ static NSString * const reuseIdentifierLabelRemark = @"CustomTableViewCellLabelR
                         cell.lblAmount.textColor = cSystem1;
                         cell.hidden = branch.serviceChargePercent+branch.percentVat == 0;
                         
+                        
+                        return cell;
+                    }
+                        break;
+                    case 8:
+                    {
+                        //before vat
+                        CustomTableViewCellTotal *cell = [tableView dequeueReusableCellWithIdentifier:reuseIdentifierTotal];
+                        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+                        
+                        
+                        NSString *strAmount = [Utility formatDecimal:receipt.beforeVat withMinFraction:2 andMaxFraction:2];
+                        strAmount = [Utility addPrefixBahtSymbol:strAmount];
+                        
+                        cell.lblTitle.text = [Language getText:@"ราคารวมก่อน Vat"];
+                        cell.lblAmount.text = strAmount;
+                        cell.vwTopBorder.hidden = YES;
+                        cell.lblTitle.font = [UIFont fontWithName:@"Prompt-Regular" size:15];
+                        cell.lblAmount.font = [UIFont fontWithName:@"Prompt-Regular" size:15];
+                        cell.lblAmount.textColor = cSystem4;
+                        cell.hidden = branch.serviceChargePercent == 0 || branch.percentVat == 0;
                         
                         return cell;
                     }
@@ -1446,26 +1500,32 @@ static NSString * const reuseIdentifierLabelRemark = @"CustomTableViewCellLabelR
                 Branch *branch = [Branch getBranch:receipt.branchID];
                 switch (item)
                 {
-                    case 0:
-                        return 26;
-                        break;
+//                    case 0:
+//                        return 26;
+//                        break;
                     case 1:
                         return 26;
                         break;
                     case 2:
-                        return receipt.discountAmount > 0?26:0;
+                        return receipt.specialPriceDiscount == 0?0:26;
                         break;
                     case 3:
-                        return 26;
+                        return receipt.discountAmount > 0?26:0;
                         break;
                     case 4:
-                        return branch.serviceChargePercent > 0?26:0;
+                        return 26;
                         break;
                     case 5:
-                        return branch.percentVat > 0?26:0;
+                        return branch.serviceChargePercent > 0?26:0;
                         break;
                     case 6:
+                        return branch.percentVat > 0?26:0;
+                        break;
+                    case 7:
                         return branch.serviceChargePercent + branch.percentVat > 0?26:0;
+                        break;
+                    case 8:
+                        return branch.serviceChargePercent > 0 && branch.percentVat > 0?26:0;
                         break;
                     default:
                         break;
@@ -1867,7 +1927,7 @@ static NSString * const reuseIdentifierLabelRemark = @"CustomTableViewCellLabelR
     }
     else if([tableView isEqual:tbvRating])
     {
-        return 169;
+        return 170;
     }
     else
     {
@@ -2050,10 +2110,6 @@ static NSString * const reuseIdentifierLabelRemark = @"CustomTableViewCellLabelR
 
 -(void)orderItAgain:(id)sender
 {
-    NSMutableArray *orderTakingList = [OrderTaking getOrderTakingListWithReceiptID:receipt.receiptID];
-    [OrderTaking setCurrentOrderTakingList:orderTakingList];
-    
-    
     //belong to buffet
     if(receipt.buffetReceiptID)
     {
@@ -2076,8 +2132,11 @@ static NSString * const reuseIdentifierLabelRemark = @"CustomTableViewCellLabelR
         }
     }
     
-    _receiptBranch = [Branch getBranch:receipt.branchID];
-    [self performSegueWithIdentifier:@"segCreditCardAndOrderSummary" sender:self];
+    
+    [OrderTaking removeCurrentOrderTakingList];
+    orderItAgainReceipt = receipt;
+    [self performSegueWithIdentifier:@"segUnwindToMainTabBar" sender:self];
+    
 }
 
 - (IBAction)goBack:(id)sender

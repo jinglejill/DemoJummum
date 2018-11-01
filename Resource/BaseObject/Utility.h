@@ -167,7 +167,6 @@ enum enumDB
     dbHotDealWithBranchID,
     dbRewardRedemption,
     dbRewardRedemptionList,
-    dbRewardRedemptionWithBranchID,
     dbPromoCode,
     dbPromoCodeList,
     dbUserRewardRedemptionUsed,
@@ -179,7 +178,6 @@ enum enumDB
     dbDisputeCancel,
     dbReceiptWithModifiedDate,
     dbBranch,
-    dbBranchAndCustomerTable,
     dbBranchAndCustomerTableQR,
     dbBranchSearch,
     dbComment,
@@ -201,7 +199,12 @@ enum enumDB
     dbLuckyDrawTicketList,
     dbRewardRedemptionLuckyDraw,
     dbBuffetMenuMap,
-    dbBuffetMenuMapList
+    dbBuffetMenuMapList,
+    dbOrderJoiningShareQr,
+    dbOrderJoiningScanQr,
+    dbOrderJoining,
+    dbSaveOrder,
+    dbOrderItAgain
 
     
 };
@@ -344,7 +347,6 @@ enum enumUrl
     urlMenuNoteInsertList,
     urlMenuNoteUpdateList,
     urlMenuNoteDeleteList,
-    urlOpeningTimeGet,
     urlOpeningTimeMenuBelongToBuffetGet,
     urlContactUs,
     urlMenuBelongToBuffetGetList,
@@ -365,7 +367,12 @@ enum enumUrl
     urlBuffetMenuMapInsertList,
     urlBuffetMenuMapUpdateList,
     urlBuffetMenuMapDeleteList,
-    urlReceiptSummaryPageGetList
+    urlReceiptSummaryPageGetList,
+    urlOrderJoiningShareQrGet,
+    urlOrderJoiningScanQrInsert,
+    urlOrderJoiningPageGetList,
+    urlSaveOrderInsertList,
+    urlOrderItAgainGetList
     
 
     
@@ -482,10 +489,9 @@ enum enumUrl
 +(BOOL)validateStrongPassword:(NSString *)password;
 +(void)addToSharedDataList:(NSArray *)items;
 +(NSString *)hideCreditCardNo:(NSString *)creditCardNo;
++ (void)updateSharedDataList:(NSMutableArray *)itemList;
 +(void)updateSharedObject:(NSArray *)arrOfObjectList;
 + (void)addUpdateObject:(NSObject *)object;
-+(void)updateItemIfModify:(NSObject *)object;
-+(BOOL)updateDataList:(NSArray *)itemList dataList:(NSMutableArray *)dataList;
 +(UIImage *)getImageFromCache:(NSString *)imageName;
 +(void)saveImageInCache:(UIImage *)image imageName:(NSString *)imageName;
 +(void)deleteFileInCache:(NSString *)fileName;

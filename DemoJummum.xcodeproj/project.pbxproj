@@ -127,6 +127,29 @@
 		EF639E03211F22E300C70A98 /* CustomTableViewCellLabelRemark.xib in Resources */ = {isa = PBXBuildFile; fileRef = EF639DFE211F22E300C70A98 /* CustomTableViewCellLabelRemark.xib */; };
 		EF6C7CF521310CE200C335AC /* MenuForBuffet.m in Sources */ = {isa = PBXBuildFile; fileRef = EF6C7CF421310CE200C335AC /* MenuForBuffet.m */; };
 		EF6C7CF821310D2E00C335AC /* SharedMenuForBuffet.m in Sources */ = {isa = PBXBuildFile; fileRef = EF6C7CF721310D2E00C335AC /* SharedMenuForBuffet.m */; };
+		EF7E949F21897C180009B945 /* CustomTableViewCellReceiptHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = EF7E949921897C150009B945 /* CustomTableViewCellReceiptHeader.xib */; };
+		EF7E94A021897C180009B945 /* CustomTableViewCellImageLabel.xib in Resources */ = {isa = PBXBuildFile; fileRef = EF7E949B21897C170009B945 /* CustomTableViewCellImageLabel.xib */; };
+		EF7E94A121897C180009B945 /* CustomTableViewCellImageLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = EF7E949D21897C170009B945 /* CustomTableViewCellImageLabel.m */; };
+		EF7E94A221897C180009B945 /* CustomTableViewCellReceiptHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = EF7E949E21897C180009B945 /* CustomTableViewCellReceiptHeader.m */; };
+		EF7E94AB21897C290009B945 /* ShareMenuToOrderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EF7E94A321897C270009B945 /* ShareMenuToOrderViewController.m */; };
+		EF7E94AC21897C290009B945 /* ShareOrderQrViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EF7E94A721897C280009B945 /* ShareOrderQrViewController.m */; };
+		EF7E94AD21897C290009B945 /* ScanToJoinViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EF7E94A821897C280009B945 /* ScanToJoinViewController.m */; };
+		EF7E94AE21897C290009B945 /* JoinOrderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EF7E94AA21897C290009B945 /* JoinOrderViewController.m */; };
+		EF7E94B421897C520009B945 /* share.png in Resources */ = {isa = PBXBuildFile; fileRef = EF7E94AF21897C510009B945 /* share.png */; };
+		EF7E94B521897C520009B945 /* joinOrdering.png in Resources */ = {isa = PBXBuildFile; fileRef = EF7E94B021897C510009B945 /* joinOrdering.png */; };
+		EF7E94B621897C520009B945 /* scanQr.png in Resources */ = {isa = PBXBuildFile; fileRef = EF7E94B121897C510009B945 /* scanQr.png */; };
+		EF7E94B721897C520009B945 /* QR-white.png in Resources */ = {isa = PBXBuildFile; fileRef = EF7E94B221897C520009B945 /* QR-white.png */; };
+		EF7E94B821897C520009B945 /* QRTab.png in Resources */ = {isa = PBXBuildFile; fileRef = EF7E94B321897C520009B945 /* QRTab.png */; };
+		EF7E94CD21897C6D0009B945 /* SharedSaveOrderNote.m in Sources */ = {isa = PBXBuildFile; fileRef = EF7E94BA21897C6A0009B945 /* SharedSaveOrderNote.m */; };
+		EF7E94CE21897C6D0009B945 /* OrderJoining.m in Sources */ = {isa = PBXBuildFile; fileRef = EF7E94BB21897C6A0009B945 /* OrderJoining.m */; };
+		EF7E94CF21897C6D0009B945 /* SharedCurrentSaveReceipt.m in Sources */ = {isa = PBXBuildFile; fileRef = EF7E94BC21897C6A0009B945 /* SharedCurrentSaveReceipt.m */; };
+		EF7E94D021897C6D0009B945 /* SaveReceipt.m in Sources */ = {isa = PBXBuildFile; fileRef = EF7E94BE21897C6A0009B945 /* SaveReceipt.m */; };
+		EF7E94D121897C6D0009B945 /* SaveOrderNote.m in Sources */ = {isa = PBXBuildFile; fileRef = EF7E94BF21897C6B0009B945 /* SaveOrderNote.m */; };
+		EF7E94D221897C6D0009B945 /* SharedOrderJoining.m in Sources */ = {isa = PBXBuildFile; fileRef = EF7E94C221897C6B0009B945 /* SharedOrderJoining.m */; };
+		EF7E94D321897C6D0009B945 /* EncryptedMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = EF7E94C421897C6B0009B945 /* EncryptedMessage.m */; };
+		EF7E94D421897C6D0009B945 /* SharedSaveOrderTaking.m in Sources */ = {isa = PBXBuildFile; fileRef = EF7E94C821897C6C0009B945 /* SharedSaveOrderTaking.m */; };
+		EF7E94D521897C6D0009B945 /* SharedSaveReceipt.m in Sources */ = {isa = PBXBuildFile; fileRef = EF7E94C921897C6C0009B945 /* SharedSaveReceipt.m */; };
+		EF7E94D621897C6D0009B945 /* SaveOrderTaking.m in Sources */ = {isa = PBXBuildFile; fileRef = EF7E94CB21897C6D0009B945 /* SaveOrderTaking.m */; };
 		EF94805B21779AF2007CA270 /* watermark.png in Resources */ = {isa = PBXBuildFile; fileRef = EF94805821779AF1007CA270 /* watermark.png */; };
 		EF94805C21779AF2007CA270 /* whiteBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = EF94805921779AF2007CA270 /* whiteBackground.png */; };
 		EF94805D21779AF2007CA270 /* pinkBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = EF94805A21779AF2007CA270 /* pinkBackground.png */; };
@@ -135,7 +158,6 @@
 		EF94807D217AF255007CA270 /* peekABooFromRight.png in Resources */ = {isa = PBXBuildFile; fileRef = EF94807A217AF254007CA270 /* peekABooFromRight.png */; };
 		EF94807E217AF255007CA270 /* twirlArrow.png in Resources */ = {isa = PBXBuildFile; fileRef = EF94807B217AF254007CA270 /* twirlArrow.png */; };
 		EF94807F217AF255007CA270 /* peekABoo.png in Resources */ = {isa = PBXBuildFile; fileRef = EF94807C217AF255007CA270 /* peekABoo.png */; };
-		EF948081217AF29B007CA270 /* triangle_demo2.png in Resources */ = {isa = PBXBuildFile; fileRef = EF948080217AF29A007CA270 /* triangle_demo2.png */; };
 		EF948085217AF309007CA270 /* CustomCollectionViewCellNoteWithQuantity.xib in Resources */ = {isa = PBXBuildFile; fileRef = EF948082217AF308007CA270 /* CustomCollectionViewCellNoteWithQuantity.xib */; };
 		EF948086217AF309007CA270 /* CustomCollectionViewCellNoteWithQuantity.m in Sources */ = {isa = PBXBuildFile; fileRef = EF948083217AF309007CA270 /* CustomCollectionViewCellNoteWithQuantity.m */; };
 		EF9C49BA210B4B3B00C7563A /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EF9C49B9210B4B3B00C7563A /* ViewController.m */; };
@@ -637,6 +659,45 @@
 		EF6C7CF421310CE200C335AC /* MenuForBuffet.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MenuForBuffet.m; sourceTree = "<group>"; };
 		EF6C7CF621310D2E00C335AC /* SharedMenuForBuffet.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SharedMenuForBuffet.h; sourceTree = "<group>"; };
 		EF6C7CF721310D2E00C335AC /* SharedMenuForBuffet.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SharedMenuForBuffet.m; sourceTree = "<group>"; };
+		EF7E949921897C150009B945 /* CustomTableViewCellReceiptHeader.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CustomTableViewCellReceiptHeader.xib; sourceTree = "<group>"; };
+		EF7E949A21897C160009B945 /* CustomTableViewCellImageLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomTableViewCellImageLabel.h; sourceTree = "<group>"; };
+		EF7E949B21897C170009B945 /* CustomTableViewCellImageLabel.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CustomTableViewCellImageLabel.xib; sourceTree = "<group>"; };
+		EF7E949C21897C170009B945 /* CustomTableViewCellReceiptHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomTableViewCellReceiptHeader.h; sourceTree = "<group>"; };
+		EF7E949D21897C170009B945 /* CustomTableViewCellImageLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomTableViewCellImageLabel.m; sourceTree = "<group>"; };
+		EF7E949E21897C180009B945 /* CustomTableViewCellReceiptHeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomTableViewCellReceiptHeader.m; sourceTree = "<group>"; };
+		EF7E94A321897C270009B945 /* ShareMenuToOrderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShareMenuToOrderViewController.m; sourceTree = "<group>"; };
+		EF7E94A421897C270009B945 /* ScanToJoinViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScanToJoinViewController.h; sourceTree = "<group>"; };
+		EF7E94A521897C280009B945 /* ShareMenuToOrderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShareMenuToOrderViewController.h; sourceTree = "<group>"; };
+		EF7E94A621897C280009B945 /* JoinOrderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JoinOrderViewController.h; sourceTree = "<group>"; };
+		EF7E94A721897C280009B945 /* ShareOrderQrViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShareOrderQrViewController.m; sourceTree = "<group>"; };
+		EF7E94A821897C280009B945 /* ScanToJoinViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScanToJoinViewController.m; sourceTree = "<group>"; };
+		EF7E94A921897C280009B945 /* ShareOrderQrViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShareOrderQrViewController.h; sourceTree = "<group>"; };
+		EF7E94AA21897C290009B945 /* JoinOrderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JoinOrderViewController.m; sourceTree = "<group>"; };
+		EF7E94AF21897C510009B945 /* share.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = share.png; sourceTree = "<group>"; };
+		EF7E94B021897C510009B945 /* joinOrdering.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = joinOrdering.png; sourceTree = "<group>"; };
+		EF7E94B121897C510009B945 /* scanQr.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = scanQr.png; sourceTree = "<group>"; };
+		EF7E94B221897C520009B945 /* QR-white.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "QR-white.png"; sourceTree = "<group>"; };
+		EF7E94B321897C520009B945 /* QRTab.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = QRTab.png; sourceTree = "<group>"; };
+		EF7E94B921897C690009B945 /* SaveOrderTaking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SaveOrderTaking.h; sourceTree = "<group>"; };
+		EF7E94BA21897C6A0009B945 /* SharedSaveOrderNote.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SharedSaveOrderNote.m; sourceTree = "<group>"; };
+		EF7E94BB21897C6A0009B945 /* OrderJoining.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrderJoining.m; sourceTree = "<group>"; };
+		EF7E94BC21897C6A0009B945 /* SharedCurrentSaveReceipt.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SharedCurrentSaveReceipt.m; sourceTree = "<group>"; };
+		EF7E94BD21897C6A0009B945 /* SharedSaveReceipt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SharedSaveReceipt.h; sourceTree = "<group>"; };
+		EF7E94BE21897C6A0009B945 /* SaveReceipt.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SaveReceipt.m; sourceTree = "<group>"; };
+		EF7E94BF21897C6B0009B945 /* SaveOrderNote.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SaveOrderNote.m; sourceTree = "<group>"; };
+		EF7E94C021897C6B0009B945 /* OrderJoining.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrderJoining.h; sourceTree = "<group>"; };
+		EF7E94C121897C6B0009B945 /* SaveReceipt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SaveReceipt.h; sourceTree = "<group>"; };
+		EF7E94C221897C6B0009B945 /* SharedOrderJoining.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SharedOrderJoining.m; sourceTree = "<group>"; };
+		EF7E94C321897C6B0009B945 /* SharedSaveOrderNote.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SharedSaveOrderNote.h; sourceTree = "<group>"; };
+		EF7E94C421897C6B0009B945 /* EncryptedMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EncryptedMessage.m; sourceTree = "<group>"; };
+		EF7E94C521897C6C0009B945 /* SharedOrderJoining.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SharedOrderJoining.h; sourceTree = "<group>"; };
+		EF7E94C621897C6C0009B945 /* SharedSaveOrderTaking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SharedSaveOrderTaking.h; sourceTree = "<group>"; };
+		EF7E94C721897C6C0009B945 /* EncryptedMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EncryptedMessage.h; sourceTree = "<group>"; };
+		EF7E94C821897C6C0009B945 /* SharedSaveOrderTaking.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SharedSaveOrderTaking.m; sourceTree = "<group>"; };
+		EF7E94C921897C6C0009B945 /* SharedSaveReceipt.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SharedSaveReceipt.m; sourceTree = "<group>"; };
+		EF7E94CA21897C6D0009B945 /* SharedCurrentSaveReceipt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SharedCurrentSaveReceipt.h; sourceTree = "<group>"; };
+		EF7E94CB21897C6D0009B945 /* SaveOrderTaking.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SaveOrderTaking.m; sourceTree = "<group>"; };
+		EF7E94CC21897C6D0009B945 /* SaveOrderNote.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SaveOrderNote.h; sourceTree = "<group>"; };
 		EF94805821779AF1007CA270 /* watermark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = watermark.png; sourceTree = "<group>"; };
 		EF94805921779AF2007CA270 /* whiteBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = whiteBackground.png; sourceTree = "<group>"; };
 		EF94805A21779AF2007CA270 /* pinkBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pinkBackground.png; sourceTree = "<group>"; };
@@ -647,7 +708,6 @@
 		EF94807A217AF254007CA270 /* peekABooFromRight.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = peekABooFromRight.png; sourceTree = "<group>"; };
 		EF94807B217AF254007CA270 /* twirlArrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = twirlArrow.png; sourceTree = "<group>"; };
 		EF94807C217AF255007CA270 /* peekABoo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = peekABoo.png; sourceTree = "<group>"; };
-		EF948080217AF29A007CA270 /* triangle_demo2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = triangle_demo2.png; sourceTree = "<group>"; };
 		EF948082217AF308007CA270 /* CustomCollectionViewCellNoteWithQuantity.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CustomCollectionViewCellNoteWithQuantity.xib; sourceTree = "<group>"; };
 		EF948083217AF309007CA270 /* CustomCollectionViewCellNoteWithQuantity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomCollectionViewCellNoteWithQuantity.m; sourceTree = "<group>"; };
 		EF948084217AF309007CA270 /* CustomCollectionViewCellNoteWithQuantity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomCollectionViewCellNoteWithQuantity.h; sourceTree = "<group>"; };
@@ -1476,7 +1536,11 @@
 		EF9C4A1E210B4BAC00C7563A /* Image */ = {
 			isa = PBXGroup;
 			children = (
-				EF948080217AF29A007CA270 /* triangle_demo2.png */,
+				EF7E94B021897C510009B945 /* joinOrdering.png */,
+				EF7E94B221897C520009B945 /* QR-white.png */,
+				EF7E94B321897C520009B945 /* QRTab.png */,
+				EF7E94B121897C510009B945 /* scanQr.png */,
+				EF7E94AF21897C510009B945 /* share.png */,
 				EF94807C217AF255007CA270 /* peekABoo.png */,
 				EF94807A217AF254007CA270 /* peekABooFromRight.png */,
 				EF94807B217AF254007CA270 /* twirlArrow.png */,
@@ -1577,6 +1641,14 @@
 		EF9C4A75210B4BAC00C7563A /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				EF7E94A621897C280009B945 /* JoinOrderViewController.h */,
+				EF7E94AA21897C290009B945 /* JoinOrderViewController.m */,
+				EF7E94A421897C270009B945 /* ScanToJoinViewController.h */,
+				EF7E94A821897C280009B945 /* ScanToJoinViewController.m */,
+				EF7E94A521897C280009B945 /* ShareMenuToOrderViewController.h */,
+				EF7E94A321897C270009B945 /* ShareMenuToOrderViewController.m */,
+				EF7E94A921897C280009B945 /* ShareOrderQrViewController.h */,
+				EF7E94A721897C280009B945 /* ShareOrderQrViewController.m */,
 				EF1F37FF21746F5D00EFB214 /* FirstInstallAlertViewController.h */,
 				EF1F37FE21746F5D00EFB214 /* FirstInstallAlertViewController.m */,
 				EFDAFDDD214A7EE700A2596D /* LuckyDrawViewController.h */,
@@ -1666,6 +1738,26 @@
 		EF9C4ABA210B4BAD00C7563A /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				EF7E94C721897C6C0009B945 /* EncryptedMessage.h */,
+				EF7E94C421897C6B0009B945 /* EncryptedMessage.m */,
+				EF7E94C021897C6B0009B945 /* OrderJoining.h */,
+				EF7E94BB21897C6A0009B945 /* OrderJoining.m */,
+				EF7E94CC21897C6D0009B945 /* SaveOrderNote.h */,
+				EF7E94BF21897C6B0009B945 /* SaveOrderNote.m */,
+				EF7E94B921897C690009B945 /* SaveOrderTaking.h */,
+				EF7E94CB21897C6D0009B945 /* SaveOrderTaking.m */,
+				EF7E94C121897C6B0009B945 /* SaveReceipt.h */,
+				EF7E94BE21897C6A0009B945 /* SaveReceipt.m */,
+				EF7E94CA21897C6D0009B945 /* SharedCurrentSaveReceipt.h */,
+				EF7E94BC21897C6A0009B945 /* SharedCurrentSaveReceipt.m */,
+				EF7E94C521897C6C0009B945 /* SharedOrderJoining.h */,
+				EF7E94C221897C6B0009B945 /* SharedOrderJoining.m */,
+				EF7E94C321897C6B0009B945 /* SharedSaveOrderNote.h */,
+				EF7E94BA21897C6A0009B945 /* SharedSaveOrderNote.m */,
+				EF7E94C621897C6C0009B945 /* SharedSaveOrderTaking.h */,
+				EF7E94C821897C6C0009B945 /* SharedSaveOrderTaking.m */,
+				EF7E94BD21897C6A0009B945 /* SharedSaveReceipt.h */,
+				EF7E94C921897C6C0009B945 /* SharedSaveReceipt.m */,
 				EF94806121779B11007CA270 /* SharedVoucherCode.h */,
 				EF94806221779B11007CA270 /* SharedVoucherCode.m */,
 				EF94806321779B12007CA270 /* VoucherCode.h */,
@@ -1847,6 +1939,12 @@
 		EF9C4B4B210B4BAD00C7563A /* CustomView */ = {
 			isa = PBXGroup;
 			children = (
+				EF7E949A21897C160009B945 /* CustomTableViewCellImageLabel.h */,
+				EF7E949D21897C170009B945 /* CustomTableViewCellImageLabel.m */,
+				EF7E949B21897C170009B945 /* CustomTableViewCellImageLabel.xib */,
+				EF7E949C21897C170009B945 /* CustomTableViewCellReceiptHeader.h */,
+				EF7E949E21897C180009B945 /* CustomTableViewCellReceiptHeader.m */,
+				EF7E949921897C150009B945 /* CustomTableViewCellReceiptHeader.xib */,
 				EF948084217AF309007CA270 /* CustomCollectionViewCellNoteWithQuantity.h */,
 				EF948083217AF309007CA270 /* CustomCollectionViewCellNoteWithQuantity.m */,
 				EF948082217AF308007CA270 /* CustomCollectionViewCellNoteWithQuantity.xib */,
@@ -2176,8 +2274,8 @@
 				EF14CC4B21646C2C0035A292 /* TH.strings in Resources */,
 				EF9C4C52210B4BAD00C7563A /* termsOfService.png in Resources */,
 				EF9C4C4B210B4BAD00C7563A /* jummumYeah.png in Resources */,
+				EF7E94A021897C180009B945 /* CustomTableViewCellImageLabel.xib in Resources */,
 				EF9C4CFE210B4BAE00C7563A /* CustomCollectionViewCellNote.xib in Resources */,
-				EF948081217AF29B007CA270 /* triangle_demo2.png in Resources */,
 				EF14CDBF21646C4B0035A292 /* giftBoxAwesome00014.jpg in Resources */,
 				EF9C4D62210B4BAE00C7563A /* Kanit-Medium.otf in Resources */,
 				EF9C4C5F210B4BAE00C7563A /* Icon-72.png in Resources */,
@@ -2218,6 +2316,7 @@
 				EF14CDA721646C4B0035A292 /* giftBoxBoo00018.jpg in Resources */,
 				EF14CDAD21646C4B0035A292 /* giftBoxBoo00022.jpg in Resources */,
 				EF14CD8221646C4B0035A292 /* giftBoxGood00009.jpg in Resources */,
+				EF7E94B721897C520009B945 /* QR-white.png in Resources */,
 				EF9C4D3D210B4BAE00C7563A /* Prompt-BlackItalic.ttf in Resources */,
 				EF9C4D6B210B4BAE00C7563A /* Prompt-ExtraBoldItalic.ttf in Resources */,
 				EF14CDC521646C4B0035A292 /* giftBoxAwesome00016.jpg in Resources */,
@@ -2269,6 +2368,7 @@
 				EF9C4CFD210B4BAE00C7563A /* CustomTableViewHeaderFooterButton.xib in Resources */,
 				EF14CDB221646C4B0035A292 /* giftBoxAwesome00009.jpg in Resources */,
 				EF9C4C4A210B4BAD00C7563A /* remove light color.png in Resources */,
+				EF7E94B521897C520009B945 /* joinOrdering.png in Resources */,
 				EF9C4D25210B4BAE00C7563A /* CustomTableViewHeaderFooterOkCancel.xib in Resources */,
 				EF9C4C45210B4BAD00C7563A /* jummumTypeWhite.png in Resources */,
 				EF9C4C47210B4BAD00C7563A /* Icon-60@3x.png in Resources */,
@@ -2283,6 +2383,7 @@
 				EF9C4D2F210B4BAE00C7563A /* CustomTableViewCellLabelLabel.xib in Resources */,
 				EF9C4C3B210B4BAD00C7563A /* me.png in Resources */,
 				EF9C4C8E210B4BAE00C7563A /* check_green.png in Resources */,
+				EF7E94B621897C520009B945 /* scanQr.png in Resources */,
 				EF14CD8521646C4B0035A292 /* giftBoxGood00022.jpg in Resources */,
 				EF9C4C57210B4BAD00C7563A /* profilePic.png in Resources */,
 				EF9C4D4A210B4BAE00C7563A /* Kanit-ExtraBoldItalic.otf in Resources */,
@@ -2364,6 +2465,7 @@
 				EF9C4C86210B4BAE00C7563A /* NoImage.jpg in Resources */,
 				EF9C5247210C219400C7563A /* triangle_demo.png in Resources */,
 				EF9C4D5B210B4BAE00C7563A /* Prompt-Bold.ttf in Resources */,
+				EF7E94B421897C520009B945 /* share.png in Resources */,
 				EF14CD6C21646C4B0035A292 /* giftBoxExcellent00008.jpg in Resources */,
 				EF9C4C56210B4BAD00C7563A /* creditCard.png in Resources */,
 				EF14CD8421646C4B0035A292 /* giftBoxGood00020.jpg in Resources */,
@@ -2378,6 +2480,7 @@
 				EF9C4C7F210B4BAE00C7563A /* Icon-Small@3x.png in Resources */,
 				EF14CDAA21646C4B0035A292 /* giftBoxBoo00009.jpg in Resources */,
 				EF14CD8721646C4B0035A292 /* giftBoxGood00018.jpg in Resources */,
+				EF7E94B821897C520009B945 /* QRTab.png in Resources */,
 				EF9C4D1F210B4BAE00C7563A /* CustomTableViewCellOrderSummary.xib in Resources */,
 				EF9C4C65210B4BAE00C7563A /* search.png in Resources */,
 				EF9C4C87210B4BAE00C7563A /* masterCard.png in Resources */,
@@ -2419,6 +2522,7 @@
 				EF9C4D19210B4BAE00C7563A /* CustomTableViewCellTotal.xib in Resources */,
 				EF9C4D4B210B4BAE00C7563A /* Kanit-Italic.ttf in Resources */,
 				EF14CD9721646C4B0035A292 /* giftBoxGood00004.jpg in Resources */,
+				EF7E949F21897C180009B945 /* CustomTableViewCellReceiptHeader.xib in Resources */,
 				EF14CD8B21646C4B0035A292 /* giftBoxGood00001.jpg in Resources */,
 				EF9C4D3B210B4BAE00C7563A /* Prompt-ThinItalic.ttf in Resources */,
 				EF14CDCC21646C670035A292 /* triangle_dev.png in Resources */,
@@ -2557,6 +2661,8 @@
 				EF9C4CA9210B4BAE00C7563A /* NewVersionUpdateViewController.m in Sources */,
 				EFDAFDE1214A7EE700A2596D /* VoucherCodeListViewController.m in Sources */,
 				EF9C4D29210B4BAE00C7563A /* UILabel+FontAppearance.m in Sources */,
+				EF7E94AB21897C290009B945 /* ShareMenuToOrderViewController.m in Sources */,
+				EF7E94A221897C180009B945 /* CustomTableViewCellReceiptHeader.m in Sources */,
 				EF9C4CFB210B4BAE00C7563A /* CustomTableViewCellCreditCard.m in Sources */,
 				EF9C4CC0210B4BAE00C7563A /* SharedMenuNote.m in Sources */,
 				EF9C4C9C210B4BAE00C7563A /* PersonalDataViewController.m in Sources */,
@@ -2569,12 +2675,15 @@
 				EF9C4CB9210B4BAE00C7563A /* MenuType.m in Sources */,
 				EF9C4CF8210B4BAE00C7563A /* Message.m in Sources */,
 				EF9C4D02210B4BAE00C7563A /* CustomTableViewCellProfile.m in Sources */,
+				EF7E94AC21897C290009B945 /* ShareOrderQrViewController.m in Sources */,
 				EF9C4CF9210B4BAE00C7563A /* CustomTableViewHeaderFooterButton.m in Sources */,
 				EF9C4CBA210B4BAE00C7563A /* SharedRewardPoint.m in Sources */,
+				EF7E94AE21897C290009B945 /* JoinOrderViewController.m in Sources */,
 				EF9C4CDC210B4BAE00C7563A /* SharedRewardRedemption.m in Sources */,
 				EF9C4C9F210B4BAE00C7563A /* DisputeFormViewController.m in Sources */,
 				EF9C4D14210B4BAE00C7563A /* CustomTableViewCellDisputeDetail.m in Sources */,
 				EF14CDDC21646C8D0035A292 /* SharedBuffetMenuMap.m in Sources */,
+				EF7E94D621897C6D0009B945 /* SaveOrderTaking.m in Sources */,
 				EF9C4C8F210B4BAE00C7563A /* ForgotPasswordViewController.m in Sources */,
 				EF9C4D26210B4BAE00C7563A /* CustomTableViewCellRating.m in Sources */,
 				EF9C4CD4210B4BAE00C7563A /* MenuPic.m in Sources */,
@@ -2582,6 +2691,7 @@
 				EF9C4CD0210B4BAE00C7563A /* SharedOrderNote.m in Sources */,
 				EF9C4C38210B4BAD00C7563A /* KeychainWrapper.m in Sources */,
 				EF9C4CC4210B4BAE00C7563A /* Rating.m in Sources */,
+				EF7E94AD21897C290009B945 /* ScanToJoinViewController.m in Sources */,
 				EF9C4CB5210B4BAE00C7563A /* Receipt.m in Sources */,
 				EF9C4CE3210B4BAE00C7563A /* SharedPromoCode.m in Sources */,
 				EF9C4D0F210B4BAE00C7563A /* CustomTableViewCellVoucherCode.m in Sources */,
@@ -2600,6 +2710,7 @@
 				EF9C4CC7210B4BAE00C7563A /* SharedDispute.m in Sources */,
 				EF9C4D28210B4BAE00C7563A /* CustomTableViewCellLabelLabel.m in Sources */,
 				EF9C4CEC210B4BAE00C7563A /* DisputeReason.m in Sources */,
+				EF7E94D321897C6D0009B945 /* EncryptedMessage.m in Sources */,
 				EF9C4D1B210B4BAE00C7563A /* CustomTableViewCellSearchBar.m in Sources */,
 				EF9C4D23210B4BAE00C7563A /* CustomTableViewCellReceiptSummary.m in Sources */,
 				EF9C4CA4210B4BAE00C7563A /* CommentViewController.m in Sources */,
@@ -2618,8 +2729,10 @@
 				EF9C4CF5210B4BAE00C7563A /* RewardRedemption.m in Sources */,
 				EF9C4CC3210B4BAE00C7563A /* SharedSetting.m in Sources */,
 				EF9C4D27210B4BAE00C7563A /* CustomTableViewCellLabelText.m in Sources */,
+				EF7E94CF21897C6D0009B945 /* SharedCurrentSaveReceipt.m in Sources */,
 				EF9C4C37210B4BAD00C7563A /* OmiseError.swift in Sources */,
 				EF9C49C5210B4B3C00C7563A /* main.m in Sources */,
+				EF7E94D021897C6D0009B945 /* SaveReceipt.m in Sources */,
 				EF9C4CAE210B4BAE00C7563A /* CreditCardViewController.m in Sources */,
 				EF9C4CA7210B4BAE00C7563A /* TosAndPrivacyPolicyViewController.m in Sources */,
 				EF9C4CF6210B4BAE00C7563A /* SharedComment.m in Sources */,
@@ -2650,6 +2763,7 @@
 				EF9C4CF0210B4BAE00C7563A /* MenuNote.m in Sources */,
 				EF9C4CBF210B4BAE00C7563A /* SharedReceipt.m in Sources */,
 				EFDAFDEB214A7EFE00A2596D /* LuckyDrawTicket.m in Sources */,
+				EF7E94D221897C6D0009B945 /* SharedOrderJoining.m in Sources */,
 				EF9C4CA8210B4BAE00C7563A /* RegisterNowViewController.m in Sources */,
 				EF9C4C97210B4BAE00C7563A /* LogInViewController.m in Sources */,
 				EF9C4D21210B4BAE00C7563A /* CustomTableViewCellRedemption.m in Sources */,
@@ -2662,14 +2776,19 @@
 				EF9C4C27210B4BAD00C7563A /* OmiseAuthorizingPaymentViewController.swift in Sources */,
 				EF9C4C2A210B4BAD00C7563A /* Globals.swift in Sources */,
 				EF9C4D39210B4BAE00C7563A /* CustomTableViewCellReward.m in Sources */,
+				EF7E94D421897C6D0009B945 /* SharedSaveOrderTaking.m in Sources */,
+				EF7E94CD21897C6D0009B945 /* SharedSaveOrderNote.m in Sources */,
+				EF7E94D121897C6D0009B945 /* SaveOrderNote.m in Sources */,
 				EF9C4CB7210B4BAE00C7563A /* RecommendShop.m in Sources */,
 				EF9C4D0E210B4BAE00C7563A /* CustomTableViewHeaderFooterOkCancel.m in Sources */,
+				EF7E94A121897C180009B945 /* CustomTableViewCellImageLabel.m in Sources */,
 				EF9C4CCE210B4BAE00C7563A /* SharedHotDeal.m in Sources */,
 				EF9C4D04210B4BAE00C7563A /* CustomTableViewCellLogo.m in Sources */,
 				EF9C4C93210B4BAE00C7563A /* CommentRatingViewController.m in Sources */,
 				EF9C4CC1210B4BAE00C7563A /* SharedUserPromotionUsed.m in Sources */,
 				EF9C4CED210B4BAE00C7563A /* SubMenuType.m in Sources */,
 				EF639E00211F22E300C70A98 /* CustomTableViewCellLabelRemark.m in Sources */,
+				EF7E94D521897C6D0009B945 /* SharedSaveReceipt.m in Sources */,
 				EF9C4D1A210B4BAE00C7563A /* CustomTableViewCellLabelTextView.m in Sources */,
 				EF9C4CDF210B4BAE00C7563A /* SharedNoteType.m in Sources */,
 				EF9C4CE2210B4BAE00C7563A /* SharedBranch.m in Sources */,
@@ -2697,6 +2816,7 @@
 				EF9C4CDB210B4BAE00C7563A /* SharedRating.m in Sources */,
 				EF9C4CA2210B4BAE00C7563A /* BasketViewController.m in Sources */,
 				EF9C4D2C210B4BAE00C7563A /* CustomTableViewCellRewardDetail.m in Sources */,
+				EF7E94CE21897C6D0009B945 /* OrderJoining.m in Sources */,
 				EF9C4CD9210B4BAE00C7563A /* TableNo.m in Sources */,
 				EF9C4CA3210B4BAE00C7563A /* MeViewController.m in Sources */,
 				EF9C4CD5210B4BAE00C7563A /* UserPromotionUsed.m in Sources */,
