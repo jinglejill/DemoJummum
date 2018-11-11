@@ -77,6 +77,7 @@
     //delete image in cache
     NSString *strPath = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)[0];
     strPath = [NSString stringWithFormat:@"%@/JMM",strPath];
+    NSLog(@"delete cache image: %@",strPath);
     NSError *error;
     [Utility deleteFileInCache:strPath];
     if(error)

@@ -787,14 +787,11 @@ static NSString * const reuseIdentifierSquareThumbNail = @"CustomTableViewCellSq
         }
         
         
-//        for(int i=1; i<=5; i++)
-//        {
-//            [Utility updateSharedDataList:items[i]];
-//        }
-        [Utility updateSharedObject:items];
-        
-        
-        
+        for(int i=1; i<=5; i++)
+        {
+            [Utility updateSharedDataList:items[i]];
+        }
+//        [Utility updateSharedObject:items];
         _menuList = [Menu getMenuListALaCarteWithBranchID:branch.branchID];
         _menuTypeList = [MenuType getMenuTypeListWithMenuList:_menuList];
         _menuTypeList = [MenuType sortList:_menuTypeList];
@@ -860,7 +857,11 @@ static NSString * const reuseIdentifierSquareThumbNail = @"CustomTableViewCellSq
                     float sumNotePrice = [OrderNote getSumNotePriceWithOrderTakingID:orderTaking.orderTakingID branchID:branch.branchID];
                     orderTaking.notePrice = sumNotePrice;
                 }
-            }            
+            }
+            
+//            saveReceipt = nil;
+//            saveOrderTakingList = nil;
+//            saveOrderNoteList = nil;
         }
         
         
@@ -880,15 +881,15 @@ static NSString * const reuseIdentifierSquareThumbNail = @"CustomTableViewCellSq
         }
         
         
-//        for(int i=1; i<=6; i++)
-//        {
-//            [Utility updateSharedDataList:items[i]];
-//        }
-//        [Utility updateSharedObject:@[items[7]]];
-        [Utility updateSharedObject:items];
+        for(int i=1; i<=6; i++)
+        {
+            [Utility updateSharedDataList:items[i]];
+        }
+        [Utility updateSharedObject:@[items[7]]];
         
         
-        _menuList = [Menu getMenuBelongToBuffet:buffetReceipt];
+//        _menuList = [Menu getMenuBelongToBuffet:buffetReceipt];
+        _menuList = items[1];
         _menuTypeList = [MenuType getMenuTypeListWithMenuList:_menuList];
         _menuTypeList = [MenuType sortList:_menuTypeList];
         _filterMenuList = _menuList;
@@ -958,6 +959,10 @@ static NSString * const reuseIdentifierSquareThumbNail = @"CustomTableViewCellSq
                     orderTaking.notePrice = sumNotePrice;
                 }
             }
+            
+//            saveReceipt = nil;
+//            saveOrderTakingList = nil;
+//            saveOrderNoteList = nil;
         }
         
         
@@ -1103,7 +1108,7 @@ static NSString * const reuseIdentifierSquareThumbNail = @"CustomTableViewCellSq
     lblTotalQuantityTop.text = [orderTakingList count]==0?@"":[NSString stringWithFormat:@"%ld",[orderTakingList count]];
     
     
-    NSString *strTotal = [Utility formatDecimal:[OrderTaking getSubTotalAmount:orderTakingList] withMinFraction:2 andMaxFraction:2];
+    NSString *strTotal = [Utility formatDecimal:[OrderTaking getSumSpecialPrice:orderTakingList]  withMinFraction:2 andMaxFraction:2];
     strTotal = [Utility addPrefixBahtSymbol:strTotal];
     lblTotalAmount.text = strTotal;
 }

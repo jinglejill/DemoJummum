@@ -217,6 +217,11 @@
         vc.alreadySeg = NO;
         [vc viewDidLayoutSubviews];
     }
+//    else if(self.selectedIndex == mainTabHistory)
+//    {
+//        ReceiptSummaryViewController *vc = (ReceiptSummaryViewController *)viewController;
+//        [vc viewDidLoad];
+//    }
 }
 /*
 #pragma mark - Navigation

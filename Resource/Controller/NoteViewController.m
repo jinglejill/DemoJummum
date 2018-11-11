@@ -685,8 +685,8 @@ minimumInteritemSpacingForSectionAtIndex:(NSInteger)section
     if(homeModel.propCurrentDB == dbMenuNoteList)
     {
         [self removeOverlayViews];
-        [Utility updateSharedObject:items];
-//        [Utility updateSharedDataList:items[0]];
+//        [Utility updateSharedObject:items];
+        [Utility updateSharedDataList:items[0]];
         
         
         /////////
