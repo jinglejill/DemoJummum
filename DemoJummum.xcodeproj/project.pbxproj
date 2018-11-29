@@ -26,6 +26,12 @@
 		EF1F37FC21746F4700EFB214 /* CustomTableViewCellSquareThumbNail.m in Sources */ = {isa = PBXBuildFile; fileRef = EF1F37FA21746F4700EFB214 /* CustomTableViewCellSquareThumbNail.m */; };
 		EF1F37FD21746F4700EFB214 /* CustomTableViewCellSquareThumbNail.xib in Resources */ = {isa = PBXBuildFile; fileRef = EF1F37FB21746F4700EFB214 /* CustomTableViewCellSquareThumbNail.xib */; };
 		EF1F380021746F5D00EFB214 /* FirstInstallAlertViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EF1F37FE21746F5D00EFB214 /* FirstInstallAlertViewController.m */; };
+		EF5C527F21A739AC0022FE83 /* CustomTableViewCellApplyVoucherCode.xib in Resources */ = {isa = PBXBuildFile; fileRef = EF5C527C21A739AC0022FE83 /* CustomTableViewCellApplyVoucherCode.xib */; };
+		EF5C528021A739AC0022FE83 /* CustomTableViewCellApplyVoucherCode.m in Sources */ = {isa = PBXBuildFile; fileRef = EF5C527E21A739AC0022FE83 /* CustomTableViewCellApplyVoucherCode.m */; };
+		EF5C528921A739BE0022FE83 /* CreditCardAndOrderSummary.m in Sources */ = {isa = PBXBuildFile; fileRef = EF5C528321A739BD0022FE83 /* CreditCardAndOrderSummary.m */; };
+		EF5C528A21A739BE0022FE83 /* DiscountProgram.m in Sources */ = {isa = PBXBuildFile; fileRef = EF5C528521A739BD0022FE83 /* DiscountProgram.m */; };
+		EF5C528B21A739BE0022FE83 /* MenuForAlacarte.m in Sources */ = {isa = PBXBuildFile; fileRef = EF5C528721A739BE0022FE83 /* MenuForAlacarte.m */; };
+		EF5C528C21A739BE0022FE83 /* SharedDiscountProgram.m in Sources */ = {isa = PBXBuildFile; fileRef = EF5C528821A739BE0022FE83 /* SharedDiscountProgram.m */; };
 		EF5D28C6212D4A270073F1A1 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = EF5D28C5212D4A270073F1A1 /* GoogleService-Info.plist */; };
 		EF5DC0A4211718CC00FFEA60 /* SharedCurrentCreditCard.m in Sources */ = {isa = PBXBuildFile; fileRef = EF5DC0A2211718CB00FFEA60 /* SharedCurrentCreditCard.m */; };
 		EF5DC0AB2118E60B00FFEA60 /* triangle_pink.png in Resources */ = {isa = PBXBuildFile; fileRef = EF5DC0AA2118E60B00FFEA60 /* triangle_pink.png */; };
@@ -557,6 +563,17 @@
 		EF1F37FB21746F4700EFB214 /* CustomTableViewCellSquareThumbNail.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CustomTableViewCellSquareThumbNail.xib; sourceTree = "<group>"; };
 		EF1F37FE21746F5D00EFB214 /* FirstInstallAlertViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FirstInstallAlertViewController.m; sourceTree = "<group>"; };
 		EF1F37FF21746F5D00EFB214 /* FirstInstallAlertViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FirstInstallAlertViewController.h; sourceTree = "<group>"; };
+		EF5C527C21A739AC0022FE83 /* CustomTableViewCellApplyVoucherCode.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CustomTableViewCellApplyVoucherCode.xib; sourceTree = "<group>"; };
+		EF5C527D21A739AC0022FE83 /* CustomTableViewCellApplyVoucherCode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomTableViewCellApplyVoucherCode.h; sourceTree = "<group>"; };
+		EF5C527E21A739AC0022FE83 /* CustomTableViewCellApplyVoucherCode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomTableViewCellApplyVoucherCode.m; sourceTree = "<group>"; };
+		EF5C528121A739BD0022FE83 /* DiscountProgram.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DiscountProgram.h; sourceTree = "<group>"; };
+		EF5C528221A739BD0022FE83 /* SharedDiscountProgram.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SharedDiscountProgram.h; sourceTree = "<group>"; };
+		EF5C528321A739BD0022FE83 /* CreditCardAndOrderSummary.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreditCardAndOrderSummary.m; sourceTree = "<group>"; };
+		EF5C528421A739BD0022FE83 /* CreditCardAndOrderSummary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreditCardAndOrderSummary.h; sourceTree = "<group>"; };
+		EF5C528521A739BD0022FE83 /* DiscountProgram.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DiscountProgram.m; sourceTree = "<group>"; };
+		EF5C528621A739BE0022FE83 /* MenuForAlacarte.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuForAlacarte.h; sourceTree = "<group>"; };
+		EF5C528721A739BE0022FE83 /* MenuForAlacarte.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuForAlacarte.m; sourceTree = "<group>"; };
+		EF5C528821A739BE0022FE83 /* SharedDiscountProgram.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SharedDiscountProgram.m; sourceTree = "<group>"; };
 		EF5D28C5212D4A270073F1A1 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		EF5DC0A2211718CB00FFEA60 /* SharedCurrentCreditCard.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SharedCurrentCreditCard.m; sourceTree = "<group>"; };
 		EF5DC0A3211718CB00FFEA60 /* SharedCurrentCreditCard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SharedCurrentCreditCard.h; sourceTree = "<group>"; };
@@ -1750,6 +1767,14 @@
 		EF9C4ABA210B4BAD00C7563A /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				EF5C528421A739BD0022FE83 /* CreditCardAndOrderSummary.h */,
+				EF5C528321A739BD0022FE83 /* CreditCardAndOrderSummary.m */,
+				EF5C528121A739BD0022FE83 /* DiscountProgram.h */,
+				EF5C528521A739BD0022FE83 /* DiscountProgram.m */,
+				EF5C528621A739BE0022FE83 /* MenuForAlacarte.h */,
+				EF5C528721A739BE0022FE83 /* MenuForAlacarte.m */,
+				EF5C528221A739BD0022FE83 /* SharedDiscountProgram.h */,
+				EF5C528821A739BE0022FE83 /* SharedDiscountProgram.m */,
 				EF713FAA21985B2400117F42 /* Time.h */,
 				EF713FAB21985B2400117F42 /* Time.m */,
 				EF7E94C721897C6C0009B945 /* EncryptedMessage.h */,
@@ -1953,6 +1978,9 @@
 		EF9C4B4B210B4BAD00C7563A /* CustomView */ = {
 			isa = PBXGroup;
 			children = (
+				EF5C527D21A739AC0022FE83 /* CustomTableViewCellApplyVoucherCode.h */,
+				EF5C527E21A739AC0022FE83 /* CustomTableViewCellApplyVoucherCode.m */,
+				EF5C527C21A739AC0022FE83 /* CustomTableViewCellApplyVoucherCode.xib */,
 				EF7E949A21897C160009B945 /* CustomTableViewCellImageLabel.h */,
 				EF7E949D21897C170009B945 /* CustomTableViewCellImageLabel.m */,
 				EF7E949B21897C170009B945 /* CustomTableViewCellImageLabel.xib */,
@@ -2514,6 +2542,7 @@
 				EF94807F217AF255007CA270 /* peekABoo.png in Resources */,
 				EF9C4D5C210B4BAE00C7563A /* Kanit-BoldItalic.otf in Resources */,
 				EF9C4D43210B4BAE00C7563A /* Prompt-BoldItalic.ttf in Resources */,
+				EF5C527F21A739AC0022FE83 /* CustomTableViewCellApplyVoucherCode.xib in Resources */,
 				EF713F9B21985B1400117F42 /* giftBoxAwesome00007.png in Resources */,
 				EF713F8421985B1400117F42 /* giftBoxBoo00017.png in Resources */,
 				EF9C4D4F210B4BAE00C7563A /* Kanit-MediumItalic.ttf in Resources */,
@@ -2664,6 +2693,7 @@
 				EF9C4D32210B4BAE00C7563A /* CustomCollectionReusableView.m in Sources */,
 				EF9C4C96210B4BAE00C7563A /* CreditCardAndOrderSummaryViewController.m in Sources */,
 				EF9C4C95210B4BAE00C7563A /* OrderDetailViewController.m in Sources */,
+				EF5C528021A739AC0022FE83 /* CustomTableViewCellApplyVoucherCode.m in Sources */,
 				EF9C4CDD210B4BAE00C7563A /* UserAccount.m in Sources */,
 				EF9C4CE1210B4BAE00C7563A /* SharedPic.m in Sources */,
 				EF9C4CF4210B4BAE00C7563A /* CreditCard.m in Sources */,
@@ -2715,6 +2745,7 @@
 				EF9C4D0F210B4BAE00C7563A /* CustomTableViewCellVoucherCode.m in Sources */,
 				EF9C4C91210B4BAE00C7563A /* LaunchScreenViewController.m in Sources */,
 				EF9C4CAA210B4BAE00C7563A /* RewardViewController.m in Sources */,
+				EF5C528921A739BE0022FE83 /* CreditCardAndOrderSummary.m in Sources */,
 				EF9C4CC5210B4BAE00C7563A /* SharedTableNo.m in Sources */,
 				EF9C4CAF210B4BAE00C7563A /* ConfirmDisputeViewController.m in Sources */,
 				EF9C4C94210B4BAE00C7563A /* ReceiptSummaryViewController.m in Sources */,
@@ -2742,6 +2773,8 @@
 				EF9C4CEA210B4BAE00C7563A /* PushSync.m in Sources */,
 				EF9C4CEB210B4BAE00C7563A /* SharedMenuType.m in Sources */,
 				EF9C4C9A210B4BAE00C7563A /* QRCodeScanTableViewController.m in Sources */,
+				EF5C528A21A739BE0022FE83 /* DiscountProgram.m in Sources */,
+				EF5C528B21A739BE0022FE83 /* MenuForAlacarte.m in Sources */,
 				EF9C4D1E210B4BAE00C7563A /* CustomTableViewCellOrderSummary.m in Sources */,
 				EF9C4D07210B4BAE00C7563A /* CustomTableViewCellTotal.m in Sources */,
 				EF9C4CF5210B4BAE00C7563A /* RewardRedemption.m in Sources */,
@@ -2825,6 +2858,7 @@
 				EF9C4CD8210B4BAE00C7563A /* Setting.m in Sources */,
 				EF9C4CCF210B4BAE00C7563A /* NoteType.m in Sources */,
 				EF9C4D2D210B4BAE00C7563A /* CustomTableViewCellLabel.m in Sources */,
+				EF5C528C21A739BE0022FE83 /* SharedDiscountProgram.m in Sources */,
 				EF9C4C98210B4BAE00C7563A /* SelectPaymentMethodViewController.m in Sources */,
 				EF9C4CEE210B4BAE00C7563A /* SharedPromotion.m in Sources */,
 				EF9C4C35210B4BAD00C7563A /* CardNumber.swift in Sources */,

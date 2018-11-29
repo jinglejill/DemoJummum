@@ -480,12 +480,12 @@ minimumInteritemSpacingForSectionAtIndex:(NSInteger)section
         }
         else
         {
-            headerSize = CGSizeMake(collectionView.bounds.size.width, 21);
+            headerSize = CGSizeMake(collectionView.bounds.size.width, 18);
         }
     }
     else
     {
-        headerSize = CGSizeMake(collectionView.bounds.size.width, 21);
+        headerSize = CGSizeMake(collectionView.bounds.size.width, 18);
     }
     
     

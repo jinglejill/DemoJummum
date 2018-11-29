@@ -19,8 +19,8 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="topping" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jN0-XR-Qyt">
-                    <rect key="frame" x="10" y="323" width="355" height="21"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="เส้นใหญ่" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jN0-XR-Qyt">
+                    <rect key="frame" x="10" y="2" width="355" height="21"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="21" id="ZG3-JN-nbr"/>
                     </constraints>
@@ -49,9 +49,9 @@
                 <constraint firstAttribute="bottom" secondItem="ldF-UR-yku" secondAttribute="bottom" id="EIc-qC-9Rh"/>
                 <constraint firstAttribute="trailing" secondItem="fwX-R2-hcL" secondAttribute="trailing" id="H2f-vA-APp"/>
                 <constraint firstItem="jN0-XR-Qyt" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="10" id="Oyu-uT-O2Q"/>
+                <constraint firstItem="jN0-XR-Qyt" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="2" id="Rbq-mf-08T"/>
                 <constraint firstAttribute="trailing" secondItem="ldF-UR-yku" secondAttribute="trailing" id="UMk-Sn-6mi"/>
                 <constraint firstAttribute="trailing" secondItem="jN0-XR-Qyt" secondAttribute="trailing" constant="10" id="gH8-O6-5TU"/>
-                <constraint firstItem="jN0-XR-Qyt" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="iUu-Fj-hEn"/>
                 <constraint firstItem="ldF-UR-yku" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="qUa-IG-5bu"/>
                 <constraint firstItem="fwX-R2-hcL" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="qjN-ZV-BZg"/>
                 <constraint firstItem="fwX-R2-hcL" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="un3-pT-gTx"/>
