@@ -152,6 +152,7 @@ enum enumDB
     dbCustomerTable,
     dbReceiptSummaryPage,
     dbReceipt,
+    dbReceiptAndLuckyDraw,
     dbPromotion,
     dbRewardPoint,
     dbRewardPointList,
@@ -176,7 +177,6 @@ enum enumDB
     dbDispute,
     dbDisputeList,
     dbDisputeCancel,
-    dbReceiptWithModifiedDate,
     dbBranch,
     dbBranchAndCustomerTableQR,
     dbBranchSearch,
@@ -192,7 +192,6 @@ enum enumDB
     dbMenuNote,
     dbMenuNoteList,    
     dbMenuBelongToBuffet,
-    dbBuffetOrder,
     dbSettingWithKey,
     dbPromotionAndRewardRedemption,
     dbLuckyDrawTicket,
@@ -216,13 +215,12 @@ enum enumUrl
     urlUploadPhoto,
     urlDownloadPhoto,
     urlDownloadFile,
-    urlUserAccountDeviceTokenUpdate,
+    urlQRToPayDownload,
     urlLogInUserAccountInsert,
     urlLogInInsert,
     urlLogOutInsert,
     urlPushSyncSync,
     urlPushSyncUpdateByDeviceToken,
-    urlDeviceInsert,
     urlPushSyncUpdateTimeSynced,
     urlWriteLog,
     urlMenuInsert,
@@ -372,7 +370,8 @@ enum enumUrl
     urlOrderJoiningScanQrInsert,
     urlOrderJoiningPageGetList,
     urlSaveOrderInsertList,
-    urlOrderItAgainGetList
+    urlOrderItAgainGetList,
+    urlReceiptAndLuckyDrawGetList
     
 
     
@@ -492,6 +491,7 @@ enum enumUrl
 + (void)updateSharedDataList:(NSMutableArray *)itemList className:(NSString *)className branchID:(NSInteger)branchID;
 +(void)updateSharedObject:(NSArray *)arrOfObjectList;
 + (void)addUpdateObject:(NSObject *)object;
++(void)createCacheFoler:(NSString *)folderName;
 +(UIImage *)getImageFromCache:(NSString *)imageName;
 +(void)saveImageInCache:(UIImage *)image imageName:(NSString *)imageName;
 +(void)deleteFileInCache:(NSString *)fileName;

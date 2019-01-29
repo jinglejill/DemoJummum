@@ -32,6 +32,12 @@
 		EF5C528A21A739BE0022FE83 /* DiscountProgram.m in Sources */ = {isa = PBXBuildFile; fileRef = EF5C528521A739BD0022FE83 /* DiscountProgram.m */; };
 		EF5C528B21A739BE0022FE83 /* MenuForAlacarte.m in Sources */ = {isa = PBXBuildFile; fileRef = EF5C528721A739BE0022FE83 /* MenuForAlacarte.m */; };
 		EF5C528C21A739BE0022FE83 /* SharedDiscountProgram.m in Sources */ = {isa = PBXBuildFile; fileRef = EF5C528821A739BE0022FE83 /* SharedDiscountProgram.m */; };
+		EF5C547621B646240022FE83 /* ShowQRToPayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EF5C547421B646230022FE83 /* ShowQRToPayViewController.m */; };
+		EF5C547E21B6465B0022FE83 /* CustomTableViewHeaderFooterButtonButton.xib in Resources */ = {isa = PBXBuildFile; fileRef = EF5C547821B6465A0022FE83 /* CustomTableViewHeaderFooterButtonButton.xib */; };
+		EF5C547F21B6465B0022FE83 /* CustomTableViewCellQRToPay.m in Sources */ = {isa = PBXBuildFile; fileRef = EF5C547921B6465A0022FE83 /* CustomTableViewCellQRToPay.m */; };
+		EF5C548021B6465B0022FE83 /* CustomTableViewCellQRToPay.xib in Resources */ = {isa = PBXBuildFile; fileRef = EF5C547A21B6465A0022FE83 /* CustomTableViewCellQRToPay.xib */; };
+		EF5C548121B6465B0022FE83 /* CustomTableViewHeaderFooterButtonButton.m in Sources */ = {isa = PBXBuildFile; fileRef = EF5C547C21B6465B0022FE83 /* CustomTableViewHeaderFooterButtonButton.m */; };
+		EF5C548521B646790022FE83 /* GBPrimeQr.m in Sources */ = {isa = PBXBuildFile; fileRef = EF5C548421B646790022FE83 /* GBPrimeQr.m */; };
 		EF5D28C6212D4A270073F1A1 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = EF5D28C5212D4A270073F1A1 /* GoogleService-Info.plist */; };
 		EF5DC0A4211718CC00FFEA60 /* SharedCurrentCreditCard.m in Sources */ = {isa = PBXBuildFile; fileRef = EF5DC0A2211718CB00FFEA60 /* SharedCurrentCreditCard.m */; };
 		EF5DC0AB2118E60B00FFEA60 /* triangle_pink.png in Resources */ = {isa = PBXBuildFile; fileRef = EF5DC0AA2118E60B00FFEA60 /* triangle_pink.png */; };
@@ -134,7 +140,6 @@
 		EF713FA521985B1400117F42 /* giftBoxAwesome00016.png in Resources */ = {isa = PBXBuildFile; fileRef = EF713F4621985B1400117F42 /* giftBoxAwesome00016.png */; };
 		EF713FA621985B1400117F42 /* giftBoxAwesome00002.png in Resources */ = {isa = PBXBuildFile; fileRef = EF713F4721985B1400117F42 /* giftBoxAwesome00002.png */; };
 		EF713FA721985B1400117F42 /* giftBoxBackground.jpg in Resources */ = {isa = PBXBuildFile; fileRef = EF713F4821985B1400117F42 /* giftBoxBackground.jpg */; };
-		EF713FA821985B1400117F42 /* giftBoxBackground.jpg in Resources */ = {isa = PBXBuildFile; fileRef = EF713F4921985B1400117F42 /* giftBoxBackground.jpg */; };
 		EF713FA921985B1400117F42 /* jummumWatermark.jpg in Resources */ = {isa = PBXBuildFile; fileRef = EF713F4A21985B1400117F42 /* jummumWatermark.jpg */; };
 		EF713FAC21985B2400117F42 /* Time.m in Sources */ = {isa = PBXBuildFile; fileRef = EF713FAB21985B2400117F42 /* Time.m */; };
 		EF7E949F21897C180009B945 /* CustomTableViewCellReceiptHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = EF7E949921897C150009B945 /* CustomTableViewCellReceiptHeader.xib */; };
@@ -574,6 +579,16 @@
 		EF5C528621A739BE0022FE83 /* MenuForAlacarte.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuForAlacarte.h; sourceTree = "<group>"; };
 		EF5C528721A739BE0022FE83 /* MenuForAlacarte.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuForAlacarte.m; sourceTree = "<group>"; };
 		EF5C528821A739BE0022FE83 /* SharedDiscountProgram.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SharedDiscountProgram.m; sourceTree = "<group>"; };
+		EF5C547421B646230022FE83 /* ShowQRToPayViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShowQRToPayViewController.m; sourceTree = "<group>"; };
+		EF5C547521B646240022FE83 /* ShowQRToPayViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShowQRToPayViewController.h; sourceTree = "<group>"; };
+		EF5C547721B6465A0022FE83 /* CustomTableViewCellQRToPay.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomTableViewCellQRToPay.h; sourceTree = "<group>"; };
+		EF5C547821B6465A0022FE83 /* CustomTableViewHeaderFooterButtonButton.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CustomTableViewHeaderFooterButtonButton.xib; sourceTree = "<group>"; };
+		EF5C547921B6465A0022FE83 /* CustomTableViewCellQRToPay.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomTableViewCellQRToPay.m; sourceTree = "<group>"; };
+		EF5C547A21B6465A0022FE83 /* CustomTableViewCellQRToPay.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CustomTableViewCellQRToPay.xib; sourceTree = "<group>"; };
+		EF5C547B21B6465A0022FE83 /* CustomTableViewHeaderFooterButtonButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomTableViewHeaderFooterButtonButton.h; sourceTree = "<group>"; };
+		EF5C547C21B6465B0022FE83 /* CustomTableViewHeaderFooterButtonButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomTableViewHeaderFooterButtonButton.m; sourceTree = "<group>"; };
+		EF5C548321B646780022FE83 /* GBPrimeQr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GBPrimeQr.h; sourceTree = "<group>"; };
+		EF5C548421B646790022FE83 /* GBPrimeQr.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GBPrimeQr.m; sourceTree = "<group>"; };
 		EF5D28C5212D4A270073F1A1 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		EF5DC0A2211718CB00FFEA60 /* SharedCurrentCreditCard.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SharedCurrentCreditCard.m; sourceTree = "<group>"; };
 		EF5DC0A3211718CB00FFEA60 /* SharedCurrentCreditCard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SharedCurrentCreditCard.h; sourceTree = "<group>"; };
@@ -681,7 +696,6 @@
 		EF713F4621985B1400117F42 /* giftBoxAwesome00016.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = giftBoxAwesome00016.png; sourceTree = "<group>"; };
 		EF713F4721985B1400117F42 /* giftBoxAwesome00002.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = giftBoxAwesome00002.png; sourceTree = "<group>"; };
 		EF713F4821985B1400117F42 /* giftBoxBackground.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = giftBoxBackground.jpg; sourceTree = "<group>"; };
-		EF713F4921985B1400117F42 /* giftBoxBackground.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = giftBoxBackground.jpg; sourceTree = "<group>"; };
 		EF713F4A21985B1400117F42 /* jummumWatermark.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = jummumWatermark.jpg; sourceTree = "<group>"; };
 		EF713FAA21985B2400117F42 /* Time.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Time.h; sourceTree = "<group>"; };
 		EF713FAB21985B2400117F42 /* Time.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Time.m; sourceTree = "<group>"; };
@@ -1564,7 +1578,6 @@
 			isa = PBXGroup;
 			children = (
 				EF713EE721985B1300117F42 /* card4 */,
-				EF713F4921985B1400117F42 /* giftBoxBackground.jpg */,
 				EF713F4A21985B1400117F42 /* jummumWatermark.jpg */,
 				EF9C4A52210B4BAC00C7563A /* added.png */,
 				EF9C4A59210B4BAC00C7563A /* addRemove.png */,
@@ -1670,6 +1683,8 @@
 		EF9C4A75210B4BAC00C7563A /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				EF5C547521B646240022FE83 /* ShowQRToPayViewController.h */,
+				EF5C547421B646230022FE83 /* ShowQRToPayViewController.m */,
 				EF9C4A76210B4BAC00C7563A /* BasketViewController.h */,
 				EF9C4A9D210B4BAC00C7563A /* BasketViewController.m */,
 				EF9C4AB6210B4BAD00C7563A /* BranchSearchViewController.h */,
@@ -1767,6 +1782,8 @@
 		EF9C4ABA210B4BAD00C7563A /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				EF5C548321B646780022FE83 /* GBPrimeQr.h */,
+				EF5C548421B646790022FE83 /* GBPrimeQr.m */,
 				EF5C528421A739BD0022FE83 /* CreditCardAndOrderSummary.h */,
 				EF5C528321A739BD0022FE83 /* CreditCardAndOrderSummary.m */,
 				EF5C528121A739BD0022FE83 /* DiscountProgram.h */,
@@ -1978,6 +1995,12 @@
 		EF9C4B4B210B4BAD00C7563A /* CustomView */ = {
 			isa = PBXGroup;
 			children = (
+				EF5C547721B6465A0022FE83 /* CustomTableViewCellQRToPay.h */,
+				EF5C547921B6465A0022FE83 /* CustomTableViewCellQRToPay.m */,
+				EF5C547A21B6465A0022FE83 /* CustomTableViewCellQRToPay.xib */,
+				EF5C547B21B6465A0022FE83 /* CustomTableViewHeaderFooterButtonButton.h */,
+				EF5C547C21B6465B0022FE83 /* CustomTableViewHeaderFooterButtonButton.m */,
+				EF5C547821B6465A0022FE83 /* CustomTableViewHeaderFooterButtonButton.xib */,
 				EF5C527D21A739AC0022FE83 /* CustomTableViewCellApplyVoucherCode.h */,
 				EF5C527E21A739AC0022FE83 /* CustomTableViewCellApplyVoucherCode.m */,
 				EF5C527C21A739AC0022FE83 /* CustomTableViewCellApplyVoucherCode.xib */,
@@ -2294,7 +2317,6 @@
 				EF9C4C78210B4BAE00C7563A /* takeAwayNoti.png in Resources */,
 				EF713F5F21985B1400117F42 /* giftBoxExcellent00011.png in Resources */,
 				EF713F6E21985B1400117F42 /* giftBoxGood00017.png in Resources */,
-				EF713FA821985B1400117F42 /* giftBoxBackground.jpg in Resources */,
 				EF713F8B21985B1400117F42 /* giftBoxBoo00009.png in Resources */,
 				EF9C4C6A210B4BAE00C7563A /* takeAwayGrayOut.png in Resources */,
 				EF9C4D15210B4BAE00C7563A /* CustomCollectionReusableView.xib in Resources */,
@@ -2343,6 +2365,7 @@
 				EF713F8F21985B1400117F42 /* giftBoxBoo00023.png in Resources */,
 				EF9C4D10210B4BAE00C7563A /* CustomTableViewCellLabelDetailLabelWithImage.xib in Resources */,
 				EF9C4C39210B4BAD00C7563A /* takeAway2.png in Resources */,
+				EF5C547E21B6465B0022FE83 /* CustomTableViewHeaderFooterButtonButton.xib in Resources */,
 				EF9C4C59210B4BAD00C7563A /* visa.png in Resources */,
 				EF9C4C68210B4BAE00C7563A /* hotDeal.png in Resources */,
 				EF9C4C54210B4BAD00C7563A /* americanExpress.png in Resources */,
@@ -2489,6 +2512,7 @@
 				EF713F5621985B1400117F42 /* giftBoxExcellent00017.png in Resources */,
 				EF94805B21779AF2007CA270 /* watermark.png in Resources */,
 				EF9C4C42210B4BAD00C7563A /* Icon-76@3x.png in Resources */,
+				EF5C548021B6465B0022FE83 /* CustomTableViewCellQRToPay.xib in Resources */,
 				EF713F9221985B1400117F42 /* giftBoxAwesome00021.png in Resources */,
 				EF713F8A21985B1400117F42 /* giftBoxBoo00021.png in Resources */,
 				EF713F6621985B1400117F42 /* giftBoxGood00022.png in Resources */,
@@ -2687,6 +2711,7 @@
 				EF9C4D37210B4BAE00C7563A /* CustomTableViewCellButton.m in Sources */,
 				EF6C7CF521310CE200C335AC /* MenuForBuffet.m in Sources */,
 				EF9C4D0C210B4BAE00C7563A /* CustomCollectionViewCellNote.m in Sources */,
+				EF5C547621B646240022FE83 /* ShowQRToPayViewController.m in Sources */,
 				EF639E01211F22E300C70A98 /* CustomTableViewCellSeparatorLine.m in Sources */,
 				EFDAFDF1214A7F1300A2596D /* CustomTableViewCellVoucherCodeExist.m in Sources */,
 				EF713FAC21985B2400117F42 /* Time.m in Sources */,
@@ -2732,6 +2757,7 @@
 				EF9C4D14210B4BAE00C7563A /* CustomTableViewCellDisputeDetail.m in Sources */,
 				EF14CDDC21646C8D0035A292 /* SharedBuffetMenuMap.m in Sources */,
 				EF7E94D621897C6D0009B945 /* SaveOrderTaking.m in Sources */,
+				EF5C548121B6465B0022FE83 /* CustomTableViewHeaderFooterButtonButton.m in Sources */,
 				EF9C4C8F210B4BAE00C7563A /* ForgotPasswordViewController.m in Sources */,
 				EF9C4D26210B4BAE00C7563A /* CustomTableViewCellRating.m in Sources */,
 				EF9C4CD4210B4BAE00C7563A /* MenuPic.m in Sources */,
@@ -2743,6 +2769,7 @@
 				EF9C4CB5210B4BAE00C7563A /* Receipt.m in Sources */,
 				EF9C4CE3210B4BAE00C7563A /* SharedPromoCode.m in Sources */,
 				EF9C4D0F210B4BAE00C7563A /* CustomTableViewCellVoucherCode.m in Sources */,
+				EF5C547F21B6465B0022FE83 /* CustomTableViewCellQRToPay.m in Sources */,
 				EF9C4C91210B4BAE00C7563A /* LaunchScreenViewController.m in Sources */,
 				EF9C4CAA210B4BAE00C7563A /* RewardViewController.m in Sources */,
 				EF5C528921A739BE0022FE83 /* CreditCardAndOrderSummary.m in Sources */,
@@ -2867,6 +2894,7 @@
 				EF5DC0A4211718CC00FFEA60 /* SharedCurrentCreditCard.m in Sources */,
 				EF9C4CDB210B4BAE00C7563A /* SharedRating.m in Sources */,
 				EF9C4CA2210B4BAE00C7563A /* BasketViewController.m in Sources */,
+				EF5C548521B646790022FE83 /* GBPrimeQr.m in Sources */,
 				EF9C4D2C210B4BAE00C7563A /* CustomTableViewCellRewardDetail.m in Sources */,
 				EF7E94CE21897C6D0009B945 /* OrderJoining.m in Sources */,
 				EF9C4CD9210B4BAE00C7563A /* TableNo.m in Sources */,

@@ -62,7 +62,7 @@ static NSString * const reuseIdentifierLabelDetailLabelWithImage = @"CustomTable
 -(void)viewDidLayoutSubviews
 {
     [super viewDidLayoutSubviews];
-    UIWindow *window = UIApplication.sharedApplication.keyWindow;
+    UIWindow *window = UIApplication.sharedApplication.keyWindow;    
     
     float topPadding = window.safeAreaInsets.top;
     topViewHeight.constant = topPadding == 0?20:topPadding;
@@ -165,7 +165,7 @@ static NSString * const reuseIdentifierLabelDetailLabelWithImage = @"CustomTable
     
     
     if(section == 0)
-    {
+    {        
         CustomTableViewCellSearchBar *cell = [tableView dequeueReusableCellWithIdentifier:reuseIdentifierSearchBar];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         cell.sbText.delegate = self;
@@ -258,9 +258,8 @@ static NSString * const reuseIdentifierLabelDetailLabelWithImage = @"CustomTable
         
         
         Branch *branch = [Branch getBranch:rewardRedemption.mainBranchID];
-        NSString *strPath = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)[0];
-        NSString *noImageFileName = [NSString stringWithFormat:@"%@/JMM/%@/Image/NoImage.jpg",strPath,branch.dbName];
-        NSString *imageFileName = [NSString stringWithFormat:@"%@/JMM/%@/Image/Logo/%@",strPath,branch.dbName,branch.imageUrl];
+        NSString *noImageFileName = [NSString stringWithFormat:@"/JMM/%@/Image/NoImage.jpg",branch.dbName];
+        NSString *imageFileName = [NSString stringWithFormat:@"/JMM/%@/Image/Logo/%@",branch.dbName,branch.imageUrl];
         imageFileName = [Utility isStringEmpty:branch.imageUrl]?noImageFileName:imageFileName;
         UIImage *image = [Utility getImageFromCache:imageFileName];
         if(image)

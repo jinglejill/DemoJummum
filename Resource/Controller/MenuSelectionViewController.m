@@ -257,10 +257,6 @@ static NSString * const reuseIdentifierSquareThumbNail = @"CustomTableViewCellSq
         }
         else
         {
-//            _menuList = [Menu getMenuListALaCarteWithBranchID:branch.branchID];
-//            _menuTypeList = [MenuType getMenuTypeListWithMenuList:_menuList];
-//            _menuTypeList = [MenuType sortList:_menuTypeList];
-//            _filterMenuList = _menuList;
             _menuList = menuForAlacarte.menuList;
             _menuTypeList = menuForAlacarte.menuTypeList;
             _filterMenuList = _menuList;
@@ -406,9 +402,8 @@ static NSString * const reuseIdentifierSquareThumbNail = @"CustomTableViewCellSq
             
             
                 //imgVw
-                NSString *strPath = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)[0];
-                NSString *noImageFileName = [NSString stringWithFormat:@"%@/JMM/%@/Image/NoImage.jpg",strPath,branch.dbName];
-                NSString *imageFileName = [NSString stringWithFormat:@"%@/JMM/%@/Image/Menu/%@",strPath,branch.dbName,menuLeft.imageUrl];
+                NSString *noImageFileName = [NSString stringWithFormat:@"/JMM/%@/Image/NoImage.jpg",branch.dbName];
+                NSString *imageFileName = [NSString stringWithFormat:@"/JMM/%@/Image/Menu/%@",branch.dbName,menuLeft.imageUrl];
                 imageFileName = [Utility isStringEmpty:menuLeft.imageUrl]?noImageFileName:imageFileName;
                 UIImage *image = [Utility getImageFromCache:imageFileName];
                 if(image)
@@ -502,9 +497,8 @@ static NSString * const reuseIdentifierSquareThumbNail = @"CustomTableViewCellSq
                     
                     
                     //imgVw
-                    NSString *strPath = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)[0];
-                    NSString *noImageFileName = [NSString stringWithFormat:@"%@/JMM/%@/Image/NoImage.jpg",strPath,branch.dbName];
-                    NSString *imageFileName = [NSString stringWithFormat:@"%@/JMM/%@/Image/Menu/%@",strPath,branch.dbName,menuRight.imageUrl];
+                    NSString *noImageFileName = [NSString stringWithFormat:@"/JMM/%@/Image/NoImage.jpg",branch.dbName];
+                    NSString *imageFileName = [NSString stringWithFormat:@"/JMM/%@/Image/Menu/%@",branch.dbName,menuRight.imageUrl];
                     imageFileName = [Utility isStringEmpty:menuRight.imageUrl]?noImageFileName:imageFileName;
                     UIImage *image = [Utility getImageFromCache:imageFileName];
                     if(image)
@@ -623,9 +617,8 @@ static NSString * const reuseIdentifierSquareThumbNail = @"CustomTableViewCellSq
                 }
                 
                 
-                NSString *strPath = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)[0];
-                NSString *noImageFileName = [NSString stringWithFormat:@"%@/JMM/%@/Image/NoImage.jpg",strPath,branch.dbName];
-                NSString *imageFileName = [NSString stringWithFormat:@"%@/JMM/%@/Image/Menu/%@",strPath,branch.dbName,menu.imageUrl];
+                NSString *noImageFileName = [NSString stringWithFormat:@"/JMM/%@/Image/NoImage.jpg",branch.dbName];
+                NSString *imageFileName = [NSString stringWithFormat:@"/JMM/%@/Image/Menu/%@",branch.dbName,menu.imageUrl];
                 imageFileName = [Utility isStringEmpty:menu.imageUrl]?noImageFileName:imageFileName;
                 UIImage *image = [Utility getImageFromCache:imageFileName];
                 if(image)
@@ -785,12 +778,6 @@ static NSString * const reuseIdentifierSquareThumbNail = @"CustomTableViewCellSq
             [Utility updateSharedDataList:items[i] className:arrClassName[i-1] branchID:branch.branchID];
         }
         
-//        [Utility updateSharedObject:items];
-//        _menuList = [Menu getMenuListALaCarteWithBranchID:branch.branchID];
-//        _menuTypeList = [MenuType getMenuTypeListWithMenuList:_menuList];
-//        _menuTypeList = [MenuType sortList:_menuTypeList];
-//        _filterMenuList = _menuList;
-//        [Menu setCurrentMenuList:_menuList];
         _menuList = items[1];
         _menuTypeList = items[2];
         _filterMenuList = _menuList;
@@ -891,9 +878,6 @@ static NSString * const reuseIdentifierSquareThumbNail = @"CustomTableViewCellSq
         _menuList = items[1];
         _menuTypeList = items[2];
         _filterMenuList = _menuList;
-//        _menuTypeList = [MenuType getMenuTypeListWithMenuList:_menuList];
-//        _menuTypeList = [MenuType sortList:_menuTypeList];
-//        _filterMenuList = _menuList;
         
         
         NSMutableArray *receiptList = items[4];
