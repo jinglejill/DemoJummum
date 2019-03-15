@@ -245,11 +245,12 @@
             
             if(_rewardRedemption.mainBranchID)
             {
-                float btnOrderNowWidth = 60;
+                float btnOrderNowWidth = 70;
                 if(!_btnOrderNow)
                 {
+                    UIImage *imgOrderNow = [Language langIsEN]?[UIImage imageNamed:@"orderNowEng.png"]:[UIImage imageNamed:@"orderNow.png"];
                     _btnOrderNow = [UIButton buttonWithType:UIButtonTypeCustom];
-                    [_btnOrderNow setBackgroundImage:[UIImage imageNamed:@"orderNow.png"] forState:UIControlStateNormal];
+                    [_btnOrderNow setBackgroundImage:imgOrderNow forState:UIControlStateNormal];
                     _btnOrderNow.frame = CGRectMake(self.view.frame.size.width-30-btnOrderNowWidth, _voucher.frame.origin.y-btnOrderNowWidth+11, btnOrderNowWidth, btnOrderNowWidth);
                     [_btnOrderNow addTarget:self action:@selector(orderNow) forControlEvents:UIControlEventTouchUpInside];
                     //shadow
@@ -337,19 +338,12 @@
         if(flag)
         {
             [_imgVwRidCloseOpen removeFromSuperview];
+            [_imgVwGiftPrize.layer removeAllAnimations];
             
-//            if(!_imgVwGiftPrize)
-//            {
-//                _imgVwGiftPrize = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
-//                _imgVwGiftPrize.center = self.view.center;
-//            }
-//            else
-            {
-                [_imgVwGiftPrize.layer removeAllAnimations];
-            }
             
             NSMutableArray *arrImage;
-            switch (_rewardRedemption.rewardRank) {
+            switch (_rewardRedemption.rewardRank)
+            {
                 case 1:
                     arrImage = [Card getExcellentCard];
                 break;

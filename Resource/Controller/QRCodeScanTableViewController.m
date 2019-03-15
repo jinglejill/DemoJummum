@@ -301,6 +301,17 @@
                 _saveOrderTakingList = items[3];
                 _saveOrderNoteList = items[4];
             }
+            else
+            {
+                [OrderTaking removeCurrentOrderTakingList];
+                [CreditCard removeCurrentCreditCard];
+                [SaveReceipt removeCurrentSaveReceipt];
+                
+                _saveReceipt = nil;
+                _saveOrderTakingList = nil;
+                _saveOrderNoteList = nil;
+            }
+            
             
             if(fromCreditCardAndOrderSummaryMenu)
             {

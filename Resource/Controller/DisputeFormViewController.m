@@ -293,7 +293,7 @@ static NSString * const reuseIdentifierHeaderFooterOkCancel = @"CustomTableViewH
                 
                 
                 NSString *message = [Language getText:@"กรุณาใส่เบอร์โทรติดต่อกลับ เพื่อเจ้าหน้าที่จะโทรสอบถามข้อมูลเพิ่มเติมสำหรับการโอนเงินคืนท่าน"];
-                NSString *strTitle = @"เบอร์โทร.";
+                NSString *strTitle = [Language getText:@"เบอร์โทร."];
                 NSString *strRemark = message;
                 
                 

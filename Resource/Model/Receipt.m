@@ -13,6 +13,7 @@
 #import "OrderTaking.h"
 #import "Menu.h"
 #import "Language.h"
+#import "DemoJummum-Swift.h"
 
 
 @implementation Receipt
@@ -65,6 +66,7 @@
         [Utility dateToString:[self valueForKey:@"buffetEndedDate"] toFormat:@"yyyy-MM-dd HH:mm:ss"],@"buffetEndedDate",
         [self valueForKey:@"buffetReceiptID"]?[self valueForKey:@"buffetReceiptID"]:[NSNull null],@"buffetReceiptID",
         [self valueForKey:@"voucherCode"]?[self valueForKey:@"voucherCode"]:[NSNull null],@"voucherCode",
+        [self valueForKey:@"promoCodeID"]?[self valueForKey:@"promoCodeID"]:[NSNull null],@"promoCodeID",
         [self valueForKey:@"shopDiscount"]?[self valueForKey:@"shopDiscount"]:[NSNull null],@"shopDiscount",
         [self valueForKey:@"jummumDiscount"]?[self valueForKey:@"jummumDiscount"]:[NSNull null],@"jummumDiscount",
         [self valueForKey:@"transactionFeeValue"]?[self valueForKey:@"transactionFeeValue"]:[NSNull null],@"transactionFeeValue",
@@ -75,7 +77,7 @@
         nil];
 }
 
--(Receipt *)initWithBranchID:(NSInteger)branchID customerTableID:(NSInteger)customerTableID memberID:(NSInteger)memberID servingPerson:(NSInteger)servingPerson customerType:(NSInteger)customerType openTableDate:(NSDate *)openTableDate paymentMethod:(NSInteger)paymentMethod totalAmount:(float)totalAmount cashAmount:(float)cashAmount cashReceive:(float)cashReceive creditCardType:(NSInteger)creditCardType creditCardNo:(NSString *)creditCardNo creditCardAmount:(float)creditCardAmount transferDate:(NSDate *)transferDate transferAmount:(float)transferAmount remark:(NSString *)remark specialPriceDiscount:(float)specialPriceDiscount discountProgramType:(NSInteger)discountProgramType discountProgramTitle:(NSString *)discountProgramTitle discountProgramValue:(float)discountProgramValue discountType:(NSInteger)discountType discountValue:(float)discountValue discountReason:(NSString *)discountReason serviceChargePercent:(float)serviceChargePercent serviceChargeValue:(float)serviceChargeValue priceIncludeVat:(NSInteger)priceIncludeVat vatPercent:(float)vatPercent vatValue:(float)vatValue netTotal:(float)netTotal luckyDrawCount:(NSInteger)luckyDrawCount beforeVat:(float)beforeVat status:(NSInteger)status statusRoute:(NSString *)statusRoute receiptNoID:(NSString *)receiptNoID receiptNoTaxID:(NSString *)receiptNoTaxID receiptDate:(NSDate *)receiptDate sendToKitchenDate:(NSDate *)sendToKitchenDate deliveredDate:(NSDate *)deliveredDate mergeReceiptID:(NSInteger)mergeReceiptID hasBuffetMenu:(NSInteger)hasBuffetMenu timeToOrder:(NSInteger)timeToOrder buffetEnded:(NSInteger)buffetEnded buffetEndedDate:(NSDate *)buffetEndedDate buffetReceiptID:(NSInteger)buffetReceiptID voucherCode:(NSString *)voucherCode shopDiscount:(float)shopDiscount jummumDiscount:(float)jummumDiscount transactionFeeValue:(float)transactionFeeValue jummumPayValue:(float)jummumPayValue gbpReferenceNo:(NSString *)gbpReferenceNo
+-(Receipt *)initWithBranchID:(NSInteger)branchID customerTableID:(NSInteger)customerTableID memberID:(NSInteger)memberID servingPerson:(NSInteger)servingPerson customerType:(NSInteger)customerType openTableDate:(NSDate *)openTableDate paymentMethod:(NSInteger)paymentMethod totalAmount:(float)totalAmount cashAmount:(float)cashAmount cashReceive:(float)cashReceive creditCardType:(NSInteger)creditCardType creditCardNo:(NSString *)creditCardNo creditCardAmount:(float)creditCardAmount transferDate:(NSDate *)transferDate transferAmount:(float)transferAmount remark:(NSString *)remark specialPriceDiscount:(float)specialPriceDiscount discountProgramType:(NSInteger)discountProgramType discountProgramTitle:(NSString *)discountProgramTitle discountProgramValue:(float)discountProgramValue discountType:(NSInteger)discountType discountValue:(float)discountValue discountReason:(NSString *)discountReason serviceChargePercent:(float)serviceChargePercent serviceChargeValue:(float)serviceChargeValue priceIncludeVat:(NSInteger)priceIncludeVat vatPercent:(float)vatPercent vatValue:(float)vatValue netTotal:(float)netTotal luckyDrawCount:(NSInteger)luckyDrawCount beforeVat:(float)beforeVat status:(NSInteger)status statusRoute:(NSString *)statusRoute receiptNoID:(NSString *)receiptNoID receiptNoTaxID:(NSString *)receiptNoTaxID receiptDate:(NSDate *)receiptDate sendToKitchenDate:(NSDate *)sendToKitchenDate deliveredDate:(NSDate *)deliveredDate mergeReceiptID:(NSInteger)mergeReceiptID hasBuffetMenu:(NSInteger)hasBuffetMenu timeToOrder:(NSInteger)timeToOrder buffetEnded:(NSInteger)buffetEnded buffetEndedDate:(NSDate *)buffetEndedDate buffetReceiptID:(NSInteger)buffetReceiptID voucherCode:(NSString *)voucherCode promoCodeID:(NSInteger)promoCodeID shopDiscount:(float)shopDiscount jummumDiscount:(float)jummumDiscount transactionFeeValue:(float)transactionFeeValue jummumPayValue:(float)jummumPayValue gbpReferenceNo:(NSString *)gbpReferenceNo
 {
     self = [super init];
     if(self)
@@ -126,6 +128,7 @@
         self.buffetEndedDate = buffetEndedDate;
         self.buffetReceiptID = buffetReceiptID;
         self.voucherCode = voucherCode;
+        self.promoCodeID = promoCodeID;
         self.shopDiscount = shopDiscount;
         self.jummumDiscount = jummumDiscount;
         self.transactionFeeValue = transactionFeeValue;
@@ -255,6 +258,7 @@
         [copy setBuffetEndedDate:self.buffetEndedDate];
         ((Receipt *)copy).buffetReceiptID = self.buffetReceiptID;
         [copy setVoucherCode:self.voucherCode];
+        ((Receipt *)copy).promoCodeID = self.promoCodeID;
         ((Receipt *)copy).shopDiscount = self.shopDiscount;
         ((Receipt *)copy).jummumDiscount = self.jummumDiscount;
         ((Receipt *)copy).transactionFeeValue = self.transactionFeeValue;
@@ -315,6 +319,7 @@
     && [self.buffetEndedDate isEqual:editingReceipt.buffetEndedDate]
     && self.buffetReceiptID == editingReceipt.buffetReceiptID
     && [self.voucherCode isEqualToString:editingReceipt.voucherCode]
+    && self.promoCodeID == editingReceipt.promoCodeID
     && self.shopDiscount == editingReceipt.shopDiscount
     && self.jummumDiscount == editingReceipt.jummumDiscount
     && self.transactionFeeValue == editingReceipt.transactionFeeValue
@@ -375,6 +380,7 @@
     toReceipt.buffetEndedDate = fromReceipt.buffetEndedDate;
     toReceipt.buffetReceiptID = fromReceipt.buffetReceiptID;
     toReceipt.voucherCode = fromReceipt.voucherCode;
+    toReceipt.promoCodeID = fromReceipt.promoCodeID;
     toReceipt.shopDiscount = fromReceipt.shopDiscount;
     toReceipt.jummumDiscount = fromReceipt.jummumDiscount;
     toReceipt.transactionFeeValue = fromReceipt.transactionFeeValue;
@@ -385,6 +391,7 @@
     
     return toReceipt;
 }
+
 
 +(NSMutableArray *)getReceiptListWithStartDate:(NSDate *)startDate endDate:(NSDate *)endDate statusList:(NSArray *)statusList
 {
@@ -782,5 +789,60 @@
         }
     }
     return nil;
+}
+
++(NSInteger)getPaymentMethod:(Receipt *)receipt
+{
+    if(![Utility isStringEmpty:receipt.creditCardNo])
+    {
+        return 2;
+    }
+    else if(![Utility isStringEmpty:receipt.gbpReferenceNo])
+    {
+        return 1;
+    }
+    return 0;
+}
+
++(NSString *)maskCreditCardNo:(Receipt *)receipt
+{
+    NSRange needleRange;
+    needleRange = NSMakeRange(12,4);
+    NSString *last4digit = [receipt.creditCardNo substringWithRange:needleRange];
+    
+    NSInteger cardBrand = [OMSCardNumber brandForPan:receipt.creditCardNo];
+    NSString *cardAbbr;
+    switch (cardBrand)
+    {
+        case OMSCardBrandJCB:
+        {
+            cardAbbr = @"JCB";
+        }
+        break;
+        case OMSCardBrandAMEX:
+        {
+            cardAbbr = @"AMEX";
+        }
+        break;
+        case OMSCardBrandVisa:
+        {
+            cardAbbr = @"VISA";
+        }
+        break;
+        case OMSCardBrandMasterCard:
+        {
+            cardAbbr = @"Master";
+        }
+        break;
+    }
+    
+    return [NSString stringWithFormat:@"**** **** **** %@ %@",last4digit,cardAbbr];
+}
+
++(NSMutableArray *)removeStatus3:(NSMutableArray *)receiptList
+{
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"_status != 3"];
+    NSArray *filterArray = [receiptList filteredArrayUsingPredicate:predicate];
+    return [filterArray mutableCopy];
 }
 @end

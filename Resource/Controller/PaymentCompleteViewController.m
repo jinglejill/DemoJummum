@@ -15,6 +15,7 @@
 #import "CustomTableViewCellTotal.h"
 #import "CustomTableViewCellLabelRemark.h"
 #import "CustomTableViewCellSeparatorLine.h"
+#import "CustomTableViewCellLabelLabel.h"
 #import "Branch.h"
 #import "OrderTaking.h"
 #import "Note.h"
@@ -44,6 +45,7 @@ static NSString * const reuseIdentifierOrderSummary = @"CustomTableViewCellOrder
 static NSString * const reuseIdentifierTotal = @"CustomTableViewCellTotal";
 static NSString * const reuseIdentifierLabelRemark = @"CustomTableViewCellLabelRemark";
 static NSString * const reuseIdentifierSeparatorLine = @"CustomTableViewCellSeparatorLine";
+static NSString * const reuseIdentifierLabelLabel = @"CustomTableViewCellLabelLabel";
 
 
 @synthesize receipt;
@@ -115,14 +117,14 @@ static NSString * const reuseIdentifierSeparatorLine = @"CustomTableViewCellSepa
         UILabel *lblGiftNum = [[UILabel alloc]init];
         lblGiftNum.font = [UIFont fontWithName:@"Prompt-SemiBold" size:15];
         lblGiftNum.textColor = [UIColor whiteColor];
-        lblGiftNum.textAlignment = NSTextAlignmentRight;        
+        lblGiftNum.textAlignment = NSTextAlignmentRight;
         lblGiftNum.numberOfLines = 1;
         lblGiftNum.text = [NSString stringWithFormat:@"You've got %ld %@",numberOfGift,strTicket];
         [lblGiftNum sizeToFit];
         lblGiftNum.center = animatedImageView.center;
         CGRect frame = lblGiftNum.frame;
-        frame.origin.x = self.view.frame.size.width-16-animatedImageView.frame.size.width-8-lblGiftNum.frame.size.width;        
-        lblGiftNum.frame = frame;        
+        frame.origin.x = self.view.frame.size.width-16-animatedImageView.frame.size.width-8-lblGiftNum.frame.size.width;
+        lblGiftNum.frame = frame;
         [self.view addSubview:lblGiftNum];
         
 
@@ -231,6 +233,10 @@ static NSString * const reuseIdentifierSeparatorLine = @"CustomTableViewCellSepa
         UINib *nib = [UINib nibWithNibName:reuseIdentifierSeparatorLine bundle:nil];
         [tbvData registerNib:nib forCellReuseIdentifier:reuseIdentifierSeparatorLine];
     }
+    {
+        UINib *nib = [UINib nibWithNibName:reuseIdentifierLabelLabel bundle:nil];
+        [tbvData registerNib:nib forCellReuseIdentifier:reuseIdentifierLabelLabel];
+    }
 }
 
 - (IBAction)button1Clicked:(id)sender//save receipt
@@ -289,14 +295,13 @@ static NSString * const reuseIdentifierSeparatorLine = @"CustomTableViewCellSepa
                 UIImage *combineImage = [self combineImage:arrImage];
                 UIImage *pinkBackground = [UIImage imageNamed:@"pinkBackground.png"];
                 UIImage *watermark = [UIImage imageNamed:@"jummumWatermark.jpg"];
-//                pinkBackground = [self imageWithImage:pinkBackground convertToSize:CGSizeMake(combineImage.size.width+combineImage.size.width*0.02*2, combineImage.size.height+combineImage.size.width*0.02*2)];
                 pinkBackground = [self imageWithImage:pinkBackground convertToSize:combineImage.size];
 
                 watermark = [self imageByScalingProportionallyToSize:CGSizeMake(combineImage.size.width, combineImage.size.width/watermark.size.width*watermark.size.height) sourceImage:watermark];
                 if(watermark.size.height < combineImage.size.height)
                 {
                     NSMutableArray *arrWaterMark = [[NSMutableArray alloc]init];
-                    for(int i=0; i<combineImage.size.height/watermark.size.height+1; i++)
+                    for(int i=0; i<ceilf(combineImage.size.height/watermark.size.height); i++)
                     {
                         [arrWaterMark addObject:watermark];
                     }
@@ -331,25 +336,23 @@ static NSString * const reuseIdentifierSeparatorLine = @"CustomTableViewCellSepa
                         UIImage *combineImage = [self combineImage:arrImage];
                         UIImage *pinkBackground = [UIImage imageNamed:@"pinkBackground.png"];
                         UIImage *watermark = [UIImage imageNamed:@"jummumWatermark.jpg"];
-//                        pinkBackground = [self imageWithImage:pinkBackground convertToSize:CGSizeMake(combineImage.size.width+combineImage.size.width*0.02*2, combineImage.size.height+combineImage.size.width*0.02*2)];
                         pinkBackground = [self imageWithImage:pinkBackground convertToSize:combineImage.size];
+                        
                         watermark = [self imageByScalingProportionallyToSize:CGSizeMake(combineImage.size.width, combineImage.size.width/watermark.size.width*watermark.size.height) sourceImage:watermark];
                         if(watermark.size.height < combineImage.size.height)
                         {
                             NSMutableArray *arrWaterMark = [[NSMutableArray alloc]init];
-                            for(int i=0; i<combineImage.size.height/watermark.size.height+1; i++)
+                            for(int i=0; i<ceilf(combineImage.size.height/watermark.size.height); i++)
                             {
                                 [arrWaterMark addObject:watermark];
                             }
                             watermark = [self combineImage:arrWaterMark];
                         }
-                        watermark = [self cropImageByImage:watermark toRect:CGRectMake(0, 0, combineImage.size.width, combineImage.size.height)];
                         
-                
+                        watermark = [self cropImageByImage:watermark toRect:CGRectMake(0, 0, combineImage.size.width, combineImage.size.height)];
                         pinkBackground = [self addWatermarkOnImage:pinkBackground withImage:watermark];
                         combineImage = [self addWatermarkOnImage:pinkBackground withImage:combineImage];
-
-
+                       
                         UIImageWriteToSavedPhotosAlbum(combineImage, nil, nil, nil);
                         return;
                     }
@@ -804,13 +807,50 @@ static NSString * const reuseIdentifierSeparatorLine = @"CustomTableViewCellSepa
             cell.lblAmount.textColor = cSystem4;
 
 
-            UIImage *image = [self imageFromView:cell];            
+            UIImage *image = [self imageFromView:cell];
             if((branch.serviceChargePercent>0 && branch.percentVat>0) || (branch.serviceChargePercent == 0 && branch.percentVat>0 && branch.priceIncludeVat))
             {
                 [arrImage addObject:image];
             }
         }
 
+        {
+            //payment method
+            CustomTableViewCellLabelLabel *cell = [tbvData dequeueReusableCellWithIdentifier:reuseIdentifierLabelLabel];
+                    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+            
+            NSInteger paymentMethod = [Receipt getPaymentMethod:receipt];
+            NSString *strPaymentMethod = paymentMethod == 2?[Receipt maskCreditCardNo:receipt]:paymentMethod == 1?@"mobile banking":@"-";
+    
+    
+            UIColor *color = cSystem4;
+            UIFont *font = [UIFont fontWithName:@"Prompt-SemiBold" size:14.0f];
+            NSDictionary *attribute = @{NSForegroundColorAttributeName:color ,NSFontAttributeName: font};
+            NSMutableAttributedString *attrStringStatus = [[NSMutableAttributedString alloc] initWithString:strPaymentMethod attributes:attribute];
+    
+    
+            NSString *message = [Language getText:@"วิธีชำระเงิน2"];
+            UIFont *font2 = [UIFont fontWithName:@"Prompt-Regular" size:14.0f];
+            UIColor *color2 = cSystem4;
+            NSDictionary *attribute2 = @{NSForegroundColorAttributeName:color2 ,NSFontAttributeName: font2};
+            NSMutableAttributedString *attrStringStatusLabel = [[NSMutableAttributedString alloc] initWithString:message attributes:attribute2];
+    
+    
+            [attrStringStatusLabel appendAttributedString:attrStringStatus];
+            cell.lblText.attributedText = attrStringStatusLabel;
+            [cell.lblText sizeToFit];
+            cell.lblTextWidthConstant.constant = cell.lblText.frame.size.width;
+            cell.lblTextTop.constant = 4;
+            cell.lblValue.text = @"";
+            cell.backgroundColor = [UIColor clearColor];
+
+            CGRect frame = cell.frame;
+            frame.size.height = 26;
+            cell.frame = frame;
+            
+            UIImage *image = [self imageFromView:cell];
+            [arrImage addObject:image];
+        }
         {
             //space at the end
             UITableViewCell *cell =  [tbvData dequeueReusableCellWithIdentifier:@"cell"];
@@ -834,13 +874,12 @@ static NSString * const reuseIdentifierSeparatorLine = @"CustomTableViewCellSepa
         UIImage *combineImage = [self combineImage:arrImage];
         UIImage *pinkBackground = [UIImage imageNamed:@"pinkBackground.png"];
         UIImage *watermark = [UIImage imageNamed:@"jummumWatermark.jpg"];
-//        pinkBackground = [self imageWithImage:pinkBackground convertToSize:CGSizeMake(combineImage.size.width+combineImage.size.width*0.02*2, combineImage.size.height+combineImage.size.width*0.02*2)];
         pinkBackground = [self imageWithImage:pinkBackground convertToSize:combineImage.size];
         watermark = [self imageByScalingProportionallyToSize:CGSizeMake(combineImage.size.width, combineImage.size.width/watermark.size.width*watermark.size.height) sourceImage:watermark];
         if(watermark.size.height < combineImage.size.height)
         {
             NSMutableArray *arrWaterMark = [[NSMutableArray alloc]init];
-            for(int i=0; i<combineImage.size.height/watermark.size.height+1; i++)
+            for(int i=0; i<ceilf(combineImage.size.height/watermark.size.height); i++)
             {
                 [arrWaterMark addObject:watermark];
             }

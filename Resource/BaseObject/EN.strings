@@ -209,4 +209,10 @@
 "กรุณาเลือกวิธีชำระเงิน" = "Please choose payment method";
 "QR Code ได้ถูกบันทึกลงในเครื่องเรียบร้อยแล้ว" = "QR Code has been successfully saved";
 "ไม่สามารถสร้าง QR ได้ กรุณาลองใหม่อีกครั้งค่ะ" = "No QR Code generated, please try again";
-​​"Hot Deal" = ​"Hot Deal";
+"สถานะมีการเปลี่ยนแปลง กรุณาดูสถานะล่าสุดที่หน้าจออีกครั้งหนึ่ง" = "Status has been changed before you click delete button, please see updated status on screen";
+"วิธีชำระเงิน2" = "Payment method ";
+"Delete order" = "Delete order";
+"Hot Deal" = "Hot Deal";
+"Open dispute" = "Open dispute";
+"ลบบิลสำเร็จ" = "Delete order success";
+"ยกเลิกบิลนี้" = "Cancel order";

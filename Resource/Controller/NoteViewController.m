@@ -50,6 +50,19 @@ static NSString * const reuseIdentifierNoteWithQuantity = @"CustomCollectionView
     [self setButtonDesign:btnConfirm];
     [self setButtonDesign:btnCancel];
     [self setButtonDesign:btnDeleteAll];
+    
+    if([Language langIsEN])
+    {
+        [btnConfirm setTitle:@"Confirm" forState:UIControlStateNormal];
+        [btnCancel setTitle:@"Cancel" forState:UIControlStateNormal];
+        [btnDeleteAll setTitle:@"Del all" forState:UIControlStateNormal];
+    }
+    else
+    {
+        [btnConfirm setTitle:@"ยืนยัน" forState:UIControlStateNormal];
+        [btnCancel setTitle:@"ยกเลิก" forState:UIControlStateNormal];
+        [btnDeleteAll setTitle:@"ลบทั้งหมด" forState:UIControlStateNormal];
+    }
 }
 
 - (void)viewDidLoad
@@ -543,8 +556,11 @@ minimumInteritemSpacingForSectionAtIndex:(NSInteger)section
 
 - (void) orientationChanged:(NSNotification *)note
 {
-    //    [colVwNote reloadData];
-    [colVwNote reloadSections:[NSIndexSet indexSetWithIndex:0]];
+    if([_noteTypeList count] > 0)
+    {
+        [colVwNote reloadSections:[NSIndexSet indexSetWithIndex:0]];
+    }
+    
     UIDevice * device = note.object;
     switch(device.orientation)
     {

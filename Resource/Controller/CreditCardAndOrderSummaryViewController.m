@@ -1200,55 +1200,9 @@ static NSString * const reuseIdentifierLabelTextView = @"CustomTableViewCellLabe
                     
                     [cell.btnChooseVoucherCode setTitle:[Language getText:@"คุณมี voucher code สำหรับร้านนี้"] forState:UIControlStateNormal];
                     [cell.btnChooseVoucherCode addTarget:self action:@selector(chooseVoucherCode:) forControlEvents:UIControlEventTouchUpInside];
+                    cell.btnChooseVoucherCode.hidden = !_orderSummary.showVoucherListButton;
                     return cell;
-                }
-                
-
-                
-//                if(_orderSummary.applyVoucherCode)
-//                {
-//                    //hide voucher textbox
-//                    cell.txtVoucherCode.hidden = YES;
-//                    cell.btnConfirm.hidden = YES;
-//                    cell.btnChooseVoucherCode.hidden = YES;
-//
-//
-//                    //show use voucher code
-//                    float cellHeight = _orderSummary.applyVoucherCode?66:_orderSummary.showVoucherListButton?66:38;
-//                    voucherView.hidden = NO;
-//                    CGRect frame = voucherView.frame;
-//                    frame.origin.x = 0;
-//                    frame.origin.y = cellHeight/2-13;
-//                    frame.size.width = self.view.frame.size.width;
-//                    frame.size.height = 26;
-//                    voucherView.frame = frame;
-//                    [cell addSubview:voucherView];
-//
-//
-//                    //voucher code
-//                    voucherView.lblVoucherCode.text = [NSString stringWithFormat:[Language getText:@"คูปองส่วนลด %@"],_selectedVoucherCode];
-//                    [voucherView.lblVoucherCode sizeToFit];
-//                    voucherView.lblVoucherCodeWidthConstant.constant = voucherView.lblVoucherCode.frame.size.width;
-//
-//
-//                    //discount value
-//                    voucherView.lblDiscountAmount.text = [Utility formatDecimal:_orderSummary.discountPromoCodeValue withMinFraction:2 andMaxFraction:2];
-//                    voucherView.lblDiscountAmount.text = [Utility addPrefixBahtSymbol:voucherView.lblDiscountAmount.text];
-//                    voucherView.lblDiscountAmount.text = [NSString stringWithFormat:@"-%@",voucherView.lblDiscountAmount.text];
-//                }
-//                else
-//                {
-//                    //show voucher textbox
-//                    cell.txtVoucherCode.hidden = NO;
-//                    cell.btnConfirm.hidden = NO;
-//                    cell.btnChooseVoucherCode.hidden = !_orderSummary.showVoucherListButton;
-//
-//
-//                    //hide voucher label
-//                    voucherView.hidden = YES;
-//                }
-                
-//                return cell;
+                }            
             }
                 break;
             case 4:
@@ -1791,6 +1745,12 @@ static NSString * const reuseIdentifierLabelTextView = @"CustomTableViewCellLabe
         return;
     }
     
+    //customerTable
+    if(!customerTable)
+    {
+        [self blinkAlertMsg:[Language getText:@"กรุณาระบุเลขโต๊ะ"]];
+        return;
+    }
     
     if(_orderSummary.showPayBuffetButton == 2 || _paymentMethod == 1)//buffet or pay by transfer
     {
@@ -1822,8 +1782,8 @@ static NSString * const reuseIdentifierLabelTextView = @"CustomTableViewCellLabe
         receipt.customerTableID = customerTable.customerTableID;
         receipt.memberID = userAccount.userAccountID;
         receipt.paymentMethod = _paymentMethod;
-        receipt.creditCardType = [self getCreditCardType:_creditCard.creditCardNo];
-        receipt.creditCardNo = _creditCard.creditCardNo;
+        receipt.creditCardType = 0;
+        receipt.creditCardNo = @"";
         receipt.remark = _remark;
         receipt.status = 2;
         receipt.receiptDate = [Utility currentDateTime];
@@ -1841,18 +1801,10 @@ static NSString * const reuseIdentifierLabelTextView = @"CustomTableViewCellLabe
         _selectedVoucherCode = _selectedVoucherCode?_selectedVoucherCode:@"";
         self.homeModel = [[HomeModel alloc]init];
         self.homeModel.delegate = self;
-        [self.homeModel insertItemsJson:dbOmiseCheckOut withData:@[@"",receipt,orderTakingList,orderNoteList,@""] actionScreen:@"call omise checkout at server"];
+        [self.homeModel insertItemsJson:dbOmiseCheckOut withData:@[@"",receipt,orderTakingList,orderNoteList,_selectedVoucherCode] actionScreen:@"call omise checkout at server"];
     }
     else if(_orderSummary.showPayBuffetButton == 1)//pay by credit card
     {
-        //customerTable
-        if(!customerTable)
-        {
-            [self blinkAlertMsg:[Language getText:@"กรุณาระบุเลขโต๊ะ"]];
-            return;
-        }
-        
-        
         if(_paymentMethod == 2)//credit card
         {
             //credit card

@@ -203,7 +203,8 @@ enum enumDB
     dbOrderJoiningScanQr,
     dbOrderJoining,
     dbSaveOrder,
-    dbOrderItAgain
+    dbOrderItAgain,
+    dbReceiptAndPromoCode
 
     
 };
@@ -371,7 +372,8 @@ enum enumUrl
     urlOrderJoiningPageGetList,
     urlSaveOrderInsertList,
     urlOrderItAgainGetList,
-    urlReceiptAndLuckyDrawGetList
+    urlReceiptAndLuckyDrawGetList,
+    urlReceiptAndPromoCodeUpdate
     
 
     

@@ -267,15 +267,6 @@ static NSString * const reuseIdentifierProfile = @"CustomTableViewCellProfile";
         {
             switch (indexPath.item)
             {
-                    //                _meList = @[@"ประวัติการสั่งอาหาร",@"ข้อมูลส่วนตัว",@"แต้มสะสม",@"My Credit Cards"];
-//                case 0:
-//                {
-//                    dispatch_async(dispatch_get_main_queue(),^ {
-//                        [self performSegueWithIdentifier:@"segReceiptSummary" sender:self];
-//                    });
-//
-//                }
-//                    break;
                 case 0:
                 {
                     [self performSegueWithIdentifier:@"segCreditCard" sender:self];

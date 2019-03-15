@@ -57,6 +57,7 @@
 @property (retain, nonatomic) NSDate * buffetEndedDate;
 @property (nonatomic) NSInteger buffetReceiptID;
 @property (retain, nonatomic) NSString * voucherCode;
+@property (nonatomic) NSInteger promoCodeID;
 @property (nonatomic) float shopDiscount;
 @property (nonatomic) float jummumDiscount;
 @property (nonatomic) float transactionFeeValue;
@@ -65,9 +66,8 @@
 @property (retain, nonatomic) NSString * modifiedUser;
 @property (retain, nonatomic) NSDate * modifiedDate;
 
-
 - (NSDictionary *)dictionary;
--(Receipt *)initWithBranchID:(NSInteger)branchID customerTableID:(NSInteger)customerTableID memberID:(NSInteger)memberID servingPerson:(NSInteger)servingPerson customerType:(NSInteger)customerType openTableDate:(NSDate *)openTableDate paymentMethod:(NSInteger)paymentMethod totalAmount:(float)totalAmount cashAmount:(float)cashAmount cashReceive:(float)cashReceive creditCardType:(NSInteger)creditCardType creditCardNo:(NSString *)creditCardNo creditCardAmount:(float)creditCardAmount transferDate:(NSDate *)transferDate transferAmount:(float)transferAmount remark:(NSString *)remark specialPriceDiscount:(float)specialPriceDiscount discountProgramType:(NSInteger)discountProgramType discountProgramTitle:(NSString *)discountProgramTitle discountProgramValue:(float)discountProgramValue discountType:(NSInteger)discountType discountValue:(float)discountValue discountReason:(NSString *)discountReason serviceChargePercent:(float)serviceChargePercent serviceChargeValue:(float)serviceChargeValue priceIncludeVat:(NSInteger)priceIncludeVat vatPercent:(float)vatPercent vatValue:(float)vatValue netTotal:(float)netTotal luckyDrawCount:(NSInteger)luckyDrawCount beforeVat:(float)beforeVat status:(NSInteger)status statusRoute:(NSString *)statusRoute receiptNoID:(NSString *)receiptNoID receiptNoTaxID:(NSString *)receiptNoTaxID receiptDate:(NSDate *)receiptDate sendToKitchenDate:(NSDate *)sendToKitchenDate deliveredDate:(NSDate *)deliveredDate mergeReceiptID:(NSInteger)mergeReceiptID hasBuffetMenu:(NSInteger)hasBuffetMenu timeToOrder:(NSInteger)timeToOrder buffetEnded:(NSInteger)buffetEnded buffetEndedDate:(NSDate *)buffetEndedDate buffetReceiptID:(NSInteger)buffetReceiptID voucherCode:(NSString *)voucherCode shopDiscount:(float)shopDiscount jummumDiscount:(float)jummumDiscount transactionFeeValue:(float)transactionFeeValue jummumPayValue:(float)jummumPayValue gbpReferenceNo:(NSString *)gbpReferenceNo;
+-(Receipt *)initWithBranchID:(NSInteger)branchID customerTableID:(NSInteger)customerTableID memberID:(NSInteger)memberID servingPerson:(NSInteger)servingPerson customerType:(NSInteger)customerType openTableDate:(NSDate *)openTableDate paymentMethod:(NSInteger)paymentMethod totalAmount:(float)totalAmount cashAmount:(float)cashAmount cashReceive:(float)cashReceive creditCardType:(NSInteger)creditCardType creditCardNo:(NSString *)creditCardNo creditCardAmount:(float)creditCardAmount transferDate:(NSDate *)transferDate transferAmount:(float)transferAmount remark:(NSString *)remark specialPriceDiscount:(float)specialPriceDiscount discountProgramType:(NSInteger)discountProgramType discountProgramTitle:(NSString *)discountProgramTitle discountProgramValue:(float)discountProgramValue discountType:(NSInteger)discountType discountValue:(float)discountValue discountReason:(NSString *)discountReason serviceChargePercent:(float)serviceChargePercent serviceChargeValue:(float)serviceChargeValue priceIncludeVat:(NSInteger)priceIncludeVat vatPercent:(float)vatPercent vatValue:(float)vatValue netTotal:(float)netTotal luckyDrawCount:(NSInteger)luckyDrawCount beforeVat:(float)beforeVat status:(NSInteger)status statusRoute:(NSString *)statusRoute receiptNoID:(NSString *)receiptNoID receiptNoTaxID:(NSString *)receiptNoTaxID receiptDate:(NSDate *)receiptDate sendToKitchenDate:(NSDate *)sendToKitchenDate deliveredDate:(NSDate *)deliveredDate mergeReceiptID:(NSInteger)mergeReceiptID hasBuffetMenu:(NSInteger)hasBuffetMenu timeToOrder:(NSInteger)timeToOrder buffetEnded:(NSInteger)buffetEnded buffetEndedDate:(NSDate *)buffetEndedDate buffetReceiptID:(NSInteger)buffetReceiptID voucherCode:(NSString *)voucherCode promoCodeID:(NSInteger)promoCodeID shopDiscount:(float)shopDiscount jummumDiscount:(float)jummumDiscount transactionFeeValue:(float)transactionFeeValue jummumPayValue:(float)jummumPayValue gbpReferenceNo:(NSString *)gbpReferenceNo;
 +(NSInteger)getNextID;
 +(void)addObject:(Receipt *)receipt;
 +(void)removeObject:(Receipt *)receipt;
@@ -106,4 +106,7 @@
 +(NSInteger)getTimeToOrder:(NSInteger)receiptID;
 +(NSInteger)getIndexOfObject:(Receipt *)receipt receiptList:(NSMutableArray *)receiptList;
 +(Receipt *)getReceipt:(NSInteger)receiptID receiptList:(NSMutableArray *)receiptList;
++(NSInteger)getPaymentMethod:(Receipt *)receipt;
++(NSString *)maskCreditCardNo:(Receipt *)receipt;
++(NSMutableArray *)removeStatus3:(NSMutableArray *)receiptList;
 @end

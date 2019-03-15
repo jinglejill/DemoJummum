@@ -156,6 +156,7 @@ static NSString * const reuseIdentifierButton = @"CustomTableViewCellButton";
 ///tableview section
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     // Return the number of sections.
+//    _receiptList = [Receipt removeStatus3:_receiptList];
     if([tableView isEqual:tbvData])
     {
         if([_receiptList count] == 0)
@@ -1059,7 +1060,6 @@ static NSString * const reuseIdentifierButton = @"CustomTableViewCellButton";
 -(void)orderBuffet:(id)sender
 {
     UIButton *btnValue = sender;
-//    _selectedReceipt = [Receipt getReceipt:btnValue.tag];
     _selectedReceipt = _receiptList[btnValue.tag];
     [self performSegueWithIdentifier:@"segMenuSelection" sender:self];
 }

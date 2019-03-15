@@ -29,6 +29,7 @@
 #import "DisputeReason.h"
 #import "Setting.h"
 #import "Rating.h"
+#import "Message.h"
 #import "QuartzCore/QuartzCore.h"
 
 
@@ -196,12 +197,16 @@ static NSString * const reuseIdentifierLabelRemark = @"CustomTableViewCellLabelR
             }
             else
             {
-                return 11;//remark,total items,specialPriceDiscount,discountProgram,discount,after discount,service charge,vat,net total,luckyDraw,before vat
+                return 12;//remark,total items,specialPriceDiscount,discountProgram,discount,after discount,service charge,vat,net total,luckyDraw,before vat,paymentType
             }
         }
         else if(section == 2)
         {
-            if(receipt.status == 2 || receipt.status == 5 || receipt.status == 6)
+            if(receipt.status == 1)
+            {
+                return 2;
+            }
+            else if(receipt.status == 2 || receipt.status == 5 || receipt.status == 6)
             {
                 return 2;
             }
@@ -564,6 +569,39 @@ static NSString * const reuseIdentifierLabelRemark = @"CustomTableViewCellLabelR
                     
                     return cell;
                 }
+                case 11:
+                {
+                    //payment method
+                    CustomTableViewCellLabelLabel *cell = [tableView dequeueReusableCellWithIdentifier:reuseIdentifierLabelLabel];
+                    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+                    
+                    NSInteger paymentMethod = [Receipt getPaymentMethod:receipt];
+                    NSString *strPaymentMethod = paymentMethod == 2?[Receipt maskCreditCardNo:receipt]:paymentMethod == 1?@"mobile banking":@"-";
+                    
+                    
+                    UIColor *color = cSystem4;
+                    UIFont *font = [UIFont fontWithName:@"Prompt-SemiBold" size:14.0f];
+                    NSDictionary *attribute = @{NSForegroundColorAttributeName:color ,NSFontAttributeName: font};
+                    NSMutableAttributedString *attrStringStatus = [[NSMutableAttributedString alloc] initWithString:strPaymentMethod attributes:attribute];
+                    
+                    
+                    UIFont *font2 = [UIFont fontWithName:@"Prompt-Regular" size:14.0f];
+                    UIColor *color2 = cSystem4;
+                    NSDictionary *attribute2 = @{NSForegroundColorAttributeName:color2 ,NSFontAttributeName: font2};
+                    NSMutableAttributedString *attrStringStatusLabel = [[NSMutableAttributedString alloc] initWithString:[Language getText:@"Payment method "] attributes:attribute2];
+                    
+                    
+                    [attrStringStatusLabel appendAttributedString:attrStringStatus];
+                    cell.lblText.attributedText = attrStringStatusLabel;
+                    [cell.lblText sizeToFit];
+                    cell.lblTextWidthConstant.constant = cell.lblText.frame.size.width;
+                    
+                    
+                    cell.lblValue.text = @"";
+                    
+
+                    return cell;
+                }
                     break;
             }
         }
@@ -576,7 +614,7 @@ static NSString * const reuseIdentifierLabelRemark = @"CustomTableViewCellLabelR
                 
                 
                 NSString *strStatus = [Receipt getStrStatus:receipt];
-                UIColor *color = cSystem2;//[Receipt getStatusColor:receipt];
+                UIColor *color = cSystem2;
                 
                 
                 
@@ -601,13 +639,32 @@ static NSString * const reuseIdentifierLabelRemark = @"CustomTableViewCellLabelR
             }
             else
             {
-                if(receipt.status == 2)
+                if(receipt.status == 1)
                 {
                     CustomTableViewCellButton *cell = [tableView dequeueReusableCellWithIdentifier:reuseIdentifierButton];
                     cell.selectionStyle = UITableViewCellSelectionStyleNone;
                     
                     
-                    NSString *title = [Setting getValue:@"004t" example:@"Cancel order"];
+                    NSString *title = [Language getText:@"Delete order"];
+                    cell.btnValue.hidden = NO;
+                    
+                    
+                    cell.btnValue.backgroundColor = cSystem1;
+                    [cell.btnValue setTitle:title forState:UIControlStateNormal];
+                    [cell.btnValue removeTarget:self action:nil forControlEvents:UIControlEventAllEvents];
+                    [cell.btnValue addTarget:self action:@selector(deleteOrder:) forControlEvents:UIControlEventTouchUpInside];
+                    [self setButtonDesign:cell.btnValue];
+                    
+                    
+                    return cell;
+                }
+                else if(receipt.status == 2)
+                {
+                    CustomTableViewCellButton *cell = [tableView dequeueReusableCellWithIdentifier:reuseIdentifierButton];
+                    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+                    
+                    
+                    NSString *title = [Language getText:@"Cancel order"];
                     NSDate *endDate = [Utility addDay:receipt.receiptDate numberOfDay:7];
                     NSComparisonResult result = [[Utility currentDateTime] compare:endDate];
                     cell.btnValue.hidden = result != NSOrderedAscending;
@@ -628,7 +685,7 @@ static NSString * const reuseIdentifierLabelRemark = @"CustomTableViewCellLabelR
                     cell.selectionStyle = UITableViewCellSelectionStyleNone;
                     
                     
-                    NSString *title = [Setting getValue:@"005t" example:@"Open dispute"];
+                    NSString *title = [Language getText:@"Open dispute"];
                     NSDate *endDate = [Utility addDay:receipt.receiptDate numberOfDay:7];
                     NSComparisonResult result = [[Utility currentDateTime] compare:endDate];
                     cell.btnValue.hidden = result != NSOrderedAscending;
@@ -1530,9 +1587,6 @@ static NSString * const reuseIdentifierLabelRemark = @"CustomTableViewCellLabelR
                 Branch *branch = [Branch getBranch:receipt.branchID];
                 switch (item)
                 {
-//                    case 0:
-//                        return 26;
-//                        break;
                     case 1:
                         return 26;
                         break;
@@ -1563,6 +1617,9 @@ static NSString * const reuseIdentifierLabelRemark = @"CustomTableViewCellLabelR
                     case 10:
                         return (branch.serviceChargePercent>0 && branch.percentVat>0) || (branch.serviceChargePercent == 0 && branch.percentVat>0 && branch.priceIncludeVat)?26:0;
                         break;
+                    case 11:
+                        return 26;
+                        break;
                     default:
                         break;
                 }
@@ -1577,7 +1634,11 @@ static NSString * const reuseIdentifierLabelRemark = @"CustomTableViewCellLabelR
             }
             else if(item == 1)
             {
-                if(receipt.status == 2 || receipt.status == 5 || receipt.status == 6)
+                if(receipt.status == 1)
+                {
+                    return 44;
+                }
+                else if(receipt.status == 2 || receipt.status == 5 || receipt.status == 6)
                 {
                     return 44;
                 }
@@ -2204,14 +2265,20 @@ static NSString * const reuseIdentifierLabelRemark = @"CustomTableViewCellLabelR
 {
     //check current process in case user stay long time in this screen while the process going to another status already
     //if receipt.status == 5 then show alert msg ร้านค้ากำลังปรุงอาหารให้คุณอยู่ค่ะ โปรดรอสักครู่นะคะ
-    self.homeModel = [[HomeModel alloc]init];
-    self.homeModel.delegate = self;
-    
-    
     [self loadingOverlayView];
     self.homeModel = [[HomeModel alloc]init];
     self.homeModel.delegate = self;
     [self.homeModel downloadItems:dbReceipt withData:receipt];
+}
+
+-(void)deleteOrder:(id)sender
+{
+    //check current process in case user stay long time in this screen while the process going to another status already
+    // if receipt.status == 2 then show alert msg "ไม่สามารถลบบิลนี้ได้ หากคุณต้องการยกเลิกบิลนี้กดที่ปุ่ม Cancel order"
+    [self loadingOverlayView];
+    self.homeModel = [[HomeModel alloc]init];
+    self.homeModel.delegate = self;
+    [self.homeModel updateItems:dbReceiptAndPromoCode withData:receipt actionScreen:@"delete order in order detail screen"];
 }
 
 - (UIModalPresentationStyle)adaptivePresentationStyleForPresentationController:(UIPresentationController *)controller
@@ -2243,8 +2310,32 @@ static NSString * const reuseIdentifierLabelRemark = @"CustomTableViewCellLabelR
 - (void)itemsUpdatedWithManager:(NSObject *)objHomeModel items:(NSArray *)items;
 {
     [self removeOverlayViews];
-    [Utility updateSharedObject:items];
-    [tbvData reloadData];
+    
+    HomeModel *homeModel = (HomeModel *)objHomeModel;
+    if(homeModel.propCurrentDBUpdate == dbReceipt)
+    {
+        [Utility updateSharedObject:items];
+        [tbvData reloadData];
+    }
+    else if(homeModel.propCurrentDBUpdate == dbReceiptAndPromoCode)
+    {
+        [Utility updateSharedObject:items];
+        NSMutableArray *receiptList = items[0];
+        Receipt *receipt = receiptList[0];
+        NSMutableArray *messageList = items[1];
+        Message *message = messageList[0];
+        if(![Utility isStringEmpty:message.text])
+        {
+            NSString *message = [Language getText:@"สถานะมีการเปลี่ยนแปลง กรุณาดูสถานะล่าสุดที่หน้าจออีกครั้งหนึ่ง"];
+            [self showAlert:@"" message:message];
+            [tbvData reloadData];
+        }
+        else
+        {
+            NSString *message = [Language getText:@"ลบบิลสำเร็จ"];
+            [self showAlert:@"" message:message method:@selector(goBack:)];
+        }
+    }
 }
 
 -(void)btnRate1

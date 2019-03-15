@@ -134,7 +134,7 @@
             break;
         case dbCustomerTable:
         {
-            arrClassName = @[@"CustomerTable"];
+            arrClassName = @[@"CustomerTable",@"Zone"];
         }
             break;
         case dbReceiptSummaryPage:
@@ -187,7 +187,7 @@
         case dbReceiptDisputeRatingUpdateAndReload:
         case dbReceiptBuffetEnded:
         {
-            arrClassName = @[@"Receipt",@"Dispute",@"Rating",@"OrderTaking",@"OrderNote",@"Menu"];
+            arrClassName = @[@"Receipt",@"Dispute",@"Rating",@"OrderTaking",@"OrderNote",@"Menu",@"DisputeReason"];
         }
             break;
         case dbDisputeReasonList:
@@ -321,7 +321,7 @@
                 // Ready to notify delegate that data is ready and pass back items
                 if (self.delegate)
                 {
-                    if(propCurrentDB == dbHotDeal || propCurrentDB == dbReceiptSummaryPage || propCurrentDB == dbOrderJoining ||propCurrentDB == dbRewardPoint || propCurrentDB == dbReceipt || propCurrentDB == dbReceiptDisputeRating || propCurrentDB == dbReceiptDisputeRatingUpdateAndReload || propCurrentDB == dbReceiptBuffetEnded || propCurrentDB == dbMenuList || propCurrentDB == dbMenuNoteList || propCurrentDB == dbBranchAndCustomerTableQR || propCurrentDB == dbBranchSearch || propCurrentDB == dbCustomerTable || propCurrentDB == dbSettingWithKey || propCurrentDB == dbMenuBelongToBuffet || propCurrentDB == dbPromotionAndRewardRedemption || propCurrentDB == dbPromotion || propCurrentDB == dbMenu || propCurrentDB == dbRewardRedemptionLuckyDraw || propCurrentDB == dbOrderJoiningShareQr || propCurrentDB == dbOrderItAgain || propCurrentDB == dbReceiptAndLuckyDraw)
+                    if(propCurrentDB == dbHotDeal || propCurrentDB == dbReceiptSummaryPage || propCurrentDB == dbOrderJoining ||propCurrentDB == dbRewardPoint || propCurrentDB == dbReceipt || propCurrentDB == dbReceiptDisputeRating || propCurrentDB == dbReceiptDisputeRatingUpdateAndReload || propCurrentDB == dbReceiptBuffetEnded || propCurrentDB == dbMenuList || propCurrentDB == dbMenuNoteList || propCurrentDB == dbBranchAndCustomerTableQR || propCurrentDB == dbBranchSearch || propCurrentDB == dbCustomerTable || propCurrentDB == dbSettingWithKey || propCurrentDB == dbMenuBelongToBuffet || propCurrentDB == dbPromotionAndRewardRedemption || propCurrentDB == dbPromotion || propCurrentDB == dbMenu || propCurrentDB == dbRewardRedemptionLuckyDraw || propCurrentDB == dbOrderJoiningShareQr || propCurrentDB == dbOrderItAgain || propCurrentDB == dbReceiptAndLuckyDraw || propCurrentDB == dbRewardPointSpent || propCurrentDB == dbRewardPointSpentUsed || propCurrentDB == dbRewardPointSpentExpired)
                     {
                         [self.delegate itemsDownloaded:arrItem manager:self];
                     }                    
@@ -537,50 +537,35 @@
             break;
         case dbRewardPointSpent:
         {
-            UserAccount *userAccount = (UserAccount *)data;
-            noteDataString = [NSString stringWithFormat:@"memberID=%ld",userAccount.userAccountID];
-            url = [NSURL URLWithString:[Utility appendRandomParam:[Utility url:urlRewardPointSpentGetList]]];
-        }
-            break;
-        case dbRewardPointSpentMore:
-        {
             NSArray *dataList = (NSArray *)data;
-            RewardPoint *rewardPoint = (RewardPoint *)dataList[0];
-            UserAccount *userAccount = (UserAccount *)dataList[1];
-            noteDataString = [NSString stringWithFormat:@"modifiedDate=%@&rewardPointID=%ld&memberID=%ld",rewardPoint.modifiedDate,rewardPoint.rewardPointID,userAccount.userAccountID];
-            url = [NSURL URLWithString:[Utility appendRandomParam:[Utility url:urlRewardPointSpentMoreGetList]]];
+            NSString *searchText = dataList[0];
+            NSNumber *objPage = dataList[1];
+            NSNumber *objPerPage = dataList[2];
+            UserAccount *userAccount = (UserAccount *)dataList[3];
+            noteDataString = [NSString stringWithFormat:@"searchText=%@&page=%ld&perPage=%ld&memberID=%ld",searchText,[objPage integerValue],[objPerPage integerValue],userAccount.userAccountID];            
+            url = [NSURL URLWithString:[Utility appendRandomParam:[Utility url:urlRewardPointSpentGetList]]];
         }
             break;
         case dbRewardPointSpentUsed:
         {
-            UserAccount *userAccount = (UserAccount *)data;
-            noteDataString = [NSString stringWithFormat:@"memberID=%ld",userAccount.userAccountID];
-            url = [NSURL URLWithString:[Utility appendRandomParam:[Utility url:urlRewardPointSpentUsedGetList]]];
-        }
-        break;
-        case dbRewardPointSpentUsedMore:
-        {
             NSArray *dataList = (NSArray *)data;
-            RewardPoint *rewardPoint = (RewardPoint *)dataList[0];
-            UserAccount *userAccount = (UserAccount *)dataList[1];
-            noteDataString = [NSString stringWithFormat:@"modifiedDate=%@&rewardPointID=%ld&memberID=%ld",rewardPoint.modifiedDate,rewardPoint.rewardPointID,userAccount.userAccountID];
-            url = [NSURL URLWithString:[Utility appendRandomParam:[Utility url:urlRewardPointSpentUsedMoreGetList]]];
+            NSString *searchText = dataList[0];
+            NSNumber *objPage = dataList[1];
+            NSNumber *objPerPage = dataList[2];
+            UserAccount *userAccount = (UserAccount *)dataList[3];
+            noteDataString = [NSString stringWithFormat:@"searchText=%@&page=%ld&perPage=%ld&memberID=%ld",searchText,[objPage integerValue],[objPerPage integerValue],userAccount.userAccountID];
+            url = [NSURL URLWithString:[Utility appendRandomParam:[Utility url:urlRewardPointSpentUsedGetList]]];
         }
         break;
         case dbRewardPointSpentExpired:
         {
-            UserAccount *userAccount = (UserAccount *)data;
-            noteDataString = [NSString stringWithFormat:@"memberID=%ld",userAccount.userAccountID];
-            url = [NSURL URLWithString:[Utility appendRandomParam:[Utility url:urlRewardPointSpentExpiredGetList]]];
-        }
-        break;
-        case dbRewardPointSpentExpiredMore:
-        {
             NSArray *dataList = (NSArray *)data;
-            RewardPoint *rewardPoint = (RewardPoint *)dataList[0];
-            UserAccount *userAccount = (UserAccount *)dataList[1];
-            noteDataString = [NSString stringWithFormat:@"modifiedDate=%@&rewardPointID=%ld&memberID=%ld",rewardPoint.modifiedDate,rewardPoint.rewardPointID,userAccount.userAccountID];
-            url = [NSURL URLWithString:[Utility appendRandomParam:[Utility url:urlRewardPointSpentExpiredMoreGetList]]];
+            NSString *searchText = dataList[0];
+            NSNumber *objPage = dataList[1];
+            NSNumber *objPerPage = dataList[2];
+            UserAccount *userAccount = (UserAccount *)dataList[3];
+            noteDataString = [NSString stringWithFormat:@"searchText=%@&page=%ld&perPage=%ld&memberID=%ld",searchText,[objPage integerValue],[objPerPage integerValue],userAccount.userAccountID];
+            url = [NSURL URLWithString:[Utility appendRandomParam:[Utility url:urlRewardPointSpentExpiredGetList]]];
         }
         break;
         case dbHotDeal:
@@ -733,7 +718,8 @@
             break;
         case dbReceiptAndLuckyDraw:
         {
-            noteDataString = [Utility getNoteDataString:data];
+            NSNumber *objReceiptID = (NSNumber *)data;
+            noteDataString = [NSString stringWithFormat:@"receiptID=%ld",[objReceiptID integerValue]];
             url = [NSURL URLWithString:[Utility appendRandomParam:[Utility url:urlReceiptAndLuckyDrawGetList]]];
         }
             break;
@@ -1962,6 +1948,12 @@
             url = [NSURL URLWithString:[Utility url:urlBuffetMenuMapUpdateList]];
         }
         break;
+        case dbReceiptAndPromoCode:
+        {
+            noteDataString = [Utility getNoteDataString:data];
+            url = [NSURL URLWithString:[Utility url:urlReceiptAndPromoCodeUpdate]];
+        }
+        break;
         default:
             break;
     }
@@ -2006,6 +1998,10 @@
                     if([strTableName isEqualToString:@"Receipt"])
                     {
                         arrClassName = @[@"Receipt"];
+                    }
+                    else if([strTableName isEqualToString:@"ReceiptAndPromoCode"])
+                    {
+                        arrClassName = @[@"Receipt",@"Message"];
                     }
                     
                     NSArray *items = [Utility jsonToArray:dataJson arrClassName:arrClassName];

@@ -619,6 +619,9 @@ extern NSString *globalBundleID;
         case urlReceiptAndLuckyDrawGetList:
             url = @"JMMReceiptAndLuckyDrawGetList.php";
             break;
+        case urlReceiptAndPromoCodeUpdate:
+            url = @"JMMReceiptAndPromoCodeUpdate.php";
+            break;
         default:
             break;
     }

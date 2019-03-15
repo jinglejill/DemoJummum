@@ -11,7 +11,9 @@
 
 
 @interface NewVersionUpdateViewController ()
-
+{
+    NSString *_strUpdateVersion;
+}
 @end
 
 @implementation NewVersionUpdateViewController
@@ -45,6 +47,16 @@
     
 
    
+    if(_strUpdateVersion && ![_strUpdateVersion integerValue])
+    {
+        btnDismissTop.constant = 8;
+        btnDismissHeight.constant = 30;
+        btnDismiss.hidden = NO;
+        btnCancelTop.constant = 8;
+        btnCancelHeight.constant = 30;
+        btnCancel.hidden = NO;
+    }
+    else
     {
         btnDismissTop.constant = 0;
         btnDismissHeight.constant = 0;
@@ -151,8 +163,8 @@
         [Utility updateSharedObject:items];
         
         NSString *strKey = [NSString stringWithFormat:@"UpdateVersion%@",appStoreVersion];
-        NSString *strUpdateVersion = [Setting getSettingValueWithKeyName:strKey];
-        if(![strUpdateVersion integerValue])
+        _strUpdateVersion = [Setting getSettingValueWithKeyName:strKey];
+        if(![_strUpdateVersion integerValue])
         {
             btnDismissTop.constant = 8;
             btnDismissHeight.constant = 30;
