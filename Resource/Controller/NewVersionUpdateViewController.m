@@ -46,17 +46,9 @@
     [self setButtonDesign:btnCancel];
     
 
-   
-    if(_strUpdateVersion && ![_strUpdateVersion integerValue])
-    {
-        btnDismissTop.constant = 8;
-        btnDismissHeight.constant = 30;
-        btnDismiss.hidden = NO;
-        btnCancelTop.constant = 8;
-        btnCancelHeight.constant = 30;
-        btnCancel.hidden = NO;
-    }
-    else
+    NSDictionary* infoDictionary = [[NSBundle mainBundle] infoDictionary];
+    NSString* currentVersion = infoDictionary[@"CFBundleShortVersionString"];
+    if(_strUpdateVersion && [_strUpdateVersion integerValue] && [_strUpdateVersion integerValue]>[currentVersion integerValue])
     {
         btnDismissTop.constant = 0;
         btnDismissHeight.constant = 0;
@@ -64,6 +56,15 @@
         btnCancelTop.constant = 0;
         btnCancelHeight.constant = 0;
         btnCancel.hidden = YES;
+    }
+    else
+    {
+        btnDismissTop.constant = 8;
+        btnDismissHeight.constant = 30;
+        btnDismiss.hidden = NO;
+        btnCancelTop.constant = 8;
+        btnCancelHeight.constant = 30;
+        btnCancel.hidden = NO;
     }
 }
 

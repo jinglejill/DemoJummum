@@ -50,14 +50,20 @@ static NSString * const reuseIdentifierReward = @"CustomTableViewCellReward";
     topViewHeight.constant = topPadding == 0?20:topPadding;
 }
 
+-(void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    NSString *title = [Language getText:@"เลือก Voucher Code"];
+    lblNavTitle.text = title;
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
     
-    NSString *title = [Language getText:@"เลือก Voucher Code"];
-    lblNavTitle.text = title;
+    
     tbvData.delegate = self;
     tbvData.dataSource = self;
  
@@ -218,8 +224,16 @@ static NSString * const reuseIdentifierReward = @"CustomTableViewCellReward";
             cell.lblSubTitleHeight.constant = cell.lblSubTitle.frame.size.height>37?37:cell.lblSubTitle.frame.size.height;
             
             
-            
-            NSString *noImageFileName = [NSString stringWithFormat:@"/JMM/Image/NoImage.jpg"];
+            NSString *noImageFileName;
+            Branch *mainBranch = [Branch getBranch:promotion.mainBranchID];
+            if(mainBranch)
+            {
+                noImageFileName = [NSString stringWithFormat:@"/JMM/%@/Image/NoImage.jpg",mainBranch.dbName];
+            }
+            else
+            {
+                noImageFileName = [NSString stringWithFormat:@"/JMM/Image/NoImage.jpg"];
+            }
             NSString *imageFileName = [NSString stringWithFormat:@"/JMM/Image/Promotion/%@",promotion.imageUrl];
             imageFileName = [Utility isStringEmpty:promotion.imageUrl]?noImageFileName:imageFileName;
             UIImage *image = [Utility getImageFromCache:imageFileName];
@@ -229,7 +243,7 @@ static NSString * const reuseIdentifierReward = @"CustomTableViewCellReward";
             }
             else
             {
-                [self.homeModel downloadImageWithFileName:promotion.imageUrl type:3 branchID:0 completionBlock:^(BOOL succeeded, UIImage *image)
+                [self.homeModel downloadImageWithFileName:promotion.imageUrl type:3 branchID:promotion.mainBranchID completionBlock:^(BOOL succeeded, UIImage *image)
                  {
                      if (succeeded)
                      {
@@ -241,7 +255,7 @@ static NSString * const reuseIdentifierReward = @"CustomTableViewCellReward";
             
             
             
-            float imageWidth = cell.frame.size.width -2*16 > 375?375:cell.frame.size.width -2*16;
+            float imageWidth = self.view.frame.size.width -2*16;
             cell.imgVwValueHeight.constant = imageWidth/16*9;
             cell.imgVwValue.contentMode = UIViewContentModeScaleAspectFit;
             
@@ -255,16 +269,25 @@ static NSString * const reuseIdentifierReward = @"CustomTableViewCellReward";
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
             cell.lblHeader.text = promotion.header;
             [cell.lblHeader sizeToFit];
-            cell.lblHeaderHeight.constant = cell.lblHeader.frame.size.height>90?90:cell.lblHeader.frame.size.height;
+            cell.lblHeaderHeight.constant = cell.lblHeader.frame.size.height>43?43:cell.lblHeader.frame.size.height;
             
             
             cell.lblSubTitle.text = promotion.subTitle;
             [cell.lblSubTitle sizeToFit];
-            cell.lblSubTitleHeight.constant = 90-8-cell.lblHeaderHeight.constant<0?0:90-8-cell.lblHeaderHeight.constant;
+            cell.lblSubTitleHeight.constant = cell.lblSubTitle.frame.size.height>37?37:cell.lblSubTitle.frame.size.height;
             
             
             
-            NSString *noImageFileName = [NSString stringWithFormat:@"/JMM/Image/NoImage.jpg"];
+            NSString *noImageFileName;
+            Branch *mainBranch = [Branch getBranch:promotion.mainBranchID];
+            if(mainBranch)
+            {
+                noImageFileName = [NSString stringWithFormat:@"/JMM/%@/Image/NoImage.jpg",mainBranch.dbName];
+            }
+            else
+            {
+                noImageFileName = [NSString stringWithFormat:@"/JMM/Image/NoImage.jpg"];
+            }
             NSString *imageFileName = [NSString stringWithFormat:@"/JMM/Image/Promotion/%@",promotion.imageUrl];
             imageFileName = [Utility isStringEmpty:promotion.imageUrl]?noImageFileName:imageFileName;
             UIImage *image = [Utility getImageFromCache:imageFileName];
@@ -274,7 +297,7 @@ static NSString * const reuseIdentifierReward = @"CustomTableViewCellReward";
             }
             else
             {
-                [self.homeModel downloadImageWithFileName:promotion.imageUrl type:3 branchID:0 completionBlock:^(BOOL succeeded, UIImage *image)
+                [self.homeModel downloadImageWithFileName:promotion.imageUrl type:3 branchID:promotion.mainBranchID completionBlock:^(BOOL succeeded, UIImage *image)
                  {
                      if (succeeded)
                      {
@@ -373,7 +396,16 @@ static NSString * const reuseIdentifierReward = @"CustomTableViewCellReward";
             
             
             
-            NSString *noImageFileName = [NSString stringWithFormat:@"/JMM/Image/NoImage.jpg"];
+            NSString *noImageFileName;
+            Branch *mainBranch = [Branch getBranch:promotion.mainBranchID];
+            if(mainBranch)
+            {
+                noImageFileName = [NSString stringWithFormat:@"/JMM/%@/Image/NoImage.jpg",mainBranch.dbName];
+            }
+            else
+            {
+                noImageFileName = [NSString stringWithFormat:@"/JMM/Image/NoImage.jpg"];
+            }
             NSString *imageFileName = [NSString stringWithFormat:@"/JMM/Image/Promotion/%@",promotion.imageUrl];
             imageFileName = [Utility isStringEmpty:promotion.imageUrl]?noImageFileName:imageFileName;
             UIImage *image = [Utility getImageFromCache:imageFileName];
@@ -383,7 +415,7 @@ static NSString * const reuseIdentifierReward = @"CustomTableViewCellReward";
             }
             else
             {
-                [self.homeModel downloadImageWithFileName:promotion.imageUrl type:3 branchID:0 completionBlock:^(BOOL succeeded, UIImage *image)
+                [self.homeModel downloadImageWithFileName:promotion.imageUrl type:3 branchID:promotion.mainBranchID completionBlock:^(BOOL succeeded, UIImage *image)
                  {
                      if (succeeded)
                      {
@@ -395,7 +427,7 @@ static NSString * const reuseIdentifierReward = @"CustomTableViewCellReward";
             
             
             
-            float imageWidth = cell.frame.size.width -2*16 > 375?375:cell.frame.size.width -2*16;
+            float imageWidth = self.view.frame.size.width -2*16;
             cell.imgVwValueHeight.constant = imageWidth/16*9;
             
             

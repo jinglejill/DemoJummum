@@ -6,7 +6,12 @@ target 'DemoJummum' do
   # use_frameworks!
 
   # Pods for DemoJummum
-  pod 'FBSDKLoginKit'
+  pod 'FacebookSDK'
+  pod 'FacebookSDK/LoginKit'
+  pod 'FacebookSDK/ShareKit'
+  pod 'FacebookSDK/PlacesKit'
+
+  pod 'FBSDKMessengerShareKit'
   pod 'Firebase/Core'
   pod 'Firebase/Messaging'
   

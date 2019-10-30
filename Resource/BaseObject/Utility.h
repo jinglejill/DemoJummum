@@ -204,7 +204,13 @@ enum enumDB
     dbOrderJoining,
     dbSaveOrder,
     dbOrderItAgain,
-    dbReceiptAndPromoCode
+    dbReceiptAndPromoCode,
+    dbTransferForm,
+    dbTransferFormList,
+    dbBank,
+    dbBankList,
+    dbTransferFormAndBankList,
+    dbLuckyDrawBranchList
 
     
 };
@@ -373,8 +379,22 @@ enum enumUrl
     urlSaveOrderInsertList,
     urlOrderItAgainGetList,
     urlReceiptAndLuckyDrawGetList,
-    urlReceiptAndPromoCodeUpdate
-    
+    urlReceiptAndPromoCodeUpdate,
+    urlTransferFormInsert,
+    urlTransferFormUpdate,
+    urlTransferFormDelete,
+    urlTransferFormInsertList,
+    urlTransferFormUpdateList,
+    urlTransferFormDeleteList,
+    urlBankInsert,
+    urlBankUpdate,
+    urlBankDelete,
+    urlBankInsertList,
+    urlBankUpdateList,
+    urlBankDeleteList,
+    urlBankGetList,
+    urlTransferFormAndBankGetList,
+    urlLuckyDrawBranchGetList
 
     
 };

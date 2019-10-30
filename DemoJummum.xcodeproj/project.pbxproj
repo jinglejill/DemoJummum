@@ -467,6 +467,16 @@
 		EF9C4D6D210B4BAE00C7563A /* Prompt-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EF9C4BE3210B4BAD00C7563A /* Prompt-Black.ttf */; };
 		EF9C5247210C219400C7563A /* triangle_demo.png in Resources */ = {isa = PBXBuildFile; fileRef = EF9C5246210C219400C7563A /* triangle_demo.png */; };
 		EF9C524F210FB4DB00C7563A /* refresh.png in Resources */ = {isa = PBXBuildFile; fileRef = EF9C524E210FB4DB00C7563A /* refresh.png */; };
+		EF9EDC0A223BC63000AD8AB4 /* ConfirmTransferFormViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EF9EDC09223BC63000AD8AB4 /* ConfirmTransferFormViewController.m */; };
+		EF9EDC13223BC65500AD8AB4 /* Bank.m in Sources */ = {isa = PBXBuildFile; fileRef = EF9EDC0B223BC65300AD8AB4 /* Bank.m */; };
+		EF9EDC14223BC65500AD8AB4 /* SharedTransferForm.m in Sources */ = {isa = PBXBuildFile; fileRef = EF9EDC0D223BC65300AD8AB4 /* SharedTransferForm.m */; };
+		EF9EDC15223BC65500AD8AB4 /* SharedBank.m in Sources */ = {isa = PBXBuildFile; fileRef = EF9EDC10223BC65400AD8AB4 /* SharedBank.m */; };
+		EF9EDC16223BC65500AD8AB4 /* TransferForm.m in Sources */ = {isa = PBXBuildFile; fileRef = EF9EDC12223BC65400AD8AB4 /* TransferForm.m */; };
+		EF9EDC262240A0A100AD8AB4 /* changeLang.png in Resources */ = {isa = PBXBuildFile; fileRef = EF9EDC252240A0A000AD8AB4 /* changeLang.png */; };
+		EF9EDC2A2240A0C000AD8AB4 /* CustomTableViewCellImageLabelText.xib in Resources */ = {isa = PBXBuildFile; fileRef = EF9EDC282240A0C000AD8AB4 /* CustomTableViewCellImageLabelText.xib */; };
+		EF9EDC2B2240A0C000AD8AB4 /* CustomTableViewCellImageLabelText.m in Sources */ = {isa = PBXBuildFile; fileRef = EF9EDC292240A0C000AD8AB4 /* CustomTableViewCellImageLabelText.m */; };
+		EFA0BD0F234C5436000C2D0D /* LuckyDrawBranchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EFA0BD0E234C5436000C2D0D /* LuckyDrawBranchViewController.m */; };
+		EFA0BD13234CF142000C2D0D /* pictureFrame.png in Resources */ = {isa = PBXBuildFile; fileRef = EFA0BD12234CF142000C2D0D /* pictureFrame.png */; };
 		EFDAFD77214A7ED300A2596D /* handTap.png in Resources */ = {isa = PBXBuildFile; fileRef = EFDAFD10214A7ED100A2596D /* handTap.png */; };
 		EFDAFD78214A7ED300A2596D /* handEmpty.png in Resources */ = {isa = PBXBuildFile; fileRef = EFDAFD11214A7ED200A2596D /* handEmpty.png */; };
 		EFDAFD79214A7ED300A2596D /* handLift.png in Resources */ = {isa = PBXBuildFile; fileRef = EFDAFD12214A7ED200A2596D /* handLift.png */; };
@@ -1169,6 +1179,23 @@
 		EF9C5245210BFB0F00C7563A /* DemoJummum.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = DemoJummum.entitlements; sourceTree = "<group>"; };
 		EF9C5246210C219400C7563A /* triangle_demo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = triangle_demo.png; sourceTree = "<group>"; };
 		EF9C524E210FB4DB00C7563A /* refresh.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = refresh.png; sourceTree = "<group>"; };
+		EF9EDC08223BC63000AD8AB4 /* ConfirmTransferFormViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConfirmTransferFormViewController.h; sourceTree = "<group>"; };
+		EF9EDC09223BC63000AD8AB4 /* ConfirmTransferFormViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConfirmTransferFormViewController.m; sourceTree = "<group>"; };
+		EF9EDC0B223BC65300AD8AB4 /* Bank.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Bank.m; sourceTree = "<group>"; };
+		EF9EDC0C223BC65300AD8AB4 /* SharedBank.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SharedBank.h; sourceTree = "<group>"; };
+		EF9EDC0D223BC65300AD8AB4 /* SharedTransferForm.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SharedTransferForm.m; sourceTree = "<group>"; };
+		EF9EDC0E223BC65400AD8AB4 /* TransferForm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TransferForm.h; sourceTree = "<group>"; };
+		EF9EDC0F223BC65400AD8AB4 /* SharedTransferForm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SharedTransferForm.h; sourceTree = "<group>"; };
+		EF9EDC10223BC65400AD8AB4 /* SharedBank.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SharedBank.m; sourceTree = "<group>"; };
+		EF9EDC11223BC65400AD8AB4 /* Bank.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Bank.h; sourceTree = "<group>"; };
+		EF9EDC12223BC65400AD8AB4 /* TransferForm.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TransferForm.m; sourceTree = "<group>"; };
+		EF9EDC252240A0A000AD8AB4 /* changeLang.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = changeLang.png; sourceTree = "<group>"; };
+		EF9EDC272240A0C000AD8AB4 /* CustomTableViewCellImageLabelText.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomTableViewCellImageLabelText.h; sourceTree = "<group>"; };
+		EF9EDC282240A0C000AD8AB4 /* CustomTableViewCellImageLabelText.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CustomTableViewCellImageLabelText.xib; sourceTree = "<group>"; };
+		EF9EDC292240A0C000AD8AB4 /* CustomTableViewCellImageLabelText.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomTableViewCellImageLabelText.m; sourceTree = "<group>"; };
+		EFA0BD0D234C5436000C2D0D /* LuckyDrawBranchViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LuckyDrawBranchViewController.h; sourceTree = "<group>"; };
+		EFA0BD0E234C5436000C2D0D /* LuckyDrawBranchViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LuckyDrawBranchViewController.m; sourceTree = "<group>"; };
+		EFA0BD12234CF142000C2D0D /* pictureFrame.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pictureFrame.png; sourceTree = "<group>"; };
 		EFDAFD10214A7ED100A2596D /* handTap.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = handTap.png; sourceTree = "<group>"; };
 		EFDAFD11214A7ED200A2596D /* handEmpty.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = handEmpty.png; sourceTree = "<group>"; };
 		EFDAFD12214A7ED200A2596D /* handLift.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = handLift.png; sourceTree = "<group>"; };
@@ -1513,6 +1540,8 @@
 		EF9C4A1E210B4BAC00C7563A /* Image */ = {
 			isa = PBXGroup;
 			children = (
+				EFA0BD12234CF142000C2D0D /* pictureFrame.png */,
+				EF9EDC252240A0A000AD8AB4 /* changeLang.png */,
 				EFF1096F2203140800DE0578 /* orderNowEng.png */,
 				EF713EE721985B1300117F42 /* card4 */,
 				EF713F4A21985B1400117F42 /* jummumWatermark.jpg */,
@@ -1630,6 +1659,8 @@
 				EF9C4A9F210B4BAD00C7563A /* CommentViewController.m */,
 				EF9C4A8D210B4BAC00C7563A /* ConfirmDisputeViewController.h */,
 				EF9C4AB7210B4BAD00C7563A /* ConfirmDisputeViewController.m */,
+				EF9EDC08223BC63000AD8AB4 /* ConfirmTransferFormViewController.h */,
+				EF9EDC09223BC63000AD8AB4 /* ConfirmTransferFormViewController.m */,
 				EF9C4AAA210B4BAD00C7563A /* CreditCardAndOrderSummaryViewController.h */,
 				EF9C4A86210B4BAC00C7563A /* CreditCardAndOrderSummaryViewController.m */,
 				EF9C4A90210B4BAC00C7563A /* CreditCardViewController.h */,
@@ -1704,6 +1735,8 @@
 				EF9C4AA7210B4BAD00C7563A /* TosAndPrivacyPolicyViewController.m */,
 				EFDAFDDA214A7EE600A2596D /* VoucherCodeListViewController.h */,
 				EFDAFDDE214A7EE700A2596D /* VoucherCodeListViewController.m */,
+				EFA0BD0D234C5436000C2D0D /* LuckyDrawBranchViewController.h */,
+				EFA0BD0E234C5436000C2D0D /* LuckyDrawBranchViewController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -1719,88 +1752,50 @@
 		EF9C4ABA210B4BAD00C7563A /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				EF759FC2220044C800A6146F /* SharedZone.h */,
-				EF759FBF220044C800A6146F /* SharedZone.m */,
-				EF759FC0220044C800A6146F /* Zone.h */,
-				EF759FC1220044C800A6146F /* Zone.m */,
-				EF5C548321B646780022FE83 /* GBPrimeQr.h */,
-				EF5C548421B646790022FE83 /* GBPrimeQr.m */,
-				EF5C528421A739BD0022FE83 /* CreditCardAndOrderSummary.h */,
-				EF5C528321A739BD0022FE83 /* CreditCardAndOrderSummary.m */,
-				EF5C528121A739BD0022FE83 /* DiscountProgram.h */,
-				EF5C528521A739BD0022FE83 /* DiscountProgram.m */,
-				EF5C528621A739BE0022FE83 /* MenuForAlacarte.h */,
-				EF5C528721A739BE0022FE83 /* MenuForAlacarte.m */,
-				EF5C528221A739BD0022FE83 /* SharedDiscountProgram.h */,
-				EF5C528821A739BE0022FE83 /* SharedDiscountProgram.m */,
-				EF713FAA21985B2400117F42 /* Time.h */,
-				EF713FAB21985B2400117F42 /* Time.m */,
-				EF7E94C721897C6C0009B945 /* EncryptedMessage.h */,
-				EF7E94C421897C6B0009B945 /* EncryptedMessage.m */,
-				EF7E94C021897C6B0009B945 /* OrderJoining.h */,
-				EF7E94BB21897C6A0009B945 /* OrderJoining.m */,
-				EF7E94CC21897C6D0009B945 /* SaveOrderNote.h */,
-				EF7E94BF21897C6B0009B945 /* SaveOrderNote.m */,
-				EF7E94B921897C690009B945 /* SaveOrderTaking.h */,
-				EF7E94CB21897C6D0009B945 /* SaveOrderTaking.m */,
-				EF7E94C121897C6B0009B945 /* SaveReceipt.h */,
-				EF7E94BE21897C6A0009B945 /* SaveReceipt.m */,
-				EF7E94CA21897C6D0009B945 /* SharedCurrentSaveReceipt.h */,
-				EF7E94BC21897C6A0009B945 /* SharedCurrentSaveReceipt.m */,
-				EF7E94C521897C6C0009B945 /* SharedOrderJoining.h */,
-				EF7E94C221897C6B0009B945 /* SharedOrderJoining.m */,
-				EF7E94C321897C6B0009B945 /* SharedSaveOrderNote.h */,
-				EF7E94BA21897C6A0009B945 /* SharedSaveOrderNote.m */,
-				EF7E94C621897C6C0009B945 /* SharedSaveOrderTaking.h */,
-				EF7E94C821897C6C0009B945 /* SharedSaveOrderTaking.m */,
-				EF7E94BD21897C6A0009B945 /* SharedSaveReceipt.h */,
-				EF7E94C921897C6C0009B945 /* SharedSaveReceipt.m */,
-				EF94806121779B11007CA270 /* SharedVoucherCode.h */,
-				EF94806221779B11007CA270 /* SharedVoucherCode.m */,
-				EF94806321779B12007CA270 /* VoucherCode.h */,
-				EF94805E21779B11007CA270 /* VoucherCode.m */,
-				EF14CDCF21646C8A0035A292 /* BuffetMenuMap.h */,
-				EF14CDCE21646C8A0035A292 /* BuffetMenuMap.m */,
-				EF14CDD121646C8B0035A292 /* DiscountGroupMenuMap.h */,
-				EF14CDD821646C8C0035A292 /* DiscountGroupMenuMap.m */,
-				EF14CDD321646C8C0035A292 /* Language.h */,
-				EF14CDD521646C8C0035A292 /* Language.m */,
-				EF14CDD721646C8C0035A292 /* SharedBuffetMenuMap.h */,
-				EF14CDD421646C8C0035A292 /* SharedBuffetMenuMap.m */,
-				EF14CDD021646C8B0035A292 /* SharedDiscountGroupMenuMap.h */,
-				EF14CDD221646C8C0035A292 /* SharedDiscountGroupMenuMap.m */,
-				EF14CDD921646C8D0035A292 /* SharedLanguage.h */,
-				EF14CDD621646C8C0035A292 /* SharedLanguage.m */,
-				EFDAFDE6214A7EFD00A2596D /* Card.h */,
-				EFDAFDE7214A7EFE00A2596D /* Card.m */,
-				EFDAFDE3214A7EFD00A2596D /* LuckyDrawTicket.h */,
-				EFDAFDE4214A7EFD00A2596D /* LuckyDrawTicket.m */,
-				EFDAFDE9214A7EFE00A2596D /* SharedCard.h */,
-				EFDAFDE2214A7EFD00A2596D /* SharedCard.m */,
-				EFDAFDE8214A7EFE00A2596D /* SharedLuckyDrawTicket.h */,
-				EFDAFDE5214A7EFD00A2596D /* SharedLuckyDrawTicket.m */,
-				EF5DC0A3211718CB00FFEA60 /* SharedCurrentCreditCard.h */,
-				EF5DC0A2211718CB00FFEA60 /* SharedCurrentCreditCard.m */,
+				EF9EDC11223BC65400AD8AB4 /* Bank.h */,
+				EF9EDC0B223BC65300AD8AB4 /* Bank.m */,
 				EF9C4AD6210B4BAD00C7563A /* Branch.h */,
 				EF9C4B11210B4BAD00C7563A /* Branch.m */,
+				EF14CDCF21646C8A0035A292 /* BuffetMenuMap.h */,
+				EF14CDCE21646C8A0035A292 /* BuffetMenuMap.m */,
+				EFDAFDE6214A7EFD00A2596D /* Card.h */,
+				EFDAFDE7214A7EFE00A2596D /* Card.m */,
 				EF9C4AE2210B4BAD00C7563A /* Comment.h */,
 				EF9C4B2A210B4BAD00C7563A /* Comment.m */,
 				EF9C4AFD210B4BAD00C7563A /* CreditCard.h */,
 				EF9C4B3A210B4BAD00C7563A /* CreditCard.m */,
+				EF5C528421A739BD0022FE83 /* CreditCardAndOrderSummary.h */,
+				EF5C528321A739BD0022FE83 /* CreditCardAndOrderSummary.m */,
 				EF9C4AD3210B4BAD00C7563A /* CustomerTable.h */,
 				EF9C4B15210B4BAD00C7563A /* CustomerTable.m */,
+				EF14CDD121646C8B0035A292 /* DiscountGroupMenuMap.h */,
+				EF14CDD821646C8C0035A292 /* DiscountGroupMenuMap.m */,
+				EF5C528121A739BD0022FE83 /* DiscountProgram.h */,
+				EF5C528521A739BD0022FE83 /* DiscountProgram.m */,
 				EF9C4B39210B4BAD00C7563A /* Dispute.h */,
 				EF9C4AFC210B4BAD00C7563A /* Dispute.m */,
 				EF9C4AE6210B4BAD00C7563A /* DisputeReason.h */,
 				EF9C4B25210B4BAD00C7563A /* DisputeReason.m */,
+				EF7E94C721897C6C0009B945 /* EncryptedMessage.h */,
+				EF7E94C421897C6B0009B945 /* EncryptedMessage.m */,
 				EF9C4B0C210B4BAD00C7563A /* FacebookComment.h */,
 				EF9C4ABE210B4BAD00C7563A /* FacebookComment.m */,
+				EF5C548321B646780022FE83 /* GBPrimeQr.h */,
+				EF5C548421B646790022FE83 /* GBPrimeQr.m */,
 				EF9C4B21210B4BAD00C7563A /* HotDeal.h */,
 				EF9C4AE9210B4BAD00C7563A /* HotDeal.m */,
+				EF14CDD321646C8C0035A292 /* Language.h */,
+				EF14CDD521646C8C0035A292 /* Language.m */,
 				EF9C4B47210B4BAD00C7563A /* LogIn.h */,
 				EF9C4AF2210B4BAD00C7563A /* LogIn.m */,
+				EFDAFDE3214A7EFD00A2596D /* LuckyDrawTicket.h */,
+				EFDAFDE4214A7EFD00A2596D /* LuckyDrawTicket.m */,
 				EF9C4B16210B4BAD00C7563A /* Menu.h */,
 				EF9C4AD0210B4BAD00C7563A /* Menu.m */,
+				EF5C528621A739BE0022FE83 /* MenuForAlacarte.h */,
+				EF5C528721A739BE0022FE83 /* MenuForAlacarte.m */,
+				EF6C7CF321310CE200C335AC /* MenuForBuffet.h */,
+				EF6C7CF421310CE200C335AC /* MenuForBuffet.m */,
 				EF9C4ADF210B4BAD00C7563A /* MenuNote.h */,
 				EF9C4B2B210B4BAD00C7563A /* MenuNote.m */,
 				EF9C4B41210B4BAD00C7563A /* MenuPic.h */,
@@ -1813,6 +1808,8 @@
 				EF9C4AF7210B4BAD00C7563A /* Note.m */,
 				EF9C4B44210B4BAD00C7563A /* NoteType.h */,
 				EF9C4AEF210B4BAD00C7563A /* NoteType.m */,
+				EF7E94C021897C6B0009B945 /* OrderJoining.h */,
+				EF7E94BB21897C6A0009B945 /* OrderJoining.m */,
 				EF9C4B30210B4BAD00C7563A /* OrderNote.h */,
 				EF9C4ADE210B4BAD00C7563A /* OrderNote.m */,
 				EF9C4AC6210B4BAD00C7563A /* OrderTaking.h */,
@@ -1837,30 +1834,56 @@
 				EF9C4B48210B4BAD00C7563A /* RewardPoint.m */,
 				EF9C4AF9210B4BAD00C7563A /* RewardRedemption.h */,
 				EF9C4B3E210B4BAD00C7563A /* RewardRedemption.m */,
+				EF7E94CC21897C6D0009B945 /* SaveOrderNote.h */,
+				EF7E94BF21897C6B0009B945 /* SaveOrderNote.m */,
+				EF7E94B921897C690009B945 /* SaveOrderTaking.h */,
+				EF7E94CB21897C6D0009B945 /* SaveOrderTaking.m */,
+				EF7E94C121897C6B0009B945 /* SaveReceipt.h */,
+				EF7E94BE21897C6A0009B945 /* SaveReceipt.m */,
 				EF9C4B3B210B4BAD00C7563A /* Setting.h */,
 				EF9C4AFA210B4BAD00C7563A /* Setting.m */,
+				EF9EDC0C223BC65300AD8AB4 /* SharedBank.h */,
+				EF9EDC10223BC65400AD8AB4 /* SharedBank.m */,
 				EF9C4AC1210B4BAD00C7563A /* SharedBranch.h */,
 				EF9C4B09210B4BAD00C7563A /* SharedBranch.m */,
+				EF14CDD721646C8C0035A292 /* SharedBuffetMenuMap.h */,
+				EF14CDD421646C8C0035A292 /* SharedBuffetMenuMap.m */,
+				EFDAFDE9214A7EFE00A2596D /* SharedCard.h */,
+				EFDAFDE2214A7EFD00A2596D /* SharedCard.m */,
 				EF9C4AF3210B4BAD00C7563A /* SharedComment.h */,
 				EF9C4B42210B4BAD00C7563A /* SharedComment.m */,
+				EF5DC0A3211718CB00FFEA60 /* SharedCurrentCreditCard.h */,
+				EF5DC0A2211718CB00FFEA60 /* SharedCurrentCreditCard.m */,
 				EF9C4B43210B4BAD00C7563A /* SharedCurrentMenu.h */,
 				EF9C4AF4210B4BAD00C7563A /* SharedCurrentMenu.m */,
 				EF9C4B22210B4BAD00C7563A /* SharedCurrentOrderTaking.h */,
 				EF9C4AEA210B4BAD00C7563A /* SharedCurrentOrderTaking.m */,
+				EF7E94CA21897C6D0009B945 /* SharedCurrentSaveReceipt.h */,
+				EF7E94BC21897C6A0009B945 /* SharedCurrentSaveReceipt.m */,
 				EF9C4AD5210B4BAD00C7563A /* SharedCurrentUserAccount.h */,
 				EF9C4B12210B4BAD00C7563A /* SharedCurrentUserAccount.m */,
 				EF9C4ACB210B4BAD00C7563A /* SharedCustomerTable.h */,
 				EF9C4B1C210B4BAD00C7563A /* SharedCustomerTable.m */,
+				EF14CDD021646C8B0035A292 /* SharedDiscountGroupMenuMap.h */,
+				EF14CDD221646C8C0035A292 /* SharedDiscountGroupMenuMap.m */,
+				EF5C528221A739BD0022FE83 /* SharedDiscountProgram.h */,
+				EF5C528821A739BE0022FE83 /* SharedDiscountProgram.m */,
 				EF9C4B2C210B4BAD00C7563A /* SharedDispute.h */,
 				EF9C4AE0210B4BAD00C7563A /* SharedDispute.m */,
 				EF9C4ADA210B4BAD00C7563A /* SharedDisputeReason.h */,
 				EF9C4B31210B4BAD00C7563A /* SharedDisputeReason.m */,
 				EF9C4B4A210B4BAD00C7563A /* SharedHotDeal.h */,
 				EF9C4AED210B4BAD00C7563A /* SharedHotDeal.m */,
+				EF14CDD921646C8D0035A292 /* SharedLanguage.h */,
+				EF14CDD621646C8C0035A292 /* SharedLanguage.m */,
 				EF9C4B3D210B4BAD00C7563A /* SharedLogIn.h */,
 				EF9C4AF8210B4BAD00C7563A /* SharedLogIn.m */,
+				EFDAFDE8214A7EFE00A2596D /* SharedLuckyDrawTicket.h */,
+				EFDAFDE5214A7EFD00A2596D /* SharedLuckyDrawTicket.m */,
 				EF9C4B05210B4BAD00C7563A /* SharedMenu.h */,
 				EF9C4AC5210B4BAD00C7563A /* SharedMenu.m */,
+				EF6C7CF621310D2E00C335AC /* SharedMenuForBuffet.h */,
+				EF6C7CF721310D2E00C335AC /* SharedMenuForBuffet.m */,
 				EF9C4B14210B4BAD00C7563A /* SharedMenuNote.h */,
 				EF9C4AD2210B4BAD00C7563A /* SharedMenuNote.m */,
 				EF9C4B27210B4BAD00C7563A /* SharedMenuPic.h */,
@@ -1871,6 +1894,8 @@
 				EF9C4AD8210B4BAD00C7563A /* SharedNote.m */,
 				EF9C4AC7210B4BAD00C7563A /* SharedNoteType.h */,
 				EF9C4B03210B4BAD00C7563A /* SharedNoteType.m */,
+				EF7E94C521897C6C0009B945 /* SharedOrderJoining.h */,
+				EF7E94C221897C6B0009B945 /* SharedOrderJoining.m */,
 				EF9C4B46210B4BAD00C7563A /* SharedOrderNote.h */,
 				EF9C4AF0210B4BAD00C7563A /* SharedOrderNote.m */,
 				EF9C4B24210B4BAD00C7563A /* SharedOrderTaking.h */,
@@ -1895,6 +1920,12 @@
 				EF9C4AC9210B4BAD00C7563A /* SharedRewardPoint.m */,
 				EF9C4B37210B4BAD00C7563A /* SharedRewardRedemption.h */,
 				EF9C4AFF210B4BAD00C7563A /* SharedRewardRedemption.m */,
+				EF7E94C321897C6B0009B945 /* SharedSaveOrderNote.h */,
+				EF7E94BA21897C6A0009B945 /* SharedSaveOrderNote.m */,
+				EF7E94C621897C6C0009B945 /* SharedSaveOrderTaking.h */,
+				EF7E94C821897C6C0009B945 /* SharedSaveOrderTaking.m */,
+				EF7E94BD21897C6A0009B945 /* SharedSaveReceipt.h */,
+				EF7E94C921897C6C0009B945 /* SharedSaveReceipt.m */,
 				EF9C4B2D210B4BAD00C7563A /* SharedSetting.h */,
 				EF9C4ADB210B4BAD00C7563A /* SharedSetting.m */,
 				EF9C4B36210B4BAD00C7563A /* SharedShop.h */,
@@ -1905,12 +1936,18 @@
 				EF9C4AC2210B4BAD00C7563A /* SharedSubMenuType.m */,
 				EF9C4B2F210B4BAD00C7563A /* SharedTableNo.h */,
 				EF9C4ADD210B4BAD00C7563A /* SharedTableNo.m */,
+				EF9EDC0F223BC65400AD8AB4 /* SharedTransferForm.h */,
+				EF9EDC0D223BC65300AD8AB4 /* SharedTransferForm.m */,
 				EF9C4AD4210B4BAD00C7563A /* SharedUserAccount.h */,
 				EF9C4B13210B4BAD00C7563A /* SharedUserAccount.m */,
 				EF9C4B10210B4BAD00C7563A /* SharedUserPromotionUsed.h */,
 				EF9C4AD7210B4BAD00C7563A /* SharedUserPromotionUsed.m */,
 				EF9C4B17210B4BAD00C7563A /* SharedUserRewardRedemptionUsed.h */,
 				EF9C4ACF210B4BAD00C7563A /* SharedUserRewardRedemptionUsed.m */,
+				EF94806121779B11007CA270 /* SharedVoucherCode.h */,
+				EF94806221779B11007CA270 /* SharedVoucherCode.m */,
+				EF759FC2220044C800A6146F /* SharedZone.h */,
+				EF759FBF220044C800A6146F /* SharedZone.m */,
 				EF9C4B28210B4BAD00C7563A /* Shop.h */,
 				EF9C4AE3210B4BAD00C7563A /* Shop.m */,
 				EF9C4B45210B4BAD00C7563A /* SpecialPriceProgram.h */,
@@ -1919,16 +1956,20 @@
 				EF9C4B26210B4BAD00C7563A /* SubMenuType.m */,
 				EF9C4B3C210B4BAD00C7563A /* TableNo.h */,
 				EF9C4AFB210B4BAD00C7563A /* TableNo.m */,
+				EF713FAA21985B2400117F42 /* Time.h */,
+				EF713FAB21985B2400117F42 /* Time.m */,
+				EF9EDC0E223BC65400AD8AB4 /* TransferForm.h */,
+				EF9EDC12223BC65400AD8AB4 /* TransferForm.m */,
 				EF9C4B34210B4BAD00C7563A /* UserAccount.h */,
 				EF9C4B00210B4BAD00C7563A /* UserAccount.m */,
 				EF9C4B3F210B4BAD00C7563A /* UserPromotionUsed.h */,
 				EF9C4AF6210B4BAD00C7563A /* UserPromotionUsed.m */,
 				EF9C4B0D210B4BAD00C7563A /* UserRewardRedemptionUsed.h */,
 				EF9C4ABD210B4BAD00C7563A /* UserRewardRedemptionUsed.m */,
-				EF6C7CF321310CE200C335AC /* MenuForBuffet.h */,
-				EF6C7CF421310CE200C335AC /* MenuForBuffet.m */,
-				EF6C7CF621310D2E00C335AC /* SharedMenuForBuffet.h */,
-				EF6C7CF721310D2E00C335AC /* SharedMenuForBuffet.m */,
+				EF94806321779B12007CA270 /* VoucherCode.h */,
+				EF94805E21779B11007CA270 /* VoucherCode.m */,
+				EF759FC0220044C800A6146F /* Zone.h */,
+				EF759FC1220044C800A6146F /* Zone.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1936,42 +1977,18 @@
 		EF9C4B4B210B4BAD00C7563A /* CustomView */ = {
 			isa = PBXGroup;
 			children = (
-				EF5C547721B6465A0022FE83 /* CustomTableViewCellQRToPay.h */,
-				EF5C547921B6465A0022FE83 /* CustomTableViewCellQRToPay.m */,
-				EF5C547A21B6465A0022FE83 /* CustomTableViewCellQRToPay.xib */,
-				EF5C547B21B6465A0022FE83 /* CustomTableViewHeaderFooterButtonButton.h */,
-				EF5C547C21B6465B0022FE83 /* CustomTableViewHeaderFooterButtonButton.m */,
-				EF5C547821B6465A0022FE83 /* CustomTableViewHeaderFooterButtonButton.xib */,
-				EF5C527D21A739AC0022FE83 /* CustomTableViewCellApplyVoucherCode.h */,
-				EF5C527E21A739AC0022FE83 /* CustomTableViewCellApplyVoucherCode.m */,
-				EF5C527C21A739AC0022FE83 /* CustomTableViewCellApplyVoucherCode.xib */,
-				EF7E949A21897C160009B945 /* CustomTableViewCellImageLabel.h */,
-				EF7E949D21897C170009B945 /* CustomTableViewCellImageLabel.m */,
-				EF7E949B21897C170009B945 /* CustomTableViewCellImageLabel.xib */,
-				EF7E949C21897C170009B945 /* CustomTableViewCellReceiptHeader.h */,
-				EF7E949E21897C180009B945 /* CustomTableViewCellReceiptHeader.m */,
-				EF7E949921897C150009B945 /* CustomTableViewCellReceiptHeader.xib */,
-				EF948084217AF309007CA270 /* CustomCollectionViewCellNoteWithQuantity.h */,
-				EF948083217AF309007CA270 /* CustomCollectionViewCellNoteWithQuantity.m */,
-				EF948082217AF308007CA270 /* CustomCollectionViewCellNoteWithQuantity.xib */,
-				EF1F37F921746F4700EFB214 /* CustomTableViewCellSquareThumbNail.h */,
-				EF1F37FA21746F4700EFB214 /* CustomTableViewCellSquareThumbNail.m */,
-				EF1F37FB21746F4700EFB214 /* CustomTableViewCellSquareThumbNail.xib */,
-				EFDAFDEF214A7F1200A2596D /* CustomTableViewCellVoucherCodeExist.h */,
-				EFDAFDEE214A7F1200A2596D /* CustomTableViewCellVoucherCodeExist.m */,
-				EFDAFDF0214A7F1200A2596D /* CustomTableViewCellVoucherCodeExist.xib */,
-				EF639DFC211F22E200C70A98 /* CustomTableViewCellLabelRemark.h */,
-				EF639DFA211F22E200C70A98 /* CustomTableViewCellLabelRemark.m */,
-				EF639DFE211F22E300C70A98 /* CustomTableViewCellLabelRemark.xib */,
-				EF639DFF211F22E300C70A98 /* CustomTableViewCellSeparatorLine.h */,
-				EF639DFB211F22E200C70A98 /* CustomTableViewCellSeparatorLine.m */,
-				EF639DFD211F22E300C70A98 /* CustomTableViewCellSeparatorLine.xib */,
 				EF9C4B70210B4BAD00C7563A /* CustomCollectionReusableView.h */,
 				EF9C4BA1210B4BAD00C7563A /* CustomCollectionReusableView.m */,
 				EF9C4B7A210B4BAD00C7563A /* CustomCollectionReusableView.xib */,
 				EF9C4BA7210B4BAD00C7563A /* CustomCollectionViewCellNote.h */,
 				EF9C4B6C210B4BAD00C7563A /* CustomCollectionViewCellNote.m */,
 				EF9C4B57210B4BAD00C7563A /* CustomCollectionViewCellNote.xib */,
+				EF948084217AF309007CA270 /* CustomCollectionViewCellNoteWithQuantity.h */,
+				EF948083217AF309007CA270 /* CustomCollectionViewCellNoteWithQuantity.m */,
+				EF948082217AF308007CA270 /* CustomCollectionViewCellNoteWithQuantity.xib */,
+				EF5C527D21A739AC0022FE83 /* CustomTableViewCellApplyVoucherCode.h */,
+				EF5C527E21A739AC0022FE83 /* CustomTableViewCellApplyVoucherCode.m */,
+				EF5C527C21A739AC0022FE83 /* CustomTableViewCellApplyVoucherCode.xib */,
 				EF9C4B69210B4BAD00C7563A /* CustomTableViewCellButton.h */,
 				EF9C4BA9210B4BAD00C7563A /* CustomTableViewCellButton.m */,
 				EF9C4B68210B4BAD00C7563A /* CustomTableViewCellButton.xib */,
@@ -1981,9 +1998,15 @@
 				EF9C4BAE210B4BAD00C7563A /* CustomTableViewCellDisputeDetail.h */,
 				EF9C4B79210B4BAD00C7563A /* CustomTableViewCellDisputeDetail.m */,
 				EF9C4B5D210B4BAD00C7563A /* CustomTableViewCellDisputeDetail.xib */,
+				EF7E949A21897C160009B945 /* CustomTableViewCellImageLabel.h */,
+				EF7E949D21897C170009B945 /* CustomTableViewCellImageLabel.m */,
+				EF7E949B21897C170009B945 /* CustomTableViewCellImageLabel.xib */,
 				EF9C4B7F210B4BAD00C7563A /* CustomTableViewCellImageLabelRemove.h */,
 				EF9C4BAC210B4BAD00C7563A /* CustomTableViewCellImageLabelRemove.m */,
 				EF9C4B6A210B4BAD00C7563A /* CustomTableViewCellImageLabelRemove.xib */,
+				EF9EDC272240A0C000AD8AB4 /* CustomTableViewCellImageLabelText.h */,
+				EF9EDC292240A0C000AD8AB4 /* CustomTableViewCellImageLabelText.m */,
+				EF9EDC282240A0C000AD8AB4 /* CustomTableViewCellImageLabelText.xib */,
 				EF9C4B75210B4BAD00C7563A /* CustomTableViewCellImageText.h */,
 				EF9C4B9E210B4BAD00C7563A /* CustomTableViewCellImageText.m */,
 				EF9C4BA4210B4BAD00C7563A /* CustomTableViewCellImageText.xib */,
@@ -1996,6 +2019,9 @@
 				EF9C4B64210B4BAD00C7563A /* CustomTableViewCellLabelLabel.h */,
 				EF9C4B91210B4BAD00C7563A /* CustomTableViewCellLabelLabel.m */,
 				EF9C4B9C210B4BAD00C7563A /* CustomTableViewCellLabelLabel.xib */,
+				EF639DFC211F22E200C70A98 /* CustomTableViewCellLabelRemark.h */,
+				EF639DFA211F22E200C70A98 /* CustomTableViewCellLabelRemark.m */,
+				EF639DFE211F22E300C70A98 /* CustomTableViewCellLabelRemark.xib */,
 				EF9C4B65210B4BAD00C7563A /* CustomTableViewCellLabelText.h */,
 				EF9C4B8F210B4BAD00C7563A /* CustomTableViewCellLabelText.m */,
 				EF9C4B66210B4BAD00C7563A /* CustomTableViewCellLabelText.xib */,
@@ -2026,9 +2052,15 @@
 				EF9C4BA0210B4BAD00C7563A /* CustomTableViewCellPromoThumbNail.h */,
 				EF9C4B73210B4BAD00C7563A /* CustomTableViewCellPromoThumbNail.m */,
 				EF9C4B7C210B4BAD00C7563A /* CustomTableViewCellPromoThumbNail.xib */,
+				EF5C547721B6465A0022FE83 /* CustomTableViewCellQRToPay.h */,
+				EF5C547921B6465A0022FE83 /* CustomTableViewCellQRToPay.m */,
+				EF5C547A21B6465A0022FE83 /* CustomTableViewCellQRToPay.xib */,
 				EF9C4B67210B4BAD00C7563A /* CustomTableViewCellRating.h */,
 				EF9C4B8E210B4BAD00C7563A /* CustomTableViewCellRating.m */,
 				EF9C4B5B210B4BAD00C7563A /* CustomTableViewCellRating.xib */,
+				EF7E949C21897C170009B945 /* CustomTableViewCellReceiptHeader.h */,
+				EF7E949E21897C180009B945 /* CustomTableViewCellReceiptHeader.m */,
+				EF7E949921897C150009B945 /* CustomTableViewCellReceiptHeader.xib */,
 				EF9C4B4F210B4BAD00C7563A /* CustomTableViewCellReceiptSummary.h */,
 				EF9C4B89210B4BAD00C7563A /* CustomTableViewCellReceiptSummary.m */,
 				EF9C4B8A210B4BAD00C7563A /* CustomTableViewCellReceiptSummary.xib */,
@@ -2044,6 +2076,12 @@
 				EF9C4BAA210B4BAD00C7563A /* CustomTableViewCellSearchBar.h */,
 				EF9C4B81210B4BAD00C7563A /* CustomTableViewCellSearchBar.m */,
 				EF9C4B77210B4BAD00C7563A /* CustomTableViewCellSearchBar.xib */,
+				EF639DFF211F22E300C70A98 /* CustomTableViewCellSeparatorLine.h */,
+				EF639DFB211F22E200C70A98 /* CustomTableViewCellSeparatorLine.m */,
+				EF639DFD211F22E300C70A98 /* CustomTableViewCellSeparatorLine.xib */,
+				EF1F37F921746F4700EFB214 /* CustomTableViewCellSquareThumbNail.h */,
+				EF1F37FA21746F4700EFB214 /* CustomTableViewCellSquareThumbNail.m */,
+				EF1F37FB21746F4700EFB214 /* CustomTableViewCellSquareThumbNail.xib */,
 				EF9C4B9F210B4BAD00C7563A /* CustomTableViewCellText.h */,
 				EF9C4B74210B4BAD00C7563A /* CustomTableViewCellText.m */,
 				EF9C4B7B210B4BAD00C7563A /* CustomTableViewCellText.xib */,
@@ -2053,9 +2091,15 @@
 				EF9C4BA2210B4BAD00C7563A /* CustomTableViewCellVoucherCode.h */,
 				EF9C4B71210B4BAD00C7563A /* CustomTableViewCellVoucherCode.m */,
 				EF9C4B82210B4BAD00C7563A /* CustomTableViewCellVoucherCode.xib */,
+				EFDAFDEF214A7F1200A2596D /* CustomTableViewCellVoucherCodeExist.h */,
+				EFDAFDEE214A7F1200A2596D /* CustomTableViewCellVoucherCodeExist.m */,
+				EFDAFDF0214A7F1200A2596D /* CustomTableViewCellVoucherCodeExist.xib */,
 				EF9C4B8D210B4BAD00C7563A /* CustomTableViewHeaderFooterButton.h */,
 				EF9C4B4C210B4BAD00C7563A /* CustomTableViewHeaderFooterButton.m */,
 				EF9C4B52210B4BAD00C7563A /* CustomTableViewHeaderFooterButton.xib */,
+				EF5C547B21B6465A0022FE83 /* CustomTableViewHeaderFooterButtonButton.h */,
+				EF5C547C21B6465B0022FE83 /* CustomTableViewHeaderFooterButtonButton.m */,
+				EF5C547821B6465A0022FE83 /* CustomTableViewHeaderFooterButtonButton.xib */,
 				EF9C4BA3210B4BAD00C7563A /* CustomTableViewHeaderFooterOkCancel.h */,
 				EF9C4B6F210B4BAD00C7563A /* CustomTableViewHeaderFooterOkCancel.m */,
 				EF9C4B8B210B4BAD00C7563A /* CustomTableViewHeaderFooterOkCancel.xib */,
@@ -2117,6 +2161,7 @@
 				EF9C49AF210B4B3B00C7563A /* Frameworks */,
 				EF9C49B0210B4B3B00C7563A /* Resources */,
 				EF33CD62211BF79E00560C69 /* ShellScript */,
+				1C50FAEEFF702D0FFA513847 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -2438,8 +2483,10 @@
 				EF9C4C65210B4BAE00C7563A /* search.png in Resources */,
 				EF9C4C87210B4BAE00C7563A /* masterCard.png in Resources */,
 				EF9C4D5D210B4BAE00C7563A /* Prompt-SemiBold.ttf in Resources */,
+				EFA0BD13234CF142000C2D0D /* pictureFrame.png in Resources */,
 				EF9C4D4D210B4BAE00C7563A /* Prompt-Light.ttf in Resources */,
 				EF9C4D51210B4BAE00C7563A /* Prompt-ExtraBold.ttf in Resources */,
+				EF9EDC262240A0A100AD8AB4 /* changeLang.png in Resources */,
 				EF14CDCA21646C670035A292 /* triangle_and_om.png in Resources */,
 				EF94807F217AF255007CA270 /* peekABoo.png in Resources */,
 				EF9C4D43210B4BAE00C7563A /* Prompt-BoldItalic.ttf in Resources */,
@@ -2454,6 +2501,7 @@
 				EF9C4C41210B4BAD00C7563A /* iTunesArtwork in Resources */,
 				EF713F5D21985B1400117F42 /* giftBoxExcellent00013.png in Resources */,
 				EF9C4D2A210B4BAE00C7563A /* CustomTableViewCellLabel.xib in Resources */,
+				EF9EDC2A2240A0C000AD8AB4 /* CustomTableViewCellImageLabelText.xib in Resources */,
 				EF9C4C75210B4BAE00C7563A /* JummumLaunchBg.png in Resources */,
 				EF9C4C55210B4BAD00C7563A /* logOut.png in Resources */,
 				EF713F9521985B1400117F42 /* giftBoxAwesome00020.png in Resources */,
@@ -2501,6 +2549,28 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		1C50FAEEFF702D0FFA513847 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-DemoJummum/Pods-DemoJummum-resources.sh",
+				"${PODS_ROOT}/FBSDKCoreKit/FacebookSDKStrings.bundle",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/FacebookSDKStrings.bundle",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-DemoJummum/Pods-DemoJummum-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		65108BD651C6E5DF91CE6643 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -2610,6 +2680,7 @@
 				EF9C4CC0210B4BAE00C7563A /* SharedMenuNote.m in Sources */,
 				EF9C4C9C210B4BAE00C7563A /* PersonalDataViewController.m in Sources */,
 				EF9C4CF1210B4BAE00C7563A /* SharedDisputeReason.m in Sources */,
+				EF9EDC2B2240A0C000AD8AB4 /* CustomTableViewCellImageLabelText.m in Sources */,
 				EF9C4CD7210B4BAE00C7563A /* SharedLogIn.m in Sources */,
 				EF9C4CB6210B4BAE00C7563A /* SharedSubMenuType.m in Sources */,
 				EF9C4D20210B4BAE00C7563A /* CustomViewVoucher.m in Sources */,
@@ -2675,6 +2746,7 @@
 				EF9C4D1E210B4BAE00C7563A /* CustomTableViewCellOrderSummary.m in Sources */,
 				EF9C4D07210B4BAE00C7563A /* CustomTableViewCellTotal.m in Sources */,
 				EF9C4CF5210B4BAE00C7563A /* RewardRedemption.m in Sources */,
+				EF9EDC16223BC65500AD8AB4 /* TransferForm.m in Sources */,
 				EF9C4CC3210B4BAE00C7563A /* SharedSetting.m in Sources */,
 				EF9C4D27210B4BAE00C7563A /* CustomTableViewCellLabelText.m in Sources */,
 				EF7E94CF21897C6D0009B945 /* SharedCurrentSaveReceipt.m in Sources */,
@@ -2690,12 +2762,15 @@
 				EF9C4CCA210B4BAE00C7563A /* SharedOrderTaking.m in Sources */,
 				EFDAFDED214A7EFE00A2596D /* Card.m in Sources */,
 				EF9C4CF3210B4BAE00C7563A /* Promotion.m in Sources */,
+				EFA0BD0F234C5436000C2D0D /* LuckyDrawBranchViewController.m in Sources */,
 				EF9C4CBC210B4BAE00C7563A /* PromotionMenu.m in Sources */,
 				EF9C4D36210B4BAE00C7563A /* CustomTableViewCellMenu.m in Sources */,
 				EF9C4C90210B4BAE00C7563A /* HotDealViewController.m in Sources */,
 				EF9C4CE5210B4BAE00C7563A /* SharedCurrentUserAccount.m in Sources */,
 				EF9C4CE7210B4BAE00C7563A /* CustomerTable.m in Sources */,
+				EF9EDC15223BC65500AD8AB4 /* SharedBank.m in Sources */,
 				EF6C7CF821310D2E00C335AC /* SharedMenuForBuffet.m in Sources */,
+				EF9EDC13223BC65500AD8AB4 /* Bank.m in Sources */,
 				EF1F37FC21746F4700EFB214 /* CustomTableViewCellSquareThumbNail.m in Sources */,
 				EF9C4CDE210B4BAE00C7563A /* SharedShop.m in Sources */,
 				EF14CDDA21646C8D0035A292 /* BuffetMenuMap.m in Sources */,
@@ -2755,6 +2830,7 @@
 				EF9C4CC2210B4BAE00C7563A /* SharedNote.m in Sources */,
 				EF9C4CCC210B4BAE00C7563A /* SharedCurrentOrderTaking.m in Sources */,
 				EF9C4CD8210B4BAE00C7563A /* Setting.m in Sources */,
+				EF9EDC0A223BC63000AD8AB4 /* ConfirmTransferFormViewController.m in Sources */,
 				EF9C4CCF210B4BAE00C7563A /* NoteType.m in Sources */,
 				EF9C4D2D210B4BAE00C7563A /* CustomTableViewCellLabel.m in Sources */,
 				EF5C528C21A739BE0022FE83 /* SharedDiscountProgram.m in Sources */,
@@ -2780,6 +2856,7 @@
 				EF9C4D38210B4BAE00C7563A /* CustomTableViewCellImageLabelRemove.m in Sources */,
 				EF9C4D00210B4BAE00C7563A /* CustomViewController.m in Sources */,
 				EF9C4C9B210B4BAE00C7563A /* BranchSearchViewController.m in Sources */,
+				EF9EDC14223BC65500AD8AB4 /* SharedTransferForm.m in Sources */,
 				EF9C4C92210B4BAE00C7563A /* MyRewardViewController.m in Sources */,
 				EF9C4C26210B4BAD00C7563A /* OmiseToken.swift in Sources */,
 				EF9C4C36210B4BAD00C7563A /* OmiseSDKClient.swift in Sources */,
@@ -2865,6 +2942,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_BITCODE = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
@@ -2924,6 +3002,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_BITCODE = NO;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
@@ -2950,8 +3029,9 @@
 				CODE_SIGN_ENTITLEMENTS = DemoJummum/DemoJummum.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = DF8AZLDC5D;
+				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = DemoJummum/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -2971,8 +3051,9 @@
 				CODE_SIGN_ENTITLEMENTS = DemoJummum/DemoJummum.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = DF8AZLDC5D;
+				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = DemoJummum/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

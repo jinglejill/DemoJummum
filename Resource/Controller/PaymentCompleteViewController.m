@@ -80,7 +80,7 @@ static NSString * const reuseIdentifierLabelLabel = @"CustomTableViewCellLabelLa
     if(receipt.hasBuffetMenu || receipt.buffetReceiptID)
     {
         [self setButtonDesign:btnOrderBuffet];
-        [btnSaveToCameraRoll setTitle:[Language getText:@"บันทึกใบเสร็จ และสั่งบุฟเฟต์"] forState:UIControlStateNormal];
+        [btnSaveToCameraRoll setTitle:[Language getText:@"บันทึกใบเสร็จ และสั่งบุฟเฟ่ต์"] forState:UIControlStateNormal];
     }
     else
     {
@@ -113,18 +113,19 @@ static NSString * const reuseIdentifierLabelLabel = @"CustomTableViewCellLabelLa
         
         
         //uilabel
-        NSString *strTicket = numberOfGift==1?@"ticket":@"tickets";
+        NSString *strLuckyDraw = [Language getText:@"คุณมีสิทธิ์จับรางวัล"];
+        NSString *strTicket = [Language getText:@"times"];
         UILabel *lblGiftNum = [[UILabel alloc]init];
         lblGiftNum.font = [UIFont fontWithName:@"Prompt-SemiBold" size:15];
         lblGiftNum.textColor = [UIColor whiteColor];
-        lblGiftNum.textAlignment = NSTextAlignmentRight;
+        lblGiftNum.textAlignment = NSTextAlignmentRight;        
         lblGiftNum.numberOfLines = 1;
-        lblGiftNum.text = [NSString stringWithFormat:@"You've got %ld %@",numberOfGift,strTicket];
+        lblGiftNum.text = [NSString stringWithFormat:@"%@ %ld %@",strLuckyDraw,numberOfGift,strTicket];
         [lblGiftNum sizeToFit];
         lblGiftNum.center = animatedImageView.center;
         CGRect frame = lblGiftNum.frame;
-        frame.origin.x = self.view.frame.size.width-16-animatedImageView.frame.size.width-8-lblGiftNum.frame.size.width;
-        lblGiftNum.frame = frame;
+        frame.origin.x = self.view.frame.size.width-16-animatedImageView.frame.size.width-8-lblGiftNum.frame.size.width;        
+        lblGiftNum.frame = frame;        
         [self.view addSubview:lblGiftNum];
         
 
@@ -807,7 +808,7 @@ static NSString * const reuseIdentifierLabelLabel = @"CustomTableViewCellLabelLa
             cell.lblAmount.textColor = cSystem4;
 
 
-            UIImage *image = [self imageFromView:cell];
+            UIImage *image = [self imageFromView:cell];            
             if((branch.serviceChargePercent>0 && branch.percentVat>0) || (branch.serviceChargePercent == 0 && branch.percentVat>0 && branch.priceIncludeVat))
             {
                 [arrImage addObject:image];

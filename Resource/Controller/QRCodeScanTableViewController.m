@@ -8,7 +8,6 @@
 
 #import "QRCodeScanTableViewController.h"
 #import "MenuSelectionViewController.h"
-//#import "CreditCardAndOrderSummaryViewController.h"
 #import "Utility.h"
 #import "Branch.h"
 #import "CustomerTable.h"
@@ -62,6 +61,49 @@
     alreadySeg = NO;
 }
 
+- (IBAction)chooseFromExistingPhoto:(id)sender
+{
+    if ([UIImagePickerController isSourceTypeAvailable: UIImagePickerControllerSourceTypePhotoLibrary])
+    {
+        UIImagePickerController *controller = [[UIImagePickerController alloc] init];
+        controller.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+        controller.allowsEditing = NO;
+        controller.mediaTypes = [UIImagePickerController availableMediaTypesForSourceType: UIImagePickerControllerSourceTypePhotoLibrary];
+        controller.delegate = self;
+        [self presentViewController: controller animated: YES completion: nil];
+    }
+}
+
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
+{
+//    [self.navigationController dismissViewControllerAnimated: YES completion: nil];
+    [picker dismissViewControllerAnimated:NO completion:^{
+        UIImage *image = [info valueForKey: UIImagePickerControllerOriginalImage];
+        CIImage *ciImage = [[CIImage alloc] initWithCGImage:image.CGImage options:nil];
+        CIDetector *detector = [CIDetector detectorOfType:CIDetectorTypeQRCode
+                           context:nil
+                           options:@{CIDetectorTracking: @YES,
+                                     CIDetectorAccuracy: CIDetectorAccuracyLow}];
+        NSString *qrCodeText = @"";
+        NSArray *arrFeature = [detector featuresInImage:ciImage];
+        for(CIQRCodeFeature *item in arrFeature)
+        {
+            qrCodeText = [NSString stringWithFormat:@"%@%@",qrCodeText,item.messageString];
+        }
+        
+        //scan qrcode
+        [self loadingOverlayView];
+        [self.homeModel downloadItems:dbBranchAndCustomerTableQR withData:qrCodeText];
+    }];
+    
+}
+
+- (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker;
+{
+    [picker dismissViewControllerAnimated:NO completion:nil];
+//    [self.navigationController dismissViewControllerAnimated: YES completion: nil];
+}
+
 - (IBAction)branchSearch:(id)sender
 {
     [self performSegueWithIdentifier:@"segBranchSearch" sender:self];
@@ -103,8 +145,7 @@
     [super viewDidLoad];
     
     
-    NSString *title = [Language getText:@"สแกน QR Code เลขโต๊ะ"];
-    lblNavTitle.text = title;
+    
     btnBack.hidden = fromCreditCardAndOrderSummaryMenu?NO:YES;
     btnBranchSearch.hidden = !btnBack.hidden;
     imgPeekABoo.hidden = YES;
@@ -113,24 +154,25 @@
     
     _captureSession = nil;
     [self loadBeepSound];
-//    [self.view addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self.view action:@selector(endEditing:)]];
 
 }
 
 -(void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:YES];
-    
+    NSString *title = [Language getText:@"สแกน QR Code เลขโต๊ะ"];
+    lblNavTitle.text = title;
     
     if(fromOrderNow)
     {
+        _saveOrderTakingList = nil;
+        _saveOrderNoteList = nil;
         fromOrderNow = NO;
         [self performSegueWithIdentifier:@"segMenuSelection" sender:self];
         return;
     }
     else if(fromOrderItAgain)
     {
-//        fromOrderItAgain = NO;
         [self loadingOverlayView];
         [self.homeModel downloadItems:dbOrderItAgain withData:orderItAgainReceipt];
     }
@@ -265,8 +307,6 @@
         vc.saveReceipt = _saveReceipt;
         vc.saveOrderTakingList = _saveOrderTakingList;
         vc.saveOrderNoteList = _saveOrderNoteList;
-//        vc.fromOrderItAgain = fromOrderItAgain;
-//        fromOrderItAgain = NO;
     }
 }
 

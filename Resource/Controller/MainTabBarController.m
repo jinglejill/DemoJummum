@@ -12,7 +12,6 @@
 #import "CommentViewController.h"
 #import "BasketViewController.h"
 #import "BranchSearchViewController.h"
-//#import "CreditCardAndOrderSummaryViewController.h"
 #import "CreditCardViewController.h"
 #import "CustomerTableSearchViewController.h"
 #import "HotDealDetailViewController.h"
@@ -30,6 +29,7 @@
 #import "ReceiptSummaryViewController.h"
 #import "OrderDetailViewController.h"
 #import "ShowQRToPayViewController.h"
+#import "LuckyDrawViewController.h"
 #import "Branch.h"
 #import "CustomerTable.h"
 #import "Receipt.h"
@@ -125,9 +125,19 @@
     else if([vc isKindOfClass:[RewardRedemptionViewController class]] && ((RewardRedemptionViewController *)vc).goToMenuSelection)
     {
         RewardRedemptionViewController *rewardRedemptionVc = (RewardRedemptionViewController *)vc;
-        rewardRedemptionVc.goToMenuSelection = 0;
 
         _selectedBranch = rewardRedemptionVc.branch;
+        _showMenuSelection = rewardRedemptionVc.goToMenuSelection;
+        _fromOrderNow = YES;
+        _switchToQRTab = 1;
+        
+        rewardRedemptionVc.goToMenuSelection = 0;
+    }
+    else if([vc isKindOfClass:[LuckyDrawViewController class]])
+    {
+        LuckyDrawViewController *luckyDrawVc = (LuckyDrawViewController *)vc;
+
+        _selectedBranch = [Branch getBranch:luckyDrawVc.branchID];
         _showMenuSelection = 1;
         _switchToQRTab = 1;
     }
@@ -192,6 +202,8 @@
             QRCodeScanTableViewController *vc = (QRCodeScanTableViewController *)self.selectedViewController;
             vc.orderItAgainReceipt = _orderItAgainReceipt;
             vc.fromOrderItAgain = _fromOrderItAgain;
+            _fromOrderItAgain = NO;
+            
             [vc viewDidAppear:NO];
         }
         else if(_fromOrderNow)
@@ -202,6 +214,8 @@
             vc.selectedCustomerTable = _selectedCustomerTable;
             vc.fromOrderNow = _fromOrderNow;
             vc.buffetReceipt = _buffetReceipt;
+            _fromOrderNow = NO;
+            
             [vc viewDidAppear:NO];
         }
         else if(_showMenuSelection)

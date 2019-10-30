@@ -4,6 +4,8 @@
 <dict>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
+	<key>CFBundleDisplayName</key>
+	<string>DEMO JUMMUM</string>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>
@@ -15,20 +17,20 @@
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>2.3</string>
+	<string>2.5</string>
 	<key>CFBundleURLTypes</key>
 	<array>
 		<dict>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>fb831341173736823</string>
+				<string>fb1684680414955303</string>
 			</array>
 		</dict>
 	</array>
 	<key>CFBundleVersion</key>
-	<string>214</string>
+	<string>347</string>
 	<key>FacebookAppID</key>
-	<string>831341173736823</string>
+	<string>1684680414955303</string>
 	<key>FacebookDisplayName</key>
 	<string>DEMO JUMMUM</string>
 	<key>ITSAppUsesNonExemptEncryption</key>
@@ -47,6 +49,8 @@
 		<key>NSAllowsArbitraryLoads</key>
 		<true/>
 	</dict>
+	<key>NSBluetoothPeripheralUsageDescription</key>
+	<string>This app requires Bluetooth to connect to our hardware.</string>
 	<key>NSCameraUsageDescription</key>
 	<string>Use to scan QR code at the restaurant</string>
 	<key>NSPhotoLibraryAddUsageDescription</key>

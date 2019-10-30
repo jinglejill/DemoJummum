@@ -17,6 +17,7 @@
 #import "SpecialPriceProgram.h"
 #import "Message.h"
 #import "DiscountGroupMenuMap.h"
+#import "CreditCard.h"
 
 
 @interface RewardRedemptionViewController ()
@@ -47,6 +48,7 @@ static NSString * const reuseIdentifierLabelDetailLabelWithImage = @"CustomTable
 @synthesize bottomLabelHeight;
 @synthesize goToMenuSelection;
 @synthesize branch;
+@synthesize promoCodeType;
 
 -(IBAction)unwindToRewardRedemption:(UIStoryboardSegue *)segue
 {
@@ -63,14 +65,20 @@ static NSString * const reuseIdentifierLabelDetailLabelWithImage = @"CustomTable
     topViewHeight.constant = topPadding == 0?20:topPadding;
 }
 
+-(void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    NSString *title = [Language getText:@"แสดงโค้ด เพื่อรับสิทธิ์"];
+    lblNavTitle.text = title;
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
     
-    NSString *title = [Language getText:@"แสดงโค้ด เพื่อรับสิทธิ์"];
-    lblNavTitle.text = title;
+    
     tbvData.delegate = self;
     tbvData.dataSource = self;
     tbvData.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
@@ -90,19 +98,62 @@ static NSString * const reuseIdentifierLabelDetailLabelWithImage = @"CustomTable
     }
     
     
-    if(rewardRedemption.withInPeriod == 0)
+    _expandCollapse = 1;
+    if(fromMenuMyReward)
     {
-        NSString *message = [Language getText:@"ใช้ได้ 1 ครั้ง ภายใน %@"];
-        lblCountDown.text = [NSString stringWithFormat:message,[Utility dateToString:rewardRedemption.usingEndDate toFormat:@"d MMM yyyy"]];
+        if(promoCodeType == 0)
+        {
+            if(rewardRedemption.withInPeriod == 0)
+            {
+                NSString *message = [Language getText:@"ใช้ได้ 1 ครั้ง ภายใน %@"];
+                lblCountDown.text = [NSString stringWithFormat:message,[Utility dateToString:rewardRedemption.usingEndDate toFormat:@"d MMM yyyy"]];
+            }
+            else
+            {
+                NSTimeInterval seconds = [[Utility currentDateTime] timeIntervalSinceDate:rewardPointSpent.modifiedDate];
+                _timeToCountDown = rewardRedemption.withInPeriod - seconds >= 0?rewardRedemption.withInPeriod - seconds:0;
+                [[UIApplication sharedApplication] beginBackgroundTaskWithExpirationHandler:nil];
+                timer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(updateTimer:) userInfo:nil repeats:YES];
+                [[NSRunLoop currentRunLoop] addTimer:timer forMode:NSRunLoopCommonModes];
+            }
+        }
+        else if(promoCodeType == 1)
+        {
+            NSString *message = [Language getText:@"ใช้ไปเมื่อ %@"];
+            lblCountDown.text = [NSString stringWithFormat:message,[Utility dateToString:promoCode.modifiedDate toFormat:@"d MMM yyyy HH:mm"]];
+        }
+        else if(promoCodeType == 2)
+        {
+            if(rewardRedemption.withInPeriod == 0)
+            {
+                NSString *message = [Language getText:@"หมดอายุเมื่อ %@"];
+                lblCountDown.text = [NSString stringWithFormat:message,[Utility dateToString:rewardRedemption.usingEndDate toFormat:@"d MMM yyyy"]];
+            }
+            else
+            {
+                NSString *message = [Language getText:@"หมดอายุเมื่อ %@"];
+                NSDate *expiredDate = [Utility addSecond:rewardPoint.modifiedDate numberOfSecond:rewardRedemption.withInPeriod];
+                lblCountDown.text = [NSString stringWithFormat:message,[Utility dateToString:expiredDate toFormat:@"d MMM yyyy HH:mm"]];
+            }
+        }
     }
-    else
+    else //from Menu rewardDetail
     {
-        NSTimeInterval seconds = [[Utility currentDateTime] timeIntervalSinceDate:rewardPointSpent.modifiedDate];
-        _timeToCountDown = rewardRedemption.withInPeriod - seconds >= 0?rewardRedemption.withInPeriod - seconds:0;
-        [[UIApplication sharedApplication] beginBackgroundTaskWithExpirationHandler:nil];
-        timer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(updateTimer:) userInfo:nil repeats:YES];
-        [[NSRunLoop currentRunLoop] addTimer:timer forMode:NSRunLoopCommonModes];
+        if(rewardRedemption.withInPeriod == 0)
+        {
+            NSString *message = [Language getText:@"ใช้ได้ 1 ครั้ง ภายใน %@"];
+            lblCountDown.text = [NSString stringWithFormat:message,[Utility dateToString:rewardRedemption.usingEndDate toFormat:@"d MMM yyyy"]];
+        }
+        else
+        {
+            NSTimeInterval seconds = [[Utility currentDateTime] timeIntervalSinceDate:rewardPointSpent.modifiedDate];
+            _timeToCountDown = rewardRedemption.withInPeriod - seconds >= 0?rewardRedemption.withInPeriod - seconds:0;
+            [[UIApplication sharedApplication] beginBackgroundTaskWithExpirationHandler:nil];
+            timer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(updateTimer:) userInfo:nil repeats:YES];
+            [[NSRunLoop currentRunLoop] addTimer:timer forMode:NSRunLoopCommonModes];
+        }
     }
+    
     
 }
 
@@ -170,17 +221,42 @@ static NSString * const reuseIdentifierLabelDetailLabelWithImage = @"CustomTable
         _promoCode = promoCode.code;
         
         
-        if(rewardRedemption.mainBranchID)
+        if(fromMenuMyReward)
         {
-            cell.btnCopy.hidden = NO;
-            [cell.btnCopy setTitle:[Language getText:@"สั่งเลย"] forState:UIControlStateNormal];
-            [cell.btnCopy removeTarget:self action:nil forControlEvents:UIControlEventAllEvents];
-            [cell.btnCopy addTarget:self action:@selector(goToCreditAndOrderSummary:) forControlEvents:UIControlEventTouchUpInside];
+            if(promoCodeType == 0)
+            {
+                if(rewardRedemption.mainBranchID)
+                {
+                    cell.btnCopy.hidden = NO;
+                    [cell.btnCopy setTitle:[Language getText:@"สั่งเลย"] forState:UIControlStateNormal];
+                    [cell.btnCopy removeTarget:self action:nil forControlEvents:UIControlEventAllEvents];
+                    [cell.btnCopy addTarget:self action:@selector(goToCreditAndOrderSummary:) forControlEvents:UIControlEventTouchUpInside];
+                }
+                else
+                {
+                    cell.btnCopy.hidden = YES;
+                }
+            }
+            else
+            {
+                cell.btnCopy.hidden = YES;
+            }
         }
-        else
+        else// from Menu RewardDetail
         {
-            cell.btnCopy.hidden = YES;
+            if(rewardRedemption.mainBranchID)
+            {
+                cell.btnCopy.hidden = NO;
+                [cell.btnCopy setTitle:[Language getText:@"สั่งเลย"] forState:UIControlStateNormal];
+                [cell.btnCopy removeTarget:self action:nil forControlEvents:UIControlEventAllEvents];
+                [cell.btnCopy addTarget:self action:@selector(goToCreditAndOrderSummary:) forControlEvents:UIControlEventTouchUpInside];
+            }
+            else
+            {
+                cell.btnCopy.hidden = YES;
+            }
         }
+        
         
         
         return cell;
@@ -349,6 +425,8 @@ static NSString * const reuseIdentifierLabelDetailLabelWithImage = @"CustomTable
         }
         else
         {
+            [OrderTaking removeCurrentOrderTakingList];
+            
             NSMutableArray *discountGroupMenuMapList = items[3];
             if(rewardRedemption.discountGroupMenuID && [discountGroupMenuMapList count]>0)
             {
@@ -374,6 +452,11 @@ static NSString * const reuseIdentifierLabelDetailLabelWithImage = @"CustomTable
             }
             else
             {
+                SaveReceipt *saveReceipt = [[SaveReceipt alloc]init];
+                saveReceipt.voucherCode = rewardRedemption.voucherCode;
+                [SaveReceipt setCurrentSaveReceipt:saveReceipt];
+                
+                
                 branch = [Branch getBranch:rewardRedemption.mainBranchID];
                 goToMenuSelection = 1;
                 [self performSegueWithIdentifier:@"segUnwindToMainTabBar" sender:self];

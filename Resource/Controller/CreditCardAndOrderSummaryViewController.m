@@ -143,7 +143,7 @@ static NSString * const reuseIdentifierLabelTextView = @"CustomTableViewCellLabe
         if(![Utility isStringEmpty:_selectedVoucherCode])
         {
             [self confirmVoucherCode:_selectedVoucherCode];
-        }        
+        }
     }
 }
 
@@ -201,6 +201,10 @@ static NSString * const reuseIdentifierLabelTextView = @"CustomTableViewCellLabe
 -(void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
+    NSString *title = [Language getText:@"ชำระเงิน"];
+    lblNavTitle.text = title;
+    
+    
     [UIView animateWithDuration:.25 animations:^{
         if(_currentScrollIndexPath)
         {
@@ -413,9 +417,7 @@ static NSString * const reuseIdentifierLabelTextView = @"CustomTableViewCellLabe
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-
-    NSString *title = [Language getText:@"ชำระเงิน"];
-    lblNavTitle.text = title;
+    
     NSString *message = [Language getText:@"ใส่หมายเหตุที่ต้องการแจ้งเพิ่มเติมกับทางร้านอาหาร"];
     _strPlaceHolder = message;
 
@@ -465,6 +467,10 @@ static NSString * const reuseIdentifierLabelTextView = @"CustomTableViewCellLabe
         _creditCard.saveCard = 1;
     }
     
+    if(buffetReceipt)
+    {
+        btnShareMenuToOrder.hidden = YES;
+    }
     tbvData.delegate = self;
     tbvData.dataSource = self;
     tbvTotal.delegate = self;
@@ -618,7 +624,7 @@ static NSString * const reuseIdentifierLabelTextView = @"CustomTableViewCellLabe
             {
                 tbvTotalHeightConstant.constant = 0;
                 return 0;
-            }            
+            }
         }
     }
     
@@ -654,8 +660,16 @@ static NSString * const reuseIdentifierLabelTextView = @"CustomTableViewCellLabe
             }
             else if(fromLuckyDraw)
             {
-                cell.lblValue.text = [NSString stringWithFormat:[Language getText:@"เลขโต๊ะ: %@"],customerTable.tableName];
-                cell.lblValue.textColor = cSystem4;
+                if(customerTable)
+                {
+                    cell.lblValue.text = [NSString stringWithFormat:[Language getText:@"เลขโต๊ะ: %@"],customerTable.tableName];
+                    cell.lblValue.textColor = cSystem4;
+                }
+                else
+                {
+                    cell.lblValue.text = [Language getText:@"เลือกโต๊ะ"];
+                    cell.lblValue.textColor = cSystem2;
+                }
             }
             else
             {
@@ -765,7 +779,7 @@ static NSString * const reuseIdentifierLabelTextView = @"CustomTableViewCellLabe
                         
                         
                         cell.txtFirstName.text = _creditCard.firstName;
-                        cell.txtLastName.text = _creditCard.lastName;                        
+                        cell.txtLastName.text = _creditCard.lastName;
                         cell.txtCardNo.text = [OMSCardNumber format:_creditCard.creditCardNo];
                         cell.txtMonth.text = _creditCard.month == 0?@"":[NSString stringWithFormat:@"%02ld",_creditCard.month];
                         cell.txtYear.text = _creditCard.year == 0?@"":[NSString stringWithFormat:@"%02ld",_creditCard.year];;
@@ -887,7 +901,7 @@ static NSString * const reuseIdentifierLabelTextView = @"CustomTableViewCellLabe
                             cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"cellValue1"];
                         }
                         
-                        cell.textLabel.text = @"";                        
+                        cell.textLabel.text = @"";
                         cell.textLabel.textColor = cSystem4;
                         cell.detailTextLabel.text = @"";
                         cell.detailTextLabel.textColor = cSystem4;
@@ -1185,8 +1199,7 @@ static NSString * const reuseIdentifierLabelTextView = @"CustomTableViewCellLabe
                     
                     cell.txtVoucherCode.tag = 31;
                     cell.txtVoucherCode.delegate = self;
-                    cell.txtVoucherCode.placeholder = [Language getText:@"Voucher code"];
-                    cell.txtVoucherCode.text = _selectedVoucherCode;
+                    cell.txtVoucherCode.placeholder = [Language getText:@"Voucher code"];                    cell.txtVoucherCode.text = _selectedVoucherCode;
                     [self setTextFieldDesign:cell.txtVoucherCode];
                     [cell.txtVoucherCode setInputAccessoryView:self.toolBar];
                     [cell.txtVoucherCode addTarget:self action:@selector(txtVoucherCodeChanged:) forControlEvents:UIControlEventEditingChanged];
@@ -1202,7 +1215,7 @@ static NSString * const reuseIdentifierLabelTextView = @"CustomTableViewCellLabe
                     [cell.btnChooseVoucherCode addTarget:self action:@selector(chooseVoucherCode:) forControlEvents:UIControlEventTouchUpInside];
                     cell.btnChooseVoucherCode.hidden = !_orderSummary.showVoucherListButton;
                     return cell;
-                }            
+                }
             }
                 break;
             case 4:
@@ -1619,7 +1632,7 @@ static NSString * const reuseIdentifierLabelTextView = @"CustomTableViewCellLabe
         
         if ( UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad )
         {
-            CustomTableViewCellLabelLabel *cell = [tableView cellForRowAtIndexPath:indexPath];            
+            CustomTableViewCellLabelLabel *cell = [tableView cellForRowAtIndexPath:indexPath];
             UIPopoverPresentationController *popPresenter = [alert popoverPresentationController];
             popPresenter.sourceView = cell.lblValue;
             popPresenter.sourceRect = cell.lblValue.bounds;
@@ -1737,13 +1750,6 @@ static NSString * const reuseIdentifierLabelTextView = @"CustomTableViewCellLabe
     //validate
     [self.view endEditing:YES];
     
-
-    //payment method
-    if(!_paymentMethod)
-    {
-        [self blinkAlertMsg:[Language getText:@"กรุณาเลือกวิธีชำระเงิน"]];
-        return;
-    }
     
     //customerTable
     if(!customerTable)
@@ -1751,6 +1757,18 @@ static NSString * const reuseIdentifierLabelTextView = @"CustomTableViewCellLabe
         [self blinkAlertMsg:[Language getText:@"กรุณาระบุเลขโต๊ะ"]];
         return;
     }
+    
+    if(_orderSummary.showPayBuffetButton == 0 || _orderSummary.showPayBuffetButton == 1)//0=not show button, 1=show pay button, 2=show order buffet
+    {
+        //payment method
+        if(!_paymentMethod)
+        {
+            [self blinkAlertMsg:[Language getText:@"กรุณาเลือกวิธีชำระเงิน"]];
+            return;
+        }
+    }
+    
+    
     
     if(_orderSummary.showPayBuffetButton == 2 || _paymentMethod == 1)//buffet or pay by transfer
     {
@@ -2236,13 +2254,34 @@ static NSString * const reuseIdentifierLabelTextView = @"CustomTableViewCellLabe
         ShareMenuToOrderViewController *vc = segue.destinationViewController;
         UserAccount *userAccount = [UserAccount getCurrentUserAccount];
         SaveReceipt *saveReceipt = [[SaveReceipt alloc]initWithBranchID:branch.branchID customerTableID:customerTable.customerTableID memberID:userAccount.userAccountID remark:_remark status:0 buffetReceiptID:buffetReceipt.receiptID voucherCode:_selectedVoucherCode];
+//        [SaveReceipt addObject:saveReceipt];
         NSMutableArray *orderTakingList = [OrderTaking getCurrentOrderTakingList];
-        NSMutableArray *orderNoteList = [OrderNote getOrderNoteListWithOrderTakingList:orderTakingList];
+
         
+        
+        NSMutableArray *saveOrderTakingList = [[NSMutableArray alloc]init];
+        NSMutableArray *saveOrderNoteList = [[NSMutableArray alloc]init];
+        for(OrderTaking *item in orderTakingList)
+        {
+            SaveOrderTaking *saveOrderTaking = [SaveOrderTaking createSaveOrderTaking:item];
+            saveOrderTaking.saveReceiptID = saveReceipt.saveReceiptID;
+            [saveOrderTakingList addObject:saveOrderTaking];
+            [SaveOrderTaking addObject:saveOrderTaking];
+            
+            NSMutableArray *orderNoteList = [OrderNote getOrderNoteListWithOrderTakingID:item.orderTakingID];
+            for(OrderNote *item2 in orderNoteList)
+            {
+                SaveOrderNote *saveOrderNote = [SaveOrderNote createSaveOrderNote:item2];
+                saveOrderNote.saveOrderTakingID = saveOrderTaking.saveOrderTakingID;
+                [saveOrderNoteList addObject:saveOrderNote];
+                [SaveOrderNote addObject:saveOrderNote];
+            }
+        }
+
         
         vc.saveReceipt = saveReceipt;
-        vc.saveOrderTakingList = [SaveOrderTaking createSaveOrderTakingList:orderTakingList];
-        vc.saveOrderNoteList = [SaveOrderNote createSaveOrderNoteList:orderNoteList];
+        vc.saveOrderTakingList = saveOrderTakingList;
+        vc.saveOrderNoteList = saveOrderNoteList;
     }
     else if([[segue identifier] isEqualToString:@"segShowQRToPay"])
     {
@@ -2335,7 +2374,7 @@ static NSString * const reuseIdentifierLabelTextView = @"CustomTableViewCellLabe
                         [OrderNote addObject:orderNote];
                     }
                 }
-                [OrderTaking setCurrentOrderTakingList:orderTakingListUpdateNew];                                
+                [OrderTaking setCurrentOrderTakingList:orderTakingListUpdateNew];
                 [self setOrder];
             }
         }
@@ -2407,6 +2446,11 @@ static NSString * const reuseIdentifierLabelTextView = @"CustomTableViewCellLabe
 
 - (IBAction)shareMenuToOrder:(id)sender
 {
+    if(!customerTable)
+    {
+        [self blinkAlertMsg:[Language getText:@"กรุณาระบุเลขโต๊ะ"]];
+        return;
+    }
     [self performSegueWithIdentifier:@"segShareMenuToOrder" sender:self];
 }
 @end

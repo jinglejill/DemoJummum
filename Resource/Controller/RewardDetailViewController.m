@@ -55,14 +55,21 @@ static NSString * const reuseIdentifierLabel = @"CustomTableViewCellLabel";
     [btnRedeem setTitle:[Language getText:@"รับสิทธิ์"] forState:UIControlStateNormal];
 }
 
+-(void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    NSString *title = [Language getText:@"แลกของรางวัล"];
+    lblNavTitle.text = title;
+    
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
     
-    NSString *title = [Language getText:@"แลกของรางวัล"];
-    lblNavTitle.text = title;
+    
     _expandCollapse = 1;
     tbvData.delegate = self;
     tbvData.dataSource = self;
@@ -104,9 +111,16 @@ static NSString * const reuseIdentifierLabel = @"CustomTableViewCellLabel";
         CustomTableViewCellRewardDetail *cell = [tableView dequeueReusableCellWithIdentifier:reuseIdentifierRewardDetail];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         
-    
-        
-        NSString *noImageFileName = [NSString stringWithFormat:@"/JMM/Image/NoImage.jpg"];
+        NSString *noImageFileName;
+        Branch *mainBranch = [Branch getBranch:rewardRedemption.mainBranchID];
+        if(mainBranch)
+        {
+            noImageFileName = [NSString stringWithFormat:@"/JMM/%@/Image/NoImage.jpg",mainBranch.dbName];
+        }
+        else
+        {
+            noImageFileName = [NSString stringWithFormat:@"/JMM/Image/NoImage.jpg"];
+        }
         NSString *imageFileName = [NSString stringWithFormat:@"/JMM/Image/Reward/%@",rewardRedemption.imageUrl];
         imageFileName = [Utility isStringEmpty:rewardRedemption.imageUrl]?noImageFileName:imageFileName;
         UIImage *image = [Utility getImageFromCache:imageFileName];
@@ -116,7 +130,7 @@ static NSString * const reuseIdentifierLabel = @"CustomTableViewCellLabel";
         }
         else
         {
-            [self.homeModel downloadImageWithFileName:rewardRedemption.imageUrl type:4 branchID:0 completionBlock:^(BOOL succeeded, UIImage *image)
+            [self.homeModel downloadImageWithFileName:rewardRedemption.imageUrl type:4 branchID:rewardRedemption.mainBranchID completionBlock:^(BOOL succeeded, UIImage *image)
              {
                  if (succeeded)
                  {
@@ -128,7 +142,7 @@ static NSString * const reuseIdentifierLabel = @"CustomTableViewCellLabel";
         
         
 
-        float imageWidth = cell.frame.size.width -2*16 > 375?375:cell.frame.size.width -2*16;
+        float imageWidth = self.view.frame.size.width -2*16;
         cell.imgVwValueHeight.constant = imageWidth/16*9;
         cell.imgVwValue.contentMode = UIViewContentModeScaleAspectFit;
         
@@ -187,8 +201,16 @@ static NSString * const reuseIdentifierLabel = @"CustomTableViewCellLabel";
         CustomTableViewCellRewardDetail *cell = [tableView dequeueReusableCellWithIdentifier:reuseIdentifierRewardDetail];
         
         
-        
-        NSString *noImageFileName = [NSString stringWithFormat:@"/JMM/Image/NoImage.jpg"];
+        NSString *noImageFileName;
+        Branch *mainBranch = [Branch getBranch:rewardRedemption.mainBranchID];
+        if(mainBranch)
+        {
+            noImageFileName = [NSString stringWithFormat:@"/JMM/%@/Image/NoImage.jpg",mainBranch.dbName];
+        }
+        else
+        {
+            noImageFileName = [NSString stringWithFormat:@"/JMM/Image/NoImage.jpg"];
+        }
         NSString *imageFileName = [NSString stringWithFormat:@"/JMM/Image/Reward/%@",rewardRedemption.imageUrl];
         imageFileName = [Utility isStringEmpty:rewardRedemption.imageUrl]?noImageFileName:imageFileName;
         UIImage *image = [Utility getImageFromCache:imageFileName];
@@ -198,7 +220,7 @@ static NSString * const reuseIdentifierLabel = @"CustomTableViewCellLabel";
         }
         else
         {
-            [self.homeModel downloadImageWithFileName:rewardRedemption.imageUrl type:4 branchID:0 completionBlock:^(BOOL succeeded, UIImage *image)
+            [self.homeModel downloadImageWithFileName:rewardRedemption.imageUrl type:4 branchID:rewardRedemption.mainBranchID completionBlock:^(BOOL succeeded, UIImage *image)
              {
                  if (succeeded)
                  {
@@ -210,8 +232,8 @@ static NSString * const reuseIdentifierLabel = @"CustomTableViewCellLabel";
         
         
         
-        float imageWidth = cell.frame.size.width -2*16 > 375?375:cell.frame.size.width -2*16;
-        cell.imgVwValueHeight.constant = imageWidth/16*9;        
+        float imageWidth = self.view.frame.size.width -2*16;
+        cell.imgVwValueHeight.constant = imageWidth/16*9;
         
         
         

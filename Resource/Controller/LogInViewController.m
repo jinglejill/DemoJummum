@@ -51,7 +51,9 @@
 @synthesize lblPipeLeading;
 @synthesize btnLangEn;
 @synthesize btnLangTH;
-
+@synthesize lblLogIn;
+@synthesize imgVwLogoTextWidth;
+@synthesize imgVwLogoTextHeight;
 
 -(void)viewDidLayoutSubviews
 {
@@ -76,7 +78,11 @@
     if(bottom+286+40>self.view.frame.size.height)
     {
         //hide jummum text
-        imgVwLogoText.hidden = YES;
+//        imgVwLogoText.hidden = YES;
+
+        imgVwLogoTextWidth.constant = 100;
+        imgVwLogoTextHeight.constant = 25;
+        lblLogIn.hidden = YES;
     }
     
     
@@ -232,7 +238,7 @@
     //facebook
     _loginButton = [[FBSDKLoginButton alloc] init];
     _loginButton.delegate = self;
-    _loginButton.readPermissions = @[@"public_profile", @"email"];
+    _loginButton.permissions = @[@"public_profile", @"email"];
     //    _loginButton.readPermissions = @[@"public_profile", @"email",@"user_friends",@"user_birthday",@"user_about_me",@"user_likes",@"user_work_history"];
     
     
@@ -346,7 +352,7 @@
                  
                  NSLog(@"fetched user:%@", result);
                  NSLog(@"birthday:%@",result[@"birthday"]);
-                 NSDate *birthday = [Utility stringToDate:result[@"birthday"] fromFormat:@"dd/MM/yyyy"];
+                 NSDate *birthday = [Utility stringToDate:result[@"birthday"] fromFormat:@"MM/dd/yyyy"];
                  
                  //1.insert userlogin
                  //2.insert useraccount if not exist
