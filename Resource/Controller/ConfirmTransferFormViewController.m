@@ -1,0 +1,767 @@
+//
+//  ConfirmTransferFormViewController.m
+//  DevJummum
+//
+//  Created by Thidaporn Kijkamjai on 12/3/2562 BE.
+//  Copyright © 2562 Jummum Tech. All rights reserved.
+//
+
+#import "ConfirmTransferFormViewController.h"
+#import "CustomTableViewCellLabelText.h"
+#import "CustomTableViewCellLabelTextView.h"
+#import "CustomTableViewHeaderFooterOkCancel.h"
+#import "TransferForm.h"
+#import "Bank.h"
+#import "Receipt.h"
+#import "Branch.h"
+#import "Setting.h"
+#import "Dispute.h"
+
+
+
+@interface ConfirmTransferFormViewController ()
+{
+    TransferForm *_transferForm;
+    NSMutableArray *_bankList;
+    NSInteger _selectedIndexPicker;
+    NSString *_strPlaceHolder;
+    
+}
+@end
+
+@implementation ConfirmTransferFormViewController
+static NSString * const reuseIdentifierLabelText = @"CustomTableViewCellLabelText";
+static NSString * const reuseIdentifierLabelTextView = @"CustomTableViewCellLabelTextView";
+static NSString * const reuseIdentifierHeaderFooterOkCancel = @"CustomTableViewHeaderFooterOkCancel";
+
+
+@synthesize lblNavTitle;
+@synthesize tbvData;
+@synthesize pickerVw;
+@synthesize receipt;
+@synthesize tbvAction;
+@synthesize topViewHeight;
+@synthesize bottomViewHeight;
+
+
+-(void)viewDidLayoutSubviews
+{
+    [super viewDidLayoutSubviews];
+    UIWindow *window = UIApplication.sharedApplication.keyWindow;
+    bottomViewHeight.constant = window.safeAreaInsets.bottom;
+    
+    float topPadding = window.safeAreaInsets.top;
+    topViewHeight.constant = topPadding == 0?20:topPadding;
+}
+
+-(BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text
+{
+    return YES;
+}
+
+-(void)textViewDidBeginEditing:(UITextView *)textView
+{
+    textView.textColor = cSystem5;
+    if([textView.text isEqualToString:_strPlaceHolder])
+    {
+        textView.text = @"";
+    }
+    
+    [textView becomeFirstResponder];
+}
+
+-(void)textViewDidEndEditing:(UITextView *)textView
+{
+    _transferForm.remark = [Utility trimString:textView.text];
+    if([textView.text isEqualToString:@""])
+    {
+        textView.text = _strPlaceHolder;
+        textView.textColor = mPlaceHolder;
+    }
+}
+
+-(void)textFieldDidEndEditing:(UITextField *)textField
+{
+    switch (textField.tag)
+    {
+        case 1:
+        {            
+            Bank *bank = _bankList[_selectedIndexPicker];
+            _transferForm.bankID = bank.bankID;
+        }
+            break;
+        case 2:
+        {
+            _transferForm.bankAccountNo = textField.text;
+        }
+            break;
+        case 4:
+        {
+            _transferForm.phoneNo = [Utility removeDashAndSpaceAndParenthesis:[Utility trimString:textField.text]];
+        }
+            break;
+        default:
+            break;
+    }
+}
+
+- (void)textFieldDidBeginEditing:(UITextField *)textField
+{
+    if(textField.tag == 1)
+    {
+        Bank *bank = _bankList[_selectedIndexPicker];
+        textField.text = [Language langIsEN]?bank.bankNameEn:bank.bankName;
+        [pickerVw selectRow:_selectedIndexPicker inComponent:0 animated:NO];
+    }
+}
+
+-(void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    NSString *title = [Language getText:@"Confirm Transfer"];
+    lblNavTitle.text = title;
+}
+
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+    // Do any additional setup after loading the view.
+    
+    
+
+    NSString *message = [Language getText:@"สิ่งที่ต้องการแจ้งเพิ่มเติม"];
+    _strPlaceHolder = message;
+    [pickerVw removeFromSuperview];
+    pickerVw.delegate = self;
+    pickerVw.dataSource = self;
+    pickerVw.showsSelectionIndicator = YES;
+    
+    
+    tbvData.delegate = self;
+    tbvData.dataSource = self;
+    tbvData.separatorColor = [UIColor clearColor];
+    tbvData.backgroundColor = [UIColor whiteColor];
+    
+    
+    
+    tbvAction.delegate = self;
+    tbvAction.dataSource = self;
+    tbvAction.backgroundColor = [UIColor whiteColor];
+    tbvAction.scrollEnabled = NO;
+    
+    
+    
+    
+    
+    {
+        UINib *nib = [UINib nibWithNibName:reuseIdentifierLabelText bundle:nil];
+        [tbvData registerNib:nib forCellReuseIdentifier:reuseIdentifierLabelText];
+    }
+    {
+        UINib *nib = [UINib nibWithNibName:reuseIdentifierLabelTextView bundle:nil];
+        [tbvData registerNib:nib forCellReuseIdentifier:reuseIdentifierLabelTextView];
+    }
+    {
+        UINib *nib = [UINib nibWithNibName:reuseIdentifierHeaderFooterOkCancel bundle:nil];
+        [tbvAction registerNib:nib forHeaderFooterViewReuseIdentifier:reuseIdentifierHeaderFooterOkCancel];
+    }
+    
+    
+    
+    [self loadingOverlayView];
+    [self.homeModel downloadItems:dbTransferFormAndBankList withData:receipt];
+  
+    
+    
+    
+    UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self.view action:@selector(endEditing:)];
+    [self.view addGestureRecognizer:tapGesture];
+    [tapGesture setCancelsTouchesInView:NO];
+}
+
+///tableview section
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    // Return the number of sections.
+    return 1;
+    
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    // Return the number of rows in the section.
+    
+    if([tableView isEqual:tbvData])
+    {
+        return 5;
+    }
+    else
+    {
+        return 0;
+    }
+    return 0;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    NSInteger section = indexPath.section;
+    NSInteger item = indexPath.item;
+    
+    if([tableView isEqual:tbvData])
+    {
+        if(item == 0)
+        {
+            UITableViewCell *cell =  [tableView dequeueReusableCellWithIdentifier:@"cell"];
+            if (!cell) {
+                cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"];
+            }
+            cell.backgroundColor = [UIColor whiteColor];
+            
+            Dispute *dispute;
+            if(receipt.status == 9)
+            {
+                dispute = [Dispute getDisputeWithReceiptID:receipt.receiptID type:1];
+                if(!dispute)
+                {
+                    dispute = [Dispute getDisputeWithReceiptID:receipt.receiptID type:3];
+                }
+            }
+            else if(receipt.status == 10)
+            {
+                dispute = [Dispute getDisputeWithReceiptID:receipt.receiptID type:2];
+                if(!dispute)
+                {
+                    dispute = [Dispute getDisputeWithReceiptID:receipt.receiptID type:4];
+                }
+            }
+            if(receipt.status == 14)
+            {
+                dispute = [Dispute getDisputeWithReceiptID:receipt.receiptID type:5];
+            }
+            
+            
+            NSString *message2 = [Language getText:@"จำนวนเงินที่ขอคืน: "];
+            NSString *message4 = [Language getText:@"%@ บาท"];
+            float totalAmount = dispute.refundAmount;
+            _transferForm.amount = dispute.refundAmount;
+            NSString *strTotalAmount = [Utility formatDecimal:totalAmount withMinFraction:2 andMaxFraction:2];
+            strTotalAmount = [NSString stringWithFormat:message4,strTotalAmount];
+            cell.textLabel.attributedText = [self setAttributedString:message2 text:strTotalAmount];
+            
+            
+            return cell;
+        }
+        else if(item == 1)
+        {
+            CustomTableViewCellLabelText *cell = [tableView dequeueReusableCellWithIdentifier:reuseIdentifierLabelText];
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
+            
+            
+            NSString *message = [Language getText:@"ธนาคาร"];
+            NSString *strTitle = message;
+            
+            
+            UIFont *font = [UIFont fontWithName:@"Prompt-Regular" size:15];
+            UIColor *color = cSystem1;;
+            NSDictionary *attribute = @{NSForegroundColorAttributeName:color ,NSFontAttributeName: font};
+            NSMutableAttributedString *attrString = [[NSMutableAttributedString alloc] initWithString:@"" attributes:attribute];
+            
+            
+            UIFont *font2 = [UIFont fontWithName:@"Prompt-Regular" size:15];
+            UIColor *color2 = cSystem4;
+            NSDictionary *attribute2 = @{NSForegroundColorAttributeName:color2 ,NSFontAttributeName: font2};
+            NSMutableAttributedString *attrString2 = [[NSMutableAttributedString alloc] initWithString:strTitle attributes:attribute2];
+            
+            
+            [attrString appendAttributedString:attrString2];
+            cell.lblTitle.attributedText = attrString;
+            
+            
+            NSString *message2 = [Language getText:@"กรุณาเลือกธนาคาร"];
+            cell.txtValue.tag = item;
+            cell.txtValue.placeholder = message2;
+            cell.txtValue.delegate = self;
+            cell.txtValue.inputView = pickerVw;
+            [cell.txtValue setInputAccessoryView:self.toolBarNext];
+            [cell.txtValue removeTarget:self action:nil forControlEvents:UIControlEventAllEvents];
+            
+            
+            Bank *bank = [Bank getBank:_transferForm.bankID];
+            cell.txtValue.text = [Language langIsEN]?bank.bankNameEn:bank.bankName;
+            cell.lblRemark.text = @"";
+            
+            
+            return cell;
+        }
+        else if(item == 2)
+        {
+            CustomTableViewCellLabelText *cell = [tableView dequeueReusableCellWithIdentifier:reuseIdentifierLabelText];
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
+            
+            
+            NSString *strTitle = [Language getText:@"เลขบัญชีธนาคาร"];
+            NSString *strRemark = @"";
+            
+            
+            
+            UIFont *font = [UIFont fontWithName:@"Prompt-Regular" size:15];
+            UIColor *color = cSystem1;
+            NSDictionary *attribute = @{NSForegroundColorAttributeName:color ,NSFontAttributeName: font};
+            NSMutableAttributedString *attrString = [[NSMutableAttributedString alloc] initWithString:@"" attributes:attribute];
+            
+            
+            UIFont *font2 = [UIFont fontWithName:@"Prompt-Regular" size:15];
+            UIColor *color2 = cSystem4;
+            NSDictionary *attribute2 = @{NSForegroundColorAttributeName:color2 ,NSFontAttributeName: font2};
+            NSMutableAttributedString *attrString2 = [[NSMutableAttributedString alloc] initWithString:strTitle attributes:attribute2];
+            
+            
+            [attrString appendAttributedString:attrString2];
+            cell.lblTitle.attributedText = attrString;
+            
+            
+            
+            cell.txtValue.tag = item;
+            cell.txtValue.delegate = self;
+            cell.txtValue.placeholder = @"เลขบัญชีธนาคาร";
+            cell.txtValue.text = _transferForm.bankAccountNo;
+            cell.txtValue.keyboardType = UIKeyboardTypePhonePad;
+            [cell.txtValue setInputAccessoryView:self.toolBar];
+            
+            
+            cell.lblRemark.text = strRemark;
+            [cell.lblRemark sizeToFit];
+            cell.lblRemarkHeight.constant = cell.lblRemark.frame.size.height;
+            
+            return cell;
+        }
+        else if(item == 3)
+        {
+            CustomTableViewCellLabelTextView *cell = [tableView dequeueReusableCellWithIdentifier:reuseIdentifierLabelTextView];
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
+            
+            
+            NSString *message = [Language getText:@"หมายเหตุ"];
+            NSString *strTitle = message;
+            
+            
+            
+            UIFont *font = [UIFont fontWithName:@"Prompt-Regular" size:15];
+            UIColor *color = cSystem1;;
+            NSDictionary *attribute = @{NSForegroundColorAttributeName:color ,NSFontAttributeName: font};
+            NSMutableAttributedString *attrString = [[NSMutableAttributedString alloc] initWithString:@"" attributes:attribute];
+            
+            
+            UIFont *font2 = [UIFont fontWithName:@"Prompt-Regular" size:15];
+            UIColor *color2 = cSystem4;
+            NSDictionary *attribute2 = @{NSForegroundColorAttributeName:color2 ,NSFontAttributeName: font2};
+            NSMutableAttributedString *attrString2 = [[NSMutableAttributedString alloc] initWithString:strTitle attributes:attribute2];
+            
+            
+            [attrString appendAttributedString:attrString2];
+            cell.lblTitle.attributedText = attrString;
+            
+            
+            
+            cell.txvValue.tag = 3;
+            cell.txvValue.delegate = self;
+            cell.txvValue.text = _transferForm.remark;
+            if([cell.txvValue.text isEqualToString:@""])
+            {
+                cell.txvValue.text = _strPlaceHolder;
+                cell.txvValue.textColor = mPlaceHolder;
+            }
+            else
+            {
+                cell.txvValue.textColor = cSystem5;
+            }
+            [cell.txvValue.layer setBorderColor:[[[UIColor grayColor] colorWithAlphaComponent:0.5] CGColor]];
+            [cell.txvValue.layer setBorderWidth:0.5];
+            
+            //The rounded corner part, where you specify your view's corner radius:
+            cell.txvValue.layer.cornerRadius = 5;
+            cell.txvValue.clipsToBounds = YES;
+            [cell.txvValue setInputAccessoryView:self.toolBarNext];
+            
+            
+            return cell;
+        }
+        else if(item == 4)
+        {
+            CustomTableViewCellLabelText *cell = [tableView dequeueReusableCellWithIdentifier:reuseIdentifierLabelText];
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
+            
+            
+            NSString *message = [Language getText:@"กรุณาใส่เบอร์โทรติดต่อกลับ เพื่อเจ้าหน้าที่จะโทรสอบถามข้อมูลเพิ่มเติมสำหรับการโอนเงินคืนท่าน"];
+            NSString *strTitle = [Language getText:@"เบอร์โทร."];
+            NSString *strRemark = message;
+            
+            
+            
+            UIFont *font = [UIFont fontWithName:@"Prompt-Regular" size:15];
+            UIColor *color = cSystem1;
+            NSDictionary *attribute = @{NSForegroundColorAttributeName:color ,NSFontAttributeName: font};
+            NSMutableAttributedString *attrString = [[NSMutableAttributedString alloc] initWithString:@"" attributes:attribute];
+            
+            
+            UIFont *font2 = [UIFont fontWithName:@"Prompt-Regular" size:15];
+            UIColor *color2 = cSystem4;
+            NSDictionary *attribute2 = @{NSForegroundColorAttributeName:color2 ,NSFontAttributeName: font2};
+            NSMutableAttributedString *attrString2 = [[NSMutableAttributedString alloc] initWithString:strTitle attributes:attribute2];
+            
+            
+            [attrString appendAttributedString:attrString2];
+            cell.lblTitle.attributedText = attrString;
+            
+            
+            
+            cell.txtValue.tag = item;
+            cell.txtValue.delegate = self;
+            cell.txtValue.placeholder = @"xxx-xxx-xxxx";
+            cell.txtValue.text = [Utility setPhoneNoFormat:_transferForm.phoneNo];
+            cell.txtValue.keyboardType = UIKeyboardTypePhonePad;
+            [cell.txtValue setInputAccessoryView:self.toolBar];
+            [cell.txtValue addTarget:self action:@selector(txtPhoneNoDidChange:) forControlEvents:UIControlEventEditingChanged];
+            
+            
+            
+            cell.lblRemark.text = strRemark;
+            [cell.lblRemark sizeToFit];
+            cell.lblRemarkHeight.constant = cell.lblRemark.frame.size.height;
+            
+            return cell;
+        }
+    }
+    
+    
+    return nil;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    NSInteger item = indexPath.item;
+    if([tableView isEqual:tbvData])
+    {
+        if(item == 0)
+        {
+            return 44;
+        }
+        else if(item == 1)
+        {
+            return 102-8-16;
+        }
+        else if(item == 2)
+        {
+            return 102-8-16;
+        }
+        else if(item == 3)
+        {
+            return 108;
+        }
+        else if(item == 4)
+        {
+            CustomTableViewCellLabelText *cell = [tableView dequeueReusableCellWithIdentifier:reuseIdentifierLabelText];
+            NSString *message = [Language getText:@"กรุณาใส่เบอร์โทรติดต่อกลับ เพื่อเจ้าหน้าที่จะโทรสอบถามข้อมูลเพิ่มเติมสำหรับการโอนเงินคืนท่าน"];
+            NSString *strRemark = message;
+            
+            
+            cell.lblRemark.text = strRemark;
+            [cell.lblRemark sizeToFit];
+            return 102-16+cell.lblRemark.frame.size.height;
+        }
+    }
+    
+    return 0;
+}
+
+- (void)tableView: (UITableView*)tableView willDisplayCell: (UITableViewCell*)cell forRowAtIndexPath: (NSIndexPath*)indexPath
+{
+    [cell setSeparatorInset:UIEdgeInsetsMake(16, 16, 16, 16)];
+}
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    
+}
+
+-(UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
+{
+    if([tableView isEqual:tbvAction])
+    {
+        CustomTableViewHeaderFooterOkCancel *footerView = [tableView dequeueReusableHeaderFooterViewWithIdentifier:reuseIdentifierHeaderFooterOkCancel];
+        
+        
+        
+        [footerView.btnOk addTarget:self action:@selector(submit:) forControlEvents:UIControlEventTouchUpInside];
+        [footerView.btnCancel addTarget:self action:@selector(cancel:) forControlEvents:UIControlEventTouchUpInside];
+        [self setButtonDesign:footerView.btnOk];
+        [self setButtonDesign:footerView.btnCancel];
+        
+        
+        return footerView;
+    }
+    return nil;
+    
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
+{
+    if([tableView isEqual:tbvAction])
+    {
+        return 8+30+8+30;
+    }
+    return 0;
+    
+}
+
+- (IBAction)goBack:(id)sender
+{
+    [self performSegueWithIdentifier:@"segUnwindToOrderDetail" sender:self];
+}
+
+-(void)itemsDownloaded:(NSArray *)items manager:(NSObject *)objHomeModel
+{
+    HomeModel *homeModel = (HomeModel *)objHomeModel;
+    if(homeModel.propCurrentDB == dbTransferFormAndBankList)
+    {
+        [self removeOverlayViews];
+        
+        NSMutableArray *transferFormList = items[0];
+        if([transferFormList count]>0)
+        {
+            _transferForm = transferFormList[0];
+        }
+        else
+        {
+            _transferForm = [[TransferForm alloc]init];
+        }
+        
+        _bankList = items[1];
+        [Utility updateSharedObject:items];
+        [tbvData reloadData];
+    }
+}
+
+- (void)pickerView:(UIPickerView *)pickerView didSelectRow: (NSInteger)row inComponent:(NSInteger)component
+{
+    // Handle the selection
+    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:1 inSection:0];
+    CustomTableViewCellLabelText *cell = [tbvData cellForRowAtIndexPath:indexPath];
+    
+    
+    if([cell.txtValue isFirstResponder])
+    {
+        _selectedIndexPicker = row;
+        Bank *bank = _bankList[row];
+        
+        NSIndexPath *indexPath = [NSIndexPath indexPathForRow:1 inSection:0];
+        CustomTableViewCellLabelText *cell = [tbvData cellForRowAtIndexPath:indexPath];
+        cell.txtValue.text = [Language langIsEN]?bank.bankNameEn:bank.bankName;
+    }
+}
+
+// tell the picker how many rows are available for a given component
+- (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component
+{
+    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:1 inSection:0];
+    CustomTableViewCellLabelText *cell = [tbvData cellForRowAtIndexPath:indexPath];
+    
+    
+    if([cell.txtValue isFirstResponder])
+    {
+        return [_bankList count];
+    }
+    
+    return 0;
+}
+
+// tell the picker how many components it will have
+- (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView
+{
+    return 1;
+}
+
+// tell the picker the title for a given component
+- (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component
+{
+    NSString *strText = @"";
+    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:1 inSection:0];
+    CustomTableViewCellLabelText *cell = [tbvData cellForRowAtIndexPath:indexPath];
+    
+    
+    if([cell.txtValue isFirstResponder])
+    {
+        Bank *bank = _bankList[row];
+        strText = [Language langIsEN]?bank.bankNameEn:bank.bankName;
+    }
+    
+    return strText;
+}
+
+// tell the picker the width of each row for a given component
+- (CGFloat)pickerView:(UIPickerView *)pickerView widthForComponent:(NSInteger)component
+{
+    return self.view.frame.size.width;
+}
+
+-(void)submit:(id)sender
+{
+    [self submit];
+}
+
+-(void)submit
+{
+    [self.view endEditing:YES];
+    
+    
+    if(![self validate])
+    {
+        return;
+    }
+    [self loadingOverlayView];
+    
+    
+    _transferForm.receiptID = receipt.receiptID;
+    _transferForm.modifiedUser = [Utility modifiedUser];
+    _transferForm.modifiedDate = [Utility currentDateTime];
+    
+    [self.homeModel insertItems:dbTransferForm withData:_transferForm actionScreen:@"insert transferForm"];
+}
+
+-(void)cancel:(id)sender
+{
+    [self performSegueWithIdentifier:@"segUnwindToOrderDetail" sender:self];
+}
+
+-(void)itemsInserted
+{
+    NSString *message = [Language getText:@"แบบฟอร์มยืนยันการโอนเงินได้ถูกส่งไปแล้ว"];
+    [self showAlert:@"" message:message method:@selector(unwindToOrderDetail)];
+    [self removeOverlayViews];
+}
+
+-(void)unwindToOrderDetail
+{
+    [self performSegueWithIdentifier:@"segUnwindToOrderDetail" sender:self];
+}
+
+-(BOOL)validate
+{
+//    {
+//        UITextField *textField = [self.view viewWithTag:1];
+//        if([Utility isStringEmpty:textField.text])
+//        {
+//            NSString *message = [Language getText:@"กรุณาเลือกธนาคาร"];
+//            [self blinkAlertMsg:message];
+//            return NO;
+//        }
+//    }
+//
+//    {
+//        UITextField *textField = [self.view viewWithTag:2];
+//        if([Utility isStringEmpty:textField.text])
+//        {
+//            [self blinkAlertMsg:[Language getText:@"กรุณาระบุเลขบัญชีธนาคาร"]];
+//            return NO;
+//        }
+//    }
+//
+//    {
+//        UITextField *textField = [self.view viewWithTag:4];
+//        if([Utility isStringEmpty:textField.text])
+//        {
+//            [self blinkAlertMsg:[Language getText:@"กรุณาใส่เบอร์โทร"]];
+//            return NO;
+//        }
+//    }
+    
+    return YES;
+}
+
+- (void)keyboardDidShow:(NSNotification *)notification
+{
+    NSDictionary* info = [notification userInfo];
+    CGRect kbRect = [[info objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue];
+    kbRect = [self.view convertRect:kbRect toView:nil];
+    
+    CGSize kbSize = kbRect.size;
+    
+    
+    
+    // Assign new frame to your view
+    [UIView animateWithDuration:0.2f delay:0.0 options:UIViewAnimationOptionTransitionNone
+                     animations:^{
+                         [self.view setFrame:CGRectMake(0,kbSize.height*-1,self.view.frame.size.width,self.view.frame.size.height)]; //here taken -110 for example i.e. your view will be scrolled to -110. change its value according to your requirement.
+                     }
+                     completion:nil
+     ];
+}
+
+-(void)keyboardDidHide:(NSNotification *)notification
+{
+    [UIView animateWithDuration:0.2f delay:0.0 options:UIViewAnimationOptionTransitionNone
+                     animations:^{
+                         [self.view setFrame:CGRectMake(0,0,self.view.frame.size.width,self.view.frame.size.height)];
+                         [self.view layoutSubviews];
+                     }
+                     completion:nil
+     ];
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
+-(BOOL)textFieldShouldBeginEditing:(UITextField *)textField
+{
+    NSInteger textFieldTag = 4;
+    
+    if(textField.tag == textFieldTag)
+    {
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardDidShow:) name:UIKeyboardDidShowNotification object:nil];
+    }
+    else
+    {
+        [[NSNotificationCenter defaultCenter] removeObserver:self];
+    }
+    return YES;
+}
+
+- (BOOL)textFieldShouldEndEditing:(UITextField *)textField
+{
+    NSInteger textFieldTag = 4;
+    
+    if(textField.tag == textFieldTag)
+    {
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardDidHide:) name:UIKeyboardDidHideNotification object:nil];
+        
+        
+        [self.view endEditing:YES];
+        
+        return YES;
+    }
+    
+    return YES;
+}
+
+-(void)txtPhoneNoDidChange:(id)sender
+{
+    UITextField *txtPhoneNo = sender;
+    txtPhoneNo.text = [Utility formatPhoneNo:[Utility removeDashAndSpaceAndParenthesis:txtPhoneNo.text]];
+}
+
+-(void)goToNextResponder:(id)sender
+{
+    UIView *firstResponder = [self findFirstResponder:self.view];
+    if(firstResponder)
+    {
+        NSInteger tag = firstResponder.tag;
+        if(tag == 1)
+        {
+            UITextField *textField = [self.view viewWithTag:2];
+            [textField becomeFirstResponder];
+        }
+        else
+        {
+            NSInteger nextTag = tag + 1;
+            UITextField *textField = [self.view viewWithTag:nextTag];
+            [textField becomeFirstResponder];
+        }
+    }
+}
+@end
