@@ -20,7 +20,8 @@
 "กรุณาระบุอีเมล" = "Please provide your email address";
 "อีเมลไม่ถูกต้อง" = "Incorrect email";
 "อีเมลนี้ถูกใช้แล้ว" = "This email is already registered";
-"พาสเวิร์ดต้องประกอบไปด้วย\n1.อักษรตัวเล็กอย่างน้อย 1 ตัว\n2.อักษรตัวใหญ่อย่างน้อย 1 ตัว\n3.ตัวเลขหรืออักษรพิเศษอย่างน้อย 1 ตัว\n4.ความยาวขั้นต่ำ 8 ตัวอักษร" = "Password must contain all of the following requirements:\n1.At least 8 characters.\n2.At least one uppercase character.\n3.At least one lowercase character.\n4.At least one number or punctuation mark (like ! and &).";
+"พาสเวิร์ดต้องประกอบไปด้วย" = "Password must contain all of the following requirements";
+"อักษรตัวเล็ก อักษรตัวใหญ่ และตัวเลขหรืออักษรพิเศษ และมีความยาว 8 ตัวอักษรขึ้นไป (เช่น Abcdefg1, 12345678Aa เป็นต้น)" = "1.At least 8 characters.\n2.At least one uppercase character.\n3.At least one lowercase character.\n4.At least one number or punctuation mark (like ! and &).\n(ex. Abcdefg1, 12345678Aa)";
 "กรุณาระบุชื่อ" = "Please provide your first name";
 "กรุณาระบุนามสกุล" = "Please provide your last name";
 "สร้างบัญชีสำเร็จ" = "Account successfully created";
